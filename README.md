@@ -63,7 +63,7 @@ Mitigation Strategy for above risks (Development method: scrum, kanban, waterfal
         
     2.) Pair-Programming: meeting in pairs to work on sections of the project.
         
-    3.) Test-Driven Development (writing tests that must pass to satisfy user requirements).
+    3.) Test-Driven Development: writing tests that must pass to satisfy user requirements.
         
 
 Project Tracking Software link (Trello is most common) [Make sure to add access for the instructor(s)]
