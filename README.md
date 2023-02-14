@@ -1,7 +1,9 @@
 # Group1_Project
 
 3308 Project Group 1
+
 Meeting Time: February 13, 2023 (All team members present)
+
 Scrum Master: Micah Simmerman
 
 Project Milestone 1: Project Proposal (10 points)
