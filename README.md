@@ -40,7 +40,7 @@ Vision statement: what would you tell potential customers?
   
 Motivation: why are you working on this project?
         
-    1.) This project appears managable to the skill levels of the members of the Hooli Strike Team of Engineers
+    1.) This project appears managable to the skill levels of the members of the Hooli Strike Team.
     
     2.) Logic games are difficult to learn on your own. Computer assisted learning can help users improve their 
         skills and track their learning and achievements using specialized software tools. 
