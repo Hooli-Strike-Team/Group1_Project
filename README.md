@@ -10,8 +10,8 @@ Scrum Master: Micah Simmerman
 
 Create a GitHub repository with all team members as collaborators
 
-    [Make sure to add access for the instructor(s)]. 
-    Create a README.md file for the repository and include the following:
+        -[Make sure to add access for the instructor(s)]. 
+        -Create a README.md file for the repository and include the following:
 
 
 Project Title: 
