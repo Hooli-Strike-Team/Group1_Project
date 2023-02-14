@@ -11,11 +11,17 @@ Create a GitHub repository with all team members as collaborators
 Create a README.md file for the repository and include the following:
 
 
-Project title: Logic Tutor
+Project title: 
+    
+    Logic Tutor
 
-Team Number: 1 - "Hooli-Strike Team"
+Team Number: 
 
-Team/Product: Logic Tutor 
+    Team #1; "Hooli-Strike Team"
+
+Team/Product: 
+    
+    Logic Tutor 
 
 Team members (list the name, git username, and email for each member): 
 
