@@ -28,10 +28,10 @@ Team/Product:
 
 Team members (list the name, git username, and email for each member): 
 
-    Paul  [GitUsername]  Paul.Schneider-1@colorado.edu
-    Tory  [GitUsername]  visw4412@colorado.edu
-    Ben  [GitUsername]  beal2144@colorado.edu
-    Matt  [GitUsername]  matt.tutt@gmail.com
+    Paul  [GitHubUsername]  Paul.Schneider-1@colorado.edu
+    Tory  [GitHubUsername]  visw4412@colorado.edu
+    Ben  [GitHubUsername]  beal2144@colorado.edu
+    Matt  [GitHubUsername]  matt.tutt@gmail.com
     Micah Simmerman  Micah614  jasi9001@colorado.edu
 
 Day/Time/TimeZone for the scheduled team weekly meeting (30 minutes via Zoom)
