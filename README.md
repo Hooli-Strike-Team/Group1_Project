@@ -36,7 +36,7 @@ Day/Time/TimeZone for the scheduled team weekly meeting (30 minutes via Zoom)
 
 Vision statement: what would you tell potential customers?
     
-    Logic Tutor will improve your logical reasoning skills with computer assisted training on classic logic games.
+    Logic Tutor will improve your logic and reasoning skills with computer assisted training on classic logic games.
   
 Motivation: why are you working on this project?
         
