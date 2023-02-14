@@ -2,6 +2,7 @@
 
 3308 Project Group 1    
 Project Milestone 1: Project Proposal (10 points)
+
 Create a GitHub repository with all team members as collaborators
 [Make sure to add access for the instructor(s)]. Create a README.md file for the repository and include the following:
 
