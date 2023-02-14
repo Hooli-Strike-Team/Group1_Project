@@ -4,7 +4,7 @@
 
 Project Milestone 1: Project Proposal (10 points)
 
-Meeting Time: February 13, 2023 (All team members present)
+Meeting Time: February 13, 2023 (All members present)
 
 Scrum Master: Micah Simmerman
 
