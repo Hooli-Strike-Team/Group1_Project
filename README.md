@@ -40,7 +40,7 @@ Day/Time/TimeZone for the scheduled team weekly meeting (30 minutes via Zoom)
 
 Vision statement: what would you tell potential customers?
     
-    Logic Tutor is a computer-assisted training app to improve logic and critical thinking skills, tutoring the user on advanced strategies in classic logic games like chess and sudoku. The app presents real-time strategic hints from the computer to advance the user's game strategy, and tracks the user's progress using real-time automated tools.
+    Logic Tutor is a computer-assisted training app to improve logic and critical thinking skills, tutoring the user on advanced strategies in classic logic games like chess and sudoku. The app presents real-time strategic hints from the computer to advance the user's game strategy, and tracks learning progress using real-time automated tools.
 
   
 Motivation: why are you working on this project?
@@ -54,7 +54,7 @@ Motivation: why are you working on this project?
     
       1.) Personal growth and impact: the project offers ample opportunity for team members with varying levels of experience to make meaningful contributions to the product.  Additionally, the challenge of designing a web application that is as enjoyable as it is effective at teaching complex concepts supports the team members in honing their development skills.
 
-      2.) Integration of education and enjoyment: logic games are a long-standing and widespread pastime.  The project leverages their popularity for educational and entertainment purposes by providing users with an engaging way to enhance their problem-solving abilities.
+      2.) Integration of education and enjoyment: logic games are a long-standing and widespread pastime. The project leverages their popularity for educational and entertainment purposes by providing users with an engaging way to enhance their problem-solving abilities.
       
       3.) Empowering learning through technology: computer-assisted learning lessens the burden on users of managing their individual paths to mastery.  Access to instant feedback, progress tracking features, and achievements encourages desired behaviors from users by making them more meaningful and rewarding.
 
