@@ -29,7 +29,7 @@ Team/Product:
 Team members (list the name, git username, and email for each member): 
 
     Paul  [GitHubUsername]  Paul.Schneider-1@colorado.edu
-    Tory  [GitHubUsername]  visw4412@colorado.edu
+    Tory  vswensen  visw4412@colorado.edu
     Ben  [GitHubUsername]  beal2144@colorado.edu
     Matt  [GitHubUsername]  matt.tutt@gmail.com
     Micah Simmerman  Micah614  jasi9001@colorado.edu
