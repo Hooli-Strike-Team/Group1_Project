@@ -1,22 +1,33 @@
 # Group1_Project
+
 3308 Project Group 1
+
 Project Milestone 1: Project Proposal (10 points)
+
 Create a GitHub repository with all team members as collaborators
+
 [Make sure to add access for the instructor(s)]
+
 Create a README.md file for the repository and include the following:
 
 
-Project title: <Game> Tutor
+Project title: Logic Tutor
+
 Team Number: 1 - "Hooli-Strike Team"
-Team/Product: Sudoku Tutor 
+
+Team/Product: Logic Tutor 
+
 Team members (list the name, git username, and email for each member): 
+
     [(Paul, , ); (Tory, , ); (Ben, , ); (Matt, , ); (Micah Simmerman, Micah614, jasi9001@colorado.edu) 
 
 Day/Time/TimeZone for the scheduled team weekly meeting (30 minutes via Zoom)
+    
     Weekly Team Meetings are on Mondays at 3:00 pm MST
 
 Vision statement: what would you tell potential customers?
-    <Game> Tutor will improve your logical reasoning skills with computer assisted training on classic logic games.
+    
+    Logic Tutor will improve your logical reasoning skills with computer assisted training on classic logic games.
   
 Motivation: why are you working on this project?
         
@@ -39,11 +50,11 @@ these team members, lack of some needed resources, etc:
         
 Mitigation Strategy for above risks (Development method: scrum, kanban, waterfall: with specifics!)
         
-    1.) Agile-Scrum: weekly sprints, design meetings, review and team retrospective meetings
+    1.) Agile-Scrum: weekly sprints, design meetings, review and team retrospective meetings.
         
-    2.) Pair-Programming
+    2.) Pair-Programming: meeting in pairs to work on sections of the project.
         
-    3.) Test-Driven Development (script-writing to write tests that must pass before proceeding with development)
+    3.) Test-Driven Development (script-writing to write tests that must pass before proceeding with development).
         
 
 Project Tracking Software link (Trello is most common) [Make sure to add access for the instructor(s)]
