@@ -40,7 +40,7 @@ Day/Time/TimeZone for the scheduled team weekly meeting (30 minutes via Zoom)
 
 Vision statement: what would you tell potential customers?
     
-    Logic Tutor is a computer-assisted training app that improves logic and critical thinking skills, tutoring the user on advanced strategies behind classic logic games such as chess and sudoku. The app presents real-time strategic hints from the computer to advance the user's game strategy, and tracks the user's progress using real-time automated tools.
+    Logic Tutor is a computer-assisted training app to improve logic and critical thinking skills, tutoring the user on advanced strategies in classic logic games like chess and sudoku. The app presents real-time strategic hints from the computer to advance the user's game strategy, and tracks the user's progress using real-time automated tools.
 
   
 Motivation: why are you working on this project?
