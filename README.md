@@ -29,9 +29,9 @@ Team/Product:
 Team members (list the name, git username, and email for each member): 
 
     Paul  [GitHubUsername]  Paul.Schneider-1@colorado.edu
-    Tory  vswensen  visw4412@colorado.edu
-    Ben  [GitHubUsername]  beal2144@colorado.edu
-    Matt  [GitHubUsername]  matt.tutt@gmail.com
+    Tory Swensen  vswensen  visw4412@colorado.edu
+    Benjamin Allen  BenJimAllen beal2144@colorado.edu
+    Matthew Tuttle  Mst263  matt.tutt@gmail.com
     Micah Simmerman  Micah614  jasi9001@colorado.edu
 
 Day/Time/TimeZone for the scheduled team weekly meeting (30 minutes via Zoom)
@@ -47,8 +47,8 @@ Motivation: why are you working on this project?
         
     1.) This project appears managable to the skill levels of the members of the Hooli Strike Team.
     
-    2.) Logic games are difficult to learn on your own. Computer assisted learning can help users improve their 
-        skills and track their learning and achievements using specialized software tools. 
+    2.) Logic games are difficult to learn on your own. Computer assisted learning technologies can help users improve their 
+        skills in Sudoku or Chess and help them track their learning achievements using specialized tools. 
     
       Suggestions (Tory):
     
