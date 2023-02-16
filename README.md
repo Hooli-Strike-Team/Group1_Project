@@ -28,7 +28,7 @@ Team/Product:
 
 Team members (list the name, git username, and email for each member): 
 
-    Paul  [GitHubUsername]  Paul.Schneider-1@colorado.edu
+    Paul  PaulMSchneider  Paul.Schneider-1@colorado.edu
     Tory Swensen  vswensen  visw4412@colorado.edu
     Benjamin Allen  BenJimAllen beal2144@colorado.edu
     Matthew Tuttle  Mst263  matt.tutt@gmail.com
