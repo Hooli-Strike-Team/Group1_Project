@@ -44,19 +44,14 @@ Vision statement: what would you tell potential customers?
 
   
 Motivation: why are you working on this project?
-        
-    1.) This project appears managable to the skill levels of the members of the Hooli Strike Team.
-    
-    2.) Logic games are difficult to learn on your own. Computer assisted learning technologies can help users improve their 
-        skills in Sudoku or Chess and help them track their learning achievements using specialized tools. 
-    
-      Suggestions (Tory):
-    
-      1.) Personal growth and impact: the project offers ample opportunity for team members with varying levels of experience to make meaningful contributions to the product.  Additionally, the challenge of designing a web application that is as enjoyable as it is effective at teaching complex concepts supports the team members in honing their development skills.
 
-      2.) Integration of education and enjoyment: logic games are a long-standing and widespread pastime. The project leverages their popularity for educational and entertainment purposes by providing users with an engaging way to enhance their problem-solving abilities.
-      
-      3.) Empowering learning through technology: computer-assisted learning lessens the burden on users of managing their individual paths to mastery.  Access to instant feedback, progress tracking features, and achievements encourages desired behaviors from users by making them more meaningful and rewarding.
+    1.) The project accommodates the varied skill sets and experience levels of the Hooli Strike Team. 
+        It also offers ample opportunity for team members to expand their programming knowledge.
+       
+    2.) Logic games such as Sudoku and Chess are difficult to master on one’s own. Computer-assisted
+        learning technologies help users to improve their problem-solving abilities and use specialized
+        tools to provide them with instant feedback, progress tracking, and achievement features.
+        
 
 Risks to project completion; possibly including new language or working environment no prior experience working with 
 these team members, lack of some needed resources, etc:
