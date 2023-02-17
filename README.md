@@ -45,7 +45,7 @@ Vision statement: what would you tell potential customers?
   
 Motivation: why are you working on this project?
 
-    1.) The project accommodates the varied skill sets and experience levels of the Hooli Strike Team. 
+    1.) The project accommodates the varied skill sets and experience levels of the Hooli-Strike Team. 
         It also offers ample opportunity for team members to expand their programming knowledge.
        
     2.) Logic games such as Sudoku and Chess are difficult to master on one’s own. Computer-assisted
