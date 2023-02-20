@@ -92,5 +92,88 @@ Acceptance Criteria
 
 <hr><hr><br><br>
 
+### User Story : 4
+<hr>
 
+* *As a*    customer/user
+* *I want*    to be challenged with games and puzzles of varying levels of difficulty
+* *So that*    I can improve my gameplay
 
+<hr>
+
+Effort Estimation
+
+* **Level:** ?<br><br>
+
+<hr>
+
+Acceptance Criteria
+
+* **Scenario:**    playing a game or solving a puzzle<br><br>	   
+
+* **Given:**    \<I am customer/user of the Logic Tutor app\><br><br>
+	
+* **When :**    \<I select the "games and puzzles" option\><br><br>
+	
+* **Then :**    \<the system shows a list of available games and puzzles sorted by level of difficulty\><br><br>
+	
+* **When :**    \<I select and complete a game or puzzle\><br><br>
+	
+* **Then :**    \<the system gives gives me the option to continue play at the current level of difficulty or at a level of difficulty of my choosing\><br><br>
+	
+<hr><hr><br><br>
+
+### User Story : 5
+<hr>
+
+* *As a*   customer/user
+* *I want*   to have access to a never-ending supply of challenges
+* *So that*   I can practice my skills even after I have finished all of the available games, puzzles, and tutorials
+
+<hr>
+
+Effort Estimation
+
+* **Level:** ?<br><br>
+
+<hr>
+
+Acceptance Criteria
+
+* **Scenario:** generating a new game or puzzle<br><br>
+
+* **Given:**    \<I am a customer/user of the Logic Tutor app\><br><br>
+	
+* **When :** 	\<I select the "generate new game or puzzle" option and indicate the target level of difficulty\><br><br>
+	
+* **Then :** 	\<the system uses a pre-existing database to generate a new game or puzzle at that target level of difficulty\><br><br>
+	
+<hr><hr><br><br>
+
+### User Story : 6
+<hr>
+
+* *As a*   customer/user 
+* *I want*   to be able to customize the game settings
+* *So that*   I can adjust the time limit of a game or puzzle according to my preferences
+
+<hr>
+
+Effort Estimation
+
+* **Level:** ?<br><br>
+
+<hr>
+
+Acceptance Criteria
+
+* **Scenario:** customizing game or puzzle settings<br><br>
+
+* **Given:**    \<I am a customer/user of the Logic Tutor app on the "game or puzzle settings" page\><br><br>
+	
+* **When :** 	\<I adjust the time limit slider to the desired setting\><br><br>
+	
+* **Then :** 	\<the system saves the new time limit\><br>
+&nbsp;AND &nbsp;&nbsp;\<the game or puzzle adjusts the time limit accordingly\><br><br>
+	
+<hr><hr><br><br>
