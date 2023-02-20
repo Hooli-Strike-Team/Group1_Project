@@ -28,7 +28,7 @@ Tory Swensen
 
 Effort Estimation
 
-* **Level:** ?<br><br>
+* **Level:** XL<br><br>
 
 <hr>
 
@@ -53,7 +53,7 @@ Acceptance Criteria
 
 Effort Estimation
 
-* **Level:** ?<br><br>
+* **Level:** L<br><br>
 
 <hr>
 
@@ -74,6 +74,10 @@ Acceptance Criteria
 * *I want*   to be rewarded for my time and effort spent playing this game
 * *So that*  I am encourged to progress my skills futher and spend more time on the website.
 
+New Story
+* *As a*   customer
+* *I want*   to see my achievement progress when I am logged in to the game
+* *So that*  I can see how far my skills have progressed.
 <hr>
 
 Effort Estimation
