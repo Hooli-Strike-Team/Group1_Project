@@ -8,7 +8,7 @@
 
 <hr>
 
-## Logic Tutor
+## Logic Tutor (test)
 
 **Team Members Present:** 
 Matthew Tuttle
