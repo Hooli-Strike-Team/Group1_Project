@@ -34,7 +34,7 @@ Effort Estimation
 
 Acceptance Criteria
 
-* **Given:** 	\<I am a user playing a sudoku game.\><br><br>
+* **Given:** 	\<I am a logged-in user playing a sudoku game.\><br><br>
 	
 * **When :** 	\<I click an empty sudoku cell, then press the "50/50" button located on the in-process game page.\><br><br>
 	
