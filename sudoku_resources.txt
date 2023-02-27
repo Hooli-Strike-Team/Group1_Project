@@ -1,0 +1,7 @@
+List of Sudoku Game Repositories:
+
+1.) Robatron Sudoku game generator and solver (JavaScript) https://github.com/robatron/sudoku.js.git
+2.) MorvanZhou (Python) https://github.com/MorvanZhou/sudoku.git
+3.) jeffsieu py-sudoku (Python) https://github.com/jeffsieu/py-sudoku.git
+4.) sfuhrm (Java) https://github.com/sfuhrm/sudoku.git
+5.) Android (mobile) Sudoku-Pattern-Generator-App (Java) https://github.com/basil2style/Sudoku-Pattern-Generator-App.git
