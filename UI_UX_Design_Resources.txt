@@ -2,3 +2,6 @@ This document contains information and links to websites with useful UX/UI desig
 
 The following webpage contains a list of nine UX/UI websites with many useful tools and resources...
 https://webdesign.tutsplus.com/articles/9-recommended-github-repos-for-interface-design--cms-29353
+
+Sudoku Game Design:
+Collection of Sudoku game/web designs for inspiration - https://docs.google.com/presentation/d/12angdt6dKKKU7E7nfi8t2vyco3XJgqgqPNN6V4EQkJ0/edit?usp=sharing
