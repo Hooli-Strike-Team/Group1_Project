@@ -22,7 +22,7 @@ Tory Swensen
 
 * *As a*   customer 
 * *I want*   a convenient method of getting hints/feedback when I am struggling with a Sudoku or Chess game.  
-* *So that*  I can improve my problem solving ablilities and continue to enjoy progressing through the game. 
+* *So that*  I can improve my problem solving ablilities and continue progressing through each game. 
 
 <hr>
 
