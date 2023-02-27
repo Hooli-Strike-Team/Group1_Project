@@ -36,9 +36,9 @@ Acceptance Criteria
 
 * **Given:** 	\<I am a user playing a sudoku game.\><br><br>
 	
-* **When :** 	\<I click the "help" button located on the in-process game page.\><br><br>
+* **When :** 	\<I click an empty sudoku cell, then press the "50/50" button located on the in-process game page.\><br><br>
 	
-* **Then :** 	\<I see advanced strategies and receive helpful hints to further my progress.\><br><br>
+* **Then :** 	\<I see an abbreviated list with 50% of incorrect cell choice options removed.\><br><br>
 	
 Start Comment by Micah614. <br>
 It looks like we need to give a lot more thought to the precise manner in which the user will recieve hints during the game. 
