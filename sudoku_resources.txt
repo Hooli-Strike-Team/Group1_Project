@@ -7,3 +7,8 @@ List of Sudoku Game Repositories:
 5.) Android mobile Sudoku-Pattern-Generator-App (Java) https://github.com/basil2style/Sudoku-Pattern-Generator-App.git
 6.) SudokuLibrary (C#) https://github.com/firateski/SudokuLibrary.git
 7.) Yanndroid Sudoku (Java), fully deployed and currently available on GooglePlay https://github.com/Yanndroid/Sudoku.git
+
+Sudoku Resources:
+
+1.) https://www.sudokuwiki.org/sudoku.htm    # Hews very close to our original goal of a tutor, and has strategies that can be implemented as individual types of solver
+2.) http://norvig.com/sudoku.html            # Walks through wrting a efficient-ish general python solver
