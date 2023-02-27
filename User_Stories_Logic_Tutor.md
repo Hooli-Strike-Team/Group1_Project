@@ -34,12 +34,23 @@ Effort Estimation
 
 Acceptance Criteria
 
-* **Given:** 	\<I am a Developer for the logic tutor project\><br><br>
+* **Given:** 	\<I am a user playing a sudoku game.\><br><br>
 	
-* **When :** 	\<I create a visually appealing "help" button to the side of the game in process\><br><br>
+* **When :** 	\<I click the "help" button located on the in-process game page.\><br><br>
 	
-* **Then :** 	\<the user can press the button to get tutoring on advanced strategies and reseive helpful hints to get un-stuck\><br><br>
+* **Then :** 	\<I see advanced strategies and receive helpful hints to further my progress.\><br><br>
 	
+Start Comment by Micah614. <br>
+It looks like we need to give a lot more thought to the precise manner in which the user will recieve hints during the game. 
+Here are some ideas: <br>
+    1.) "50/50" - when the user clicks the "50/50" button and clicks on an empty sudoku cell, a popup window presents the user a list of the remaining options with 50% of the incorrect answers removed. <br>
+    2.) "Nudge Me" - when the user clicks "Nudge Me", 2.5% (<-an arbitrary number) of the sudoku cells are filled in and highlighted, so the user can see what cells have changed. <br>
+    
+    Optional: complete the action by presenting the user with a helpful sudoku tip or an interesting historical fact. 
+    Optional: deduct points from a user's game score each time a help option is used.
+
+End Comment by Micah614. 
+
 <hr><hr><br><br>
 
 ### User Story : 2
@@ -47,7 +58,7 @@ Acceptance Criteria
 
 * *As a*   customer.
 * *I want*   a progress tracker during the game.
-* *So that*  I can see the areas of the game that I've mastered, and the areas that I need inprovement in.
+* *So that*  I can see the areas of the game that I've mastered, and the areas of my game that need improvement.
 
 <hr>
 
