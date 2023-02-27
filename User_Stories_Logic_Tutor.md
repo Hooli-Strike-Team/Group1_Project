@@ -44,7 +44,8 @@ Start Comment by Micah614. <br>
 It looks like we need to give a lot more thought to the precise manner in which the user will recieve hints during the game. 
 Here are some ideas: <br>
     1.) "50/50" - when the user clicks the "50/50" button and clicks on an empty sudoku cell, a popup window presents the user a list of the remaining options with 50% of the incorrect answers removed. <br>
-    2.) "Nudge Me" - when the user clicks "Nudge Me", 2.5% (<-an arbitrary number) of the sudoku cells are filled in and highlighted, so the user can see what cells have changed. <br>
+    2.) "Nudge" - when the user clicks the "Nudge" button, the cell with the fewest remaining options (the one that is easiest to solve) is highlighted for 3 seconds. <br>
+    3.) "Help Me SudokuBot!" - when the user clicks "Help Me SudokuBot!", 2.5% (<-an arbitrary number) of the sudoku cells are automatically filled in and highlighted, so the user can see what cells have changed. <br>
     
     Optional: complete the action by presenting the user with a helpful sudoku tip or an interesting historical fact. 
     Optional: deduct points from a user's game score each time a help option is used.
