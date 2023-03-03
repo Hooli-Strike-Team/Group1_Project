@@ -18,7 +18,7 @@
 
 * To Do
   * Matt: Make a simple javascript implementation of sudoku or get running open source implementation
-  * Micah: Adapt Lab 6 resources to provide a RESTful development framework for the team to work with. Also plan to discuss Test Driven Design resources and tools from the reading and labs, and formulate a plan for TDD efforts in the coming weeks. 
+  * Micah: Adapt Lab 6 resources to provide a RESTful development framework for the team to work with. Likewise, plans to adapt and discuss Test Driven Design resources from the reading and labs to help the team formulate a plan for TDD efforts in the coming weeks. 
   * Ben: ...
   * Paul: Story Board the design of each page on the website.
   * Tory: create mid-fi wireframes for the remaining pages so that designs can be updated easily by other team members
