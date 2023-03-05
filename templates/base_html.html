@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="">  <!--TODO: Add local css stylesheet-->
+	<title>{% block title %} {% endblock %} </title>
+	<style>
+		nav a {
+			color: #d64161
+			font-size: 3em;
+			margin-left: 50px;
+			text-decoration: none;
+		}
+	</style>
+</head>
+<body>
+	<nav>
+		<a href={{ url_for('login')}}>LOGIN</a>
+		<!-- NAVIGATION HEADER GOES HERE -->
+	</nav>
+	<hr>
+	<div class="content">
+		{% block content %}{% endblock %}
+	</div>
+</body>
+</html>
