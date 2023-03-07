@@ -4,7 +4,7 @@
 
 ### Main Page (Matt) ###
 
-* Requirments 
+* Requirements 
 
     * Parameters needed for the page
     
@@ -20,7 +20,7 @@
 
 ### Login Page (Micah/Ben) ###
 
-* Requirments 
+* Requirements 
 
     * Parameters needed for the page
     
@@ -36,7 +36,7 @@
 
 ### Registration Page (Micah/Ben) ###
 
-* Requirments 
+* Requirements 
 
     * Parameters needed for the page
     
@@ -52,7 +52,7 @@
 
 ### Home Page (Tory/Paul) ###
 
-* Requirments 
+* Requirements 
 
     * Parameters needed for the page
     
@@ -68,7 +68,7 @@
 
 ### Achievement Page (Tory/Paul) ###
 
-* Requirments 
+* Requirements 
 
     * Parameters needed for the page
     
