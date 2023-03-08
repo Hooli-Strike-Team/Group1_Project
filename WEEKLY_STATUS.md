@@ -23,7 +23,9 @@
   * Paul: Story Board the design of each page on the website.
   * Tory: create mid-fi wireframes for the remaining pages so that designs can be updated easily by other team members
 
-<img src="images/weekly_status/example.png" style="flex:1;margin-right:10px;width:34%;">
+<p align="center">
+  <img width="525" height="169" src="images/weekly_status/example.png">
+</p>
 
 ### Week 2: February 27 - March 5 ###
 
@@ -48,7 +50,7 @@
   * Paul: draft Home Page and Achievements Page for Project Milestone 4
   * Tory: draft Home Page and Achievements Page for Project Milestone 4
 
-<div style="display:flex; margin-right:50px;">
-    <img src="images/weekly_status/board_02_27.png" style="flex:1;margin-right:10px;width:34%;">
-    <img src="images/weekly_status/shared_card_02_27.png" style="flex:1;margin-left:10px;width:34%;">
-</div>
+<p align="center" style="display:flex;">
+  <img width="350" height="240" src="images/weekly_status/board_02_27.png">
+  <img width="350" height="346" src="images/weekly_status/shared_card_02_27.png">
+</p>
