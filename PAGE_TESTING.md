@@ -7,11 +7,22 @@
 * Requirements 
 
     * Parameters needed for the page
-    
+       Account Info
+       Puzzle Difficulty
+       Setting Selections
+       
     * Data needed to render the page
-    
+       Sudoku Data
+       
     * Link destinations for the page
-
+        Splash Page (from top left icon)
+        Difficulty Selection Page
+        Rules Page
+        Achievements Page
+        Settings Page
+        Statistics Page
+        Tutorial Page??
+        
     * List of tests for verifying the rendering of the page
 
 <img src="TEAM_RESOURCES/Images_Milestone4/main.png" alt="Main Page" width="500">
