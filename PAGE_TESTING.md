@@ -96,12 +96,32 @@
 * Requirements 
 
     * Parameters needed for the page
+       * Available Badges 
+       * Progress Meter
+       * Logo 
+       * User ID/Account info
     
     * Data needed to render the page
+       * Updated User progress on earning indivdual badges 
+       * Text Descriptions of Badges
+       * Updated number of badges earned sense last visit
     
     * Link destinations for the page
+      * Home 
+      * Settings
+      * Rules 
+      * Achievement (reloads page) 
 
     * List of tests for verifying the rendering of the page
+      * All possible badges displayed 
+      * Unearned badges are greyed out 
+      * Earned badges are brightened 
+      * Progress meter correctly how close the user is to earning a particular badge 
+      * Clicking the web logo take users back to "Home" page
+      * Clicking the settings logo takes users to the "Settings" page 
+      * Clicking the rules logo takes user to the "Rules" page 
+      * Clicking the achievements page reloads the current page
+      
 
 <img src="TEAM_RESOURCES/Images_Milestone4/achievements-badges-earned.png" alt="Achievement Page" width="500">
 
