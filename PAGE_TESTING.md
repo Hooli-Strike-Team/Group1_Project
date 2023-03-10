@@ -77,15 +77,46 @@
 
 ### Home Page (Tory/Paul) ###
 
+* Page Description
+
+    * Header with the web app logo, name, and navigation links to the Create Account and Sign In pages
+    * Web app tagline and a brief description of the product
+    * Several feature icons with short descriptions
+    * "Create Account" button and "Sign In" link in a prominent location
+    *  Footer with contact information
+
 * Requirements 
 
-    * Parameters needed for the page
-    
-    * Data needed to render the page
-    
+    *  Parameters needed for the page
+        * Web app logo
+        * Web app name
+        * Web app tagline
+        * Product description
+        * Feature icons
+        * Feature descriptions
+        * "Create Account" button/link
+        * "Sign In" button/link
+        * Footer contact information
+
+    *  Data needed to render the page
+        * HTML template and CSS file  
+        * Web app logo and feature icon image files
+        * Text headings, descriptions
+
     * Link destinations for the page
+        * "Create Account" button/link: directs the user to the Create Account Page
+        * "Sign In" button/link: directs the user to the Sign In Page
+        * Web app logo/name: directs the user to the Home Page (i.e., reloads the Home Page)
 
     * List of tests for verifying the rendering of the page
+        * Check that the page loads quickly and all elements are displayed correctly
+        * Check that all links are working and direct users to the correct pages
+        * Check that the web app logo and name are displayed in the header and are hyperlinked to the Home Page
+        * Check that the web app tagline and product description are easy to read and provide accurate information
+        * Check that the feature icons and descriptions are clearly visible and provide accurate information
+        * Check that the "Create Account" button and "Sign In" link are prominently displayed and functional
+        * Check that the contact information in the footer is correct and that any "mailto" links are working properly
+        * Test the page across multiple devices and platforms to verify that it is responsive and that the content is displayed properly
 
 <img src="TEAM_RESOURCES/Images_Milestone4/home.png" alt="Home Page" width="500">
 
