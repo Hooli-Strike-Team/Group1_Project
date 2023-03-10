@@ -116,11 +116,11 @@
       * All possible badges displayed 
       * Unearned badges are greyed out 
       * Earned badges are brightened 
-      * Progress meter correctly how close the user is to earning a particular badge 
-      * Clicking the web logo take users back to "Home" page
+      * Progress meter correctly shows how close the user is to earning a particular badge 
+      * Clicking the web logo take users back to the "Home" page
       * Clicking the settings logo takes users to the "Settings" page 
       * Clicking the rules logo takes user to the "Rules" page 
-      * Clicking the achievements page reloads the current page
+      * Clicking the achievements logo reloads the current page
       
 
 <img src="TEAM_RESOURCES/Images_Milestone4/achievements-badges-earned.png" alt="Achievement Page" width="500">
