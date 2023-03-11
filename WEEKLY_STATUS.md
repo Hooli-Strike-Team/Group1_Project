@@ -82,7 +82,7 @@
     * Paul: Fill out Achievements Page for Project Milestone 4
     * Tory: ...
 
-### Week 3: March 13 - March 19 ###
+### Week 4: March 13 - March 19 ###
 
 * Completed 
     * Matt: ...
