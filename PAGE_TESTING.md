@@ -48,7 +48,7 @@
 * Requirements 
 
     * Parameters needed for the page
-    
+        
     * Data needed to render the page
     
     * Link destinations for the page
@@ -64,13 +64,26 @@
 * Requirements 
 
     * Parameters needed for the page
-    
+        * WebApp Logo/name/tagline
+        * Objectives with formatting 
+        * Create Account Div 
+        * Error messages when creating is not successful appropriate to each situation 
     * Data needed to render the page
-    
+         * HTML/CSS templates 
+         * Database of users and associated information  
+         * Objectives (Are these linked to achievements?)
     * Link destinations for the page
-
+        * WebApp upper-left logo returns to homepage 
+        * "Already Have An Account?" text links to login page  
+        * "sign in Button" redirects to login homepage with user entered credentials
+        * "Create Account" returns to main page with login status if info in valid
+        * "Create Account" if account exists or does not follow username/email/pw protocol, refresh page with appropriate message 
     * List of tests for verifying the rendering of the page
-
+        * Test page appears correct to formatting 
+        * Test that all routes work correctly, including route to login page 
+        * Test that users cannot create more than one account with the same credentials
+        * Test new accounts are correctly logged into database 
+        * Test objectives appear correctly as shown and are the correct objectives 
 <img src="TEAM_RESOURCES/Images_Milestone4/register.png" alt="Registration Page" width="500">
 
 -----------
