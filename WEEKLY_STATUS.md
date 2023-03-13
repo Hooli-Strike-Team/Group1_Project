@@ -5,7 +5,7 @@
 * Completed
   * Matt: Put together document with sudoku game and website design examples in 'UI_UX_Design_Resources.txt.'
   * Micah: Created resource documents UI_UX_Design_Resources.txt and sudoku_resources.txt, populated them with public repository and weblink resources. 
-  * Ben: ...
+  * Ben: Looked at different current implementations of sudoku
   * Paul: finished the first draft of the main page 
   * Tory: set up `WEEKLY_STATUS.md` and `images` folder for progress tracking (notes and screenshots); created mid-fi wireframes for Main Page and Login Page based on Paul's lo-fi mockups
 
@@ -32,7 +32,7 @@
 * Completed
   * Matt: Did additional research into javascript implementations, no final product completed yet
   * Micah: created an initial flask server set up and started adding files to the templates folder for html templates and future css style sheets. 
-  * Ben: ...
+  * Ben: Turned in project milestone 
   * Paul: finished story boarding the rough drafts of the; main page, show my mistakes page, candidate mode page, highlight next move page, award page and difficulty page.
   * Tory: finished mid-fi wireframes and presented designs to team; updated Trello board layout and assigned tasks
 
@@ -61,7 +61,7 @@
 * Completed 
     * Matt: ...
     * Micah: Created a set of simple Flask HTML and CSS template documents. Attempted pair-programming with Ben on Sunday, but spent that time helping Ben get push access to the group repository instead. 
-    * Ben: ... 
+    * Ben: Finally achieved Push permission for group repository 
     * Paul: 
        * Summitted rough draft of Achievement Page info for Project Milestone 4. Awaiting peer review.
        * Finished final draft of webpage design 
@@ -71,14 +71,14 @@
 * In Progress 
     * Matt: ...
     * Micah: Communicating with team about the next steps of development. Learned about Tory and Paul's recent breakthroughs with the 'moqups' design tools. 
-    * Ben: ... 
+    * Ben: Understan the next stages of development and how to contribute 
     * Paul: Establishing an understanding of the information required for each bullet point in Project Milestone 4
     * Tory: consider options for implementing page designs
 
 * To Do 
     * Matt: ...
     * Micah: Get access to mock-ups created by Tory and Paul, and start creating a user experience diagram this week.
-    * Ben: ... 
+    * Ben: Fill out Registraion Page for Milestone Four 
     * Paul: Fill out Achievements Page for Project Milestone 4
     * Tory: work with Paul on implementing the page designs 
 
@@ -87,20 +87,20 @@
 * Completed 
     * Matt: ...
     * Micah: Gained access to "moqups" info-visualization tools, began creating a user experience flowchart. Added "wireframe_user_experience_graph_version01_01" to the TEAM_RESOURCES folder.
-    * Ben: ... 
+    * Ben: Registration and Login Page for Project Milestone 4 
     * Paul: ...
     * Tory: ...
     
 * In Progress 
     * Matt: ...
     * Micah: Gather feedback from team members to develop the user experience flowchart and elucidate the desired application behaviors.
-    * Ben: ... 
+    * Ben: FLASK framework for backend 
     * Paul: ...
     * Tory: ...
 
 * To Do 
     * Matt: ...
     * Micah: ...
-    * Ben: ... 
+    * Ben: FLASK framework, look into databases for user credentials 
     * Paul: Begin using HTML to design the layout of the webpage based on the story-boards that were approved by the group.
     * Tory: ...
