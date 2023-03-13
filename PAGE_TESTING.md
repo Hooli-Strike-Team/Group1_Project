@@ -13,6 +13,7 @@
        
     * Data needed to render the page
        * Sudoku Data
+       * Login Status and/or username
        
     * Link destinations for the page
         * Splash Page (from top left icon)
