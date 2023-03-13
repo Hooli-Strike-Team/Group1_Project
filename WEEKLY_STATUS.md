@@ -12,14 +12,14 @@
 * In Progress
   * Matt: Researching sudoku gameplay code and solver algorithms
   * Micah: Working on adapting the tools from Lab 6 to produce a working RESTful API framework to act as a starting foundation for the project. 
-  * Ben: ...
+  * Ben: Creating interesting pedagogical features for sudoku
   * Paul: Mocking up the design for the; Main Page, feedback page, progress meter page, awards page, difficulty meter, and the setting option page. 
   * Tory: collaborate with Paul on website design; currently polishing up Main Page, Login Page, and Progress Meter Page 
 
 * To Do
   * Matt: Make a simple javascript implementation of sudoku or get running open source implementation
   * Micah: Adapt Lab 6 resources to provide a RESTful development framework for the team to work with. Likewise, plans to adapt and discuss Test Driven Design resources from the reading and labs to help the team formulate a plan for TDD efforts in the coming weeks. 
-  * Ben: ...
+  * Ben: Decide how to implement learning tools 
   * Paul: Story Board the design of each page on the website.
   * Tory: create mid-fi wireframes for the remaining pages so that designs can be updated easily by other team members
 
@@ -39,14 +39,14 @@
 * In Progress
   * Matt: Supply Tory and Paul with direction for main page wireframes
   * Micah: Creating a graph to demonstrate the planned flow of the team web application and elucidate form functionalities.
-  * Ben: ...
+  * Ben: Turned in Milestone but still don't have push permissions 
   * Paul: work with Tory to tweak wireframes (with input from other team members) 
   * Tory: work with Paul to tweak wireframes (with input from other team members)
 
 * To Do
   * Matt: Continue work on js sudoku implementation
   * Micah: Create a user-experience graph using the mock-up pages designed by Tory and Paul. Expecting to complete this effort circa Thursday 14Mar2023.   
-  * Ben: ...
+  * Ben: Figure out GitHub
   * Paul: draft Home Page and Achievements Page for Project Milestone 4
   * Tory: draft Home Page and Achievements Page for Project Milestone 4
 
