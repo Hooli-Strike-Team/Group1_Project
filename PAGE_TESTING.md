@@ -48,12 +48,23 @@
 * Requirements 
 
     * Parameters needed for the page
-        
+        * WebApp Logo/name/tagline
+        * Sign in Div design
+        * Error messages for incomplete or failed logins 
     * Data needed to render the page
-    
+        * HTML/CSS Templates 
+        * Database with verified user accounts 
     * Link destinations for the page
-
+        * WebApp upper-left logo returns to home page 
+        * Create Account Text to Create Account page 
+        * Sign in with correct credentials to main page 
     * List of tests for verifying the rendering of the page
+        * Page appears correct with formatting
+        * Forgot password sends a message to email provided for that user account
+        * Test all routes 
+        * Test users are able to login with correct credentials
+        * Test users are not able to login with incorrect credentials 
+        * Test that error messages appear appropriate to each situation (unrecognized username, incorrect password, both, etc) 
 
 <img src="TEAM_RESOURCES/Images_Milestone4/login.png" alt="Login Page" width="500">
 
