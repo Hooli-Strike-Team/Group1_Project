@@ -80,7 +80,7 @@
     * Micah: Get access to mock-ups created by Tory and Paul, and start creating a user experience diagram this week.
     * Ben: ... 
     * Paul: Fill out Achievements Page for Project Milestone 4
-    * Tory: Work with Paul on implementing the page designs 
+    * Tory: work with Paul on implementing the page designs 
 
 ### Week 4: March 13 - March 19 ###
 
