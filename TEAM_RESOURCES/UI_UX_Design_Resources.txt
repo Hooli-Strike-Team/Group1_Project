@@ -5,3 +5,6 @@ https://webdesign.tutsplus.com/articles/9-recommended-github-repos-for-interface
 
 Sudoku Game Design:
 Collection of Sudoku game/web designs for inspiration - https://docs.google.com/presentation/d/12angdt6dKKKU7E7nfi8t2vyco3XJgqgqPNN6V4EQkJ0/edit?usp=sharing
+
+jsfiddle.net - tool for live display of html/css/js
+https://jsfiddle.net/AdmiralAkbar2/z6rv70h4/229/ - simple sudoku implementation project
