@@ -66,21 +66,21 @@
        * Summitted rough draft of Achievement Page info for Project Milestone 4. Awaiting peer review.
        * Finished final draft of webpage design 
        * Approval for final draft of webpage design given by group 
-    * Tory: ...
+    * Tory: submitted draft of Home Page information for Project Milestone 4 (awaiting peer review) and finished final draft of webpage design
     
 * In Progress 
     * Matt: ...
     * Micah: Communicating with team about the next steps of development. Learned about Tory and Paul's recent breakthroughs with the 'moqups' design tools. 
     * Ben: ... 
     * Paul: Establishing an understanding of the information required for each bullet point in Project Milestone 4
-    * Tory: ...
+    * Tory: consider options for implementing page designs
 
 * To Do 
     * Matt: ...
     * Micah: Get access to mock-ups created by Tory and Paul, and start creating a user experience diagram this week.
     * Ben: ... 
     * Paul: Fill out Achievements Page for Project Milestone 4
-    * Tory: ...
+    * Tory: Work with Paul on implementing the page designs 
 
 ### Week 4: March 13 - March 19 ###
 
