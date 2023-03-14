@@ -83,7 +83,7 @@
     * Link to the "Create an Account" page.
     * Link to the "Forgot Password?" page.
     * Link for password retrieval.
-    * "sign in" button.
+    * "Sign In" button.
   * Parameters needed for the page
      * A regex-filtered, database-verified "username" field.
      * A regex-filtered, database-verified "password" field that changes each password character into an asterisk '*'.
@@ -116,12 +116,13 @@
     * A garden variety user login page complete with left-float positioned infographic and a paragraph field.
     * Username text field.
     * Password text field.
-    * Hyperlink-fitted "Sign In" element for redirecting users to the login page.
-    * Create Account Button with an interactive press feature.
+    * Route-fitted "Sign In" element for redirecting users to the login page.
+    * "Create Account" Button with an interactive press feature.
   * Parameters needed for the page
      * A regex-filtered, database-verified "username" text field.
-     * A regex-filtered, database-verified "password" text field, that changes each password character into an asterisk '*' or a similar character.
      * A regex-filtered, database-verified "email" text field.
+     * A regex-filtered, database-verified "password" text field, that changes each password character into an asterisk '*' or a similar character.
+     * A route-fitted "Create Account" button with interactive press feature.
   * Data needed to render the page
      * 
   * Link destinations for the page
