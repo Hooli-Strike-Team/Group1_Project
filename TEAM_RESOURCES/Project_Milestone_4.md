@@ -91,7 +91,9 @@
      * A hyperlink-fitted "Forgot Password?" div element.
      * A hyperlink-fitted "Create Account" div element.
   * Data needed to render the page
-     * Image to be displayed
+     * Image to be displayed in the welcome blurb
+     * Some paragraph text.
+     * Icon for the Sign In button.
   * Link destinations for the page
      * 
   * List of tests for verifying the rendering of the page
