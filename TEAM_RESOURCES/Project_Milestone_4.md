@@ -117,6 +117,7 @@
     * Username text field.
     * Password text field.
     * Hyperlink-fitted "Sign In" element for redirecting users to the login page.
+    * Create Account Button with an interactive press feature.
   * Parameters needed for the page
      * A regex-filtered, database-verified "username" text field.
      * A regex-filtered, database-verified "password" text field, that changes each password character into an asterisk '*' or a similar character.
