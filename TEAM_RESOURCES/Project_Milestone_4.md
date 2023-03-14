@@ -25,7 +25,7 @@
 
 //MESSAGE TO TEAM-MEMBERS: Use the following template to guide your page descriptions
 
-  * Page Title: SudokuTutor Existing User Login Page
+  * Page Title: [WORKING TITLE OF THE PAGE]
   * Page Description (include a mockup or hand drawn image of the page)
     * [WHAT SHOULD THE USER SEE WHEN THEY LAND ON THE PAGE?]
     * [WHAT DO THE VARIOUS PAGE ELEMENTS DO?]
