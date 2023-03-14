@@ -45,13 +45,26 @@
 -----------
 
 ### Login Page (Micah/Ben) ###
-
 * Requirements 
 
     * Parameters needed for the page
         * WebApp Logo/name/tagline
-        * Sign in Div design
-        * Error messages for incomplete or failed logins 
+        * Left float div containing: 
+            -logo image
+            -h2 level welcome message 
+            -paragraph text (describing the application)
+        * Right float Div containing: 
+            -h1 "Sign In" text 
+            -h2 "Username" text  
+            -Username text field (not highlighted)
+            -h2 "Password" text 
+            -Password text field (optional: highlighted after a failed login attempt)
+            -An embedded "Forgot Password" div with embedded route to the "Forgot Password" page.
+            -An embedded "Create Account" div with an embedded route to the "Create Account" page.
+            -HTML "Sign In" button associated with [WHAT DOES THIS BUTTON DO?]
+        * [TO DO]
+        * An embedded popup error message such as: "unsuccessful login attempt, please check credentials and try again" rendered under the password field after an unsuccessful login.
+        
     * Data needed to render the page
         * HTML/CSS Templates 
         * Database with verified user accounts 
