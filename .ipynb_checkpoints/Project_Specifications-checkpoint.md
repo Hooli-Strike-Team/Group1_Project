@@ -45,6 +45,8 @@
     * I... [VERIFIABLE USER OUTCOME]
 
 
+
+
   * Page Title: SudokuTutor Landing Page
   * Page Description (include a mockup or hand drawn image of the page)
     * When a user opens the Sudoku Tutor application, a landing page is rendered in the user's browser presenting a description of application features and a prompt to either "sign-in" or "create an account". 
@@ -62,7 +64,7 @@
   * List of tests for verifying the rendering of the page
     * Given that I am... a registered or unregistered user...
     * When I... open the SudokuTutor Game App...
-    * I... see dynamically rendered content describing the benefits of SudokuTutor and the option to login or create a new user account.
+    * I... see dynamically rendered content describing the benefits of SudokuTutor and the option to login or create a user account.
     
     * Given that I am ... a registered user on the SudokuTutor landing page...
     * When I ... click the button that says "log in!"...
@@ -71,8 +73,8 @@
     * Given that I am ... an unregistered user on the SudokuTutor landing page...
     * When I ... click the button that says "create an account"...
     * I... am directed to the "new user sign up" page.
-    
-    
+
+ 
   * Page Title: Existing User Login Page
   * Page Description (include a mockup or hand drawn image of the page)
     * A garden variety user login page complete with left-float positioned infographic and a paragraph field.
@@ -107,6 +109,7 @@
     * Given that I am... a user with valid login credentials ...
     * When I... enter my username and password ...
     * I... am redirected to my user dashboard.
+    
     
     
   * Page Title: New User Sign-Up Page

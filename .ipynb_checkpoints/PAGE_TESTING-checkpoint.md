@@ -49,11 +49,11 @@
 
     * Parameters needed for the page
         * WebApp Logo/name/tagline
-        * Left float div containing: 
-            -logo image
+        * A left-float div containing: 
+            -Logo image
             -h2 level welcome message 
-            -paragraph text (describing the application)
-        * Right float Div containing: 
+            -Paragraph text (describing the application)
+        * A right-float Div containing: 
             -h1 "Sign In" text 
             -h2 "Username" text  
             -Username text field (not highlighted)
@@ -106,12 +106,25 @@
 ### Registration Page (Micah/Ben) ###
 
 * Requirements 
-
     * Parameters needed for the page
-        * WebApp Logo/name/tagline
-        * Objectives with formatting 
-        * Create Account Div 
-        * Error messages when creating is not successful appropriate to each situation 
+        * Nav-style header with the SudokuTutor logo icon and application title displayed at the top of the page.
+        * A centered ~70% page-width parent div container, with two equal-sized child divs (left and right float).
+        * Blank left-float child div.
+        * Right-float child div containing:
+            -h1 "Create Account" text
+            -h2 "Username" text
+            -Username text field
+            -horizontal rule
+            -h2 "E-mail Address" text
+            -Email address text field
+            -horizontal rule
+            -h2 "Password" text 
+            -Password text field
+            -horizontal rule
+            -div element with 
+                -left-float "Already Have an Account" text 
+                -right-float "Sign-in" div connected to the sign-in page route.
+            -HTML "Create Account" button verifies credentials do not already exist, if so routes to main page with login status, if not correct, displays approriate error message.
     * Data needed to render the page
          * HTML/CSS templates 
          * Database of users and associated information  

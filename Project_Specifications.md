@@ -46,7 +46,7 @@
 
 
 
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   * Page Title: SudokuTutor Landing Page
   * Page Description (include a mockup or hand drawn image of the page)
     * When a user opens the Sudoku Tutor application, a landing page is rendered in the user's browser presenting a description of application features and a prompt to either "sign-in" or "create an account". 
@@ -73,8 +73,8 @@
     * Given that I am ... an unregistered user on the SudokuTutor landing page...
     * When I ... click the button that says "create an account"...
     * I... am directed to the "new user sign up" page.
-    
-    
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 
   * Page Title: Existing User Login Page
   * Page Description (include a mockup or hand drawn image of the page)
     * A garden variety user login page complete with left-float positioned infographic and a paragraph field.
@@ -110,7 +110,8 @@
     * When I... enter my username and password ...
     * I... am redirected to my user dashboard.
     
-    
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   * Page Title: New User Sign-Up Page
   * Page Description (include a mockup or hand drawn image of the page)
     * A garden variety user login page complete with left-float positioned infographic and a paragraph field.
