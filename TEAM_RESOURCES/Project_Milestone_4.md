@@ -86,7 +86,7 @@
     * "sign in" button.
   * Parameters needed for the page
      * A regex-filtered, database-verified "username" field.
-     * A regex-filtered, database-verified "password" field.
+     * A regex-filtered, database-verified "password" field that changes each password character into an asterisk '*'.
      * Sign-in button with an interactive press feature, used to run input verification scripts and submit SQL formulated queries against the user database, containing the user's attempted login credentials.
      * A hyperlink-fitted "Forgot Password?" div element (scoll-over feature optional).
      * A hyperlink-fitted "Create Account" div element (scroll-over feature optional).
@@ -98,7 +98,14 @@
      * Clicking on the "Create Account" div element should direct the user to the "new user sign up" page.
      * If the user's credentials cannot be verified against the user database, the form will render repeatedly without loss of field data, highlighting the field that could not be verified by the most recent query.
   * List of tests for verifying the rendering of the page
-    * Given that I am... a malicious user attempting to destroy the user database ...
-    * When I... submit a malicous SQL string ...
-    * I... recieve the same failed login response that a user with incorrect login credentials would recieve.
+    * Given that I am... a user entering invalid (but honest) login credentials ...
+    * When I... enter my presumed username and password ...
+    * I... see the login form with my entered data, highlighting the unaccepted field.
     
+    * Given that I am... a malicious user attempting to destroy the user database ...
+    * When I... submit a malicous SQL query in either text field of the sign in page ...
+    * I... recieve the same failed login response as a user with incorrect login credentials and fail to break the application.
+    
+    * Given that I am... a user with existing login credentials ...
+    * When I... enter my username and password ...
+    * I... am directed to my user dashboard.
