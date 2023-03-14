@@ -95,7 +95,8 @@
      * Some paragraph text.
      * Icon for the Sign In button.
   * Link destinations for the page
-     * 
+     * Clicking on the Create Account div element should direct the user to the new user sign up page.
+     * If the user's credentials cannot be verified in the existing user database, the page will render itself repeatedly without loss of form data, highlighting the field that could not be verified.
   * List of tests for verifying the rendering of the page
     * Given that I am... [USER DESCRIPTION]...
     * When I... [USER ACTION] ...
