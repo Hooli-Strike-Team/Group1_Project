@@ -72,17 +72,26 @@
     
     * Given that I am ... an unregistered user on the SudokuTutor landing page...
     * When I ... click the button that says "create an account"...
-    * I... am directed to the new user sign up page.
+    * I... am directed to the "new user sign up" page.
     
     
-
-  * Page Title: SudokuTutor Existing User Login Page
+  * Page Title: Existing User Login Page
   * Page Description (include a mockup or hand drawn image of the page)
-    * 
+    * A garden variety user login page complete with left-float positioned infographic and a paragraph field.
+    * Username text field.
+    * Password text field.
+    * Link to the "Create an Account" page.
+    * Link for password retrieval.
+    * "sign in" button.
+    
   * Parameters needed for the page
-     * 
+     * A regex-filtered, database-verified "username" field.
+     * A regex-filtered, database-verified "password" field.
+     * Sign-in button with an interactive "press" feature to verify and submit user login credentials.
+     * A hyperlink-fitted "Forgot Password?" div element.
+     * A hyperlink-fitted "Create Account" div element.
   * Data needed to render the page
-     * 
+     * Image to be displayed
   * Link destinations for the page
      * 
   * List of tests for verifying the rendering of the page
