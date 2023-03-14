@@ -54,13 +54,15 @@
             -h2 level welcome message 
             -Paragraph text (describing the application)
         * A right-float Div containing: 
-            -h1 "Sign In" text 
-            -h2 "Username" text  
-            -Username text field (not highlighted)
+            -h1 "Sign In" text
+            -h2 "Username" text
+            -Username text field
+            -horizontal rule
             -h2 "Password" text 
             -Password text field (optional: highlighted after a failed login attempt)
-            -An embedded "Forgot Password" div with embedded route to the "Forgot Password" page.
-            -An embedded "Create Account" div with an embedded route to the "Create Account" page.
+            -horizontal rule
+            -An embedded "Forgot Password" (left float) div connected with a route to the "Forgot Password" page.
+            -An embedded "Create Account" (right float) div with an embedded route to the "Create Account" page.
             -HTML "Sign In" button verifies credentials, if correct, routes to main page with login status, if not correct, displays approriate error message 
         * An embedded popup error message such as: "unsuccessful login attempt, please check credentials and try again" rendered under the password field after an unsuccessful login.
         
