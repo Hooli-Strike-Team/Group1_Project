@@ -87,7 +87,7 @@
   * Parameters needed for the page
      * A regex-filtered, database-verified "username" field.
      * A regex-filtered, database-verified "password" field.
-     * Sign-in button with an interactive "press" feature to verify and submit user login credentials.
+     * Sign-in button with an interactive press feature, to run input verification scripts and submit an SQL query containing the user's login credentials.
      * A hyperlink-fitted "Forgot Password?" div element.
      * A hyperlink-fitted "Create Account" div element.
   * Data needed to render the page
