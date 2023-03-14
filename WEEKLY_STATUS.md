@@ -45,7 +45,7 @@
 
 * To Do
   * Matt: Continue work on js sudoku implementation
-  * Micah: Create a user-experience graph using the mock-up pages designed by Tory and Paul. Expecting to complete this effort circa Thursday 14Mar2023.   
+  * Micah: Create a user-experience graph using the mock-up pages designed by Tory and Paul. Expecting to complete this effort circa Tuesday 14Mar2023.   
   * Ben: Figure out GitHub
   * Paul: draft Home Page and Achievements Page for Project Milestone 4
   * Tory: draft Home Page and Achievements Page for Project Milestone 4
@@ -60,7 +60,7 @@
 
 * Completed 
     * Matt: ...
-    * Micah: Created a set of simple Flask HTML and CSS template documents. Attempted pair-programming with Ben on Sunday, but spent that time helping Ben get push access to the group repository instead. 
+    * Micah: Created a set of simple Flask HTML and CSS template documents. Attempted pair-programming with Ben on Sunday, but spent that time helping Ben get push access to the group repository. 
     * Ben: Finally achieved Push permission for group repository 
     * Paul: 
        * Summitted rough draft of Achievement Page info for Project Milestone 4. Awaiting peer review.
@@ -70,14 +70,14 @@
     
 * In Progress 
     * Matt: ...
-    * Micah: Communicating with team about the next steps of development. Learned about Tory and Paul's recent breakthroughs with the 'moqups' design tools. 
+    * Micah: Communicating with team about the next steps of development. Learned about Tory and Paul's recent breakthroughs with the 'moqups' design tool. 
     * Ben: Understan the next stages of development and how to contribute 
     * Paul: Establishing an understanding of the information required for each bullet point in Project Milestone 4
     * Tory: consider options for implementing page designs
 
 * To Do 
     * Matt: ...
-    * Micah: Get access to mock-ups created by Tory and Paul, and start creating a user experience diagram this week.
+    * Micah: Get access to the mock-ups created by Tory and Paul, and start creating a "user experience diagram" this week.
     * Ben: Fill out Registraion Page for Milestone Four 
     * Paul: Fill out Achievements Page for Project Milestone 4
     * Tory: work with Paul on implementing the page designs 
@@ -86,14 +86,14 @@
 
 * Completed 
     * Matt: ...
-    * Micah: Gained access to "moqups" info-visualization tools, began creating a user experience flowchart. Added "wireframe_user_experience_graph_version01_01" to the TEAM_RESOURCES folder.
+    * Micah: Gained access to "moqups" info-visualization tools, began creating the user experience flowchart. Added "user_experience_graph_v01_01.pdf" to the team repository.
     * Ben: Registration and Login Page for Project Milestone 4 
     * Paul: ...
     * Tory: ...
     
 * In Progress 
     * Matt: ...
-    * Micah: Gather feedback from team members to develop the user experience flowchart and elucidate the desired application behaviors. Work on Project Milestone 4 with the rest of the group. 
+    * Micah: Gathering feedback from team members to develop a shared understanding of desired application behaviors. Work on Project Milestone 4 with the rest of the group. Pair programming with Ben this week to work on Project Milestone 4 deliverables and set up the Flask server framework.
     * Ben: FLASK framework for backend 
     * Paul: ...
     * Tory: ...
