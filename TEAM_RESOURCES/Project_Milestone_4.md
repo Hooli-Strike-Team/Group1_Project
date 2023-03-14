@@ -23,6 +23,28 @@
     * Paul
     * Tory
 
+//MESSAGE TO TEAM-MEMBERS: Use the following template to guide your page descriptions
+
+  * Page Title: SudokuTutor Existing User Login Page
+  * Page Description (include a mockup or hand drawn image of the page)
+    * [WHAT SHOULD THE USER SEE WHEN THEY LAND ON THE PAGE?]
+    * [WHAT DO THE VARIOUS PAGE ELEMENTS DO?]
+    * [HOW DOES THIS PAGE RELATE TO ALL OF THE OTHERS?]
+    * [OTHER NOTES?]
+  * Parameters needed for the page
+     * [WHAT KIND OF LINKS, ICONS, IMAGES, OR INFORMATION WILL THE PAGE CONTAIN?]
+     * [WHAT INFORMATION OR USER ACTIONS WILL BE NEEDED TO INVOKE THE APPLICATION BEHAVIOR?]
+  * Data needed to render the page
+     * [WHAT DATA WILL WE NEED TO MAKE EACH PAGE DESIGN A REALITY?]
+  * Link destinations for the page
+     * [IDENTIFY THE ROUTES AND USER OUTCOMES THAT ARE ASSOCIATED WITH THE PAGE]
+  * List of tests for verifying the rendering of the page
+      [INCLUDE TESTABLE USER STORIES BELOW HERE]
+    * Given that I am... [USER CATEGORY DESCRIPTION]...
+    * When I... [USER ACTION] ...
+    * I... [VERIFIABLE USER OUTCOME]
+
+
 
 
   * Page Title: SudokuTutor Landing Page
@@ -44,28 +66,27 @@
     * When I... open the SudokuTutor Game App...
     * I... see dynamic rendered content describing the benefits of playing SudokuTutor and the option to login or create a user account.
     
-    * Given that I am ... a registered user on the SudokuTutor landing page
-    * When I ... click the button that says "log in!"
+    * Given that I am ... a registered user on the SudokuTutor landing page...
+    * When I ... click the button that says "log in!"...
     * I... am directed to the login page.
     
-    * Given that I am ... an unregistered user on the SudokuTutor landing page
-    * When I ... click the button that says "create an account"
+    * Given that I am ... an unregistered user on the SudokuTutor landing page...
+    * When I ... click the button that says "create an account"...
     * I... am directed to the new user sign up page.
     
     
-  * Page Title: Existing User Sign-Up Page
+
+  * Page Title: SudokuTutor Existing User Login Page
   * Page Description (include a mockup or hand drawn image of the page)
     * 
   * Parameters needed for the page
-     * Rolling list dynamic image content for displaying the features and social media reviews for SudokuTutor.
-     * The page will include buttons containing hyperlinks to the "login" and "new user sign-up" pages.
+     * 
   * Data needed to render the page
-     * Snapshots of SudokuTutor gameplay.
-     * Artificial reviews.
+     * 
   * Link destinations for the page
-     * Existing User Login Page.
-     * New User Sign-Up Page.
+     * 
   * List of tests for verifying the rendering of the page
-    * Given that I am: a registered or unregistered user...
-    * When I: open the SudokuTutor Game App...
-    * I See: dynamic rendered content describing the benefits of playing SudokuTutor and the option to login or create a user account.
+    * Given that I am... [USER DESCRIPTION]...
+    * When I... [USER ACTION] ...
+    * I... [USER OUTCOME]
+    
