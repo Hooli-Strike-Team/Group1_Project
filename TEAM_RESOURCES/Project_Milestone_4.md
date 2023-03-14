@@ -87,18 +87,18 @@
   * Parameters needed for the page
      * A regex-filtered, database-verified "username" field.
      * A regex-filtered, database-verified "password" field.
-     * Sign-in button with an interactive press feature, used to run input verification scripts and submit a formulated SQL query containing the user's login credentials, verified against the user database.
+     * Sign-in button with an interactive press feature, used to run input verification scripts and submit SQL formulated queries against the user database, containing the user's attempted login credentials.
      * A hyperlink-fitted "Forgot Password?" div element (scoll-over feature optional).
      * A hyperlink-fitted "Create Account" div element (scroll-over feature optional).
   * Data needed to render the page
      * Image to be displayed in the welcome blurb.
-     * Some paragraph text.
+     * Paragraph text.
      * Icon for the Sign In button.
   * Link destinations for the page
-     * Clicking on the Create Account div element should direct the user to the new user sign up page.
-     * If the user's credentials cannot be verified in the existing user database, the page will render itself repeatedly without loss of form data, highlighting the field that could not be verified.
+     * Clicking on the "Create Account" div element should direct the user to the "new user sign up" page.
+     * If the user's credentials cannot be verified against the user database, the form will render repeatedly without loss of field data, highlighting the field that could not be verified by the most recent query.
   * List of tests for verifying the rendering of the page
-    * Given that I am... [USER DESCRIPTION]...
-    * When I... [USER ACTION] ...
-    * I... [USER OUTCOME]
+    * Given that I am... a malicious user attempting to destroy the user database ...
+    * When I... submit a malicous SQL string ...
+    * I... recieve the same failed login response that a user with incorrect login credentials would recieve.
     
