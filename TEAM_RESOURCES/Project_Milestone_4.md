@@ -64,7 +64,7 @@
   * List of tests for verifying the rendering of the page
     * Given that I am... a registered or unregistered user...
     * When I... open the SudokuTutor Game App...
-    * I... see dynamic rendered content describing the benefits of playing SudokuTutor and the option to login or create a user account.
+    * I... see dynamically rendered content describing the benefits of SudokuTutor and the option to login or create a user account.
     
     * Given that I am ... a registered user on the SudokuTutor landing page...
     * When I ... click the button that says "log in!"...
@@ -111,3 +111,21 @@
     * I... am redirected to my user dashboard.
     
     
+  * Page Title: New User Sign-Up Page
+  * Page Description (include a mockup or hand drawn image of the page)
+    * A garden variety user login page complete with left-float positioned infographic and a paragraph field.
+    * Username text field.
+    * Password text field.
+    * Hyperlink-fitted "Sign In" element for redirecting users to the login page.
+  * Parameters needed for the page
+     * A regex-filtered, database-verified "username" text field.
+     * A regex-filtered, database-verified "password" text field, that changes each password character into an asterisk '*' or a similar character.
+     * A regex-filtered, database-verified "email" text field.
+  * Data needed to render the page
+     * 
+  * Link destinations for the page
+     * 
+  * List of tests for verifying the rendering of the page
+    * Given that I am... [USER CATEGORY DESCRIPTION]...
+    * When I... [USER ACTION] ...
+    * I... [VERIFIABLE USER OUTCOME]
