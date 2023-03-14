@@ -81,16 +81,17 @@
     * Username text field.
     * Password text field.
     * Link to the "Create an Account" page.
+    * Link to the "Forgot Password?" page.
     * Link for password retrieval.
     * "sign in" button.
   * Parameters needed for the page
      * A regex-filtered, database-verified "username" field.
      * A regex-filtered, database-verified "password" field.
-     * Sign-in button with an interactive press feature, used to run input verification scripts and submit a formulated SQL query containing the user's login credentials to be verified in the user database.
+     * Sign-in button with an interactive press feature, used to run input verification scripts and submit a formulated SQL query containing the user's login credentials, verified against the user database.
      * A hyperlink-fitted "Forgot Password?" div element (scoll-over feature optional).
      * A hyperlink-fitted "Create Account" div element (scroll-over feature optional).
   * Data needed to render the page
-     * Image to be displayed in the welcome blurb
+     * Image to be displayed in the welcome blurb.
      * Some paragraph text.
      * Icon for the Sign In button.
   * Link destinations for the page
