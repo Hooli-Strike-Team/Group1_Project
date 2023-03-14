@@ -87,7 +87,7 @@
   * Parameters needed for the page
      * A regex-filtered, database-verified "username" field.
      * A regex-filtered, database-verified "password" field that changes each password character into an asterisk '*'.
-     * Sign-in button with an interactive press feature, used to run input verification scripts and submit SQL formulated queries against the user database, containing the user's attempted login credentials.
+     * Sign-in button with an interactive press feature, used to run input verification scripts and submit SQL formulated queries against the user database containing the user's attempted login credentials.
      * A hyperlink-fitted "Forgot Password?" div element (scoll-over feature optional).
      * A hyperlink-fitted "Create Account" div element (scroll-over feature optional).
   * Data needed to render the page
