@@ -80,7 +80,11 @@
     * Micah: Get access to the mock-ups created by Tory and Paul, and start creating a "user experience diagram" this week.
     * Ben: Fill out Registraion Page for Milestone Four 
     * Paul: Fill out Achievements Page for Project Milestone 4
-    * Tory: work with Paul on implementing the page designs 
+    * Tory: work with Paul on implementing the page designs
+ 
+<p align="center">
+ <img width="350" height="240" src="images/weekly_status/board_03_06.png">
+</p>
 
 ### Week 4: March 13 - March 19 ###
 
@@ -96,7 +100,7 @@
     * Micah: Gathering feedback from team members to develop a shared understanding of desired application behaviors. Work on Project Milestone 4 with the rest of the group. Pair programming with Ben this week to work on Project Milestone 4 deliverables and set up the Flask server framework.
     * Ben: FLASK framework for backend 
     * Paul: ...
-    * Tory: ...
+    * Tory: Creating templates for pages
 
 * To Do 
     * Matt: ...
