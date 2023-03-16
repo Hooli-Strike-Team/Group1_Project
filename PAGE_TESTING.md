@@ -196,6 +196,15 @@
 
 ### Achievement Page (Tory/Paul) ###
 
+* Page Description
+
+   * Header with the web app logo, name, and navigation links to the Create Account and Sign In pages
+   * Notification Box at the top right of page, detailing the most recent badges earned by user
+   * Six badge icons repesenting earnable achievements 
+   * Six badge decriptions detailing what the user needs to accomplish to earn each badge
+   * Progress meter at the bottom of page displaying user advancement towards badge completion 
+   * Footer with contact information  
+
 * Requirements 
 
     * Parameters needed for the page
