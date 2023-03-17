@@ -83,9 +83,9 @@
     * Link destinations for the page
         * WebApp upper-left logo returns user to the home page. 
         * Create Account hyperlink text to Create Account page. 
-        * Sign in with correct credentials takes user to main page. 
-        * Incorrect login attempt refreshes the page with error message.
-        * "Forgot your password" div links to password recovery.
+        * Sign in with correct credentials takes user to game page. 
+        * Incorrect login attempt refreshes the page with an error message.
+        * "Forgot your password" div links to password recovery route (send an email).
     
     * List of tests for verifying the rendering of the page
         * Page appears with the correct formatting and layout, should look like the image.
@@ -139,7 +139,7 @@
         * "Already Have An Account?" text links to login page.
         * "sign in Button" redirects to login homepage with user entered credentials.
         * User is directed to the game page if the sign up info is valid.
-        * If account exists or does not follow username/email/pw protocol, refreshes page rendering the appropriate message.
+        * If account exists or does not follow username/email/pw protocol, refreshes the page rendering the appropriate message.
     
     * List of tests for verifying the rendering of the page
         * Page appears with the correct visual formatting and layout. Should look like the image provided.
