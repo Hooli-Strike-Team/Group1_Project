@@ -79,7 +79,7 @@
             -Sudoku tutor icon.
             -Welcome image.
             -Tagline message.
-            -Stylesheet for text and divs.
+            -CSS stylesheet for text and divs.
     
     * Link destinations for the page
         * WebApp upper-left logo returns user to the home page. 
@@ -136,14 +136,14 @@
     
     * Link destinations for the page
         * WebApp upper-left logo returns to homepage.
-        * "Already Have An Account?" text will contain a hyperlink to login page.
-        * "sign in Button" redirects to login homepage with user entered credentials.
-        * User is directed to the game page if the user's registration info is valid.
-        * If account exists or does not follow username/email/pw protocol, refreshes the page rendering the appropriate message.
+        * "Already Have An Account?" text will contain a hyperlink to the login page.
+        * "Sign in" button redirects the user to the login page.
+        * User will be directed to the game page if the user information is valid.
+        * If account exists or does not follow username/email/pw protocol, refreshes the page and renders an appropriate message.
     
     * List of tests for verifying the rendering of the page
-        * Page appears with the correct visual formatting and layout. Should look like the image provided.
-        * Test that all routes work correctly, and direct the user to the specified page.
+        * Page appears with the correct visual formatting and layout. Should look like the image.
+        * Test that all routes work correctly and direct the user to the specified pages.
         * Test that the html and css stylesheet options render correctly when the window size, browser or user's device is changed.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/register.png" alt="Registration Page" width="500">
