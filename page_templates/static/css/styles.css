@@ -1,0 +1,242 @@
+/* Styles for Base Template 
+   ------------------------ */
+
+/************
+ *  Global  *
+ ************/
+
+html {
+  font-size: 16px;  /* Sets root font size */
+  font-family: "Source Sans 3";
+}
+
+body {
+    margin:0;
+}
+
+/**********************
+ *  Header (#navbar)  *
+ **********************/
+
+#navbar {
+  position: fixed;
+  /* Sets position of navbar at top left corner of browser window */
+  top: 0;
+  left: 0;
+  width: 100%;  /* Makes it span full width of screen */
+  padding: 0.75rem;  /* Increases space between content and navbar edges */
+  /* Sets display property to flex, which makes container a flexbox */
+  display: flex;  
+  align-items: center;  /* Aligns flex items vertically in center of navbar */
+  /* Includes border and padding in navbar's total width and height */
+  box-sizing: border-box;
+  background-color:#FFFFFF;  /* White */
+  border-bottom: 1px solid #444444;  /* Adds solid border at bottom of navbar */
+  z-index:1;  /* Brings navbar to front */
+}
+
+#logo img {
+  /* Makes width of logo respond to changes in font size */
+  width: 6rem;
+  height: 6rem;
+}
+
+#name {
+  margin-left: .875rem;  /* Increases space between logo and web app name */
+  font-size: 3.5rem;
+  font-weight: 600;  /* Semi-bold text */
+  color: #444444;  /* Dark gray */
+}
+
+#headerbuttons {
+  /* Automatically calculates left margin based on available space
+     (i.e., pushes header buttons to right side of navbar) */ 
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.header-button-link {
+  margin-right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  /* Removes default text decoration (e.g., underlines for links) */
+  text-decoration: none;
+}
+
+.header-button-label {
+  margin-top: 0.25rem;  /* Block-level property */
+  font-size: 1rem;
+  font-weight: 600;  /* Semi-bold text */
+  color: #444444;
+  /* Allows header button text to flow with inline elements while having 
+    properties that apply to block-level elements, such as <div>, <h1>, 
+    and <p> */
+  display: inline-block;
+}
+
+#headerbuttons .header-button-icon {
+  font-size: 48px;
+  color: #444444;
+}
+
+/* Targets both header button text and icon when .header-button-link element 
+   is hovered over */
+.header-button-link:hover .header-button-label,
+#headerbuttons .header-button-link:hover .header-button-icon {
+  color: #7D7F7C;
+  cursor: pointer;  /* Changes cursor to pointer on hover */
+}
+
+.header-create-account-button,
+.header-sign-in-button {
+  padding: 0.5rem 1rem;  /* top, bottom: 0.5rem; left, right: 1rem */
+  font-size: 1rem;
+  font-weight: 400;  /* Normal text */
+  text-align: center;
+  color: #444444;  /* Dark gray */
+  background: #F6F6F6;  /* Very light gray */
+  border: 1px solid #444444;
+  border-radius: 3px;  /* Rounds corners of buttons */
+}
+
+.header-sign-in-button {
+  /* Increases space between "Sign In" and "Create Account" Buttons */
+  margin-left: 0.75rem;
+  background-color: #FFFFFF;  /* White */
+}
+
+/********************************
+ *  Footer (.footer-rectangle)  *
+ ********************************/
+
+.footer-rectangle {
+  width: 100%;
+  padding: 0.75rem;  /* top, bottom: 0.75rem; left, right: 0.75rem */
+  box-sizing: border-box;
+  background-color: #F6F6F6;  /* Very light gray */
+}
+
+.footer-content {
+  /* Sets top and bottom margin to 0 and auto-calculates left and right margins
+     (i.e., horizontally centers container) */
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;  /* Aligns flex items center */
+}
+
+.footer-contact,
+.footer-social {
+  padding: 0.75rem;
+}
+
+.footer-contact ul,
+.footer-social ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;  /* Removes bullets from list */
+}
+
+.footer-contact li,
+.footer-social li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-contact a,
+.footer-social a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-contact a:hover,
+.footer-social a:hover {
+  color: #7D7F7C;  /* Medium gray */
+}
+
+.footer-social ul {
+  display: flex;
+}
+
+/* Uses :not() pseudo-class to exclude last child with :last-child pseudo-class 
+   (i.e., increases right margin of all list items except for last list item in 
+   that group. */
+.footer-social li:not(:last-child) {
+  margin-right: 1rem;
+}
+
+.footer-social i {
+  font-size: 1.5rem;
+}
+
+.footer-social .social-wrapper {
+  display: flex;
+  flex-direction: column;  /* Stacks flex items vertically in column */
+}
+
+.footer-social p {
+  margin-right: 0.5rem;
+}
+
+/*************
+ *  Content  *
+ *************/
+
+.content {
+  /* Positions content relative to normal position in document */
+  position: relative;
+  margin-top: 8rem;  /* Offsets header height */
+  padding: 1rem;
+  /* Sets minimum content height to prevent footer from getting too close to
+     header when there is little or no content */
+  min-height: 29rem;
+}
+
+ 
+ /* Styles for Individual Pages 
+    --------------------------- */
+
+/******************
+ *  Achievements  *
+ ******************/
+
+/********************
+ *  Create Account  *
+ ********************/
+
+/****************
+ *  Difficulty  *
+ ****************/
+
+/**********
+ *  Home  *
+ **********/
+
+/**********
+ *  Main  *
+ **********/
+
+/***********
+ *  Rules  *
+ ***********/
+
+.rules-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.rules {
+  width:35rem;
+  margin:0 auto;
+  padding:1rem;
+  border:1px solid #444444;
+}
+
+/**************
+ *  Settings  *
+ **************/
+
+/*************
+ *  Sign In  *
+ *************/
