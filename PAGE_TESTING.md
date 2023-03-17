@@ -86,13 +86,14 @@
         * Create Account hyperlink text to Create Account page. 
         * Sign in with correct credentials takes user to game page. 
         * Incorrect login attempt refreshes the page with an error message.
-        * "Forgot your password" div links to password recovery route (sends an email).
+        * "Forgot your password" div connected to password recovery route 
     
     * List of tests for verifying the rendering of the page
         * Page appears with the correct formatting and layout, should look like the image.
-        * Test that all routes lead to the specified destination pages.
+        * Test that all routes are functional and lead to the specified destinations.
         * Test that appropriate error messages appear on screen when the routes for handling unrecognized username and/or incorrect password are activated.
         * Test that the html and css stylesheet options render correctly when the window size, browser or user's device is changed.
+        * Password recovery route should send an email, refresh the page, and display a message to the user.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/login.png" alt="Login Page" width="500">
 
