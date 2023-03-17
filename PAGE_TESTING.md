@@ -2,7 +2,7 @@
 
 ----------
 
-### Main Page (Matt) ###
+### Game Page (Matt) ###
 
 * Requirements 
 
@@ -45,7 +45,14 @@
 -----------
 
 ### Login Page (Micah/Ben) ###
+
 * Requirements 
+
+    * Page Description
+        * Header with SudokuTutor Logo and Name. 
+        * Logo and tagline in left div.
+        * User sign-in area.
+        * Link to the create account page.
 
     * Parameters needed for the page
         * WebApp Logo/name/tagline
@@ -57,13 +64,11 @@
             -h1 "Sign In" text
             -h2 "Username" text
             -Username text field
-            -horizontal rule
-            -h2 "Password" text 
+            -h2 "Password" text field
             -Password text field (optional: highlighted after a failed login attempt)
-            -horizontal rule
             -An embedded "Forgot Password" (left float) div connected with a route to the "Forgot Password" page.
             -An embedded "Create Account" (right float) div with an embedded route to the "Create Account" page.
-            -HTML "Sign In" button verifies credentials, if correct, routes to main page with login status, if not correct, displays approriate error message 
+            -HTML "Sign In" button.
         * An embedded popup error message such as: "unsuccessful login attempt, please check credentials and try again" rendered under the password field after an unsuccessful login.
         
     * Data needed to render the page
@@ -73,23 +78,25 @@
             -tagline message
             -style for text and divs
         * Database to verify user accounts 
+    
     * Link destinations for the page
         * WebApp upper-left logo returns to home page 
-        * Create Account Text to Create Account page 
-        * Sign in with correct credentials to main page 
+        * Create Account hyperlink text to Create Account page 
+        * Sign in with correct credentials takes user to main page 
         * Incorrect login attempt refreshes the page with error message
         * "Forgot your password" div links to password recovery 
+    
     * List of tests for verifying the rendering of the page
         * Page appears correct with formatting
         * Forgot password sends a message to email provided for that user account
         * Test all routes 
         * Test users are able to login with correct credentials
         * Test users are not able to login with incorrect credentials 
-        * Test that error messages appear appropriate to each situation (unrecognized username, incorrect password, both, etc) 
+        * Test that error messages appear appropriate to each situation (unrecognized username, incorrect password, both, etc)  
+        * HTML "Sign In" button verifies credentials, if correct, routes to main page with login status, if not correct, displays approriate error message
         
-        **STORY FORMATTED TESTING**
-        
-     * Given that I am... a user entering invalid (but honest) login credentials ...
+    **OPTION: STORY FORMATTED TESTING**    
+    * Given that I am... a user entering invalid (but honest) login credentials ...
     * When I... enter my presumed username and password ...
     * I... see the login form with my data, highlighting the unaccepted field.
     
@@ -108,6 +115,14 @@
 ### Registration Page (Micah/Ben) ###
 
 * Requirements 
+
+    * Page Description
+        * Header with SudokuTutor Logo and App name.
+        * Create account div with username, email, password fields.
+        * Create Account button.
+        * Link to sign-in page.
+        * Objectives div with three objectives listed.
+        
     * Parameters needed for the page
         * Nav-style header with the SudokuTutor logo icon and application title displayed at the top of the page.
         * A centered ~70% page-width parent div container, with two equal-sized child divs (left and right float).
@@ -127,68 +142,71 @@
                 -left-float "Already Have an Account" text 
                 -right-float "Sign-in" div connected to the sign-in page route.
             -HTML "Create Account" button verifies credentials do not already exist, if so routes to main page with login status, if not correct, displays approriate error message.
+    
     * Data needed to render the page
          * HTML/CSS templates 
          * Database of users and associated information  
          * Objectives (Are these linked to achievements?)
+    
     * Link destinations for the page
         * WebApp upper-left logo returns to homepage 
         * "Already Have An Account?" text links to login page  
         * "sign in Button" redirects to login homepage with user entered credentials
         * "Create Account" returns to main page with login status if info in valid
         * "Create Account" if account exists or does not follow username/email/pw protocol, refresh page with appropriate message 
+    
     * List of tests for verifying the rendering of the page
         * Test page appears correct to formatting 
         * Test that all routes work correctly, including route to login page 
         * Test that users cannot create more than one account with the same credentials
         * Test new accounts are correctly logged into database 
         * Test objectives appear correctly as shown and are the correct objectives 
+
 <img src="TEAM_RESOURCES/Images_Milestone4/register.png" alt="Registration Page" width="500">
 
 -----------
 
 ### Home Page (Tory/Paul) ###
-
-* Page Description
-
-    * Header with the web app logo, name, and navigation links to the Create Account and Sign In pages
-    * Web app tagline and a brief description of the product
-    * Several feature icons with short descriptions
-    * "Create Account" button and "Sign In" link in a prominent location
-    *  Footer with contact information
-
 * Requirements 
 
+    * Page Description
+        * Header with the web app logo, name, and navigation links to the Create Account and Sign In pages.
+        * Web app tagline and a brief description of the product.
+        * Several feature icons with short descriptions.
+        * "Create Account" button and "Sign In" link in a prominent location.
+        * Footer with contact information.
+
     *  Parameters needed for the page
-        * Web app logo
-        * Web app name
-        * Web app tagline
-        * Product description
-        * Feature icons
-        * Feature descriptions
-        * "Create Account" button/link
-        * "Sign In" button/link
-        * Footer contact information
+        * Web app logo.
+        * Web app name.
+        * Web app tagline.
+        * Product description.
+        * Feature icons.
+        * Feature descriptions.
+        * "Create Account" button/link.
+        * "Sign In" button/link.
+        * Footer contact information.
 
     *  Data needed to render the page
-        * HTML template and CSS file  
-        * Web app logo and feature icon image files
-        * Text headings, descriptions
+        * HTML template and CSS stylesheet. 
+        * Web app logo and feature icon image files.
+        * Text headings, descriptions.
+        * Homepage image file.
 
     * Link destinations for the page
-        * "Create Account" button/link: directs the user to the Create Account Page
-        * "Sign In" button/link: directs the user to the Sign In Page
-        * Web app logo/name: directs the user to the Home Page (i.e., reloads the Home Page)
+        * "Create Account" button/link: directs the user to the Create Account Page.
+        * "Sign In" button/link: directs the user to the Sign In Page.
+        * Web app logo/name: directs the user to the Home Page (i.e., reloads the Home Page).
 
     * List of tests for verifying the rendering of the page
-        * Check that the page loads quickly and all elements are displayed correctly
-        * Check that all links are working and direct users to the correct pages
-        * Check that the web app logo and name are displayed in the header and are hyperlinked to the Home Page
-        * Check that the web app tagline and product description are easy to read and provide accurate information
-        * Check that the feature icons and descriptions are clearly visible and provide accurate information
-        * Check that the "Create Account" button and "Sign In" link are prominently displayed and functional
-        * Check that the contact information in the footer is correct and that any "mailto" links are working properly
-        * Test the page across multiple devices and platforms to verify that it is responsive and that the content is displayed properly
+        * Check that the page loads quickly and all elements are displayed correctly.
+        * Check that all links are working and direct users to the correct pages.
+        * Check that the web app logo and name are displayed in the header and are hyperlinked to the Home Page.
+        * Check that the web app tagline and product description are easy to read and provide accurate information.
+        * Check that the feature icons and descriptions are clearly visible and provide accurate information.
+        * Check that the "Create Account" button and "Sign In" link are prominently displayed and functional.
+        * Check that the contact information in the footer is correct and that any "mailto" links are working properly.
+        * Test the page across multiple devices and platforms to verify that it is responsive and that the content is displayed properly.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/home.png" alt="Home Page" width="500">
 
@@ -196,45 +214,45 @@
 
 ### Achievement Page (Tory/Paul) ###
 
-* Page Description
-
-   * Header with the web app logo, name, and navigation links to the Create Account and Sign In pages
-   * Notification Box at the top right of page, detailing the most recent badges earned by user
-   * Six badge icons repesenting earnable achievements 
-   * Six badge decriptions detailing what the user needs to accomplish to earn each badge
-   * Progress meter at the bottom of page displaying user advancement towards badge completion 
-   * Footer with contact information  
-
 * Requirements 
 
+    * Page Description
+        * Header with the web app logo, name, and navigation links to the Create Account and Sign In pages.
+        * Rule and settings icons to display a dropdown rule summary and user settings options, respectively.
+        * Acheivements icon refreshes the page.
+        * Notification Box at the top right of page, detailing the most recent badges earned by user.
+        * Six badge icons repesenting earnable achievements.
+        * Six badge decriptions detailing what the user needs to accomplish to earn each badge.
+        * Progress meter at the bottom of page displaying user advancement towards badge completion.
+        * Footer with contact information.
+
     * Parameters needed for the page
-       * Available Badges 
-       * Progress Meter
-       * Logo 
-       * User ID/Account info
+       * Available Badges.
+       * Progress Meter.
+       * Logo.
+       * User ID/Account info.
     
     * Data needed to render the page
-       * Updated User progress on earning indivdual badges 
-       * Text Descriptions of Badges
-       * Updated number of badges earned sense last visit
+       * Updated User progress on earning indivdual badges.
+       * Achievement icons.
+       * Header icons (Rules, Achievements, Settings).
+       * Text Descriptions of Badges.
+       * User information from the database needed to load update achievements.
     
     * Link destinations for the page
-      * Home 
-      * Settings
-      * Rules 
-      * Achievement (reloads page) 
+        * Home page route associated with the top left SudokuTutor icon.
+        * Achievement icon reloads page.
 
     * List of tests for verifying the rendering of the page
-      * All possible badges displayed 
-      * Unearned badges are greyed out 
-      * Earned badges are brightened 
-      * Progress meter correctly shows how close the user is to earning a particular badge 
-      * Clicking the web logo take users back to the "Home" page
-      * Clicking the settings logo takes users to the "Settings" page 
-      * Clicking the rules logo takes user to the "Rules" page 
-      * Clicking the achievements logo reloads the current page
-      
-
+        * All possible badges are displayed.
+        * Unearned badges are greyed out. 
+        * Earned badges are brightened.
+        * Progress meter correctly shows how close the user is to earning a particular badge.
+        * Clicking the web logo take users back to the "Home" page.
+        * Clicking the settings logo takes users to the "Settings" page. 
+        * Clicking the rules logo takes user to the "Rules" page.
+        * Clicking the achievements logo reloads the current page.
+        
 <img src="TEAM_RESOURCES/Images_Milestone4/achievements-badges-earned.png" alt="Achievement Page" width="500">
 
 -----------
