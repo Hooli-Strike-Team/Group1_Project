@@ -82,7 +82,7 @@
     * Paul: Fill out Achievements Page for Project Milestone 4
     * Tory: work with Paul on implementing the page designs
  
-<p align="center">
+<p align="center" style="display:flex;">
  <img width="350" height="240" src="images/weekly_status/board_03_06.png">
 </p>
 
@@ -104,7 +104,7 @@
 
 * To Do 
     * Matt: ...
-    * Micah: Help team finalize edits to PAGE_TESTING.md for Project Milestone 4 submission due this week. Continue to describe project requirements and hash out a set of working project specifications. Set up pair programming sessions with team mates to work on HTML, CSS, and the Flask server framework. 
+    * Micah: ...
     * Ben: FLASK framework, look into databases for user credentials 
     * Paul: Begin using HTML to design the layout of the webpage based on the story-boards that were approved by the group.
     * Tory: ...

@@ -49,9 +49,9 @@
 
   * Page Title: SudokuTutor Landing Page
   * Page Description (include a mockup or hand drawn image of the page)
-    * When a user opens the Sudoku Tutor application, a landing page is rendered in the user's browser presenting a description of application features and a prompt to either "sign-in" or "create an account". 
-    * If the user selects "sign in" they will be directed to the login page
-    * If the user selects "create an account" they will be directed to the "new user sign-up" page.
+    * When a user opens the Sudoku Tutor application, a landing page is rendered in the user's browser presenting a description of application features and a prompt to "sign-in" or "create an account". 
+    * If the user selects "sign in" he/she/they will be directed to the login page
+    * If the user selects "create an account" he/she/they will be directed to the "new user sign-up" page.
   * Parameters needed for the page
      * Rolling list dynamic image content for displaying the features and social media reviews for SudokuTutor.
      * The page will include buttons containing hyperlinks to the "login" and "new user sign-up" pages.
