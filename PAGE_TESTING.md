@@ -88,10 +88,10 @@
         * "Forgot your password" div links to password recovery.
     
     * List of tests for verifying the rendering of the page
-        * Page appears correct with formatting and layout. Should look more or less like the image presented.
+        * Page appears with the correct formatting and layout, should look like the image.
         * Test that all routes lead to the specified destination pages.
         * Test that appropriate error messages appear on screen when the routes for handling unrecognized username and/or incorrect password are activated.
-        * HTML "Sign In" button routes to main page or the same page based on test input.
+        * Test that the html and css stylesheet options render correctly when the window size or user's device is changed.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/login.png" alt="Login Page" width="500">
 
@@ -126,7 +126,7 @@
             -div element with 
                 -left-float "Already Have an Account" text. 
                 -right-float "Sign-in" div connected to the sign-in page route.
-            -HTML "Create Account" button verifies credentials do not already exist, if so routes to main page with login status, if not correct, displays approriate error message.
+            -HTML "Create Account" button.
     
     * Data needed to render the page
          * HTML/CSS templates.
@@ -138,15 +138,13 @@
         * WebApp upper-left logo returns to homepage.
         * "Already Have An Account?" text links to login page.
         * "sign in Button" redirects to login homepage with user entered credentials.
-        * "Create Account" returns to main page with login status if info in valid.
-        * "Create Account" if account exists or does not follow username/email/pw protocol, refresh page with appropriate message.
+        * User is directed to the game page if the sign up info is valid.
+        * If account exists or does not follow username/email/pw protocol, refreshes page rendering the appropriate message.
     
     * List of tests for verifying the rendering of the page
-        * Test page appears correct to formatting.
-        * Test that all routes work correctly, including route to login page.
-        * Test that users cannot create more than one account with the same credentials.
-        * Test new accounts are correctly logged into database.
-        * Test objectives appear correctly as shown and are the correct objectives.
+        * Page appears with the correct visual formatting and layout. Should look like the image provided.
+        * Test that all routes work correctly, and direct the user to the specified page.
+        * Test that the html and css stylesheet options render correctly when the window size or user's device is changed.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/register.png" alt="Registration Page" width="500">
 
