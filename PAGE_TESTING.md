@@ -80,7 +80,6 @@
             -Welcome image.
             -Tagline message.
             -Stylesheet for text and divs.
-        * Database to verify user accounts.
     
     * Link destinations for the page
         * WebApp upper-left logo returns user to the home page. 
@@ -132,7 +131,6 @@
     
     * Data needed to render the page
          * HTML/CSS templates.
-         * Database of users and associated information.
          * Image files.
          * Icon files.
     
