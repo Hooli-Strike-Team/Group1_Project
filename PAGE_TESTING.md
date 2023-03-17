@@ -49,15 +49,36 @@
 
     * Parameters needed for the page
         * WebApp Logo/name/tagline
-        * Sign in Div design
-        * Error messages for incomplete or failed logins 
+        * A left-float div containing: 
+            -Logo image
+            -h2 level welcome message 
+            -Paragraph text (describing the application)
+        * A right-float Div containing: 
+            -h1 "Sign In" text
+            -h2 "Username" text
+            -Username text field
+            -horizontal rule
+            -h2 "Password" text 
+            -Password text field (optional: highlighted after a failed login attempt)
+            -horizontal rule
+            -An embedded "Forgot Password" (left float) div connected with a route to the "Forgot Password" page.
+            -An embedded "Create Account" (right float) div with an embedded route to the "Create Account" page.
+            -HTML "Sign In" button verifies credentials, if correct, routes to main page with login status, if not correct, displays approriate error message 
+        * An embedded popup error message such as: "unsuccessful login attempt, please check credentials and try again" rendered under the password field after an unsuccessful login.
+        
     * Data needed to render the page
-        * HTML/CSS Templates 
-        * Database with verified user accounts 
+        * HTML/CSS Templates
+            -Sudoku tutor icon 
+            -Welcome image
+            -tagline message
+            -style for text and divs
+        * Database to verify user accounts 
     * Link destinations for the page
         * WebApp upper-left logo returns to home page 
         * Create Account Text to Create Account page 
         * Sign in with correct credentials to main page 
+        * Incorrect login attempt refreshes the page with error message
+        * "Forgot your password" div links to password recovery 
     * List of tests for verifying the rendering of the page
         * Page appears correct with formatting
         * Forgot password sends a message to email provided for that user account
@@ -65,6 +86,20 @@
         * Test users are able to login with correct credentials
         * Test users are not able to login with incorrect credentials 
         * Test that error messages appear appropriate to each situation (unrecognized username, incorrect password, both, etc) 
+        
+        **STORY FORMATTED TESTING**
+        
+     * Given that I am... a user entering invalid (but honest) login credentials ...
+    * When I... enter my presumed username and password ...
+    * I... see the login form with my data, highlighting the unaccepted field.
+    
+    * Given that I am... a malicious user attempting to destroy the user database system ...
+    * When I... submit a malicous SQL query in either of the text fields on the sign in page ...
+    * I... recieve the same failed login response as a user with incorrect login credentials and fail to break the application.
+    
+    * Given that I am... a user with valid login credentials ...
+    * When I... enter my username and password ...
+    * I... am redirected to my user dashboard.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/login.png" alt="Login Page" width="500">
 
@@ -73,12 +108,25 @@
 ### Registration Page (Micah/Ben) ###
 
 * Requirements 
-
     * Parameters needed for the page
-        * WebApp Logo/name/tagline
-        * Objectives with formatting 
-        * Create Account Div 
-        * Error messages when creating is not successful appropriate to each situation 
+        * Nav-style header with the SudokuTutor logo icon and application title displayed at the top of the page.
+        * A centered ~70% page-width parent div container, with two equal-sized child divs (left and right float).
+        * Blank left-float child div.
+        * Right-float child div containing:
+            -h1 "Create Account" text
+            -h2 "Username" text
+            -Username text field
+            -horizontal rule
+            -h2 "E-mail Address" text
+            -Email address text field
+            -horizontal rule
+            -h2 "Password" text 
+            -Password text field
+            -horizontal rule
+            -div element with 
+                -left-float "Already Have an Account" text 
+                -right-float "Sign-in" div connected to the sign-in page route.
+            -HTML "Create Account" button verifies credentials do not already exist, if so routes to main page with login status, if not correct, displays approriate error message.
     * Data needed to render the page
          * HTML/CSS templates 
          * Database of users and associated information  
@@ -96,7 +144,6 @@
         * Test new accounts are correctly logged into database 
         * Test objectives appear correctly as shown and are the correct objectives 
 <img src="TEAM_RESOURCES/Images_Milestone4/register.png" alt="Registration Page" width="500">
-
 
 -----------
 
