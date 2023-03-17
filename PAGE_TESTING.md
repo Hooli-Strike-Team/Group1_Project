@@ -63,9 +63,11 @@
         * A right-float Div containing: 
             -h1 "Sign In" text.
             -h2 "Username" text.
+            -horizontal rule.
             -Username text field.
             -h2 "Password" text field.
-            -Password text field (optional: highlighted after a failed login attempt).
+            -horizontal rule.
+            -Password text field (option: highlighted after a failed login attempt).
             -An embedded "Forgot Password" (left float) div connected with a route to the "Forgot Password" page.
             -An embedded "Create Account" (right float) div with an embedded route to the "Create Account" page.
             -HTML "Sign In" button.
@@ -77,7 +79,7 @@
             -Sudoku tutor icon.
             -Welcome image.
             -Tagline message.
-            -Style for text and divs.
+            -Stylesheet for text and divs.
         * Database to verify user accounts.
     
     * Link destinations for the page
@@ -85,13 +87,13 @@
         * Create Account hyperlink text to Create Account page. 
         * Sign in with correct credentials takes user to game page. 
         * Incorrect login attempt refreshes the page with an error message.
-        * "Forgot your password" div links to password recovery route (send an email).
+        * "Forgot your password" div links to password recovery route (sends an email).
     
     * List of tests for verifying the rendering of the page
         * Page appears with the correct formatting and layout, should look like the image.
         * Test that all routes lead to the specified destination pages.
         * Test that appropriate error messages appear on screen when the routes for handling unrecognized username and/or incorrect password are activated.
-        * Test that the html and css stylesheet options render correctly when the window size or user's device is changed.
+        * Test that the html and css stylesheet options render correctly when the window size, browser or user's device is changed.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/login.png" alt="Login Page" width="500">
 
@@ -136,15 +138,15 @@
     
     * Link destinations for the page
         * WebApp upper-left logo returns to homepage.
-        * "Already Have An Account?" text links to login page.
+        * "Already Have An Account?" text will contain a hyperlink to login page.
         * "sign in Button" redirects to login homepage with user entered credentials.
-        * User is directed to the game page if the sign up info is valid.
+        * User is directed to the game page if the user's registration info is valid.
         * If account exists or does not follow username/email/pw protocol, refreshes the page rendering the appropriate message.
     
     * List of tests for verifying the rendering of the page
         * Page appears with the correct visual formatting and layout. Should look like the image provided.
         * Test that all routes work correctly, and direct the user to the specified page.
-        * Test that the html and css stylesheet options render correctly when the window size or user's device is changed.
+        * Test that the html and css stylesheet options render correctly when the window size, browser or user's device is changed.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/register.png" alt="Registration Page" width="500">
 
