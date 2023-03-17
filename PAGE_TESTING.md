@@ -90,7 +90,7 @@
     
     * List of tests for verifying the rendering of the page
         * Page appears with the correct formatting and layout, should look like the image.
-        * Test that all routes are functional and lead to the specified destinations.
+        * Test that routes (listed above) direct the user to the specified page.
         * Test that appropriate error messages appear on screen when the routes for handling unrecognized username and/or incorrect password are activated.
         * Test that the html and css stylesheet options render correctly when the window size, browser or user's device is changed.
         * Password recovery route should send an email, refresh the page, and display a message to the user.
@@ -140,11 +140,11 @@
         * "Already Have An Account?" text will contain a hyperlink to the login page.
         * "Sign in" button redirects the user to the login page.
         * User will be directed to the game page if the user information is valid.
-        * If account exists or does not follow username/email/pw protocol, refreshes the page and renders an appropriate message.
+        * If submitted account already exists or does not follow username/email/pw protocol, the page reloads and renders an appropriate message.
     
     * List of tests for verifying the rendering of the page
         * Page appears with the correct visual formatting and layout. Should look like the image.
-        * Test that all routes work correctly and direct the user to the specified pages.
+        * Test that routes (listed above) direct the user to the specified page.
         * Test that the html and css stylesheet options render correctly when the window size, browser or user's device is changed.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/register.png" alt="Registration Page" width="500">
