@@ -32,7 +32,7 @@ body {
   box-sizing: border-box;
   background-color:#FFFFFF;  /* White */
   border-bottom: 1px solid #444444;  /* Adds solid border at bottom of navbar */
-  z-index:1;  /* Brings navbar to front */
+  z-index: 1;  /* Brings navbar to front */
 }
 
 #logo img {
