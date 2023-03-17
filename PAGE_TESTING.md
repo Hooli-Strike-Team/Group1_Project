@@ -57,56 +57,41 @@
     * Parameters needed for the page
         * WebApp Logo/name/tagline
         * A left-float div containing: 
-            -Logo image
-            -h2 level welcome message 
-            -Paragraph text (describing the application)
+            -Logo image.
+            -h2 level welcome message.
+            -Paragraph text describing the application.
         * A right-float Div containing: 
-            -h1 "Sign In" text
-            -h2 "Username" text
-            -Username text field
-            -h2 "Password" text field
-            -Password text field (optional: highlighted after a failed login attempt)
+            -h1 "Sign In" text.
+            -h2 "Username" text.
+            -Username text field.
+            -h2 "Password" text field.
+            -Password text field (optional: highlighted after a failed login attempt).
             -An embedded "Forgot Password" (left float) div connected with a route to the "Forgot Password" page.
             -An embedded "Create Account" (right float) div with an embedded route to the "Create Account" page.
             -HTML "Sign In" button.
-        * An embedded popup error message such as: "unsuccessful login attempt, please check credentials and try again" rendered under the password field after an unsuccessful login.
+        * An embedded popup error message such as: "unsuccessful login attempt, please check your credentials and try again" rendered under the password field after an unsuccessful login.
+        * Route for incorrect password field highlighting.
         
     * Data needed to render the page
         * HTML/CSS Templates
-            -Sudoku tutor icon 
-            -Welcome image
-            -tagline message
-            -style for text and divs
-        * Database to verify user accounts 
+            -Sudoku tutor icon.
+            -Welcome image.
+            -Tagline message.
+            -Style for text and divs.
+        * Database to verify user accounts.
     
     * Link destinations for the page
-        * WebApp upper-left logo returns to home page 
-        * Create Account hyperlink text to Create Account page 
-        * Sign in with correct credentials takes user to main page 
-        * Incorrect login attempt refreshes the page with error message
-        * "Forgot your password" div links to password recovery 
+        * WebApp upper-left logo returns user to the home page. 
+        * Create Account hyperlink text to Create Account page. 
+        * Sign in with correct credentials takes user to main page. 
+        * Incorrect login attempt refreshes the page with error message.
+        * "Forgot your password" div links to password recovery.
     
     * List of tests for verifying the rendering of the page
-        * Page appears correct with formatting
-        * Forgot password sends a message to email provided for that user account
-        * Test all routes 
-        * Test users are able to login with correct credentials
-        * Test users are not able to login with incorrect credentials 
-        * Test that error messages appear appropriate to each situation (unrecognized username, incorrect password, both, etc)  
-        * HTML "Sign In" button verifies credentials, if correct, routes to main page with login status, if not correct, displays approriate error message
-        
-    **OPTION: STORY FORMATTED TESTING**    
-    * Given that I am... a user entering invalid (but honest) login credentials ...
-    * When I... enter my presumed username and password ...
-    * I... see the login form with my data, highlighting the unaccepted field.
-    
-    * Given that I am... a malicious user attempting to destroy the user database system ...
-    * When I... submit a malicous SQL query in either of the text fields on the sign in page ...
-    * I... recieve the same failed login response as a user with incorrect login credentials and fail to break the application.
-    
-    * Given that I am... a user with valid login credentials ...
-    * When I... enter my username and password ...
-    * I... am redirected to my user dashboard.
+        * Page appears correct with formatting and layout. Should look more or less like the image presented.
+        * Test that all routes lead to the specified destination pages.
+        * Test that appropriate error messages appear on screen when the routes for handling unrecognized username and/or incorrect password are activated.
+        * HTML "Sign In" button routes to main page or the same page based on test input.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/login.png" alt="Login Page" width="500">
 
@@ -139,28 +124,28 @@
             -Password text field
             -horizontal rule
             -div element with 
-                -left-float "Already Have an Account" text 
+                -left-float "Already Have an Account" text. 
                 -right-float "Sign-in" div connected to the sign-in page route.
             -HTML "Create Account" button verifies credentials do not already exist, if so routes to main page with login status, if not correct, displays approriate error message.
     
     * Data needed to render the page
-         * HTML/CSS templates 
-         * Database of users and associated information  
-         * Objectives (Are these linked to achievements?)
+         * HTML/CSS templates.
+         * Database of users and associated information.
+         * Objectives (Are these linked to achievements?).
     
     * Link destinations for the page
-        * WebApp upper-left logo returns to homepage 
-        * "Already Have An Account?" text links to login page  
-        * "sign in Button" redirects to login homepage with user entered credentials
-        * "Create Account" returns to main page with login status if info in valid
-        * "Create Account" if account exists or does not follow username/email/pw protocol, refresh page with appropriate message 
+        * WebApp upper-left logo returns to homepage.
+        * "Already Have An Account?" text links to login page.
+        * "sign in Button" redirects to login homepage with user entered credentials.
+        * "Create Account" returns to main page with login status if info in valid.
+        * "Create Account" if account exists or does not follow username/email/pw protocol, refresh page with appropriate message.
     
     * List of tests for verifying the rendering of the page
-        * Test page appears correct to formatting 
-        * Test that all routes work correctly, including route to login page 
-        * Test that users cannot create more than one account with the same credentials
-        * Test new accounts are correctly logged into database 
-        * Test objectives appear correctly as shown and are the correct objectives 
+        * Test page appears correct to formatting.
+        * Test that all routes work correctly, including route to login page.
+        * Test that users cannot create more than one account with the same credentials.
+        * Test new accounts are correctly logged into database.
+        * Test objectives appear correctly as shown and are the correct objectives.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/register.png" alt="Registration Page" width="500">
 
@@ -229,7 +214,7 @@
     * Parameters needed for the page
        * Available Badges.
        * Progress Meter.
-       * Logo.
+       * Logo image.
        * User ID/Account info.
     
     * Data needed to render the page
@@ -240,7 +225,7 @@
        * User information from the database needed to load update achievements.
     
     * Link destinations for the page
-        * Home page route associated with the top left SudokuTutor icon.
+        * Home page route, associated with the SudokuTutor icon.
         * Achievement icon reloads page.
 
     * List of tests for verifying the rendering of the page
