@@ -92,7 +92,7 @@
         * Page appears with the correct formatting and layout, should look like the image.
         * Test that routes (listed above) direct the user to the specified page.
         * Test that appropriate error messages appear on screen when the routes for handling unrecognized username and/or incorrect password are activated.
-        * Test that the html and css stylesheet options render correctly when the window size, browser or user's device is changed.
+        * Test that the html and css stylesheet options render correctly when the window size, browser, or the user's device changes.
         * Password recovery route should send an email, refresh the page, and display a message to the user.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/login.png" alt="Login Page" width="500">
@@ -145,7 +145,7 @@
     * List of tests for verifying the rendering of the page
         * Page appears with the correct visual formatting and layout. Should look like the image.
         * Test that routes (listed above) direct the user to the specified page.
-        * Test that the html and css stylesheet options render correctly when the window size, browser or user's device is changed.
+        * Test that the html and css stylesheet options render correctly when the window size, browser, or the user's device changes.
 
 <img src="TEAM_RESOURCES/Images_Milestone4/register.png" alt="Registration Page" width="500">
 
