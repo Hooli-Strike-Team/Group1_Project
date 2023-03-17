@@ -69,7 +69,7 @@
             -An embedded "Forgot Password" (left float) div connected with a route to the "Forgot Password" page.
             -An embedded "Create Account" (right float) div with an embedded route to the "Create Account" page.
             -HTML "Sign In" button.
-        * An embedded popup error message such as: "unsuccessful login attempt, please check your credentials and try again" rendered under the password field after an unsuccessful login.
+        * An embedded popup message such as: "unsuccessful login attempt, please check your credentials and try again" rendered under the password field after an unsuccessful login.
         * Route for incorrect password field highlighting.
         
     * Data needed to render the page
@@ -131,7 +131,8 @@
     * Data needed to render the page
          * HTML/CSS templates.
          * Database of users and associated information.
-         * Objectives (Are these linked to achievements?).
+         * Image files.
+         * Icon files.
     
     * Link destinations for the page
         * WebApp upper-left logo returns to homepage.
