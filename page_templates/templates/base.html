@@ -12,23 +12,23 @@
 
     <!-- Container for navigation bar -->
     <div id="navbar">
-      <a href="#" id="logo"><img src="{{ url_for('static', filename='images/logo_weights/logo_16px.png') }}" alt="Logo" /></a>
+      <a href="{{ url_for('home') }}" id="logo"><img src="{{ url_for('static', filename='images/logo_weights/logo_16px.png') }}" alt="Logo" /></a>
       <span id="name">Web App</span>
       <div id="headerbuttons">
         {% block buttons %}
-        <a href="#" class="header-button-link">
+        <a href="{{ url_for('show_rules') }}" class="header-button-link">
           <span class="header-button-icon material-icons-outlined">
             receipt_long
           </span>
           <span class="header-button-label">Rules</span>
         </a>
-        <a href="#" class="header-button-link">
+        <a href="{{ url_for('show_achievements') }}" class="header-button-link">
           <span class="header-button-icon material-icons-outlined">
             emoji_events
           </span>
           <span class="header-button-label">Achievements</span>
         </a>
-        <a href="#" class="header-button-link">
+        <a href="{{ url_for('show_settings') }}" class="header-button-link">
           <span class="header-button-icon material-icons-outlined">
             settings
           </span>

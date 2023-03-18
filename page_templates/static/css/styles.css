@@ -11,7 +11,7 @@ html {
 }
 
 body {
-    margin:0;
+    margin: 0;
 }
 
 /**********************
@@ -30,7 +30,7 @@ body {
   align-items: center;  /* Aligns flex items vertically in center of navbar */
   /* Includes border and padding in navbar's total width and height */
   box-sizing: border-box;
-  background-color:#FFFFFF;  /* White */
+  background-color: #FFFFFF;  /* White */
   border-bottom: 1px solid #444444;  /* Adds solid border at bottom of navbar */
   z-index: 1;  /* Brings navbar to front */
 }
@@ -42,7 +42,7 @@ body {
 }
 
 #name {
-  margin-left: .875rem;  /* Increases space between logo and web app name */
+  margin-left: 0.875rem;  /* Increases space between logo and web app name */
   font-size: 3.5rem;
   font-weight: 600;  /* Semi-bold text */
   color: #444444;  /* Dark gray */
@@ -100,6 +100,11 @@ body {
   background: #F6F6F6;  /* Very light gray */
   border: 1px solid #444444;
   border-radius: 3px;  /* Rounds corners of buttons */
+}
+
+.header-create-account-button:hover,
+.header-sign-in-button:hover {
+    cursor: pointer;
 }
 
 .header-sign-in-button {
@@ -227,10 +232,10 @@ body {
 }
 
 .rules {
-  width:35rem;
-  margin:0 auto;
-  padding:1rem;
-  border:1px solid #444444;
+  width: 35rem;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 1px solid #444444;
 }
 
 /**************

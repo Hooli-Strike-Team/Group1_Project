@@ -3,6 +3,6 @@
 {% block title %}Home{% endblock %}
 
 {% block buttons %}
-    <button class="header-create-account-button">Create Account</button>
-    <button class="header-sign-in-button">Sign In</button>
+    <button class="header-create-account-button" onclick="window.location.href='{{ url_for('create_account') }}'">Create Account</button>
+    <button class="header-sign-in-button" onclick="window.location.href='{{ url_for('login') }}'">Sign In</button>
 {% endblock %}
