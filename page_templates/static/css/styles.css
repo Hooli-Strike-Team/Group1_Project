@@ -11,7 +11,7 @@ html {
 }
 
 body {
-    margin:0;
+    margin: 0;
 }
 
 /**********************
@@ -30,25 +30,25 @@ body {
   align-items: center;  /* Aligns flex items vertically in center of navbar */
   /* Includes border and padding in navbar's total width and height */
   box-sizing: border-box;
-  background-color:#FFFFFF;  /* White */
+  background-color: #FFFFFF;  /* White */
   border-bottom: 1px solid #444444;  /* Adds solid border at bottom of navbar */
-  z-index:1;  /* Brings navbar to front */
+  z-index: 1;  /* Brings navbar to front */
 }
 
-#logo img {
+.logo img {
   /* Makes width of logo respond to changes in font size */
   width: 6rem;
   height: 6rem;
 }
 
-#name {
-  margin-left: .875rem;  /* Increases space between logo and web app name */
+.name {
+  margin-left: 0.875rem;  /* Increases space between logo and web app name */
   font-size: 3.5rem;
   font-weight: 600;  /* Semi-bold text */
   color: #444444;  /* Dark gray */
 }
 
-#headerbuttons {
+.header-buttons {
   /* Automatically calculates left margin based on available space
      (i.e., pushes header buttons to right side of navbar) */ 
   margin-left: auto;
@@ -66,6 +66,7 @@ body {
   text-decoration: none;
 }
 
+.header-button-icon,
 .header-button-label {
   margin-top: 0.25rem;  /* Block-level property */
   font-size: 1rem;
@@ -77,21 +78,21 @@ body {
   display: inline-block;
 }
 
-#headerbuttons .header-button-icon {
+.header-button-icon.material-icons-outlined {
   font-size: 48px;
   color: #444444;
 }
 
 /* Targets both header button text and icon when .header-button-link element 
    is hovered over */
-.header-button-link:hover .header-button-label,
-#headerbuttons .header-button-link:hover .header-button-icon {
+.header-button-link:hover .header-button-icon,
+.header-button-link:hover .header-button-label {
   color: #7D7F7C;
   cursor: pointer;  /* Changes cursor to pointer on hover */
 }
 
-.header-create-account-button,
-.header-sign-in-button {
+.create-account-button,
+.sign-in-button {
   padding: 0.5rem 1rem;  /* top, bottom: 0.5rem; left, right: 1rem */
   font-size: 1rem;
   font-weight: 400;  /* Normal text */
@@ -102,17 +103,22 @@ body {
   border-radius: 3px;  /* Rounds corners of buttons */
 }
 
-.header-sign-in-button {
+.create-account-button:hover,
+.sign-in-button:hover {
+    cursor: pointer;
+}
+
+.sign-in-button {
   /* Increases space between "Sign In" and "Create Account" Buttons */
   margin-left: 0.75rem;
   background-color: #FFFFFF;  /* White */
 }
 
 /********************************
- *  Footer (.footer-rectangle)  *
+ *  Footer (#footer-rectangle)  *
  ********************************/
 
-.footer-rectangle {
+#footer-rectangle {
   width: 100%;
   padding: 0.75rem;  /* top, bottom: 0.75rem; left, right: 0.75rem */
   box-sizing: border-box;
@@ -183,7 +189,7 @@ body {
  *  Content  *
  *************/
 
-.content {
+#content {
   /* Positions content relative to normal position in document */
   position: relative;
   margin-top: 8rem;  /* Offsets header height */
@@ -193,9 +199,8 @@ body {
   min-height: 29rem;
 }
 
- 
- /* Styles for Individual Pages 
-    --------------------------- */
+/* Styles for Individual Pages 
+   --------------------------- */
 
 /******************
  *  Achievements  *
@@ -227,10 +232,10 @@ body {
 }
 
 .rules {
-  width:35rem;
-  margin:0 auto;
-  padding:1rem;
-  border:1px solid #444444;
+  width: 35rem;
+  margin: 0 auto;
+  padding: 1rem;
+  border: 1px solid #444444;
 }
 
 /**************

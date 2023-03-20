@@ -82,7 +82,7 @@
     * Paul: Fill out Achievements Page for Project Milestone 4
     * Tory: work with Paul on implementing the page designs
  
-<p align="center" style="display:flex;">
+<p align="center">
  <img width="350" height="240" src="images/weekly_status/board_03_06.png">
 </p>
 

@@ -86,7 +86,7 @@ project/
 ```
 
                                                       
-| Filename                            | &emsp;&emsp; | Description                                              |
+| Directory or Filename               | &emsp;&emsp; | Description                                              |
 |-------------------------------------|--------------|----------------------------------------------------------|
 | project/                            |              | Project root directory                                   |
 | &nbsp;&ensp;static/                 |              | Static file directories and files                        |
