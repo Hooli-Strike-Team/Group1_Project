@@ -130,7 +130,7 @@
     * Micah: ...
     * Ben:...
     * Paul: 
-          * Contruct the layout of the achievement page in HTML and CSS
-          * Code the functionality of the achievement page using javascript 
+         * Contruct the layout of the achievement page in HTML and CSS
+         * Code the functionality of the achievement page using javascript 
             
     * Tory: ...
