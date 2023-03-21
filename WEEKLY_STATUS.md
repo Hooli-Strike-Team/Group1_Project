@@ -93,21 +93,21 @@
     * Micah: Gained access to "moqups" info-visualization tools, began creating the user experience flowchart. Added "user_experience_graph_v01_01.pdf" to the team repository.
     * Ben: Registration and Login Page for Project Milestone 4 
     * Paul: Implemented 7 diffrent UI Color Scheme ideas for our website 
-    * Tory: ...
+    * Tory: finished page templates and test Flask app
     
 * In Progress 
     * Matt: ...
     * Micah: Gathering feedback from team members to develop a shared understanding of desired application behaviors. Work on Project Milestone 4 with the rest of the group. Pair programming with Ben this week to work on Project Milestone 4 deliverables and set up the Flask server framework.
     * Ben: FLASK framework for backend 
     * Paul: Help tory create templates based on the page mock-up designs
-    * Tory: Creating templates for pages
+    * Tory: refine base template
 
 * To Do 
     * Matt: ...
     * Micah: Help team finalize edits to PAGE_TESTING.md for Project Milestone 4 submission due this week. Continue to describe project requirements and hash out a set of working project specifications. Set up pair programming sessions with team mates to work on HTML, CSS, and the Flask server framework. 
     * Ben: FLASK framework, look into databases for user credentials 
     * Paul: Begin using HTML to design the layout of the webpage based on the story-boards that were approved by the group.
-    * Tory: ...
+    * Tory: look into monochromatic color scheme options
 
 ### Week 5: March 20 - March 26 ###
 
@@ -133,4 +133,6 @@
          * Contruct the layout of the achievement page in HTML and CSS
          * Code the functionality of the achievement page using javascript 
             
-    * Tory: ...
+    * Tory:
+         * Build Home Page and Difficulty Page
+         * Refine base template and create color scheme options
