@@ -245,7 +245,7 @@ h3 {
   /* Positions content relative to normal position in document */
   position: relative;
   /* Offsets header height */
-  margin-top: 8rem;
+  margin-top: 6.5rem;
   padding: 1rem;
   /* Sets minimum content height to prevent footer from getting too close to
      header when there is little or no content */
@@ -277,7 +277,8 @@ h3 {
 
 .difficulty-header {
   font-size: 3rem;
-  margin-bottom: 1rem;
+  margin-top: 1em;
+  margin-bottom: 3.75rem;
   text-align: center;
   width: 100%;
 }
@@ -288,6 +289,7 @@ h3 {
   width: 100%;
   max-width: 52rem;
   padding: 0 1rem;
+  margin-bottom: 5rem;
 }
 
 .difficulty-button {
@@ -336,8 +338,7 @@ h3 {
   justify-content: space-between;
   align-items: start;
   margin-top: 5rem;
-  width: 52rem;
-  height: 22rem;
+  width: 55rem;
   margin: 4rem auto;
   /* Dark gray */
   color: #666666;
@@ -413,13 +414,15 @@ h3 {
 
 /* Features section */
 
+.main-content.increase-top-margin {
+  margin-top: 6rem;
+}
+
 .feature-wrapper {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: start;
-  /* Removes width and height properties from .main-content */
-  width: auto;
-  height: auto;
+  margin: 0 -1rem;
 }
 
 .feature-container {
@@ -427,20 +430,19 @@ h3 {
   flex-direction: column;
   align-items: center;
   text-align: left;
-}
-
-.feature-container:not(:last-child) {
-    margin-right: 3em;
+  flex: 1;
+  margin: 0 1rem;
 }
 
 .feature-container h2 {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
+  margin: 0;
 }
 
 .feature-header {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: start;
   margin-bottom: 1rem;
 }
 
@@ -458,10 +460,6 @@ h3 {
   margin: auto;
   font-size: 2.125rem;
   color: #ffffff;
-}
-
-.feature-text-box.align-left {
-  align-self: flex-start;
 }
 
 /**********
