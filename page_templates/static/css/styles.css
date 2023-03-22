@@ -7,7 +7,7 @@
 
 html {
   font-size: 16px;  /* Sets root font size */
-  font-family: "Source Sans 3";
+  font-family: "Montserrat", sans-serif;
 }
 
 body {
@@ -30,8 +30,8 @@ body {
   align-items: center;  /* Aligns flex items vertically in center of navbar */
   /* Includes border and padding in navbar's total width and height */
   box-sizing: border-box;
-  background-color: #FFFFFF;  /* White */
-  border-bottom: 1px solid #444444;  /* Adds solid border at bottom of navbar */
+  background-color: #578172;  /* Light forest green */
+  border-bottom: 1px solid #578172;  /* Adds solid border at bottom of navbar */
   z-index: 1;  /* Brings navbar to front */
 }
 
@@ -44,8 +44,8 @@ body {
 .name {
   margin-left: 0.875rem;  /* Increases space between logo and web app name */
   font-size: 3.5rem;
-  font-weight: 600;  /* Semi-bold text */
-  color: #444444;  /* Dark gray */
+  font-weight: 700;  /* Bold text */
+  color: #FFFFFF;  /* White */
 }
 
 .header-buttons {
@@ -64,14 +64,15 @@ body {
   text-align: center;
   /* Removes default text decoration (e.g., underlines for links) */
   text-decoration: none;
+  font-family: "Montserrat", sans-serif;
 }
 
 .header-button-icon,
 .header-button-label {
   margin-top: 0.25rem;  /* Block-level property */
   font-size: 1rem;
-  font-weight: 600;  /* Semi-bold text */
-  color: #444444;
+  font-weight: 500;  /* Medium text */
+  color: #FFFFFF;  /* White */
   /* Allows header button text to flow with inline elements while having 
     properties that apply to block-level elements, such as <div>, <h1>, 
     and <p> */
@@ -80,14 +81,13 @@ body {
 
 .header-button-icon.material-icons-outlined {
   font-size: 48px;
-  color: #444444;
+  color: #39D7AC;  /* Light green */
 }
 
-/* Targets both header button text and icon when .header-button-link element 
+/* Targets only header button icon when .header-button-link element 
    is hovered over */
-.header-button-link:hover .header-button-icon,
-.header-button-link:hover .header-button-label {
-  color: #7D7F7C;
+.header-button-link:hover .header-button-icon {
+  color: #2DB896;  /* Darker light green */
   cursor: pointer;  /* Changes cursor to pointer on hover */
 }
 
@@ -95,12 +95,17 @@ body {
 .sign-in-button {
   padding: 0.5rem 1rem;  /* top, bottom: 0.5rem; left, right: 1rem */
   font-size: 1rem;
-  font-weight: 400;  /* Normal text */
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;  /* Medium text */
   text-align: center;
-  color: #444444;  /* Dark gray */
-  background: #F6F6F6;  /* Very light gray */
-  border: 1px solid #444444;
+  color: #FFFFFF;  /* White */
+  background: #39D7AC;  /* Light green */
+  border: 2px solid #FFFFFF;
   border-radius: 3px;  /* Rounds corners of buttons */
+}
+
+.create-account-button {
+  border: 2px solid #39D7AC;
 }
 
 .create-account-button:hover,
@@ -111,7 +116,8 @@ body {
 .sign-in-button {
   /* Increases space between "Sign In" and "Create Account" Buttons */
   margin-left: 0.75rem;
-  background-color: #FFFFFF;  /* White */
+  background-color: rgba(58, 107, 91, 0);  /* Stromboli, 85% opacity */
+  border: 2px solid #FFFFFF;  /* White */
 }
 
 /********************************
@@ -122,7 +128,8 @@ body {
   width: 100%;
   padding: 0.75rem;  /* top, bottom: 0.75rem; left, right: 0.75rem */
   box-sizing: border-box;
-  background-color: #F6F6F6;  /* Very light gray */
+  background-color: #FFFFFF;  /* White */
+  border-top: 1px solid #578172; 
 }
 
 .footer-content {
@@ -131,6 +138,7 @@ body {
   margin: 0 auto;
   display: flex;
   justify-content: center;  /* Aligns flex items center */
+  color: #666666;  /* Dark gray */
 }
 
 .footer-contact,
@@ -174,6 +182,7 @@ body {
 
 .footer-social i {
   font-size: 1.5rem;
+  color: #39D7AC;  /* Light green */
 }
 
 .footer-social .social-wrapper {
@@ -218,6 +227,62 @@ body {
  *  Home  *
  **********/
 
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-top: 5rem;
+  width: 52rem;
+  height: 22rem;
+  margin: 4rem auto;
+  color: #666666;  /* Dark gray */
+}
+
+#content-header {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.text-box {
+  max-width: 26rem;
+  margin-right: 5rem;
+}
+
+.text-box p {
+  line-height: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.image-container {
+  display: flex;
+  border: 2px solid #578172;  /* Light forest green */
+  padding: 8px;  /* Adds 8px padding on all sides */
+  border-radius: 12px;  /* Adds border-radius of 12px on all sides */
+  justify-content: center;  /* Centers image horizontally */
+  align-items: center;  /* Centers image vertically */
+}
+
+.image-container img {
+  max-width: 100%;
+  width: 309px;
+  height: auto;
+}
+
+.main-content .create-sign-in-wrapper {
+    display: flex;
+}
+
+.main-content .create-account-button {
+  background-color: #578172;  /* Light forest green */
+  margin-right: auto;
+  border-color: #578172;
+}
+
+.main-content .sign-in-link {
+  font-weight: 700;
+  color: #444444;
+}
+
 /**********
  *  Main  *
  **********/
@@ -235,7 +300,7 @@ body {
   width: 35rem;
   margin: 0 auto;
   padding: 1rem;
-  border: 1px solid #444444;
+  border: 1px solid #666666;
 }
 
 /**************

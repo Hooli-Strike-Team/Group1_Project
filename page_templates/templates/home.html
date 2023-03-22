@@ -6,3 +6,34 @@
     <button class="create-account-button" onclick="window.location.href='{{ url_for('create_account') }}'">Create Account</button>
     <button class="sign-in-button" onclick="window.location.href='{{ url_for('login') }}'">Sign In</button>
 {% endblock %}
+
+{% block content %}
+    <!-- Flexbox for text box and image container -->
+    <div class="main-content">
+        <!-- Container for text box -->
+        <div class="text-box">
+            <h2 id="content-header">Sudoku Mastery Made Simple</h2>
+            <p>Welcome to SudokuSage, where we empower you to improve your problem-solving 
+                and deductive reasoning skills through guided learning experiences. Our web 
+                application blends in-game assistance with progress tracking features to ensure 
+                that you remain supported and engaged throughout your Sudoku journey.
+            </p>
+            
+            <!-- Container for "Create Account" and "Sign In" buttons -->
+            <div class="create-sign-in-wrapper">
+                <button class="create-account-button" onclick="window.location.href='{{ url_for('create_account') }}'">Create Account</button>
+                <div>
+                    <div>Already have an account?</div>
+                    <a class="sign-in-link" href="{{ url_for('login') }}">Sign In</a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Container for image -->
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='images/home/alt_img_green.png') }}" alt="Solution">
+        </div>
+        
+    </div>
+
+{% endblock %}
