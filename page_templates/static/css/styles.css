@@ -6,12 +6,21 @@
  ************/
 
 html {
-  font-size: 16px;  /* Sets root font size */
-  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  /* Sets root font size */
+  font-family: "Open Sans", sans-serif;
+  /* Dark gray */
+  color: #666666;
 }
 
 body {
-    margin: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Montserrat", sans-serif;
 }
 
 /**********************
@@ -19,20 +28,25 @@ body {
  **********************/
 
 #navbar {
-  position: fixed;
   /* Sets position of navbar at top left corner of browser window */
+  position: fixed;
   top: 0;
   left: 0;
-  width: 100%;  /* Makes it span full width of screen */
-  padding: 0.75rem;  /* Increases space between content and navbar edges */
+  /* Makes navbar span full width of screen */
+  width: 100%;
+  /* Increases space between content and navbar edges */
+  padding: 0.75rem;
   /* Sets display property to flex, which makes container a flexbox */
-  display: flex;  
-  align-items: center;  /* Aligns flex items vertically in center of navbar */
+  display: flex;
+  /* Aligns flex items vertically in center of navbar */
+  align-items: center;
   /* Includes border and padding in navbar's total width and height */
   box-sizing: border-box;
-  background-color: #578172;  /* Light forest green */
-  border-bottom: 1px solid #578172;  /* Adds solid border at bottom of navbar */
-  z-index: 1;  /* Brings navbar to front */
+  background-color: #578172;
+  /* Adds solid border (light forest green) at bottom of navbar */
+  border-bottom: 0.0625rem solid #578172;
+  /* Brings navbar to front */
+  z-index: 1;
 }
 
 .logo img {
@@ -42,15 +56,19 @@ body {
 }
 
 .name {
-  margin-left: 0.875rem;  /* Increases space between logo and web app name */
+  /* Increases space between logo and web app name */
+  margin-left: 0.875rem;
   font-size: 3.5rem;
-  font-weight: 700;  /* Bold text */
-  color: #FFFFFF;  /* White */
+  font-family: "Montserrat", sans-serif;
+  /* Bold text */
+  font-weight: 700;
+  /* White */
+  color: #ffffff;
 }
 
 .header-buttons {
   /* Automatically calculates left margin based on available space
-     (i.e., pushes header buttons to right side of navbar) */ 
+     (i.e., pushes header buttons to right side of navbar) */
   margin-left: auto;
   display: flex;
   align-items: center;
@@ -65,59 +83,76 @@ body {
   /* Removes default text decoration (e.g., underlines for links) */
   text-decoration: none;
   font-family: "Montserrat", sans-serif;
+  /* Medium text */
+  font-weight: 500;
 }
 
 .header-button-icon,
 .header-button-label {
-  margin-top: 0.25rem;  /* Block-level property */
+  /* Block-level property */
+  margin-top: 0.25rem;
   font-size: 1rem;
-  font-weight: 500;  /* Medium text */
-  color: #FFFFFF;  /* White */
+  /* Medium text */
+  font-weight: 500;
+  /* White */
+  color: #ffffff;
   /* Allows header button text to flow with inline elements while having 
-    properties that apply to block-level elements, such as <div>, <h1>, 
-    and <p> */
+     properties that apply to block-level elements, such as <div>, <h1>, 
+     and <p> */
   display: inline-block;
 }
 
 .header-button-icon.material-icons-outlined {
-  font-size: 48px;
-  color: #39D7AC;  /* Light green */
+  font-size: 3rem;
+  /* Light green */
+  color: #39d7ac;
 }
 
 /* Targets only header button icon when .header-button-link element 
-   is hovered over */
+       is hovered over */
 .header-button-link:hover .header-button-icon {
-  color: #2DB896;  /* Darker light green */
-  cursor: pointer;  /* Changes cursor to pointer on hover */
+  /* Darker light green */
+  color: #2db896;
+  /* Changes cursor to pointer on hover */
+  cursor: pointer;
 }
 
-.create-account-button,
-.sign-in-button {
-  padding: 0.5rem 1rem;  /* top, bottom: 0.5rem; left, right: 1rem */
+#navbar .create-account-button,
+#navbar .sign-in-button {
+  /* top, bottom: 0.5rem; left, right: 1rem */
+  padding: 0.5rem 1rem;
   font-size: 1rem;
   font-family: "Montserrat", sans-serif;
-  font-weight: 500;  /* Medium text */
+  /* Medium text */
+  font-weight: 500;
   text-align: center;
-  color: #FFFFFF;  /* White */
-  background: #39D7AC;  /* Light green */
-  border: 2px solid #FFFFFF;
-  border-radius: 3px;  /* Rounds corners of buttons */
+  /* White */
+  color: #ffffff;
+  /* Light green */
+  background: #39d7ac;
+  /* White border */
+  border: 0.125rem solid #ffffff;
+  /* Rounds corners of buttons */
+  border-radius: 0.2rem;
 }
 
-.create-account-button {
-  border: 2px solid #39D7AC;
+#navbar .create-account-button {
+  /* Light green border */
+  border: 0.125rem solid #39d7ac;
 }
 
-.create-account-button:hover,
-.sign-in-button:hover {
-    cursor: pointer;
+#navbar .create-account-button:hover,
+#navbar .sign-in-button:hover {
+  cursor: pointer;
 }
 
-.sign-in-button {
+#navbar .sign-in-button {
   /* Increases space between "Sign In" and "Create Account" Buttons */
   margin-left: 0.75rem;
-  background-color: rgba(58, 107, 91, 0);  /* Stromboli, 85% opacity */
-  border: 2px solid #FFFFFF;  /* White */
+  /* Light forest green, 85% opacity */
+  background-color: rgba(58, 107, 91, 0);
+  /* White */
+  border: 0.125rem solid #ffffff;
 }
 
 /********************************
@@ -126,10 +161,12 @@ body {
 
 #footer-rectangle {
   width: 100%;
-  padding: 0.75rem;  /* top, bottom: 0.75rem; left, right: 0.75rem */
+  /* top, bottom: 0.75rem; left, right: 0.75rem */
+  padding: 0.75rem;
   box-sizing: border-box;
-  background-color: #FFFFFF;  /* White */
-  border-top: 1px solid #578172; 
+  background-color: #ffffff;
+  /* White */
+  border-top: 0.0625rem solid #578172;
 }
 
 .footer-content {
@@ -137,8 +174,10 @@ body {
      (i.e., horizontally centers container) */
   margin: 0 auto;
   display: flex;
-  justify-content: center;  /* Aligns flex items center */
-  color: #666666;  /* Dark gray */
+  /* Aligns flex items center */
+  justify-content: center;
+  /* Dark gray */
+  color: #666666;
 }
 
 .footer-contact,
@@ -150,7 +189,8 @@ body {
 .footer-social ul {
   margin: 0;
   padding: 0;
-  list-style: none;  /* Removes bullets from list */
+  /* Removes bullets from list */
+  list-style: none;
 }
 
 .footer-contact li,
@@ -166,7 +206,8 @@ body {
 
 .footer-contact a:hover,
 .footer-social a:hover {
-  color: #7D7F7C;  /* Medium gray */
+  /* Medium gray */
+  color: #7d7f7c;
 }
 
 .footer-social ul {
@@ -182,12 +223,14 @@ body {
 
 .footer-social i {
   font-size: 1.5rem;
-  color: #39D7AC;  /* Light green */
+  /* Light green */
+  color: #39d7ac;
 }
 
 .footer-social .social-wrapper {
   display: flex;
-  flex-direction: column;  /* Stacks flex items vertically in column */
+  /* Stacks flex items vertically in column */
+  flex-direction: column;
 }
 
 .footer-social p {
@@ -201,7 +244,8 @@ body {
 #content {
   /* Positions content relative to normal position in document */
   position: relative;
-  margin-top: 8rem;  /* Offsets header height */
+  /* Offsets header height */
+  margin-top: 8rem;
   padding: 1rem;
   /* Sets minimum content height to prevent footer from getting too close to
      header when there is little or no content */
@@ -223,6 +267,66 @@ body {
  *  Difficulty  *
  ****************/
 
+.difficulty-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  margin-top: 8.5rem;
+}
+
+.difficulty-header {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  width: 100%;
+}
+
+.difficulty-buttons {
+  display: flex;
+  justify-content: center; /* Change this to center the buttons */
+  width: 100%;
+  max-width: 52rem;
+  padding: 0 1rem;
+}
+
+.difficulty-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 15rem;
+  height: 11rem;
+  margin-right: 2rem;
+  background-color: #578172;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 2.25rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.difficulty-button:hover {
+  background-color: #466b5a;
+}
+
+.difficulty-button:last-child {
+  margin-right: 0;
+}
+
+.stars {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.stars .material-icons-outlined {
+  font-size: 3.375rem;
+  color: #39d7ac;
+}
+
 /**********
  *  Home  *
  **********/
@@ -235,52 +339,129 @@ body {
   width: 52rem;
   height: 22rem;
   margin: 4rem auto;
-  color: #666666;  /* Dark gray */
+  /* Dark gray */
+  color: #666666;
 }
+
+/* Welcome section */
 
 #content-header {
   font-size: 3rem;
   margin: 0;
 }
 
-.text-box {
+.main-content .text-box {
   max-width: 26rem;
   margin-right: 5rem;
 }
 
-.text-box p {
+.main-content .text-box p {
   line-height: 1.5rem;
   margin: 1.5rem 0;
 }
 
 .image-container {
   display: flex;
-  border: 2px solid #578172;  /* Light forest green */
-  padding: 8px;  /* Adds 8px padding on all sides */
-  border-radius: 12px;  /* Adds border-radius of 12px on all sides */
-  justify-content: center;  /* Centers image horizontally */
-  align-items: center;  /* Centers image vertically */
+  /* Light forest green */
+  border: 0.125rem solid #578172;
+  /* top, bottom: 0.5rem; left, right: 0.5rem */
+  padding: 0.5rem;
+  /* Adds border radius on all sides */
+  border-radius: 1.3rem;
+  /* Centers image horizontally and vertically */
+  justify-content: center;
+  align-items: center;
 }
 
 .image-container img {
   max-width: 100%;
-  width: 309px;
+  width: 19.3125rem;
   height: auto;
 }
 
-.main-content .create-sign-in-wrapper {
-    display: flex;
+.create-sign-in-wrapper {
+  display: flex;
 }
 
 .main-content .create-account-button {
-  background-color: #578172;  /* Light forest green */
+  /* top, bottom: 0.5rem; left, right: 1rem */
+  padding: 0.5rem 1rem;
   margin-right: auto;
-  border-color: #578172;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  /* Medium text */
+  font-weight: 500;
+  text-align: center;
+  /* White */
+  color: #ffffff;
+  /* Light forest green */
+  background-color: #578172;
+  border: 0.125rem solid #578172;
+  /* Rounds corners of buttons */
+  border-radius: 0.2rem;
 }
 
-.main-content .sign-in-link {
-  font-weight: 700;
+.main-content .create-account-button:hover {
+  cursor: pointer;
+}
+
+.sign-in-link {
+  /* Semi-bold text */
+  font-weight: 600;
   color: #444444;
+}
+
+/* Features section */
+
+.feature-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  /* Removes width and height properties from .main-content */
+  width: auto;
+  height: auto;
+}
+
+.feature-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+}
+
+.feature-container:not(:last-child) {
+    margin-right: 3em;
+}
+
+.feature-container h2 {
+  font-size: 1.3rem;
+}
+
+.feature-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.feature-icon {
+  display: flex;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  width: 3.5rem;
+  height: auto;
+  background-color: #578172;
+  border-radius: 0.625rem;
+}
+
+.feature-icon span {
+  margin: auto;
+  font-size: 2.125rem;
+  color: #ffffff;
+}
+
+.feature-text-box.align-left {
+  align-self: flex-start;
 }
 
 /**********
@@ -300,7 +481,10 @@ body {
   width: 35rem;
   margin: 0 auto;
   padding: 1rem;
-  border: 1px solid #666666;
+  /* Dark gray border */
+  border: 0.125rem solid #666666;
+  /* Adds border radius on all sides */
+  border-radius: 1.3rem;
 }
 
 /**************

@@ -1,3 +1,34 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block title %}Difficulty{% endblock %}
+{% block title %}Difficulty{% endblock %} 
+
+{% block content %}
+<div class="main-content difficulty-content">
+  <h2 class="difficulty-header">Select Difficulty</h2>
+  <div class="difficulty-buttons">
+    <button class="difficulty-button" id="easy">
+      EASY
+      <div class="stars">
+        <span class="material-icons-outlined">grade</span>
+      </div>
+    </button>
+    <button class="difficulty-button" id="hard">
+      HARD
+      <div class="stars">
+        <span class="material-icons-outlined">grade</span>
+        <span class="material-icons-outlined">grade</span>
+        <span class="material-icons-outlined">grade</span>
+      </div>
+    </button>
+    <button class="difficulty-button" id="expert">
+      EXPERT
+      <div class="stars">
+        <span class="material-icons-outlined">grade</span>
+        <span class="material-icons-outlined">grade</span>
+        <span class="material-icons-outlined">grade</span>
+        <span class="material-icons-outlined">grade</span>
+      </div>
+    </button>
+  </div>
+</div>
+{% endblock %}
