@@ -131,8 +131,7 @@
     * Ben:...
     * Paul: 
          * Contruct the layout of the achievement page in HTML and CSS
-         * Code the functionality of the achievement page using javascript 
-            
+         * Code the functionality of the achievement page using javascript  
     * Tory:
          * Build Home Page and Difficulty Page
          * Refine base template and create color scheme options
