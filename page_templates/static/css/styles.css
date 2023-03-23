@@ -42,6 +42,7 @@ h3 {
   align-items: center;
   /* Includes border and padding in navbar's total width and height */
   box-sizing: border-box;
+  /* Light forest green */
   background-color: #578172;
   /* Adds solid border (light forest green) at bottom of navbar */
   border-bottom: 0.0625rem solid #578172;
@@ -252,6 +253,18 @@ h3 {
   min-height: 29rem;
 }
 
+/* Flex container used for Home and Difficulty pages (resource) */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-top: 5rem;
+  width: 55rem;
+  margin: 4rem auto;
+  /* Dark gray */
+  color: #666666;
+}
+
 /* Styles for Individual Pages 
    --------------------------- */
 
@@ -272,7 +285,7 @@ h3 {
   flex-direction: column;
   align-items: center;
   height: auto;
-  margin-top: 8.5rem;
+  margin-top: 6.5rem;
 }
 
 .difficulty-header {
@@ -289,7 +302,7 @@ h3 {
   width: 100%;
   max-width: 52rem;
   padding: 0 1rem;
-  margin-bottom: 5rem;
+  margin-bottom: 6rem;
 }
 
 .difficulty-button {
@@ -332,17 +345,6 @@ h3 {
 /**********
  *  Home  *
  **********/
-
-.main-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: start;
-  margin-top: 5rem;
-  width: 55rem;
-  margin: 4rem auto;
-  /* Dark gray */
-  color: #666666;
-}
 
 /* Welcome section */
 
@@ -450,7 +452,6 @@ h3 {
   display: flex;
   padding: 0.5rem;
   margin-right: 1rem;
-  width: 3.5rem;
   height: auto;
   background-color: #578172;
   border-radius: 0.625rem;
@@ -459,6 +460,7 @@ h3 {
 .feature-icon span {
   margin: auto;
   font-size: 2.125rem;
+  /* White */
   color: #ffffff;
 }
 
