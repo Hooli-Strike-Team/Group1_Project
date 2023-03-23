@@ -3,3 +3,16 @@
 {% block title %}Login{% endblock %}
 
 {% block buttons %}{% endblock %}
+
+<!-- Test content to facilitate redirection from home page to difficulty page
+     when user is logged in -->
+{% block content %}
+  <h2>Please Sign In Below:</h2>
+  <form method="POST" action="{{ url_for('login') }}">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username"><br><br>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"><br><br>
+    <input type="submit" value="Login">
+  </form>
+{% endblock %}

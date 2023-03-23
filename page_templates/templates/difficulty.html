@@ -3,6 +3,9 @@
 {% block title %}Difficulty{% endblock %} 
 
 {% block content %}
+  {% if message %}
+  <h3>{{ message }}</h3>
+  {% endif %}
 <div class="main-content difficulty-content">
   <h2 class="difficulty-header">Select Difficulty</h2>
   <div class="difficulty-buttons">
