@@ -1,8 +1,122 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block title %}Home{% endblock %}
+{% block title %}Home{% endblock %} 
 
-{% block buttons %}
-    <button class="create-account-button" onclick="window.location.href='{{ url_for('create_account') }}'">Create Account</button>
-    <button class="sign-in-button" onclick="window.location.href='{{ url_for('login') }}'">Sign In</button>
+{% block buttons%}
+<button
+  class="create-account-button"
+  onclick="window.location.href='{{ url_for('create_account') }}'"
+>
+  Create Account
+</button>
+<button
+  class="sign-in-button"
+  onclick="window.location.href='{{ url_for('login') }}'"
+>
+  Sign In
+</button>
+{% endblock %} 
+
+{% block content %}
+<!-- Flexbox for text box and image container -->
+<div class="main-content">
+  <!-- Container for text box -->
+  <div class="text-box">
+    <h2 id="content-header">Sudoku Mastery Made Simple</h2>
+    <p>
+      Welcome to Sudoku Sage, where we empower you to improve your
+      problem-solving and deductive reasoning skills through guided learning
+      experiences. Our web application blends in-game assistance with progress
+      tracking features to ensure that you remain supported and engaged
+      throughout your Sudoku journey.
+    </p>
+
+    <!-- Container for "Create Account" and "Sign In" buttons -->
+    <div class="create-sign-in-wrapper">
+      <button
+        class="create-account-button"
+        onclick="window.location.href='{{ url_for('create_account') }}'"
+      >
+        Create Account
+      </button>
+      <div>
+        <div>Already have an account?</div>
+        <a class="sign-in-link" href="{{ url_for('login') }}">Sign In</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container for image -->
+  <div class="image-container">
+    <img
+      src="{{ url_for('static', filename='images/home/alt_img_green.png') }}"
+      alt="Solution"
+    />
+  </div>
+</div>
+
+<!-- Flexbox for features -->
+<div class="main-content increase-top-margin">
+  <div class="feature-wrapper">
+    <!-- Container for feature #1 -->
+    <div class="feature-container">
+      <!-- Header for feature #1 -->
+      <div class="feature-header">
+        <div class="feature-icon">
+          <span class="material-icons-outlined"> sentiment_satisfied_alt </span>
+        </div>
+        <h2>User-Friendly Interface</h2>
+      </div>
+
+      <!-- Text box for feature #1 -->
+      <div class="feature-text-box">
+        <p>
+          Designed with simplicity and ease of use in mind, Sudoku Sage's
+          intuitive interface provides you with a seamless puzzle-solving
+          experience.
+        </p>
+      </div>
+    </div>
+
+    <!-- Container for feature #2 -->
+    <div class="feature-container">
+      <!-- Header for feature #2 -->
+      <div class="feature-header">
+        <div class="feature-icon">
+          <span class="material-icons-outlined"> school </span>
+        </div>
+        <h2>Real-Time Guidance and Feedback</h2>
+      </div>
+
+      <!-- Text box for feature #2 -->
+      <div class="feature-text-box">
+        <p>
+          Sudoku Sage's real-time guidance helps you to understand the logic
+          behind each recommended strategy, reducing your dependence on
+          traditional hints.
+        </p>
+      </div>
+    </div>
+
+    <!-- Container for feature #3 -->
+    <div class="feature-container">
+      <!-- Header for feature #3 -->
+      <div class="feature-header">
+        <div class="feature-icon">
+          <span class="material-icons-outlined"> insights </span>
+        </div>
+        <h2>Motivation-Boosting Progress Tracking</h2>
+      </div>
+
+      <!-- Text box for feature #3 -->
+      <div class="feature-text-box align-left">
+        <p>
+          Stay inspired and visualize your improvement with our dynamic progress
+          tracking tools. Earn badges and reach milestones as you advance
+          through puzzle challenges.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

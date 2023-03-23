@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-  <meta charset="UTF-8">
-  <title>Web App - {% block title %}{% endblock %}</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined">
-  <script src=""></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
+    />
+    <script src=""></script>
+    <title>Sudoku Sage - {% block title %}{% endblock %}</title>
+  </head>
 
   <body>
-
     <!-- Container for navigation bar -->
     <div id="navbar">
-      <a href="{{ url_for('home') }}" class="logo"><img src="{{ url_for('static', filename='images/logo_weights/logo_16px.png') }}" alt="Logo" /></a>
-      <span class="name">Web App</span>
+      <a href="{{ url_for('home') }}" class="logo"
+        ><img
+          src="{{ url_for('static', filename='images/logo_weights/logo_16px_green_dash.png') }}"
+          alt="Logo"
+      /></a>
+      <span class="name">Sudoku Sage</span>
       <div class="header-buttons">
         {% block buttons %}
         <a href="{{ url_for('show_rules') }}" class="header-button-link">
@@ -48,22 +68,28 @@
         <div class="footer-contact">
           <h3>Contact Us:</h3>
           <ul>
-            <li><a href="mailto:webapp@example.com">webapp@example.com</a></li>
+            <li>
+              <a href="mailto:webapp@example.com">SudokuSage@example.com</a>
+            </li>
           </ul>
         </div>
         <div class="footer-social">
           <div class="social-wrapper">
             <h3>Follow Us:</h3>
             <ul>
-              <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-              <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-              <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+              <li>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+              </li>
             </ul>
           </div>
         </div>
       </div>
     </div>
-
   </body>
-
 </html>
