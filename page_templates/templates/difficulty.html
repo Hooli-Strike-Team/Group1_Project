@@ -3,9 +3,17 @@
 {% block title %}Difficulty{% endblock %} 
 
 {% block content %}
-  {% if message %}
-  <h3>{{ message }}</h3>
-  {% endif %}
+<!-- Message is displayed only for users who are redrected from home page -->
+{% if redirected_from_home %}
+<div class="main-content welcome-message-content">
+  <p id="hello_user">
+    Hello, FavoriteUser
+    <span class="material-icons-outlined">waving_hand</span>.
+  </p>
+  <p id="welcome_back">Welcome back!</p>
+</div>
+{% endif %}
+
 <div class="main-content difficulty-content">
   <h2 class="difficulty-header">Select Difficulty</h2>
   <div class="difficulty-buttons">

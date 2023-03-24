@@ -1,11 +1,27 @@
 import prefix
 
-from flask import Flask, url_for, render_template, request, session, redirect
+from flask import Flask, url_for, render_template, redirect, session
 
 # Create app to use in Flask application
 app = Flask(__name__)
-# Set secret key for session use
-app.secret_key = 'hooli-strike-team'
+# Secret key for session object
+app.secret_key = 'Hooli-Strike-Team'
+
+################################################################################
+## Global flag that simulates a logged in state for testing the redirection from 
+## the home page to the difficulty page.
+##
+##   1. Set logged_in to either True or False
+##   2. Navigate to home page:
+##     a. When logged_in is set to True, the view function for the home page 
+##        redirects to the difficulty page
+##     b. When logged_in is set to False, the home page is displayed
+##
+## Note: to ensure that the correct pages and page content are displayed,
+##       re-run test_app.py after changes have been made to the value of 
+##       logged_in.
+##
+logged_in = False
 
 # Insert wrapper for handling PROXY when using csel.io virtual machine
 prefix.use_PrefixMiddleware(app)   
@@ -17,8 +33,12 @@ def prefix_url():
 
 @app.route('/')
 def home():
-    if session.get('logged_in'):
-        return redirect(url_for('show_difficulty', from_home=True))
+    # If login has been simulated, redirect user to difficulty page
+    if logged_in:
+        # Set flag to indicate redirect from home page
+        session['redirected_from_home'] = True 
+        return redirect(url_for('show_difficulty'))
+    # Otherwise, display home page
     else:
         return render_template('home.html')
 
@@ -26,20 +46,9 @@ def home():
 def create_account():
     return render_template('create-account.html')
 
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/login')
 def login():
-    if request.method == 'POST':
-        
-        # TODO: Check for username and password
-        
-        # Set logged_in key to True to demo redirect functionality (see below)
-        session['logged_in'] = False
-        # Redirect user to difficulty page with "welcome back" message
-        return redirect(url_for('show_difficulty', from_home=True))
-    
-    # If request method is not POST, render login form
-    else:
-        return render_template('login.html')
+    return render_template('login.html')
 
 @app.route('/main')
 def main():
@@ -47,12 +56,14 @@ def main():
 
 @app.route('/difficulty')
 def show_difficulty():
-    from_home = request.args.get('from_home')
-    if from_home:
-        message = 'Welcome back!'
+    # Get flag and remove it from session
+    redirected_from_home = session.pop('redirected_from_home', False)
+    # If user has been redirected from home page, display "welcome back" message
+    if redirected_from_home:
+        return render_template('difficulty.html', redirected_from_home=True)
+    # Otherwise, display difficulty page without "welcome back" message
     else:
-        message = ''
-    return render_template('difficulty.html', message=message)
+        return render_template('difficulty.html', redirected_from_home=False)
 
 @app.route('/rules')
 def show_rules():
@@ -66,27 +77,8 @@ def show_achievements():
 def show_settings():
     return render_template('settings.html')
 
-################################################################################ 
-# Testing redirect from home page to difficulty page:
-#
-#   1. /login - when the user submits the form by clicking the "Login" button,
-#               the form data is sent to the login() function in Flask code as
-#               part of a POST request
-#
-#   2. /logout - removes the logged_in key from the session dictionary when a 
-#                user navigates to the route
-#
-
-@app.route('/logout')
-def logout():
-    # Remove the logged_in key from the session dictionary
-    session.pop('logged_in', None)
-    
-    # Redirect the user to the home page
-    return redirect(url_for('home'))
-
 ################################################################################
 
 if __name__ == '__main__':
   # app.run(host='0.0.0.0', port=3308)
-    app.run(host='localhost', port=3308, debug=True)
+    app.run(host='localhost', port=3308)

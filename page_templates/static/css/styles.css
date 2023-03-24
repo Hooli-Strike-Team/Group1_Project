@@ -280,6 +280,33 @@ h3 {
  *  Difficulty  *
  ****************/
 
+.welcome-message-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: -6rem;
+  font-size: 2rem;
+  /* Medium text */
+  font-weight: 500;
+  z-index: 1;
+}
+
+#hello_user {
+  margin-bottom: 0.5rem;
+}
+
+#welcome_back {
+  margin-top: 0;
+  margin-bottom: 0; 
+}
+
+.welcome-message-content span {
+  font-size: 2rem;
+  /* Light green */
+  color: #39d7ac;
+}
+
 .difficulty-content {
   display: flex;
   flex-direction: column;
@@ -289,16 +316,16 @@ h3 {
 }
 
 .difficulty-header {
-  font-size: 3rem;
   margin-top: 1em;
   margin-bottom: 3.75rem;
-  text-align: center;
   width: 100%;
+  text-align: center;
+  font-size: 3rem;
 }
 
 .difficulty-buttons {
   display: flex;
-  justify-content: center; /* Change this to center the buttons */
+  justify-content: center;
   width: 100%;
   max-width: 52rem;
   padding: 0 1rem;
@@ -474,12 +501,13 @@ h3 {
 
 .rules-wrapper {
   display: flex;
+  align-items: center;
   flex-direction: column;
 }
 
 .rules {
   width: 35rem;
-  margin: 0 auto;
+  margin: 1.5rem 0 auto;
   padding: 1rem;
   /* Dark gray border */
   border: 0.125rem solid #666666;
