@@ -8,20 +8,18 @@ app = Flask(__name__)
 app.secret_key = 'Hooli-Strike-Team'
 
 ################################################################################
-## Global flag that simulates a logged in state for testing the redirection from 
-## the home page to the difficulty page.
+## Global flag that simulates a logged in state for testing the modal window
+## for the home page.
 ##
 ##   1. Set logged_in to either True or False
 ##   2. Navigate to home page:
-##     a. When logged_in is set to True, the view function for the home page 
-##        redirects to the difficulty page
-##     b. When logged_in is set to False, the home page is displayed
+##     a. When logged_in is set to True, the modal window is displayed
+##     b. When logged_in is set to False, no modal window is displayed
 ##
-## Note: to ensure that the correct pages and page content are displayed,
-##       re-run test_app.py after changes have been made to the value of 
-##       logged_in.
+## Note: to ensure that the correct page content is displayed, re-run
+##       test_app.py whenever the value of logged_in is changed
 ##
-logged_in = False
+logged_in = True
 
 # Insert wrapper for handling PROXY when using csel.io virtual machine
 prefix.use_PrefixMiddleware(app)   
@@ -33,14 +31,11 @@ def prefix_url():
 
 @app.route('/')
 def home():
-    # If login has been simulated, redirect user to difficulty page
+    # If login has been simulated, display modal window
     if logged_in:
-        # Set flag to indicate redirect from home page
-        session['redirected_from_home'] = True 
-        return redirect(url_for('show_difficulty'))
-    # Otherwise, display home page
+        return render_template('home.html', show_logged_in_content=True)
     else:
-        return render_template('home.html')
+        return render_template('home.html', show_logged_in_content=False)
 
 @app.route('/create-account')
 def create_account():
@@ -56,14 +51,7 @@ def main():
 
 @app.route('/difficulty')
 def show_difficulty():
-    # Get flag and remove it from session
-    redirected_from_home = session.pop('redirected_from_home', False)
-    # If user has been redirected from home page, display "welcome back" message
-    if redirected_from_home:
-        return render_template('difficulty.html', redirected_from_home=True)
-    # Otherwise, display difficulty page without "welcome back" message
-    else:
-        return render_template('difficulty.html', redirected_from_home=False)
+    return render_template('difficulty.html')
 
 @app.route('/rules')
 def show_rules():

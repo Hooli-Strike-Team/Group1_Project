@@ -17,7 +17,29 @@
 </button>
 {% endblock %} 
 
-{% block content %}
+{% block content %} 
+{% if show_logged_in_content %}
+<!-- Modal -->
+<div id="loggedInModal" class="modal" onclick="hideModal(event)">
+  <div class="modal-content">
+    <p id="hello_user">
+        Hello, <b>FavoriteUser</b>
+      <span class="material-icons-outlined">waving_hand</span>.
+    </p>
+    <p id="welcome_back">Welcome back!</p>
+    <button
+      onclick="location.href='{{ url_for('show_difficulty') }}'"
+      class="btn"
+    >
+      New Game
+    </button>
+    <button onclick="location.href='{{ url_for('main') }}'" class="btn">
+      Resume Game
+    </button>
+  </div>
+</div>
+{% endif %}
+
 <!-- Flexbox for text box and image container -->
 <div class="main-content">
   <!-- Container for text box -->
@@ -119,4 +141,10 @@
     </div>
   </div>
 </div>
+{% endblock %}
+
+{% block extra_js %} 
+{% if show_logged_in_content %}
+<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+{% endif %}
 {% endblock %}
