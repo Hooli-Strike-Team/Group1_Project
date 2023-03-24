@@ -109,6 +109,10 @@
     * Paul: Begin using HTML to design the layout of the webpage based on the story-boards that were approved by the group.
     * Tory: look into monochromatic color scheme options
 
+<p align="center">
+ <img width="350" height="219" src="images/weekly_status/board_03_13.png">
+</p>
+
 ### Week 5: March 20 - March 26 ###
 
 * Completed 
