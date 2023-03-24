@@ -19,7 +19,7 @@ app.secret_key = 'Hooli-Strike-Team'
 ## Note: to ensure that the correct page content is displayed, re-run
 ##       test_app.py whenever the value of logged_in is changed
 ##
-logged_in = True
+logged_in = False
 
 # Insert wrapper for handling PROXY when using csel.io virtual machine
 prefix.use_PrefixMiddleware(app)   
