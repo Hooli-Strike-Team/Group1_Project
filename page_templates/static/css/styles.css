@@ -272,6 +272,60 @@ h3 {
  *  Achievements  *
  ******************/
 
+#achievements-header {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.achievements-wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.achievements {
+  width: 100rem;
+  margin: 1.5rem 0 auto;
+  padding: 1rem;
+  /* Dark gray border */
+  border: 0.125rem solid #666666;
+  /* Adds border radius on all sides */
+  border-radius: 1.3rem;
+}
+
+.achievements-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  flex: 1;
+  margin: 0 1rem;
+}
+
+.achievements-header {
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.achievements-icon {
+  display: flex;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  height: auto;
+  background-color: #578172;
+  border-radius: 0.625rem;
+}
+
+.achievements-icon i {
+  margin: auto;
+  font-size: 2.125rem;
+  /* White */
+  color: #ffffff;
+}
+
+
 /********************
  *  Create Account  *
  ********************/
