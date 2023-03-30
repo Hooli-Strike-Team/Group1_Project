@@ -19,7 +19,8 @@ app.secret_key = 'Hooli-Strike-Team'
 ## Note: to ensure that the correct page content is displayed, re-run
 ##       test_app.py whenever the value of logged_in is changed
 ##
-logged_in = False
+logged_in = True
+
 
 # Insert wrapper for handling PROXY when using csel.io virtual machine
 prefix.use_PrefixMiddleware(app)   
@@ -57,9 +58,19 @@ def show_difficulty():
 def show_rules():
     return render_template('rules.html')
 
+
+risk_taker = False # if the user has met the requirements for the Risk Taker badge
+lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
+puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
+speed_runner = False # if the user has met the requirements for the Speed Runner badge
+inquisitor = False # if the user has met the requirements for the Inquisitor badge
+conqueror = False # if the user has met the requirements for the Conqueror badge 
+
 @app.route('/achievements')
 def show_achievements():
-    return render_template('achievements.html')
+    return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master,
+                            speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
+
 
 @app.route('/settings')
 def show_settings():
