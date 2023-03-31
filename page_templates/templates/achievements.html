@@ -12,25 +12,246 @@
         <div class="achievements-container">
           <!-- Header for feature #1 -->
           <div class="achievements-header">
-            <div class="achievements-icon">
-                <i class="fa-sharp fa-solid fa-circle-radiation"></i> 
+              <a href="#" class="risk_taker" 
+              ><img
+                  src="{{ url_for('static', filename='images/achievements/png/risk_taker.png') }}"
+              /></a>
+              {% if risk_taker == True %}
 
-            </div>
+              <div class="badge-wrap"> 
+                  <div class="lock-icon">
+                      <i class="fa-solid fa-lock-open"></i>
+                  </div>
+                  <p>
+                      BADGE UNLOCKED!
+                  </p>
+                  <p class="badge-descript">
+                      Completed Three HARD Puzzles
+                  </p> 
+              
+              
+              </div> 
+              {% endif %}
+              
+              {% if risk_taker == False %} 
+              <div class="badge-wrap"> 
+                  <div class="lock-icon">
+                     <i class="fa-solid fa-lock"></i>
+                  </div>
+                  <p>
+                      BADGE LOCKED!
+                  </p>
+                  <p class="badge-descript">
+                      Complete Three HARD Puzzles
+                  </p> 
+              </div> 
+              
+              {% endif %} 
+
             
           </div>
-        <!-- Container for feature #2 -->
-        <div class="achievements-container">
-          <!-- Header for feature #2 -->
+            
           <div class="achievements-header">
-            <div class="achievements-icon">
-                 <i class="fa-solid fa-hat-cowboy-side"></i>
-            </div>
+             <a href="#"  class="lone_wolf"
+              ><img
+                  src="{{ url_for('static', filename='images/achievements/png/lone_wolf.png') }}"
+              /></a>
+              {% if lone_wolf == True %}
+
+              <div class="badge-wrap"> 
+                  <div class="lock-icon">
+                      <i class="fa-solid fa-lock-open"></i>
+                  </div>
+                  <p>
+                      BADGE UNLOCKED!
+                  </p>
+                  <p class="badge-descript">
+                      Completed ONE Puzzle Without Hints 
+                  </p> 
+              </div> 
+              {% endif %}
+              
+              {% if lone_wolf == False %} 
+              <div class="badge-wrap"> 
+                  <div class="lock-icon">
+                     <i class="fa-solid fa-lock"></i>
+                  </div>
+                  <p>
+                      BADGE LOCKED!
+                  </p>
+                  <p class="badge-descript">
+                      Complete ONE Puzzle Without Hints 
+                  </p> 
+              </div> 
+              
+              {% endif %} 
+
+
+          </div>  
             
+          <div class="achievements-header">
+              <a href="#" class="puzzle"
+              ><img
+                  src="{{ url_for('static', filename='images/achievements/png/puzzle_master.png') }}"
+              /></a>
+              {% if puzzle_master == True %}
+
+              <div class="badge-wrap"> 
+                  <div class="lock-icon">
+                      <i class="fa-solid fa-lock-open"></i>
+                  </div>
+                  <p>
+                      BADGE UNLOCKED!
+                  </p>
+                  <p class="badge-descript">
+                      Reached MAX Level 
+                  </p> 
+              </div> 
+              {% endif %}
+              
+              {% if puzzle_master == False %} 
+              <div class="badge-wrap"> 
+                  <div class="lock-icon">
+                     <i class="fa-solid fa-lock"></i>
+                  </div>
+                  <p>
+                      BADGE LOCKED!
+                  </p>
+                  <p class="badge-descript">
+                      Reach MAX Level 
+                  </p> 
+              </div> 
+              
+              {% endif %} 
+
+
           </div>
+          
+           <div class="achievements-header">
+             <a href="#" class="speed"
+               ><img
+                  src="{{ url_for('static', filename='images/achievements/png/speed_runner.png') }}"
+              /></a>
+              {% if speed_runner == True %}
+
+              <div class="badge-wrap"> 
+                  <div class="lock-icon">
+                      <i class="fa-solid fa-lock-open"></i>
+                  </div>
+                  <p>
+                      BADGE UNLOCKED!
+                  </p>
+                  <p class="badge-descript">
+                      Completed One HARD Puzzle in Less Than 10 Minutes 
+                  </p> 
+              </div> 
+              {% endif %}
+              
+              {% if speed_runner == False %} 
+              <div class="badge-wrap"> 
+                  <div class="lock-icon">
+                     <i class="fa-solid fa-lock"></i>
+                  </div>
+                  <p>
+                      BADGE LOCKED!
+                  </p>
+                  <p class="badge-descript">
+                      Complete One HARD Puzzle in Less Than 10 Minutes 
+                  </p> 
+              </div> 
+              
+              {% endif %}  
+               
+          </div>
+            
+           <div class="achievements-header">
+              <a href="#" class="inquisitor"
+               ><img
+                  src="{{ url_for('static', filename='images/achievements/png/inquisitor.png') }}"
+              /></a>
+              {% if inquisitor == True %}
+
+              <div class="badge-wrap"> 
+                  <div class="lock-icon">
+                      <i class="fa-solid fa-lock-open"></i>
+                  </div>
+                  <p>
+                      BADGE UNLOCKED!
+                  </p>
+                  <p class="badge-descript">
+                      Requested a Hint 5 Times in One Game 
+                  </p> 
+              </div> 
+              {% endif %}
+              
+              {% if inquisitor == False %} 
+              <div class="badge-wrap"> 
+                  <div class="lock-icon">
+                     <i class="fa-solid fa-lock"></i>
+                  </div>
+                  <p>
+                      BADGE LOCKED!
+                  </p>
+                  <p class="badge-descript">
+                      Request a Hint 5 Times in One Game 
+                  </p> 
+              </div> 
+              
+              {% endif %}
+
+          </div>
+          
+           <div class="achievements-header">
+               <a href="#" class="conquerer"
+               ><img
+                  src="{{ url_for('static', filename='images/achievements/png/conquerer.png') }}"
+              /></a>
+              {% if conqueror == True %}
+
+              <div class="badge-wrap"> 
+                  <div class="lock-icon">
+                      <i class="fa-solid fa-lock-open"></i>
+                  </div>
+                  <p>
+                      BADGE UNLOCKED!
+                  </p>
+                  <p class="badge-descript">
+                      Completed One Puzzle at Each Difficulty Level 
+                  </p> 
+              </div> 
+              {% endif %}
+              
+              {% if conqueror == False %} 
+              <div class="badge-wrap"> 
+                  <div class="lock-icon">
+                     <i class="fa-solid fa-lock"></i>
+                  </div>
+                  <p>
+                      BADGE LOCKED!
+                  </p>
+                  <p class="badge-descript">
+                      Complete One Puzzle at Each Difficulty Level  
+                  </p> 
+              </div> 
+              
+              {% endif %}
+ 
+             
+
+          </div>
+        
+            
+            
+        </div>
+       
+            
+    
+        
 
     </div> 
 
 </div> 
+
 
 
 
