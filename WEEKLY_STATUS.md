@@ -147,10 +147,9 @@
     * Matt: ...
     * Micah ... 
     * Ben: ... 
-    * Paul: Completed building the Achievements Page
-         * When you hover over a badge, a mini display will pop up telling you 
-          * if the badge is locked or unlocked
-          * how to earn the badge 
+    * Paul: Completed building the Achievements Page. When you hover over a badge, a mini display will pop up telling you-
+         * if the badge is locked or unlocked
+         * how to earn the badge 
     
     * Tory: ...
     
