@@ -59,11 +59,11 @@ def show_rules():
     return render_template('rules.html')
 
 
-risk_taker = False # if the user has met the requirements for the Risk Taker badge
+risk_taker = True # if the user has met the requirements for the Risk Taker badge
 lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
-puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
+puzzle_master = True # if the user has met the requirements for the Puzzle Master badge
 speed_runner = False # if the user has met the requirements for the Speed Runner badge
-inquisitor = False # if the user has met the requirements for the Inquisitor badge
+inquisitor = True # if the user has met the requirements for the Inquisitor badge
 conqueror = False # if the user has met the requirements for the Conqueror badge 
 
 @app.route('/achievements')
