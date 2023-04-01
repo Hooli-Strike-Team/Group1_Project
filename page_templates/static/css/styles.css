@@ -660,7 +660,7 @@ h3 {
 .rules {
   width: 35rem;
   margin: 1.5rem 0 auto;
-  padding: 1rem;
+  padding: 1rem 2rem;
   /* Dark gray border */
   border: 0.125rem solid #666666;
   /* Adds border radius on all sides */
