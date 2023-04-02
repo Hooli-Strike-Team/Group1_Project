@@ -33,7 +33,6 @@
 * List of tests for verifying each access method: 
 
 
-## Data Access Methods
 ### Table 2 Access Method 1 ### 
 * Name 
 * Description:
@@ -42,7 +41,6 @@
 * List of tests for verifying each access method: 
 
 
-## Data Access Methods
 ### Table 3 Access Method 1 ### 
 * Name 
 * Description:
