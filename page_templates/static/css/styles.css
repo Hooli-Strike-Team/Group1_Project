@@ -710,7 +710,11 @@ h3 {
 /*************
  *  Sign In  *
  *************/
-.left-outer-div {
+.outer-div {
+    
+}
+
+.left-inner-div {
     
 }
 
