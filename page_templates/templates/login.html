@@ -20,15 +20,10 @@
                 margin: 8px 0;
                 border: none;
                 cursor: pointer;
-                width: 100%;
+                width: 20%;
             }
             button:hover {
                 opacity: 0.8;
-            }
-            .cancelbtn {
-                width: auto;
-                padding: 10px 18px;
-                background-color: #f44336;
             }
             .imgcontainer {
                 text-align: center;
@@ -55,19 +50,27 @@
                     width: 100%;
                 }
             }
-            
-            
-            .float-container {
-                padding: 10px;
-            }
-            .float-child {
-                width: 50%;
+            .forgot_pass{
                 float: left;
-                padding: 10px;
+                width: 50%;
             }
-            .float-child.blue{
+            .create_account{
                 float: right;
+                width: 50%;
             }
+            
+
+            
+            .flex-container {
+                display: flex;
+            }
+            .flex-child {
+                flex: 1;
+            }
+            .flex-child:first-child {
+                margin-right: 20px;
+            }
+            
         </style>
     </head>
     <body>
@@ -84,14 +87,12 @@
                         <input type="checkbox" checked="checked" name="remember"> Remember me
                     </label>
                     
-                    <div class="float-container">
-                        <div id="forgot_pass" class="float-child">
-                            <div class="green"><a href="#">Forgot password?</a></div>
-                        </div>
-                        <div id="create_account" class="float-child">
-                            <div class="blue"><a href="#">Create A New Account</a></div>
-                        </div>
+                    <div class="flex-container">
+                        <div class="flex-child magenta"><a href="#">Forgot password?</a></div>
+                        <div class="flex-child green"><a href="#">Create Account</a></div>
                     </div>
+                    
+                    
                 
                     <button type="submit">Sign In</button>
                 </div>
@@ -100,9 +101,9 @@
         <!-- end of the right div -->    
         
          <!-- start of the left div --> 
-        <div class="imgcontainer">
+<!--         <div class="imgcontainer">
             <img src="img_avatar2.png" alt="Avatar" class="avatar">
-        </div> 
+        </div>  -->
         
         <!-- TO DO -->
         <!-- end of the left div --> 
