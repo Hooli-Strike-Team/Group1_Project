@@ -43,6 +43,9 @@ Here is a format that can be used for describing each test:
 ----------------------------------------------------------------------------------------------------------
 Potential ERD - https://lucid.app/lucidchart/3d3e38d0-96ce-46d4-a9d2-875a429e5f47/edit?viewport_loc=51%2C-43%2C3072%2C1577%2C0_0&invitationId=inv_8d986d0b-7302-4dbf-a142-bce282110cbb
 
+JoinID:
+WGL R4C
+
 <p align="center">
  <img  src="Images_Milestone5/ProjectDatabaseERD.png">
 </p>
