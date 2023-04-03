@@ -1,9 +1,127 @@
-{% extends "base.html" %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {font-family: Arial, Helvetica, sans-serif;}
+            
+            input[type=text], input[type=password] {
+                width: 100%;
+                padding: 12px 20px;
+                margin: 8px 0;
+                display: inline-block;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+            }
+            button {
+                background-color: #04AA6D;
+                color: white;
+                padding: 14px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 100%;
+            }
+            button:hover {
+                opacity: 0.8;
+            }
+            .cancelbtn {
+                width: auto;
+                padding: 10px 18px;
+                background-color: #f44336;
+            }
+            .imgcontainer {
+                text-align: center;
+                margin: 24px 0 12px 0;
+            }
+            img.avatar {
+                width: 40%;
+                border-radius: 50%;
+            }
+            .container {
+                padding: 16px;
+            }
+            span.psw {
+                float: right;
+                padding-top: 16px;
+            }
+            /* Change styles for span and cancel button on extra small screens */
+            @media screen and (max-width: 300px) {
+                span.psw {
+                    display: block;
+                    float: none;
+                }
+                .cancelbtn {
+                    width: 100%;
+                }
+            }
+            
+            
+            .float-container {
+                padding: 10px;
+            }
+            .float-child {
+                width: 50%;
+                float: left;
+                padding: 10px;
+            }
+            .float-child.blue{
+                float: right;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- start of the right div -->
+        <div>
+            <form action="/action_page.php" method="post">
+                <div class="container">
+                    <h2>Sign In</h2>
+                    <label for="uname"><b>Username</b></label>
+                    <input type="text" placeholder="" name="uname" required>
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="" name="psw" required>
+                    <label>
+                        <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                    
+                    <div class="float-container">
+                        <div id="forgot_pass" class="float-child">
+                            <div class="green"><a href="#">Forgot password?</a></div>
+                        </div>
+                        <div id="create_account" class="float-child">
+                            <div class="blue"><a href="#">Create A New Account</a></div>
+                        </div>
+                    </div>
+                
+                    <button type="submit">Sign In</button>
+                </div>
+            </form>
+        </div>
+        <!-- end of the right div -->    
+        
+         <!-- start of the left div --> 
+        <div class="imgcontainer">
+            <img src="img_avatar2.png" alt="Avatar" class="avatar">
+        </div> 
+        
+        <!-- TO DO -->
+        <!-- end of the left div --> 
+    
+    
+    </body>
+</html>
+
+
+<!-- INTEGRATE WITH OTHER FORMS AFTER ESTABLISHING FORM AND FUNCTION -->
+
+<!-- {% extends "base.html" %}
 
 {% block title %}Login{% endblock %}
 
 {% block buttons %}{% endblock %}
 <hr>
+
+
 {% block content %}
 <div id="outer-div">
   <div id="left-inner-div">
@@ -13,4 +131,4 @@
     <p>This is another paragraph</p>
   </div>
 </div>
-{% endblock %}
+{% endblock %} -->
