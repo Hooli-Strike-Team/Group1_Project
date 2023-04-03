@@ -181,3 +181,27 @@ Access Methods:
         return values
         List of tests for verifying each access method
         '''
+
+### Table 5 ###
+
+Table Name: Games
+
+Table Description:
+    Holds saved games for users
+    
+Fields:
+    GameID - Primary key generated for game
+    AccountName - Foriegn Key
+    GameState - string with data for game state
+    
+Tests:
+    /* todo */
+    
+Access Methods:
+    getSettings - return all fields, use for displaying game board and settings page
+        '''
+        Name
+        Description
+        Parameters
+        return values
+        List of tests for verifying each access method
