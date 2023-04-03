@@ -57,14 +57,28 @@ Table Description:
     Holds unique account names and passwords as an authorative list
 
 Fields:
-    AccountName - Primary Key (unique)
-    Password - user password tied to account
+    AccountName, VARCHAR(32) - Primary Key (unique)
+    Password VARCHAR(16)- user password tied to account
 
 Tests:
     /* todo */
     
 Access Methods:
-    Login - Check input data against table AccountName/Password
+
+        Name: Create_Account_Table
+        Description:  Add new AccountName/Password to table.
+        Parameters:  Generate once using Admin_credentials?
+        return values:  None. Results in Account table creation.
+        List of tests for verifying each access method: TO-DO
+
+        Name: Create_Account
+        Description: Add new AccountName/Password to table
+        Parameters: 
+        Return values: 
+        List of tests for verifying each access method
+        
+        
+        Login - Check input data against table AccountName/Password
         '''
         Name
         Description
@@ -73,14 +87,8 @@ Access Methods:
         List of tests for verifying each access method
         '''
     
-    Sign-up - Add new AccountName/Password to table
-        '''
-        Name
-        Description
-        Parameters
-        return values
-        List of tests for verifying each access method
-        '''
+
+     
 
 ### Table 2 ###
 Table Name: Statistics
