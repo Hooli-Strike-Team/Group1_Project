@@ -59,7 +59,7 @@
 ### Week 3: March 6 - March 12 ###
 
 * Completed 
-    * Matt: ...
+    * Matt: Found algorithm for Sudoku solver.
     * Micah: Created a set of simple Flask HTML and CSS template documents. Attempted pair-programming with Ben on Sunday, but spent that time helping Ben get push access to the group repository. 
     * Ben: Finally achieved Push permission for group repository 
     * Paul: 
@@ -69,14 +69,14 @@
     * Tory: submitted draft of Home Page information for Project Milestone 4 (awaiting peer review) and finished final draft of webpage design
     
 * In Progress 
-    * Matt: ...
+    * Matt: Complete Main Page description for Milestone 4.
     * Micah: Communicating with team about the next steps of development. Learned about Tory and Paul's recent breakthroughs with the 'moqups' design tool. 
     * Ben: Understan the next stages of development and how to contribute 
     * Paul: Establishing an understanding of the information required for each bullet point in Project Milestone 4
     * Tory: consider options for implementing page designs
 
 * To Do 
-    * Matt: ...
+    * Matt: Javascript implementation of sudoku game.
     * Micah: Get access to the mock-ups created by Tory and Paul, and start creating a "user experience diagram" this week.
     * Ben: Fill out Registraion Page for Milestone Four 
     * Paul: Fill out Achievements Page for Project Milestone 4
@@ -92,19 +92,81 @@
     * Matt: ...
     * Micah: Gained access to "moqups" info-visualization tools, began creating the user experience flowchart. Added "user_experience_graph_v01_01.pdf" to the team repository.
     * Ben: Registration and Login Page for Project Milestone 4 
-    * Paul: ...
-    * Tory: ...
+    * Paul: Implemented 7 diffrent UI Color Scheme ideas for our website 
+    * Tory: finished page templates and test Flask app
     
 * In Progress 
     * Matt: ...
     * Micah: Gathering feedback from team members to develop a shared understanding of desired application behaviors. Work on Project Milestone 4 with the rest of the group. Pair programming with Ben this week to work on Project Milestone 4 deliverables and set up the Flask server framework.
     * Ben: FLASK framework for backend 
-    * Paul: ...
-    * Tory: Creating templates for pages
+    * Paul: Help tory create templates based on the page mock-up designs
+    * Tory: refine base template
 
 * To Do 
     * Matt: ...
-    * Micah: ...
+    * Micah: Help team finalize edits to PAGE_TESTING.md for Project Milestone 4 submission due this week. Continue to describe project requirements and hash out a set of working project specifications. Set up pair programming sessions with team mates to work on HTML, CSS, and the Flask server framework. 
     * Ben: FLASK framework, look into databases for user credentials 
     * Paul: Begin using HTML to design the layout of the webpage based on the story-boards that were approved by the group.
+    * Tory: look into monochromatic color scheme options
+
+<p align="center">
+ <img width="350" height="219" src="images/weekly_status/board_03_13.png">
+</p>
+
+### Week 5: March 20 - March 26 ###
+
+* Completed 
+    * Matt: Created HTML/css template for Main Page, with focus on the sudoku board.
+    * Micah: Edited and submitted Project Milestone 4 along with the rest of the group.
+    * Ben: ... 
+    * Paul:  
     * Tory: ...
+    
+* In Progress 
+    * Matt: Javascript implementation of Sudoku game.
+    * Micah: HTML and CSS for "Login" and "Create Account" pages
+    * Ben:...
+    * Paul: Planning the design of the Achievements Webpage
+    * Tory: ... 
+
+* To Do 
+    * Matt: Integrate other page links/popups for main page.
+    * Micah: HTML and CSS for "Login" and "Create Account" pages
+    * Ben:...
+    * Paul: 
+         * Contruct the layout of the achievement page in HTML and CSS
+         * Code the functionality of the achievement page using javascript  
+    * Tory:
+         * Build Home Page and Difficulty Page
+         * Refine base template and create color scheme options
+
+
+### Week 6: March 27 - April 2 ###
+
+* Completed 
+    * Matt: ...
+    * Micah ... 
+    * Ben: ... 
+    * Paul: Completed building the Achievements Page. When you hover over a badge, a mini display will pop up telling you-
+         * if the badge is locked or unlocked
+         * how to earn the badge 
+    
+    * Tory: ...
+    
+* In Progress 
+    * Matt: ...
+    * Micah ...
+    * Ben:...
+    * Paul: 
+         * Planning the design of the page 
+         * Learning how to display a messeage when you hover over a link
+         * Importing png's of badge logos 
+         * Learning how to use flex
+    * Tory: ... 
+
+* To Do 
+    * Matt: ...
+    * Micah ...
+    * Ben:...
+    * Paul: Build the Achievements Page 
+    * Tory...
