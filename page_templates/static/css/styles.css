@@ -711,15 +711,15 @@ h3 {
  *  Sign In  *
  *************/
 .outer-div {
-    
+    background-color: yellow;
 }
 
 .left-inner-div {
-    
+    background-color: red;
 }
 
 .right-inner-div {
-    
+    background-color: blue;
 }
 
 /*************
