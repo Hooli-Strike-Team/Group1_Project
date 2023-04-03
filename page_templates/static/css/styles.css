@@ -712,14 +712,19 @@ h3 {
  *************/
 .outer-div {
     background-color: yellow;
+    width: 100px;
 }
 
 .left-inner-div {
     background-color: red;
+    float: left;
+    width: 50%;
 }
 
 .right-inner-div {
     background-color: blue;
+    float: right;
+    width: 50%;
 }
 
 /*************
