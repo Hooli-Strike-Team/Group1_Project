@@ -15,10 +15,14 @@
             }
             button {
                 background-color: #04AA6D;
-                color: white;
-                padding: 14px 20px;
-                margin: 8px 0;
                 border: none;
+                color: white;
+                padding: 15px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 18px;
+                margin: 8px 4px;
                 cursor: pointer;
                 width: 20%;
             }
@@ -50,16 +54,6 @@
                     width: 100%;
                 }
             }
-            .forgot_pass{
-                float: left;
-                width: 50%;
-            }
-            .create_account{
-                float: right;
-                width: 50%;
-            }
-            
-
             
             .flex-container {
                 display: flex;
@@ -78,10 +72,10 @@
         <div>
             <form action="/action_page.php" method="post">
                 <div class="container">
-                    <h2>Sign In</h2>
-                    <label for="uname"><b>Username</b></label>
+                    <h1>Sign In</h1>
+                    <label for="uname"><h2><b>Username</b></h2></label>
                     <input type="text" placeholder="" name="uname" required>
-                    <label for="psw"><b>Password</b></label>
+                    <label for="psw"><h2><b>Password</b></h2></label>
                     <input type="password" placeholder="" name="psw" required>
                     <label>
                         <input type="checkbox" checked="checked" name="remember"> Remember me
@@ -91,9 +85,6 @@
                         <div class="flex-child magenta"><a href="#">Forgot password?</a></div>
                         <div class="flex-child green"><a href="#">Create Account</a></div>
                     </div>
-                    
-                    
-                
                     <button type="submit">Sign In</button>
                 </div>
             </form>
