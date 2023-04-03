@@ -23,7 +23,7 @@
                 font-size: 18px;
                 margin: 8px 4px;
                 cursor: pointer;
-                width: 250px;
+                width: 180px;
             }
             button:hover {
                 opacity: 0.8;
@@ -32,7 +32,7 @@
                 text-align: center;
                 margin: 24px 0 12px 0;
             }
-            img.avatar {
+            img.image {
                 width: 40%;
                 border-radius: 50%;
             }
@@ -48,9 +48,6 @@
                 span.psw {
                     display: block;
                     float: none;
-                }
-                .cancelbtn {
-                    width: 100%;
                 }
             }
             
@@ -71,9 +68,11 @@
         <div class="flex-container">
             <!-- start of the left div -->
             <div class="flex-child green">
-<!--                 <div class="imgcontainer">
-                    <img src="img_avatar2.png" alt="Avatar" class="avatar">
-                </div>  -->
+                <div class="imgcontainer">
+                    <img src="{{ url_for('static', filename='images/logo_weights/logo_16px_green_dash.png') }}" alt="Logo"/>
+                </div>
+                <h1>Welcome to Sudoku Tutor!</h1>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 <!-- TO DO -->
                 <!-- end of the left div --> 
             </div>
