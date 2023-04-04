@@ -50,8 +50,8 @@ WGL R4C
  <img  src="Images_Milestone5/Project_Database_ERD_v3.png">
 </p>
 
-### User_Account Table ###
-### User_Account Table Description ###
+## User_Account Table ##
+### 'User_Account' Table Description ###
 
     Name: 
         User_Account
@@ -67,7 +67,7 @@ WGL R4C
         Email, VARCHAR(320) - UNIQUE
     Tests for Table Verification:
         (see below)
-#### User_Account Test 1 Description ####
+#### 'User_Account' Test 1 Description ####
 
         User_Account Test 1: Insertion of a valid record.
         Use case name:
@@ -92,7 +92,7 @@ WGL R4C
             None.
         Post-conditions
             Tuple exists in the User_Account table.
-#### User_Account Test 2 Description ####
+#### 'User_Account' Test 2 Description ####
 
         User_Account Test 2: Insertion of a duplicate record.
         Use case name:
@@ -117,33 +117,34 @@ WGL R4C
             Insertion of a duplicate record will be rejected by the database API, which may result in unexpected application behavior. As a result, it is probably best to SELECT COUNT matching records first, evaluate the results, and perform the correct action. If this result is not 0, then the record should be refused by the route performing the record verification, and NOT by the database API itself. 
         Post-conditions:
             None.
-#### User_Account Test 3 Description ####
+#### 'User_Account' Test 3 Description ####
 
         <Name> Test 3: Insertion of a record with a duplicate email address.
         Use case name:
             "Existing Email Insert"
         Description:
-            This is a description.
+            Each account must contain a unique email address. Attempting to create a second account with an existing email address must fail.
         Pre-conditions
-            Pre-condition 1
-            Pre-condition 2
-            Pre-condition 3
+            The User_Account table must exist.
+            User_Account table constraints must be in place.
+            The test record should mimic an attempt to create an account with an existing email address.
         Test steps
-            1. step 1
-            2. step 2
-            3. step 3
+            1. Insert a valid record, or choose a valid record from User_Account.
+            2. Create a test record containing an existing email address, all other attributes should be valid.
+            3. Insert the record from step 2.
+            4. Observe the result.
         Expected result
-            blablabla
+            The insertion should fail based on the UNIQUE attribute constraint placed on "Email".
         Actual result
             TBD
         Status (Pass/Fail)
             TBD
         Notes
-            These are notes.
+            As mentioned before, we should not place any undue strain on the database API. If needed, submit a query to gather information about whether the email adress exists inside the User_Account table, then handle the user's request based on this information instead of sending the query directly to the API.
         Post-conditions
             This should happen as a resut.
 
-### User_Account Access Method Descriptions ###
+### 'User_Account' Access Method Descriptions ###
 
 #### Method 1: The 'Create_User_Account' Access Method ####
 
@@ -152,7 +153,7 @@ WGL R4C
     Description:
         Inserts a tuple of new user data into the User_Account table. 
     Parameters:
-        Username (UNIQUE, PK), Password, First_Name, Last_Name, and Email (UNIQUE)
+        Username (Primary Key), Password, First_Name, Last_Name, and Email (UNIQUE)
     return values:  
         None.
     List of tests for verifying each access method: 
@@ -168,7 +169,7 @@ WGL R4C
             Test steps:
                 1. Navigate to 'Create an Account' page
                 2. Provide a valid username
-                3. Provide a valid password
+                3. Provide a password
                 4. Provide a first name
                 5. Provide a last name
                 6. Provide a unique email address
@@ -204,7 +205,7 @@ WGL R4C
         Description:
             Verify that a user with valid login credentials is granted access to the rest of the application. 
         Pre-conditions:
-            The user must be registered via the 'Create Account' page, and must furnish valid login credentials.
+            The user must be registered via the 'Create Account' page, and must provide valid login credentials.
         Test steps:
             1. Navigate to the Login page
             2. Provide valid user name
