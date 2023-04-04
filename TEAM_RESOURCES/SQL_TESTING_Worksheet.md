@@ -66,21 +66,22 @@ Begin User_Account Table Description
         Last_Name, VARCHAR(50)
         Email, VARCHAR(320) - UNIQUE
     Tests for Table Verification:
+        (see below)
 Begin User_Account Test 1 Description
 
-        <Name> Test 1:
+        User_Account Test 1: Create table, insert, select.
         Use case name:
-            Perform an valid record insert, then retrieve it from the table.
+            Valid Insert
         Description:
-            This is a description.
+            Create the table, insert a valid record, and then retrieve it to verify the table works as intended.
         Pre-conditions
-            Pre-condition 1
-            Pre-condition 2
-            Pre-condition 3
+            The User_Account table must exist.
+            User_Account table constraints must be in place.
+            Inserted data must agree with the table constraints.
         Test steps
-            1. step 1
-            2. step 2
-            3. step 3
+            1. Create the User_Account table.
+            2. Insert a tuple of valid test data.
+            3. '''SELECT * FROM User_Account''', view the data to verify that the record has been inserted.
         Expected result
             blablabla
         Actual result
@@ -190,8 +191,8 @@ Method 2: The 'Login_User' Access Method
     Name: 
         'Login_User'
     Description:
-        The Login_User access method should verify that the user's login credentials exist in the User_Account table and, if they
-        do, will direct the user to the game page.
+        The Login_User access method should verify that the user's login credentials exist in the User_Account table and, if so, 
+        direct the user to the game page.
     Parameters:
         Username, Password
     return values:  
@@ -201,7 +202,7 @@ Method 2: The 'Login_User' Access Method
         Use case name:
             Verify login credentials via User_Account table query.
         Description:
-            Verify that a user providing valid login credentials is given access to the rest of the application. 
+            Verify that a user with valid login credentials is granted access to the rest of the application. 
         Pre-conditions:
             The user must be registered via the 'Create Account' page, and must furnish valid login credentials.
         Test steps:
@@ -210,7 +211,7 @@ Method 2: The 'Login_User' Access Method
             3. Provide valid password
             4. Click 'Sign In' button
         Expected result:
-            The Username and Password should be verified and the user should be sent to the Game page.
+            The Username and Password should be verified and the user should be directed to the Game page.
         Actual result:
             TBD
         Status (Pass/Fail):
