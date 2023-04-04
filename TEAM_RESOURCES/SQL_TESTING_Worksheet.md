@@ -349,7 +349,7 @@ Fields:
 
 |   | Field | Description |
 |---|-------|-------------|
-|   | `Game_ID` INT | Uniquely identifies a Sudoku game instance |
+| PK/FK | `Game_ID` INT | Uniquely identifies a Sudoku game instance |
 |   | `Show_Conflicts` BOOLEAN | If true, highlights conflicting entries |
 |   | `Show_Clock` BOOLEAN | If true, displays the timer on the game board |
 |   | `Candidate_Mode` BOOLEAN | If true, automatically displays candidates in empty fields |
@@ -369,7 +369,7 @@ Tests:
 
 Name: `getSettings` <br>
 Description: retrieves all fields from the `Settings` table for a given `Game_ID` <br>
-Parameters: `Game_ID` (VARCHAR)  <br>
+Parameters: `Game_ID` INT <br>
 Return values: all fields for the given `Game_ID`
 
 Tests:
@@ -377,13 +377,13 @@ Tests:
       Use case name
           Verify getSettings when a user returns to an in-progress Sudoku game
       Description
-          Test the getSettings function when a user returns to an in-progress Sudoku game
+          Test the getSettings method when a user returns to an in-progress Sudoku game
       Pre-conditions
           Game_ID is valid, and the Settings table has an entry for Game_ID that corresponds to an in-progress Sudoku game
       Test steps
-          1. Call the getSettings function with Game_ID
+          1. Call the getSettings method with Game_ID
       Expected result
-          The function should return all fields for Game_ID
+          The method should return all fields for Game_ID
       Actual result
           All fields for Game_ID are returned
       Status (Pass/Fail)
@@ -402,7 +402,7 @@ Parameters:
 
 * `Game_ID` INT
 * `Show_Conflicts` BOOLEAN
-* `Candidate_Mode` BOOLEAN
+* `ShowClock` BOOLEAN
 * `Candidate_Mode` BOOLEAN
 * `Difficulty` VARCHAR(6)
 
@@ -413,14 +413,14 @@ Tests:
       Use case name
           Verify updateSettings when a user changes settings while playing a Sudoku game
       Description
-          Test the updateSettings function when a user changes the settings while playing a Sudoku game
+          Test the updateSettings method when a user changes the settings while playing a Sudoku game
       Pre-conditions
           Game_ID is valid, and the Settings table has an entry for Game_ID that corresponds to an in-progress Sudoku game
       Test steps
-          1. Call the updateSettings function with a valid Game_ID and valid settings values
-          2. Retrieve the updated settings for Game_ID using the getSettings function
+          1. Call the updateSettings method with a valid Game_ID and valid settings values
+          2. Retrieve the updated settings for Game_ID using the getSettings method
       Expected result
-          The function should update the settings for Game_ID, and the retrieved settings should match the updated values. The in-progress Sudoku game should reflect the updated settings
+          The method should update the settings for Game_ID, and the retrieved settings should match the updated values. The in-progress Sudoku game should reflect the updated settings
       Actual result
           The settings for Game_ID are updated, and the retrieved settings match the updated values. The in-progress Sudoku game reflects the updated settings
       Status (Pass/Fail)
@@ -432,9 +432,9 @@ Tests:
           
 *Access Method 3*
 
-Name: `createSettings`  <br> 
+Name: `createSettings` <br> 
 Description: creates a new settings entry for a given Game_ID using default values  <br> 
-Parameters: `Game_ID` INT  <br> 
+Parameters: `Game_ID` INT <br> 
 Return values: `None` (a new entry is created in the database)
 
 Tests:
@@ -442,14 +442,14 @@ Tests:
       Use case name
           Verify createSettings when a user begins a new Sudoku game
       Description
-          Test the createSettings function when a user begins a new Sudoku game
+          Test the createSettings method when a user begins a new Sudoku game
       Pre-conditions
           A unique Game_ID is generated for the new Sudoku game, and the Settings table does not already have an entry for that Game_ID
       Test steps
-          1. Call the createSettings function with Game_ID
-          2. Retrieve the created settings for Game_ID using the getSettings function
+          1. Call the createSettings method with Game_ID
+          2. Retrieve the created settings for Game_ID using the getSettings method
       Expected result
-          The function should create a new settings entry with default values for Game_ID, and the retrieved settings should match the default values. The default settings should be applied to the new Sudoku game
+          The method should create a new settings entry with default values for Game_ID, and the retrieved settings should match the default values. The default settings should be applied to the new Sudoku game
       Actual result
           A new settings entry is created with default values for Game_ID, and the retrieved settings match the default values. The default settings are applied to the new Sudoku game
       Status (Pass/Fail)
