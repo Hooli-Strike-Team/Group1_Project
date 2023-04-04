@@ -89,7 +89,7 @@ Create_User_Account Test 1:
         3. Provide a valid password
         4. Provide a first name
         5. Provide a last name
-        6. Provide an email address
+        6. Provide a unique email address
         4. Click the 'Create Account' button
     Expected result
         A tuple should appear in User_Account describing the new user including his/her login credentials. 
@@ -99,10 +99,10 @@ Create_User_Account Test 1:
     Status (Pass/Fail)
         TBD
     Notes
-        Since the user must create an account to possess valid login credentials, it makes sense to test perform this test before
-        testing the db's interaction with the Login page (next test).
+        Since the user must create an account to possess valid login credentials, it makes sense to perform this test before
+        testing the User_Account table's interaction with the Login page (next).
     Post-conditions
-        Create Account record exists in User_Account.
+        Create Account record must exist and persist in the User_Account table.
 #=====END 'Create_User_Account' ACCESS METHOD TEST DESCRIPTION====#
 
 #=====BEGIN 'Login_User' ACCESS METHOD TEST DESCRIPTION====#
