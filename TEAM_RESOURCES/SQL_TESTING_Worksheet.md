@@ -47,7 +47,7 @@ JoinID:
 WGL R4C
 
 <p align="center">
- <img  src="Images_Milestone5/ProjectDatabaseERD.png">
+ <img  src="Images_Milestone5/Project_Database_ERD_v2.png">
 </p>
 
 ### User_Account Table ###
