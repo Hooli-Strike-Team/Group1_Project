@@ -73,15 +73,15 @@ Begin User_Account Test 1 Description
         Use case name:
             Valid Insert
         Description:
-            Create the table, insert a valid record, and then retrieve it to verify the table works as intended.
+            Insert a valid record, then retrieve the record(s) to verify the table works as intended.
         Pre-conditions
             The User_Account table must exist.
             User_Account table constraints must be in place.
             Inserted data must agree with the table constraints.
         Test steps
-            1. Create the User_Account table.
+            1. Create the User_Account table (if it does not exist already).
             2. Insert a tuple of valid test data.
-            3. '''SELECT * FROM User_Account''', view the data to verify that the record has been inserted.
+            3. '''SELECT * FROM User_Account''' to view the data and verify that the record has been inserted.
         Expected result
             blablabla
         Actual result
