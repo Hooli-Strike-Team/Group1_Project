@@ -69,7 +69,7 @@ Begin User_Account Table Description
         (see below)
 Begin User_Account Test 1 Description
 
-        User_Account Test 1: Create table / Insert / Select.
+        User_Account Test 1: Insertion of a valid record.
         Use case name:
             Valid Insert
         Description:
@@ -79,49 +79,51 @@ Begin User_Account Test 1 Description
             User_Account table constraints must be in place.
             Inserted data must agree with the table constraints.
         Test steps
-            1. Create the User_Account table (if it does not exist already).
+            1. Create the User_Account table (if it does not already exist).
             2. Insert a tuple of valid test data.
             3. '''SELECT * FROM User_Account''' to view the data and verify that the record has been inserted.
         Expected result
-            blablabla
+            The inserted tuple should be clearly visible from the result of the SELECT query.
         Actual result
             TBD
         Status (Pass/Fail)
             TBD
         Notes
-            These are notes.
+            None.
         Post-conditions
-            This should happen as a resut.
+            Tuple exists in the User_Account table.
 Begin User_Account Test 2 Description
 
-        <Name> Test 2:
+        User_Account Test 2: Insertion of a duplicate record.
         Use case name:
-            Perfrom a duplicate record insert, this should fail.
+            Duplicate Record Insert
         Description:
-            This is a description.
-        Pre-conditions
-            Pre-condition 1
-            Pre-condition 2
-            Pre-condition 3
-        Test steps
-            1. step 1
-            2. step 2
-            3. step 3
-        Expected result
-            blablabla
-        Actual result
+            Inserting a duplicate record into the User_Account table should fail.
+        Pre-conditions:
+            The User_Account table must exist.
+            User_Account table constraints must be in place.
+            Inserted record must already exist in the User_Account table.
+        Test steps:
+            1. Insert a valid tuple into the User_Account table.
+            2. Re-insert the tuple from step one into the User_Account table.
+            3. Observe the result.
+        Expected result:
+            An error should occur, citing a violation of the User_Account table constraints.
+        Actual result:
             TBD
-        Status (Pass/Fail)
+        Status (Pass/Fail):
             TBD
-        Notes
-            These are notes.
-        Post-conditions
-            This should happen as a resut. 
+        Notes:
+            Insertion of a duplicate record will be rejected by the database. 
+            This error must be caught by the application and handled gracefully to avoid unexpected behavior at runtime.
+            Determine what error is returned by the API and incorporate this into the applications' exception handling protocols.
+        Post-conditions:
+            None.
 Begin User_Account Test 3 Description
 
-        <Name> Test 3:
+        <Name> Test 3: Insertion of a record with a duplicate email address.
         Use case name:
-            Perform record insert using a new Username and a password that already exists in the table, this should fail.
+            Existing Email Insert
         Description:
             This is a description.
         Pre-conditions
