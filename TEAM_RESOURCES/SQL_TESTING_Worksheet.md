@@ -65,7 +65,8 @@ Fields:
     Last_Name, VARCHAR(50)
     Email, VARCHAR(320) - UNIQUE
 
-Test: INTERACTION WITH THE 'CREATE ACCOUNT' PAGE
+## User_Account Interaction Tests ##
+User_Account_Test_1: INTERACTION WITH THE 'CREATE ACCOUNT' PAGE
     Use case name
         'Create Account' form submission inserts valid record into User_Account.
     Description
@@ -79,35 +80,37 @@ Test: INTERACTION WITH THE 'CREATE ACCOUNT' PAGE
         3. Provide a valid password
         4. Provide a first name
         5. Provide a last name
-        6. Provide an email address that does not currently exist in User_Account
-        4. Click Create Account button
+        6. Provide an email address that does not currently exist in the User_Account table
+        4. Click the 'Create Account' button
     Expected result
-        A tuple should appear in User_Account describing the new user, including his/her login credentials. 
-        User should be directed to the 'Login' page.
+        A tuple should appear in User_Account describing the new user, including his/her valid login credentials. 
+        User should be directed to the 'Login' page after registering.
     Actual result
         TBD
     Status (Pass/Fail)
         TBD
     Notes
-        Since the user must create an account to possess valid login credentials, it would make sense to test perform this test before
-        testing the db's interaction with the Login page.
+        Since the user must create an account to possess valid login credentials, it makes sense to test perform this test before
+        testing the db's interaction with the Login page (next test).
     Post-conditions
         Create Account record exists in User_Account.
+        
+#==============================================================================================================#
 
-Test: INTERACTION WITH THE 'LOGIN' PAGE
+User_Account_Test_2: INTERACTION WITH THE 'LOGIN' PAGE (NORMAL ACCESS)
     Use case name
-        TO-DO
+        'Login' page verifies user login information via User_Account table
     Description
-        TO-DO
+        Verify that a user providing valid login details is given access to the application. 
     Pre-conditions
-        TO-DO
+        The user must be registered (i.e., via 'Create Account'), and must furnish valid login credentials.
     Test steps
         1. Navigate to the Login page
         2. Provide valid user name
         3. Provide valid password
         4. Click 'Sign In' button
     Expected result
-        A tuple should be entered registering the new user, including his/her login credentials.
+        The Username and Password should be verified and the user should be sent to the Game page.
     Actual result
         TBD
     Status (Pass/Fail)
@@ -116,8 +119,9 @@ Test: INTERACTION WITH THE 'LOGIN' PAGE
         Since the user must create an account to possess valid login credentials, it would make sense to test perform this test before
         testing the db's interaction with the Login page.
     Post-conditions
-        TO-DO
+        User is directed to the dashboard/game page.
 
+#==============================================================================================================#
 
 User_Account Access Methods:
     ###
