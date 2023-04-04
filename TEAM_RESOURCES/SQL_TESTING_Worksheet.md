@@ -151,17 +151,17 @@ WGL R4C
     Name: 
         'Create_User_Account'
     Description:
-        Create_User_Account inserts a tuple of new user data into the User_Account table when the user fills in the Create Account form with valid information and clicks the submit button.
+        Create_User_Account will insert a tuple of new user data into the User_Account table when the user fills in the Create Account form with valid information and clicks the submit button.
     Parameters:
         Username, Password, First_Name, Last_Name, and Email
-    return values:  
+    Return values:  
         Redirect to the Login page.
     List of tests for verifying each access method: 
         'Create_User_Account' Test 1:
             Use case name:
                 "Valid Account Creation"
             Description:
-                Verify that entering valid form data into the "Create Account" page will produce a new record in the User_Account table. This data should be available to subsequent routes.
+                Verify that entering valid form data into the "Create Account" produces a new record in the User_Account table. This data must be made available to subsequent routes.
             Pre-conditions:
                 The User_Account table must exist with the given table constraints.
                 The Username test instance must not exist in User_Account.
@@ -177,14 +177,14 @@ WGL R4C
                 7. Click the 'Create Account' button
             Expected result:
                 A tuple should appear in User_Account describing the new user including his/her login credentials. 
-                User should be directed to the 'Login' page after successful registration.
+                User should be directed to the 'Login' page following a successful registration.
             Actual result:
                 TBD
             Status (Pass/Fail):
                 TBD
             Notes:
                 Since the user must create an account to possess valid login credentials, it makes sense to perform this test before
-                testing the User_Account table Login page interaction(s) (discussed next).
+                testing User_Account interactions with Login page (discussed next).
             Post-conditions:
                 Create Account record must exist and persist in the User_Account table.
 
@@ -197,14 +197,14 @@ WGL R4C
         direct the user to the game page.
     Parameters:
         Username, Password
-    return values:  
+    Return values:
         None.
     List of tests for verifying each access method: 
         User_Login Test 1:
         Use case name:
-            Verify login credentials via User_Account table query.
+            "Successful Login"
         Description:
-            Verify that a user with valid login credentials is granted access to the rest of the application. 
+            Verify that a user with valid login credentials is granted access to the application. 
         Pre-conditions:
             The user must be registered via the 'Create Account' page, and must provide valid login credentials.
         Test steps:
@@ -213,13 +213,14 @@ WGL R4C
             3. Provide valid password
             4. Click 'Sign In' button
         Expected result:
-            The Username and Password should be verified and the user should be directed to the Game page.
+            If the user provided a valid Username and Password combination, they should be directed to the Game page.
+            If the user provides a faulty Username/Password combination, the rendered view should not change.
         Actual result:
             TBD
         Status (Pass/Fail):
             TBD
         Notes:
-            None
+            None.
         Post-conditions:
             User is directed to the game page.
 
