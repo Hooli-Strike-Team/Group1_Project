@@ -54,34 +54,35 @@ WGL R4C
 Table Name: User_Account
 
 Table Description:
-    Holds Username, Password, First_Name, Last_Name, and Email. Username and Password are used to log in and gain access to 
-    the rest of the application.
+    Holds user account data tuples containing: Username, Password, First_Name, Last_Name, and Email. 
+    Username and Password are used to log in and gain access to the rest of the application (except for Create Account).
     
 Fields:
     Username, VARCHAR(32) - Primary Key
     Password, VARCHAR(16)
     First_Name, VARCHAR(50)
     Last_Name, VARCHAR(50)
-    Email, VARCHAR(320)
+    Email, VARCHAR(320) - UNIQUE
 
 Test: INTERACTION WITH THE 'CREATE ACCOUNT' PAGE
     Use case name
-        Verify that a new user can create a User_Account tuple by interacting with the Create Account application page.
+        'Create Account' form submission inserts valid record into User_Account.
     Description
-        Test that form data is being entered into the User_Account table from the "Create an Account" page.
+        Verify that valid form data entered in the "Create an Account" page produces a record in the User_Account database table.
     Pre-conditions
-        User must provide a valid Username that does not already exist in the User_Account table, password, First_Name,
-        Last_Name, and Email. Note: Email address should be unique for each User_Account tuple.
+        User must provide a valid Username that does not exist in the User_Account table, as well as Password, First_Name,
+        Last_Name, and Email. Email address must be unique.
     Test steps
-        1. Navigate to Create an Account page
-        2. Provide valid user name
-        3. Provide valid password
+        1. Navigate to 'Create an Account' page
+        2. Provide a valid user name
+        3. Provide a valid password
         4. Provide a first name
         5. Provide a last name
-        6. Provide an email address that does not exist in the User_Account table
+        6. Provide an email address that does not currently exist in User_Account
         4. Click Create Account button
     Expected result
-        A tuple should be entered registering the new user, including his/her login credentials.
+        A tuple should appear in User_Account describing the new user, including his/her login credentials. 
+        User should be directed to the 'Login' page.
     Actual result
         TBD
     Status (Pass/Fail)
@@ -90,7 +91,7 @@ Test: INTERACTION WITH THE 'CREATE ACCOUNT' PAGE
         Since the user must create an account to possess valid login credentials, it would make sense to test perform this test before
         testing the db's interaction with the Login page.
     Post-conditions
-        TO-DO
+        Create Account record exists in User_Account.
 
 Test: INTERACTION WITH THE 'LOGIN' PAGE
     Use case name
@@ -117,32 +118,25 @@ Test: INTERACTION WITH THE 'LOGIN' PAGE
         TO-DO
 
 
-
-
-
-Access Methods:
-
-        Name: Create_Account_Table
-        Description:  Add new AccountName/Password to table.
-        Parameters:  Generate once using Admin_credentials?
-        return values:  None. Results in Account table creation.
-        List of tests for verifying each access method: TO-DO
-
-        Name: Create_Account
-        Description: Add new AccountName/Password to table
-        Parameters: 
-        Return values: 
-        List of tests for verifying each access method
-        
-        
-        Login - Check input data against table AccountName/Password
-        '''
-        Name
-        Description
-        Parameters
-        return values
-        List of tests for verifying each access method
-        '''
+User_Account Access Methods:
+    ###
+    Name: Create_Account_Table
+    Description:  Add new AccountName/Password to table.
+    Parameters:  Generate once using Admin_credentials?
+    return values:  None. Results in Account table creation.
+    List of tests for verifying each access method: ...
+    ###
+    Name: Create_Account
+    Description: Add new AccountName/Password to table
+    Parameters: 
+    Return values: 
+    List of tests for verifying each access method: ...
+    ### 
+    Name: Login - Check input data against table AccountName/Password
+    Description
+    Parameters
+    return values
+    List of tests for verifying each access method
     
 
      
