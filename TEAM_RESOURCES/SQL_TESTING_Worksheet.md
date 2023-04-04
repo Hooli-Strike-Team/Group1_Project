@@ -66,7 +66,7 @@ Begin User_Account Table Description
         Last_Name, VARCHAR(50)
         Email, VARCHAR(320) - UNIQUE
     Tests for Table Verification:
-Begin Test 1 Description
+Begin User_Account Test 1 Description
 
         <Name> Test 1:
         Use case name:
@@ -91,7 +91,7 @@ Begin Test 1 Description
             These are notes.
         Post-conditions
             This should happen as a resut.
-Begin Test 2 Description
+Begin User_Account Test 2 Description
 
         <Name> Test 2:
         Use case name:
@@ -116,7 +116,7 @@ Begin Test 2 Description
             These are notes.
         Post-conditions
             This should happen as a resut. 
-Begin Test 3 Description
+Begin User_Account Test 3 Description
 
         <Name> Test 3:
         Use case name:
@@ -190,18 +190,19 @@ Method 2: The 'Login_User' Access Method
     Name: 
         'Login_User'
     Description:
-        Inserts a tuple of new user data into the User_Account table. 
+        The Login_User access method should verify that the user's login credentials exist in the User_Account table and, if they
+        do, will direct the user to the game page.
     Parameters:
-        Username (UNIQUE, PK), Password, First_Name, Last_Name, and Email (UNIQUE)
+        Username, Password
     return values:  
         None.
     List of tests for verifying each access method: 
         Use case name:
-            'Login' page verifies user login information via User_Account table
+            Login page verifies user login credentials via a query to the User_Account table.
         Description:
-            Verify that a user providing valid login details is given access to the application. 
+            Verify that a user providing valid login credentials is given access to the rest of the application. 
         Pre-conditions:
-            The user must be registered (i.e., via 'Create Account'), and must furnish valid login credentials.
+            The user must be registered via the 'Create Account' page, and must furnish valid login credentials.
         Test steps:
             1. Navigate to the Login page
             2. Provide valid user name
@@ -214,13 +215,11 @@ Method 2: The 'Login_User' Access Method
         Status (Pass/Fail):
             TBD
         Notes:
-            Since the user must create an account to possess valid login credentials, it would make sense to test perform this test before
-            testing the db's interaction with the Login page.
+            None
         Post-conditions:
-            User is directed to the dashboard/game page.
+            User is directed to the game page.
 
      
-
 ### Table 2 ###
 Table Name: Statistics
 
