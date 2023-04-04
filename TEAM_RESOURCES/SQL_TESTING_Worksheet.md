@@ -338,7 +338,7 @@ Access Methods:
         List of tests for verifying each access method
         '''
         
-### Table 4  ###
+### Table 4 ###
 
 #### Table Information
 
