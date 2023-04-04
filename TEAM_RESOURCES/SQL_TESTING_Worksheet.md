@@ -47,7 +47,7 @@ JoinID:
 WGL R4C
 
 <p align="center">
- <img  src="Images_Milestone5/Project_Database_ERD_v2.png">
+ <img  src="Images_Milestone5/Project_Database_ERD_v3.png">
 </p>
 
 ### User_Account Table ###
@@ -57,8 +57,8 @@ Begin User_Account Table Description
         User_Account
     Description:
         Holds user account data tuples containing: 'Username', 'Password', 'First_Name', 'Last_Name', and 'Email'. 
-        User_Account is populated from the submission form on the Create Account page.
-        Username and Password are verified using this table to grant access to the rest of the application.
+        User_Account is populated via form submission on the Create Account page.
+        Username and Password are stored and verified in this table to grant the users with access to the rest of the application.
     Field Descriptions:
         Username, VARCHAR(32) - Primary Key
         Password, VARCHAR(16)
