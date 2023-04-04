@@ -55,7 +55,7 @@ Name: User_Account
 Description:
     Holds user account data tuples containing: 'Username', 'Password', 'First_Name', 'Last_Name', and 'Email'. 
     User_Account is populated from the submission form on the Create Account page.
-    Username and Password are verified in this table to grant the user access to the rest of the application.
+    Username and Password are verified using this table to grant access to the rest of the application.
 Field Descriptions:
     Username, VARCHAR(32) - Primary Key
     Password, VARCHAR(16)
@@ -63,38 +63,37 @@ Field Descriptions:
     Last_Name, VARCHAR(50)
     Email, VARCHAR(320) - UNIQUE
 Tests for Table Verification:
+    Perform an insert of a record, then 
 
-
-## USER_ACCOUNT ACCESS METHODS ##
-Create_User_Account Access Method
+## User_Account Access Methods ##
+'Create_User_Account' Access Method
     Name: 'Create_User_Account'
-    Description:  Insert a tuple of new user data into the User_Account table. 
+    Description:  Inserts a tuple of new user data into the User_Account table. 
     Parameters:  Username (UNIQUE, PK), Password, First_Name, Last_Name, and Email (UNIQUE)
     return values:  None.
-    List of tests for verifying each access method: 
+    List of tests for verifying each access method: see below.
     
-#=====BEGIN 'Create_User_Account' ACCESS METHOD TEST DESCRIPTIONS====#
-
-Test 1: 'Create_User_Account' submits records
+#=====BEGIN 'Create_User_Account' ACCESS METHOD TEST DESCRIPTION====#
+Create_User_Account Test 1:
     Use case name:
-        Verify 'Create Account' form submission inserts valid record into User_Account.
+        Create_User_Account inserts records into User_Account when table constraints are satisfied.
     Description:
-        Verify that valid form data entered in the "Create an Account" page produces a record in the User_Account database table.
+        Verify that valid form data entered into the "Create an Account" page produces a record in the User_Account database table.
     Pre-conditions
-        User must provide a Username that does not exist in the User_Account table.
-        Email address must be unique to each account.
-        Password, First_Name, Last_Name, and Email must also be entered. 
+        Username must not exist in the User_Account table.
+        Email address also must not exist in the User_Account table.
+        Password, First_Name, and Last_Name must be entered. 
     Test steps
         1. Navigate to 'Create an Account' page
-        2. Provide a valid user name
+        2. Provide a valid username
         3. Provide a valid password
         4. Provide a first name
         5. Provide a last name
-        6. Provide an email address that does not currently exist in the User_Account table
+        6. Provide an email address
         4. Click the 'Create Account' button
     Expected result
-        A tuple should appear in User_Account describing the new user, including his/her valid login credentials. 
-        User should be directed to the 'Login' page after registering.
+        A tuple should appear in User_Account describing the new user including his/her login credentials. 
+        User should be directed to the 'Login' page after successful registration.
     Actual result
         TBD
     Status (Pass/Fail)
@@ -104,9 +103,9 @@ Test 1: 'Create_User_Account' submits records
         testing the db's interaction with the Login page (next test).
     Post-conditions
         Create Account record exists in User_Account.
-#=====END 'User_Account_Test_1' TEST DESCRIPTION====#
+#=====END 'Create_User_Account' ACCESS METHOD TEST DESCRIPTION====#
 
-#=====BEGIN 'Login_User' TEST DESCRIPTION====#
+#=====BEGIN 'Login_User' ACCESS METHOD TEST DESCRIPTION====#
     Name: Login_User
     Description: Add new AccountName/Password to table
     Parameters: 
