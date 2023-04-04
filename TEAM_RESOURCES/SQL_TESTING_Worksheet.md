@@ -67,7 +67,7 @@ WGL R4C
         Email, VARCHAR(320) - UNIQUE
     Tests for Table Verification:
         (see below)
-#### 'User_Account' Test 1 Description ####
+#### 'User_Account' Table Test 1 Description ####
 
         User_Account Test 1: Insertion of a valid record.
         Use case name:
@@ -92,7 +92,7 @@ WGL R4C
             None.
         Post-conditions
             Tuple exists in the User_Account table.
-#### 'User_Account' Test 2 Description ####
+#### 'User_Account' Table Test 2 Description ####
 
         User_Account Test 2: Insertion of a duplicate record.
         Use case name:
@@ -117,9 +117,9 @@ WGL R4C
             Insertion of a duplicate record will be rejected by the database API, which may result in unexpected application behavior. As a result, it is probably best to SELECT COUNT the matching records first, then evaluate the results and perform the correct action. If this result is not 0, the record should be refused by the route performing the verification, NOT by the database API itself. 
         Post-conditions:
             None.
-#### 'User_Account' Test 3 Description ####
+#### 'User_Account' Table Test 3 Description ####
 
-        <Name> Test 3: Insertion of a record with a duplicate email address.
+        User_Account Test 3: Insertion of a record with a duplicate email address.
         Use case name:
             "Existing Email Insert"
         Description:
@@ -161,7 +161,7 @@ WGL R4C
             Use case name:
                 "Valid Account Creation"
             Description:
-                Verify that entering valid form data into the "Create Account" page will produce a new record in the User_Account table, such that this data can be accessed by alternative routes.
+                Verify that entering valid form data into the "Create Account" page will produce a new record in the User_Account table. This data should be available to subsequent routes.
             Pre-conditions:
                 The User_Account table must exist with the given table constraints.
                 The Username test instance must not exist in User_Account.
@@ -184,23 +184,23 @@ WGL R4C
                 TBD
             Notes:
                 Since the user must create an account to possess valid login credentials, it makes sense to perform this test before
-                testing the User_Account table Login page interaction(s) (next).
+                testing the User_Account table Login page interaction(s) (discussed next).
             Post-conditions:
                 Create Account record must exist and persist in the User_Account table.
 
-#### Method 2: The 'Login_User' Access Method ####
+#### Method 2: The 'User_Login' Access Method ####
 
     Name: 
-        'Login_User'
+        'User_Login'
     Description:
-        The Login_User access method should verify that the user's login credentials exist in the User_Account table and, if so, 
+        The User_Login access method should verify that the user's login credentials exist in the User_Account table and, if so, 
         direct the user to the game page.
     Parameters:
         Username, Password
     return values:  
         None.
     List of tests for verifying each access method: 
-        Login_User Test 1:
+        User_Login Test 1:
         Use case name:
             Verify login credentials via User_Account table query.
         Description:
