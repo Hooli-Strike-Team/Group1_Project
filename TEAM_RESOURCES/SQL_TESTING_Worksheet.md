@@ -69,8 +69,8 @@ Tests:
     Description
         Test that form data is being entered into the User_Account table from the "Create an Account" page.
     Pre-conditions
-        User must provide a valid Username that does not already exist in the User_Account table, along with a password, First_Name,
-        Last_Name, and Email. Email address should be unique for each User_Account tuple.
+        User must provide a valid Username that does not already exist in the User_Account table, password, First_Name,
+        Last_Name, and Email. Note: Email address should be unique for each User_Account tuple.
     Test steps
         1. Navigate to Create an Account page
         2. Provide valid user name
@@ -85,8 +85,8 @@ Tests:
         Subtest 2:
             If the username exists in the User_Account table but the email does not, user should be advised to pick a different username.
         Subtest 3:
-            If the user's email exists in the User_Account table, a pop-up message should appear saying that an account already exists with 
-        that email.
+            If the user's email exists in the User_Account table, a pop-up message should appear saying that an account already exists 
+            with that email address.
     Actual result
         TBD
     Status (Pass/Fail)
