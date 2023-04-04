@@ -1,3 +1,20 @@
 {% extends "base.html" %}
 
 {% block title %}Main{% endblock %}
+
+{% block content %}
+  <div class="game-container">
+    <div id="sudoku-board">
+      {% for row in range(9) %}
+        {% for col in range(9) %}
+          <div class="cell {% if row % 3 == 0 and row != 0 %}subgrid-top{% endif %} {% if col % 3 == 0 and col != 0 %}subgrid-left{% endif %}"></div>
+        {% endfor %}
+      {% endfor %}
+    </div>
+    <div class="digits-container">
+      {% for digit in range(1, 10) %}
+        <button class="digit-button" data-digit="{{digit}}">{{digit}}</button>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
