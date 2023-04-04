@@ -69,7 +69,7 @@ Begin User_Account Table Description
         (see below)
 Begin User_Account Test 1 Description
 
-        User_Account Test 1: Create table, insert, select.
+        User_Account Test 1: Create table / Insert / Select.
         Use case name:
             Valid Insert
         Description:
