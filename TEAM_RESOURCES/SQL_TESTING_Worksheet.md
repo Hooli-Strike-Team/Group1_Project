@@ -51,6 +51,8 @@ WGL R4C
 </p>
 
 ### User_Account Table ###
+Begin User_Account Table Description
+
     Name: 
         User_Account
     Description:
@@ -64,6 +66,8 @@ WGL R4C
         Last_Name, VARCHAR(50)
         Email, VARCHAR(320) - UNIQUE
     Tests for Table Verification:
+Begin Test 1 Description
+
         <Name> Test 1:
         Use case name:
             Perform an valid record insert, then retrieve it from the table.
@@ -87,8 +91,9 @@ WGL R4C
             These are notes.
         Post-conditions
             This should happen as a resut.
-#  #  #  #  #  #  #  #  #  #  #  #  #  #  #
-    <Name> Test 2:
+Begin Test 2 Description
+
+        <Name> Test 2:
         Use case name:
             Perfrom a duplicate record insert, this should fail.
         Description:
@@ -111,8 +116,9 @@ WGL R4C
             These are notes.
         Post-conditions
             This should happen as a resut. 
-#  #  #  #  #  #  #  #  #  #  #  #  #  #  #
-    <Name> Test 3:
+Begin Test 3 Description
+
+        <Name> Test 3:
         Use case name:
             Perform record insert using a new Username and a password that already exists in the table, this should fail.
         Description:
@@ -136,9 +142,10 @@ WGL R4C
         Post-conditions
             This should happen as a resut.
 
-BEGIN User_Account ACCESS METHODS
-#  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #
+Begin User_Account Access Method Descriptions
+
 Method 1: The 'Create_User_Account' Access Method
+
     Name: 
         'Create_User_Account'
     Description:
@@ -148,7 +155,6 @@ Method 1: The 'Create_User_Account' Access Method
     return values:  
         None.
     List of tests for verifying each access method: 
-#  #  #  #  #  #  #  #  #  #  #  #  #  #  #
         'Create_User_Account' Test 1:
             Use case name:
                 Create_User_Account inserts a tuple into User_Account if the record satisfies the User_Account table constraints.
@@ -178,10 +184,9 @@ Method 1: The 'Create_User_Account' Access Method
                 testing the User_Account table's interaction with the Login page (next).
             Post-conditions:
                 Create Account record must exist and persist in the User_Account table.
-#  #  #  #  #  #  #  #  #  #  #  #  #  #  #
-    
-#  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  # 
+
 Method 2: The 'Login_User' Access Method
+
     Name: 
         'Login_User'
     Description:
