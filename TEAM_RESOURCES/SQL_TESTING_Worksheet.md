@@ -263,20 +263,21 @@ Access Methods:
 #### Table Information
 
 * Table Name: `GameSettings`
-* Table Description: Holds the settings options for a user
+* Table Description: Holds the settings options for a Sudoku game instance
+instance
 * Fields:
-  * `GameID`: Primary and Foreign Key, INT
+  * `GameID`: Primary and Foreign Key, INT, unique identifier for a Sudoku game instance
   * `ShowConflicts`: BOOLEAN, if true, highlight conflicting entires   
   * `ShowClock`: BOOLEAN, if true, display timer on game board
   * `CandidateMode`: BOOLEAN, if true, automatically display candidates in empty fields
   * `Difficulty`: VARCHAR(6), represents the difficulty level of the game
 
-* List of tests for verifying the `Settings` table:
-    1. Test adding a new entry with valid values for all fields
-    2. Test updating an existing entry with valid values for all fields
-    3. Test retrieving an existing entry by `GameID`
-    4. Test deleting an existing entry by `GameID`
-    5. Test adding a new entry with an invalid `GameID` (e.g., contains more than `MAX` number of characters)
+* Tests:
+    1. Add a new entry with valid values for all fields
+    2. Update an existing entry with valid values for all fields
+    3. Retrieve an existing entry by `GameID`
+    4. Delete an existing entry by `GameID`
+    5. Add a new entry with an invalid `GameID` (e.g., contains more than `MAX` number of characters)
 
 #### Data Access Methods
 
