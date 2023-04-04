@@ -197,8 +197,9 @@ Method 2: The 'Login_User' Access Method
     return values:  
         None.
     List of tests for verifying each access method: 
+        Login_User Test 1:
         Use case name:
-            Login page verifies user login credentials via a query to the User_Account table.
+            Verify login credentials via User_Account table query.
         Description:
             Verify that a user providing valid login credentials is given access to the rest of the application. 
         Pre-conditions:
