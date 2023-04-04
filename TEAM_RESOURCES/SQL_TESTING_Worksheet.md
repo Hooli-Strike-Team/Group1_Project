@@ -184,20 +184,67 @@ Access Methods:
 Table Name: Achievements
 
 Table Description:
-    Holds flags for user achievments
+   * Holds flags for user achievements
     
 Fields:
-    AccountName - Primary and Foriegn Key
-    Inquisitor - flag if user has used more than 5 hints in a game
-    LoneWolf - flag if user has completed a puzzle without using hints
-    PuzzleMaster - flag if user account has reached max level
-    RiskTaker - flag if user has completed 3 hard puzzles
-    SpeedRunner - flag if user has completed a hard puzzle in less than 10 minutes
-    Conqueror - flag if user has completed a puzzle of each difficulty
+   * Username, BOOLEAN - Primary and Foriegn Key
+   * Inquisitor, BOOLEAN - flag if user has used more than 5 hints in a game
+   * LoneWolf, BOOLEAN- flag if user has completed a puzzle without using hints
+   * PuzzleMaster, BOOLEAN - flag if user account has reached max level
+   * RiskTaker, BOOLEAN - flag if user has completed 3 hard puzzles
+   * SpeedRunner, BOOLEAN - flag if user has completed a hard puzzle in less than 10 minutes
+   * Conqueror, BOOLEAN - flag if user has completed a puzzle of each difficulty
     
-Tests:
-    /* todo */
-    
+Tests: INTERACTION WITH THE 'ACHIEVEMENTS' PAGE
+   * Use case name 
+       * Verify that a user's achievements are unlocked when completing challenges 
+   * Description
+       * Test that icons are revealed when criteria is met 
+   * Pre-conditions 
+       * User must have an active account on the webpage 
+   * Tests
+       * Test 1: Inquisitor
+             * Navigate to the Main Page 
+             * Start a new game 
+             * Click the 'hint' button 5 times 
+             * Navigate to the Achievements page
+       * Test 2: LoneWolf 
+             * Navigate to the Main Page 
+             * Start a new game 
+             * Finish a puzzle, at any difficulty, without using hints
+             * Navigate to the Achievements page 
+       * Test 3: PuzzleMaster 
+             * Navigate to the user-account 
+             * Set user level to max
+             * Navigate to the Achievements page
+       * Test 4: RiskTaker 
+             * Navigate to the Main Page
+             * Start a new game 
+             * Complete three puzzles on Hard 
+             * Navigate to the Achievements page 
+       * Test 5: SpeedRunner 
+             * Navigate to the Main Page
+             * Start a new game 
+             * Complete a Hard Puzzle in less than 10 minutes 
+             * Navigate to the Achievements page
+       * Test 6: Conqueror 
+             * Navigate to the Main Page 
+             * Start a new game 
+             * Complete a puzzle at each difficulty 
+             * Navigate to the Achievements page
+    * Expected Result
+        * The specific badge icons are displayed for each unlockable achievement
+        * None of the badges should be locked 
+    * Actual Result
+        * TBD
+    * Status (Pass/Fail)
+        * TBD 
+    * Notes 
+        * Earning a badge should stay permanently flagged unless user resets awards 
+    * Post-Conditions 
+        * Badges are unlocked as user meets specific criterias for challenges 
+        * User is notified when they have unlocked a badge 
+Access Methods:
 Access Methods:
     getAchievements - return all fields, use for displaying achievements
         '''
