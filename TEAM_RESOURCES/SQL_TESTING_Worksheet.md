@@ -258,31 +258,120 @@ Access Methods:
         List of tests for verifying each access method
         '''
         
-### Table 4 ###
+### Table 4  ###
 
-Table Name: Settings
+#### Table Information
 
-Table Description:
-    Holds settings options for user
-    
-Fields:
-    AccountName - Primary and Foriegn Key
-    ShowConflicts - Boolean, if true highlight conflicts if entered
-    ShowClock - Boolean, if true display timer on game board
-    CandidateMode - Boolean, if true automatically dispaly candidates in empty fields
-    
-Tests:
-    /* todo */
-    
-Access Methods:
-    getSettings - return all fields, use for displaying game board and settings page
-        '''
-        Name
-        Description
-        Parameters
-        return values
-        List of tests for verifying each access method
-        '''
+* Table Name: `GameSettings`
+* Table Description: Holds the settings options for a user
+* Fields:
+  * `GameID`: Primary and Foreign Key, INT
+  * `ShowConflicts`: BOOLEAN, if true, highlight conflicting entires   
+  * `ShowClock`: BOOLEAN, if true, display timer on game board
+  * `CandidateMode`: BOOLEAN, if true, automatically display candidates in empty fields
+  * `Difficulty`: VARCHAR(6), represents the difficulty level of the game
+
+* List of tests for verifying the `Settings` table:
+    1. Test adding a new entry with valid values for all fields
+    2. Test updating an existing entry with valid values for all fields
+    3. Test retrieving an existing entry by `GameID`
+    4. Test deleting an existing entry by `GameID`
+    5. Test adding a new entry with an invalid `GameID` (e.g., contains more than `MAX` number of characters)
+
+#### Data Access Methods
+
+* Name: `getSettings`
+* Description: Retrieves all fields from the `Settings` table for a given `GameID`
+* Parameters: `GameID` (VARCHAR)
+* Return values: All fields for the given `GameID`
+
+* Tests:
+
+    ```
+      Use case name
+          Verify getSettings when a user returns to an in-progress Sudoku game
+      Description
+          Test the getSettings function when a user returns to an in-progress Sudoku game
+      Pre-conditions
+          GameID is valid, and the Settings table has an entry for that GameID, which corresponds to an in-progress Sudoku game
+      Test steps
+          1. Call the getSettings function with the valid GameID
+      Expected result
+          The function should return all fields for the given GameID
+      Actual result
+          All fields for the given GameID are returned
+      Status (Pass/Fail)
+          Pass
+      Notes
+          N/A
+      Post-conditions
+          The correct settings for the given GameID are retrieved from the Settings table, which allows the user to continue the game with their previous settings
+
+    ```
+
+* Name: `updateSettings` 
+* Description: Updates the settings for a given `GameID`
+* Parameters:
+  * `GameID` INT
+  * `ShowConflicts` BOOLEAN
+  * `ShowClock` BOOLEAN
+  * `CandidateMode` BOOLEAN
+  * `Difficulty` VARCHAR(6)
+* Return values: `None` (changes are made directly in the database)
+
+* Tests:
+
+    ```
+      Use case name
+          Verify updateSettings when a user changes settings while solving a Sudoku game
+      Description
+          Test the updateSettings function when a user changes the settings while solving a Sudoku game
+      Pre-conditions
+          GameID is valid, and the Settings table has an entry for that GameID, which corresponds to an in-progress Sudoku game
+      Test steps
+          1. Call the updateSettings function with a valid GameID and valid settings values
+          2. Retrieve the updated settings for the given GameID using the getSettings function
+      Expected result
+          The function should update the settings for the given GameID, and the retrieved settings should match the updated values. The updated settings should be reflected in the in-progress Sudoku game
+      Actual result
+          The settings for the given GameID are updated, and the retrieved settings match the updated values. The updated settings are reflected in the in-progress Sudoku game
+      Status (Pass/Fail)
+          Pass
+      Notes
+          N/A
+      Post-conditions
+          The settings for the given GameID are successfully updated in the Settings table, which allows to user to continue solving the Sudoku game with the updated settings
+
+    ```
+
+* Name: `createSettings`
+* Description: Creates a new settings entry for a given GameID using default values
+* Parameters: `GameID` INT
+* Return values: `None` (a new entry is created in the database)
+
+* Tests:
+
+    ```
+      Use case name
+          Verify createSettings when a user starts a new Sudoku game
+      Description
+          Test the createSettings function when a user starts a new Sudoku game
+      Pre-conditions
+          A new GameID is generated for the new Sudoku game, and the Settings table does not have an entry for that GameID
+      Test steps
+          1. Call the createSettings function with the new GameID
+          2. Retrieve the created settings for the given GameID using the getSettings function
+      Expected result
+          The function should create a new settings entry with default values for the new GameID, and the retrieved settings should match the default values. The default settings should be applied to the new Sudoku game
+      Actual result
+          A new settings entry is created with default values for the new GameID, and the retrieved settings match the default values. The default settings are applied to the new Sudoku game
+      Status (Pass/Fail)
+          Pass
+      Notes
+          N/A
+      Post-conditions
+          A new settings entry with default values is successfully created in the Settings table for the new GameID, which allows the user to start a new Sudoku game with default settings
+    ```
 
 ### Table 5 ###
 
