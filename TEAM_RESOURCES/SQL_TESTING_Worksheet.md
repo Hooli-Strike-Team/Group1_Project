@@ -114,7 +114,7 @@ WGL R4C
         Status (Pass/Fail):
             TBD
         Notes:
-            Insertion of a duplicate record will be rejected by the database API, which may result in unexpected application behavior. As a result, it is probably best to SELECT COUNT matching records first, evaluate the results, and perform the correct action. If this result is not 0, then the record should be refused by the route performing the record verification, and NOT by the database API itself. 
+            Insertion of a duplicate record will be rejected by the database API, which may result in unexpected application behavior. As a result, it is probably best to SELECT COUNT the matching records first, then evaluate the results and perform the correct action. If this result is not 0, the record should be refused by the route performing the verification, NOT by the database API itself. 
         Post-conditions:
             None.
 #### 'User_Account' Test 3 Description ####
@@ -140,9 +140,9 @@ WGL R4C
         Status (Pass/Fail)
             TBD
         Notes
-            As mentioned before, we should not place any undue strain on the database API. If needed, submit a query to gather information about whether the email adress exists inside the User_Account table, then handle the user's request based on this information instead of sending the query directly to the API.
+            As mentioned before, we should not place undue strain on the API. If necessary, submit a query to gather information about whether the email adress exists inside the User_Account table and then handle the user's request based on this information.
         Post-conditions
-            This should happen as a resut.
+            None.
 
 ### 'User_Account' Access Method Descriptions ###
 
@@ -151,20 +151,21 @@ WGL R4C
     Name: 
         'Create_User_Account'
     Description:
-        Inserts a tuple of new user data into the User_Account table. 
+        Create_User_Account inserts a tuple of new user data into the User_Account table when the user fills in the Create Account form with valid information and clicks the submit button.
     Parameters:
-        Username (Primary Key), Password, First_Name, Last_Name, and Email (UNIQUE)
+        Username, Password, First_Name, Last_Name, and Email
     return values:  
-        None.
+        Redirect to the Login page.
     List of tests for verifying each access method: 
         'Create_User_Account' Test 1:
             Use case name:
-                Create_User_Account inserts a tuple into User_Account if the record satisfies the User_Account table constraints.
+                "Valid Account Creation"
             Description:
-                Verify that entering valid form data into the "Create an Account" page produces a new record in the User_Account table.
+                Verify that entering valid form data into the "Create Account" page will produce a new record in the User_Account table, such that this data can be accessed by alternative routes.
             Pre-conditions:
-                Username must not exist in the User_Account table.
-                Email address also must not exist in the User_Account table.
+                The User_Account table must exist with the given table constraints.
+                The Username test instance must not exist in User_Account.
+                The Email test instance must not exist in User_Account.
                 Password, First_Name, and Last_Name must be entered as well. 
             Test steps:
                 1. Navigate to 'Create an Account' page
@@ -183,7 +184,7 @@ WGL R4C
                 TBD
             Notes:
                 Since the user must create an account to possess valid login credentials, it makes sense to perform this test before
-                testing the User_Account table's interaction with the Login page (next).
+                testing the User_Account table Login page interaction(s) (next).
             Post-conditions:
                 Create Account record must exist and persist in the User_Account table.
 
