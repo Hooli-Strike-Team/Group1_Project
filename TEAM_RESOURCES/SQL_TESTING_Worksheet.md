@@ -50,30 +50,40 @@ WGL R4C
  <img  src="Images_Milestone5/ProjectDatabaseERD.png">
 </p>
 
-### User_Account ###
-Table Name: User_Account
-
-Table Description:
+### User_Account Table ###
+Name: User_Account
+Description:
     Holds user account data tuples containing: 'Username', 'Password', 'First_Name', 'Last_Name', and 'Email'. 
-    User_Account is populated by the submission form on the Create Account page.
+    User_Account is populated from the submission form on the Create Account page.
     Username and Password are verified in this table to grant the user access to the rest of the application.
-    
-Fields:
+Field Descriptions:
     Username, VARCHAR(32) - Primary Key
     Password, VARCHAR(16)
     First_Name, VARCHAR(50)
     Last_Name, VARCHAR(50)
     Email, VARCHAR(320) - UNIQUE
+Tests for Table Verification:
 
-## User_Account Interaction Tests ##
-User_Account_Test_1: INTERACTION WITH THE 'CREATE ACCOUNT' PAGE
-    Use case name
-        'Create Account' form submission inserts valid record into User_Account.
-    Description
+
+## USER_ACCOUNT ACCESS METHODS ##
+Create_User_Account Access Method
+    Name: 'Create_User_Account'
+    Description:  Insert a tuple of new user data into the User_Account table. 
+    Parameters:  Username (UNIQUE, PK), Password, First_Name, Last_Name, and Email (UNIQUE)
+    return values:  None.
+    List of tests for verifying each access method: 
+    
+#=====BEGIN 'Create_User_Account' ACCESS METHOD TEST DESCRIPTIONS====#
+
+Test 1: 'Create_User_Account' submits records
+    Use case name:
+        Verify 'Create Account' form submission inserts valid record into User_Account.
+    Description:
         Verify that valid form data entered in the "Create an Account" page produces a record in the User_Account database table.
     Pre-conditions
-        User must provide a valid Username that does not exist in the User_Account table, as well as Password, First_Name,
-        Last_Name, and Email. Email address must be unique.
+        User must provide a Username that does not exist in the User_Account table.
+        Email address must be unique to each account.
+        Password, First_Name, Last_Name, and Email must also be entered. 
     Test steps
         1. Navigate to 'Create an Account' page
         2. Provide a valid user name
@@ -94,10 +104,16 @@ User_Account_Test_1: INTERACTION WITH THE 'CREATE ACCOUNT' PAGE
         testing the db's interaction with the Login page (next test).
     Post-conditions
         Create Account record exists in User_Account.
-        
-#==============================================================================================================#
+#=====END 'User_Account_Test_1' TEST DESCRIPTION====#
 
-User_Account_Test_2: INTERACTION WITH THE 'LOGIN' PAGE (NORMAL ACCESS)
+#=====BEGIN 'Login_User' TEST DESCRIPTION====#
+    Name: Login_User
+    Description: Add new AccountName/Password to table
+    Parameters: 
+    Return values: 
+    List of tests for verifying each access method:
+    
+User_Account_Test_2: Login_User, test interaction with the Login Page
     Use case name
         'Login' page verifies user login information via User_Account table
     Description
@@ -120,22 +136,6 @@ User_Account_Test_2: INTERACTION WITH THE 'LOGIN' PAGE (NORMAL ACCESS)
         testing the db's interaction with the Login page.
     Post-conditions
         User is directed to the dashboard/game page.
-
-#==============================================================================================================#
-
-User_Account Access Methods:
-    ###
-    Name: Create_Account_Table
-    Description:  Add new AccountName/Password to table.
-    Parameters:  Generate once using Admin_credentials?
-    return values:  None. Results in Account table creation.
-    List of tests for verifying each access method: ...
-    ###
-    Name: Create_Account
-    Description: Add new AccountName/Password to table
-    Parameters: 
-    Return values: 
-    List of tests for verifying each access method: ...
     ### 
     Name: Login - Check input data against table AccountName/Password
     Description
