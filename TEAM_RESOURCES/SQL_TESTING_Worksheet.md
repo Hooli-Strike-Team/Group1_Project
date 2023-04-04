@@ -51,97 +51,168 @@ WGL R4C
 </p>
 
 ### User_Account Table ###
-Name: User_Account
-Description:
-    Holds user account data tuples containing: 'Username', 'Password', 'First_Name', 'Last_Name', and 'Email'. 
-    User_Account is populated from the submission form on the Create Account page.
-    Username and Password are verified using this table to grant access to the rest of the application.
-Field Descriptions:
-    Username, VARCHAR(32) - Primary Key
-    Password, VARCHAR(16)
-    First_Name, VARCHAR(50)
-    Last_Name, VARCHAR(50)
-    Email, VARCHAR(320) - UNIQUE
-Tests for Table Verification:
-    Perform an insert of a record, then 
-
-## User_Account Access Methods ##
-'Create_User_Account' Access Method
-    Name: 'Create_User_Account'
-    Description:  Inserts a tuple of new user data into the User_Account table. 
-    Parameters:  Username (UNIQUE, PK), Password, First_Name, Last_Name, and Email (UNIQUE)
-    return values:  None.
-    List of tests for verifying each access method: see below.
-    
-#=====BEGIN 'Create_User_Account' ACCESS METHOD TEST DESCRIPTION====#
-Create_User_Account Test 1:
-    Use case name:
-        Create_User_Account inserts records into User_Account when table constraints are satisfied.
+    Name: 
+        User_Account
     Description:
-        Verify that valid form data entered into the "Create an Account" page produces a record in the User_Account database table.
-    Pre-conditions
-        Username must not exist in the User_Account table.
-        Email address also must not exist in the User_Account table.
-        Password, First_Name, and Last_Name must be entered. 
-    Test steps
-        1. Navigate to 'Create an Account' page
-        2. Provide a valid username
-        3. Provide a valid password
-        4. Provide a first name
-        5. Provide a last name
-        6. Provide a unique email address
-        4. Click the 'Create Account' button
-    Expected result
-        A tuple should appear in User_Account describing the new user including his/her login credentials. 
-        User should be directed to the 'Login' page after successful registration.
-    Actual result
-        TBD
-    Status (Pass/Fail)
-        TBD
-    Notes
-        Since the user must create an account to possess valid login credentials, it makes sense to perform this test before
-        testing the User_Account table's interaction with the Login page (next).
-    Post-conditions
-        Create Account record must exist and persist in the User_Account table.
-#=====END 'Create_User_Account' ACCESS METHOD TEST DESCRIPTION====#
+        Holds user account data tuples containing: 'Username', 'Password', 'First_Name', 'Last_Name', and 'Email'. 
+        User_Account is populated from the submission form on the Create Account page.
+        Username and Password are verified using this table to grant access to the rest of the application.
+    Field Descriptions:
+        Username, VARCHAR(32) - Primary Key
+        Password, VARCHAR(16)
+        First_Name, VARCHAR(50)
+        Last_Name, VARCHAR(50)
+        Email, VARCHAR(320) - UNIQUE
+    Tests for Table Verification:
+        <Name> Test 1:
+        Use case name:
+            Perform an valid record insert, then retrieve it from the table.
+        Description:
+            This is a description.
+        Pre-conditions
+            Pre-condition 1
+            Pre-condition 2
+            Pre-condition 3
+        Test steps
+            1. step 1
+            2. step 2
+            3. step 3
+        Expected result
+            blablabla
+        Actual result
+            TBD
+        Status (Pass/Fail)
+            TBD
+        Notes
+            These are notes.
+        Post-conditions
+            This should happen as a resut.
+#  #  #  #  #  #  #  #  #  #  #  #  #  #  #
+    <Name> Test 2:
+        Use case name:
+            Perfrom a duplicate record insert, this should fail.
+        Description:
+            This is a description.
+        Pre-conditions
+            Pre-condition 1
+            Pre-condition 2
+            Pre-condition 3
+        Test steps
+            1. step 1
+            2. step 2
+            3. step 3
+        Expected result
+            blablabla
+        Actual result
+            TBD
+        Status (Pass/Fail)
+            TBD
+        Notes
+            These are notes.
+        Post-conditions
+            This should happen as a resut. 
+#  #  #  #  #  #  #  #  #  #  #  #  #  #  #
+    <Name> Test 3:
+        Use case name:
+            Perform record insert using a new Username and a password that already exists in the table, this should fail.
+        Description:
+            This is a description.
+        Pre-conditions
+            Pre-condition 1
+            Pre-condition 2
+            Pre-condition 3
+        Test steps
+            1. step 1
+            2. step 2
+            3. step 3
+        Expected result
+            blablabla
+        Actual result
+            TBD
+        Status (Pass/Fail)
+            TBD
+        Notes
+            These are notes.
+        Post-conditions
+            This should happen as a resut.
 
-#=====BEGIN 'Login_User' ACCESS METHOD TEST DESCRIPTION====#
-    Name: Login_User
-    Description: Add new AccountName/Password to table
-    Parameters: 
-    Return values: 
-    List of tests for verifying each access method:
+BEGIN User_Account ACCESS METHODS
+#  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #
+Method 1: The 'Create_User_Account' Access Method
+    Name: 
+        'Create_User_Account'
+    Description:
+        Inserts a tuple of new user data into the User_Account table. 
+    Parameters:
+        Username (UNIQUE, PK), Password, First_Name, Last_Name, and Email (UNIQUE)
+    return values:  
+        None.
+    List of tests for verifying each access method: 
+#  #  #  #  #  #  #  #  #  #  #  #  #  #  #
+        'Create_User_Account' Test 1:
+            Use case name:
+                Create_User_Account inserts a tuple into User_Account if the record satisfies the User_Account table constraints.
+            Description:
+                Verify that entering valid form data into the "Create an Account" page produces a new record in the User_Account table.
+            Pre-conditions:
+                Username must not exist in the User_Account table.
+                Email address also must not exist in the User_Account table.
+                Password, First_Name, and Last_Name must be entered as well. 
+            Test steps:
+                1. Navigate to 'Create an Account' page
+                2. Provide a valid username
+                3. Provide a valid password
+                4. Provide a first name
+                5. Provide a last name
+                6. Provide a unique email address
+                7. Click the 'Create Account' button
+            Expected result:
+                A tuple should appear in User_Account describing the new user including his/her login credentials. 
+                User should be directed to the 'Login' page after successful registration.
+            Actual result:
+                TBD
+            Status (Pass/Fail):
+                TBD
+            Notes:
+                Since the user must create an account to possess valid login credentials, it makes sense to perform this test before
+                testing the User_Account table's interaction with the Login page (next).
+            Post-conditions:
+                Create Account record must exist and persist in the User_Account table.
+#  #  #  #  #  #  #  #  #  #  #  #  #  #  #
     
-User_Account_Test_2: Login_User, test interaction with the Login Page
-    Use case name
-        'Login' page verifies user login information via User_Account table
-    Description
-        Verify that a user providing valid login details is given access to the application. 
-    Pre-conditions
-        The user must be registered (i.e., via 'Create Account'), and must furnish valid login credentials.
-    Test steps
-        1. Navigate to the Login page
-        2. Provide valid user name
-        3. Provide valid password
-        4. Click 'Sign In' button
-    Expected result
-        The Username and Password should be verified and the user should be sent to the Game page.
-    Actual result
-        TBD
-    Status (Pass/Fail)
-        TBD
-    Notes
-        Since the user must create an account to possess valid login credentials, it would make sense to test perform this test before
-        testing the db's interaction with the Login page.
-    Post-conditions
-        User is directed to the dashboard/game page.
-    ### 
-    Name: Login - Check input data against table AccountName/Password
-    Description
-    Parameters
-    return values
-    List of tests for verifying each access method
-   
+#  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  #  # 
+Method 2: The 'Login_User' Access Method
+    Name: 
+        'Login_User'
+    Description:
+        Inserts a tuple of new user data into the User_Account table. 
+    Parameters:
+        Username (UNIQUE, PK), Password, First_Name, Last_Name, and Email (UNIQUE)
+    return values:  
+        None.
+    List of tests for verifying each access method: 
+        Use case name:
+            'Login' page verifies user login information via User_Account table
+        Description:
+            Verify that a user providing valid login details is given access to the application. 
+        Pre-conditions:
+            The user must be registered (i.e., via 'Create Account'), and must furnish valid login credentials.
+        Test steps:
+            1. Navigate to the Login page
+            2. Provide valid user name
+            3. Provide valid password
+            4. Click 'Sign In' button
+        Expected result:
+            The Username and Password should be verified and the user should be sent to the Game page.
+        Actual result:
+            TBD
+        Status (Pass/Fail):
+            TBD
+        Notes:
+            Since the user must create an account to possess valid login credentials, it would make sense to test perform this test before
+            testing the db's interaction with the Login page.
+        Post-conditions:
+            User is directed to the dashboard/game page.
 
      
 
