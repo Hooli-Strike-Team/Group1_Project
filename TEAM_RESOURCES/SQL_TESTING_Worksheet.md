@@ -54,8 +54,9 @@ WGL R4C
 Table Name: User_Account
 
 Table Description:
-    Holds unique account names and passwords used to verify user login credentials.
-
+    Holds Username, Password, First_Name, Last_Name, and Email. Username and Password are used to log in and gain access to 
+    the rest of the application.
+    
 Fields:
     Username, VARCHAR(32) - Primary Key
     Password, VARCHAR(16)
@@ -63,7 +64,7 @@ Fields:
     Last_Name, VARCHAR(50)
     Email, VARCHAR(320)
 
-Tests:
+Test: INTERACTION WITH THE 'CREATE ACCOUNT' PAGE
     Use case name
         Verify that a new user can create a User_Account tuple by interacting with the Create Account application page.
     Description
@@ -77,27 +78,48 @@ Tests:
         3. Provide valid password
         4. Provide a first name
         5. Provide a last name
-        6. Provide an email address
+        6. Provide an email address that does not exist in the User_Account table
         4. Click Create Account button
     Expected result
-        Subtest 1:
-            If the username and Email do not exist in the User_Account table, the user should be directed to the Login page.
-        Subtest 2:
-            If the username exists in the User_Account table but the email does not, user should be advised to pick a different username.
-        Subtest 3:
-            If the user's email exists in the User_Account table, a pop-up message should appear saying that an account already exists 
-            with that email address.
+        A tuple should be entered registering the new user, including his/her login credentials.
     Actual result
         TBD
     Status (Pass/Fail)
         TBD
     Notes
-        Since the user must create an account to possess valid login credentials, it would make sense to test the 
-        functionality of the Create Account page before conducting this test.
+        Since the user must create an account to possess valid login credentials, it would make sense to test perform this test before
+        testing the db's interaction with the Login page.
     Post-conditions
-        User is validated with database and successfully signed into their account.
-        The account session details are logged in database. 
-    
+        TO-DO
+
+Test: INTERACTION WITH THE 'LOGIN' PAGE
+    Use case name
+        TO-DO
+    Description
+        TO-DO
+    Pre-conditions
+        TO-DO
+    Test steps
+        1. Navigate to the Login page
+        2. Provide valid user name
+        3. Provide valid password
+        4. Click 'Sign In' button
+    Expected result
+        A tuple should be entered registering the new user, including his/her login credentials.
+    Actual result
+        TBD
+    Status (Pass/Fail)
+        TBD
+    Notes
+        Since the user must create an account to possess valid login credentials, it would make sense to test perform this test before
+        testing the db's interaction with the Login page.
+    Post-conditions
+        TO-DO
+
+
+
+
+
 Access Methods:
 
         Name: Create_Account_Table
