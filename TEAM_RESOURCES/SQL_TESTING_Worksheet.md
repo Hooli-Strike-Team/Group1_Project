@@ -51,17 +51,52 @@ WGL R4C
 </p>
 
 ### Table 1 ###
-Table Name: Accounts
+Table Name: User_Account
 
 Table Description:
-    Holds unique account names and passwords as an authorative list
+    Holds unique account names and passwords used to verify user login credentials.
 
 Fields:
-    AccountName, VARCHAR(32) - Primary Key (unique)
-    Password VARCHAR(16)- user password tied to account
+    Username, VARCHAR(32) - Primary Key
+    Password, VARCHAR(16)
+    First_Name, VARCHAR(50)
+    Last_Name, VARCHAR(50)
+    Email, VARCHAR(320)
 
 Tests:
-    /* todo */
+    Use case name
+        Verify that a new user can create a User_Account tuple by interacting with the Create Account application page.
+    Description
+        Test that form data is being entered into the User_Account table from the "Create an Account" page.
+    Pre-conditions
+        User must provide a valid Username that does not already exist in the User_Account table, along with a password, First_Name,
+        Last_Name, and Email. Email address should be unique for each User_Account tuple.
+    Test steps
+        1. Navigate to Create an Account page
+        2. Provide valid user name
+        3. Provide valid password
+        4. Provide a first name
+        5. Provide a last name
+        6. Provide an email address
+        4. Click Create Account button
+    Expected result
+        Subtest 1:
+            If the username and Email do not exist in the User_Account table, the user should be directed to the Login page.
+        Subtest 2:
+            If the username exists in the User_Account table but the email does not, user should be advised to pick a different username.
+        Subtest 3:
+            If the user's email exists in the User_Account table, a pop-up message should appear saying that an account already exists with 
+        that email.
+    Actual result
+        TBD
+    Status (Pass/Fail)
+        TBD
+    Notes
+        Since the user must create an account to possess valid login credentials, it would make sense to test the 
+        functionality of the Create Account page before conducting this test.
+    Post-conditions
+        User is validated with database and successfully signed into their account.
+        The account session details are logged in database. 
     
 Access Methods:
 
