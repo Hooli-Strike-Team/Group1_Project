@@ -141,7 +141,7 @@
          * Refine base template and create color scheme options
 
 
-### Week 6: March 27 - April 2 ###
+### Week 6: March 27 - April 2 ###  SPRING BREAK
 
 * Completed 
     * Matt: ...
