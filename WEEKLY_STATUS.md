@@ -56,7 +56,7 @@
 </p>
 
 
-### Week 3: March 6 - March 12 ###
+### Week 3: March 6-12 ###
 
 * Completed 
     * Matt: Found algorithm for Sudoku solver.
@@ -86,7 +86,7 @@
  <img width="350" height="240" src="images/weekly_status/board_03_06.png">
 </p>
 
-### Week 4: March 13 - March 19 ###
+### Week 4: March 13-19 ###
 
 * Completed 
     * Matt: ...
@@ -113,7 +113,7 @@
  <img width="350" height="219" src="images/weekly_status/board_03_13.png">
 </p>
 
-### Week 5: March 20 - March 26 ###
+### Week 5: March 20-26 ###
 
 * Completed 
     * Matt: Created HTML/css template for Main Page, with focus on the sudoku board.
@@ -140,8 +140,11 @@
          * Build Home Page and Difficulty Page
          * Refine base template and create color scheme options
 
+<p align="center">
+ <img width="350" height="240" src="images/weekly_status/board_03_20.png">
+</p>
 
-### Week 6: March 27 - April 2 ###  SPRING BREAK
+### Spring Break: March 27 - April 2 ###
 
 * Completed 
     * Matt: ...
@@ -172,7 +175,7 @@
     * Tory: continue to incorporate new content into pages
 
 
-### Week 6: April 3 - April 9 ###
+### Week 6: April 3-9 ###
 
 * Completed 
     * Matt: ...
