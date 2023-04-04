@@ -50,12 +50,13 @@ WGL R4C
  <img  src="Images_Milestone5/ProjectDatabaseERD.png">
 </p>
 
-### Table 1 ###
+### User_Account ###
 Table Name: User_Account
 
 Table Description:
-    Holds user account data tuples containing: Username, Password, First_Name, Last_Name, and Email. 
-    Username and Password are used to log in and gain access to the rest of the application (except for Create Account).
+    Holds user account data tuples containing: 'Username', 'Password', 'First_Name', 'Last_Name', and 'Email'. 
+    User_Account is populated by the submission form on the Create Account page.
+    Username and Password are verified in this table to grant the user access to the rest of the application.
     
 Fields:
     Username, VARCHAR(32) - Primary Key
