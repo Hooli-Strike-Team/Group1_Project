@@ -51,13 +51,13 @@ WGL R4C
 </p>
 
 ### User_Account Table ###
-Begin User_Account Table Description
+### User_Account Table Description ###
 
     Name: 
         User_Account
     Description:
-        Holds user account data tuples containing: 'Username', 'Password', 'First_Name', 'Last_Name', and 'Email'. 
-        User_Account is populated via form submission on the Create Account page.
+        User_Account holds user data tuples containing the attributes: 'Username', 'Password', 'First_Name', 'Last_Name', and 'Email'. 
+        User_Account will be populated via a form submission on the Create Account page.
         Username and Password are stored and verified in this table to grant the users with access to the rest of the application.
     Field Descriptions:
         Username, VARCHAR(32) - Primary Key
@@ -67,11 +67,11 @@ Begin User_Account Table Description
         Email, VARCHAR(320) - UNIQUE
     Tests for Table Verification:
         (see below)
-Begin User_Account Test 1 Description
+#### User_Account Test 1 Description ####
 
         User_Account Test 1: Insertion of a valid record.
         Use case name:
-            Valid Insert
+            "Valid Insert"
         Description:
             Insert a valid record, then retrieve the record(s) to verify the table works as intended.
         Pre-conditions
@@ -92,11 +92,11 @@ Begin User_Account Test 1 Description
             None.
         Post-conditions
             Tuple exists in the User_Account table.
-Begin User_Account Test 2 Description
+#### User_Account Test 2 Description ####
 
         User_Account Test 2: Insertion of a duplicate record.
         Use case name:
-            Duplicate Record Insert
+            "Duplicate Record Insert"
         Description:
             Inserting a duplicate record into the User_Account table should fail.
         Pre-conditions:
@@ -114,16 +114,14 @@ Begin User_Account Test 2 Description
         Status (Pass/Fail):
             TBD
         Notes:
-            Insertion of a duplicate record will be rejected by the database. 
-            This error must be caught by the application and handled gracefully to avoid unexpected behavior at runtime.
-            Determine what error is returned by the API and incorporate this into the applications' exception handling protocols.
+            Insertion of a duplicate record will be rejected by the database API, which may result in unexpected application behavior. As a result, it is probably best to SELECT COUNT matching records first, evaluate the results, and perform the correct action. If this result is not 0, then the record should be refused by the route performing the record verification, and NOT by the database API itself. 
         Post-conditions:
             None.
-Begin User_Account Test 3 Description
+#### User_Account Test 3 Description ####
 
         <Name> Test 3: Insertion of a record with a duplicate email address.
         Use case name:
-            Existing Email Insert
+            "Existing Email Insert"
         Description:
             This is a description.
         Pre-conditions
@@ -145,9 +143,9 @@ Begin User_Account Test 3 Description
         Post-conditions
             This should happen as a resut.
 
-Begin User_Account Access Method Descriptions
+### User_Account Access Method Descriptions ###
 
-Method 1: The 'Create_User_Account' Access Method
+#### Method 1: The 'Create_User_Account' Access Method ####
 
     Name: 
         'Create_User_Account'
@@ -188,7 +186,7 @@ Method 1: The 'Create_User_Account' Access Method
             Post-conditions:
                 Create Account record must exist and persist in the User_Account table.
 
-Method 2: The 'Login_User' Access Method
+#### Method 2: The 'Login_User' Access Method ####
 
     Name: 
         'Login_User'
