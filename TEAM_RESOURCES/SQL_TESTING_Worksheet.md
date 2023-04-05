@@ -270,73 +270,146 @@ Table Description:
    * Holds flags for user achievements
     
 Fields:
-   * Username, BOOLEAN - Primary and Foriegn Key
-   * Inquisitor, BOOLEAN - flag if user has used more than 5 hints in a game
-   * LoneWolf, BOOLEAN- flag if user has completed a puzzle without using hints
-   * PuzzleMaster, BOOLEAN - flag if user account has reached max level
-   * RiskTaker, BOOLEAN - flag if user has completed 3 hard puzzles
-   * SpeedRunner, BOOLEAN - flag if user has completed a hard puzzle in less than 10 minutes
-   * Conqueror, BOOLEAN - flag if user has completed a puzzle of each difficulty
+   * `Username`, BOOLEAN - Primary and Foriegn Key
+   * `Inquisitor`, BOOLEAN - flag if user has used more than 5 hints in a game
+   * `LoneWolf`, BOOLEAN- flag if user has completed a puzzle without using hints
+   * `PuzzleMaster`, BOOLEAN - flag if user account has reached max level
+   * `RiskTaker`, BOOLEAN - flag if user has completed 3 hard puzzles
+   * `SpeedRunner`, BOOLEAN - flag if user has completed a hard puzzle in less than 10 minutes
+   * `Conqueror`, BOOLEAN - flag if user has completed a puzzle of each difficulty
+   
+Tests: 
+
+1. Create a new user 
+2. No flags should be raised for (all badges should be locked) 
     
-Tests: INTERACTION WITH THE 'ACHIEVEMENTS' PAGE
-   * Use case name 
-       * Verify that a user's achievements are unlocked when completing challenges 
-   * Description
-       * Test that icons are revealed when criteria is met 
-   * Pre-conditions 
-       * User must have an active account on the webpage 
-   * Tests
-       * Test 1: Inquisitor
-             * Navigate to the Main Page 
-             * Start a new game 
-             * Click the 'hint' button 5 times 
-             * Navigate to the Achievements page
-       * Test 2: LoneWolf 
-             * Navigate to the Main Page 
-             * Start a new game 
-             * Finish a puzzle, at any difficulty, without using hints
-             * Navigate to the Achievements page 
-       * Test 3: PuzzleMaster 
-             * Navigate to the user-account 
-             * Set user level to max
-             * Navigate to the Achievements page
-       * Test 4: RiskTaker 
-             * Navigate to the Main Page
-             * Start a new game 
-             * Complete three puzzles on Hard 
-             * Navigate to the Achievements page 
-       * Test 5: SpeedRunner 
-             * Navigate to the Main Page
-             * Start a new game 
-             * Complete a Hard Puzzle in less than 10 minutes 
-             * Navigate to the Achievements page
-       * Test 6: Conqueror 
-             * Navigate to the Main Page 
-             * Start a new game 
-             * Complete a puzzle at each difficulty 
-             * Navigate to the Achievements page
-    * Expected Result
-        * The specific badge icons are displayed for each unlockable achievement
-        * None of the badges should be locked 
-    * Actual Result
-        * TBD
-    * Status (Pass/Fail)
-        * TBD 
-    * Notes 
-        * Earning a badge should stay permanently flagged unless user resets awards 
-    * Post-Conditions 
-        * Badges are unlocked as user meets specific criterias for challenges 
-        * User is notified when they have unlocked a badge 
-Access Methods:
-Access Methods:
-    getAchievements - return all fields, use for displaying achievements
-        '''
-        Name
-        Description
-        Parameters
-        return values
-        List of tests for verifying each access method
-        '''
+    `Inquisitor` 
+    `LoneWolf`
+    `PuzzleMaster`
+    `RiskTaker`
+    `SpeedRunner`
+    `Conqueror`
+    
+3. Logout of user account, then return 
+4. Flags that have been previously raised should remain True
+5. Flags that were not previously raised should remain False 
+
+     
+#### Data Access Methods
+
+*Access Method 1*        
+        
+Name `flagInquisitor`
+Description: checks whether criteria is met to raise flag for the Inquisitor badge 
+Parameters: 
+* `Show_Conflicts` BOOLEAN
+* `Candidate_Mode` BOOLEAN
+* `Inquisitor` BOOLEAN
+* `Game_ID` INT 
+
+
+return values: none
+
+Tests:
+
+      Use case name
+          Verify flagInquisitor is flagged when a user meets the achievement criteria
+      Description
+          Test that the Inquistor icon is revealed if flag is raised 
+      Pre-conditions
+          User must have an active account with the website 
+      Test steps
+          1. Start a new game by giving Game_ID default values
+          2. Activate the Show_Conflict or Candidate_Mode fields a grand total of 5 times 
+      Expected result
+          The Inquisitor field should be flagged 
+      Actual result
+          N/A
+      Status (Pass/Fail)
+          Pass
+      Notes
+          N/A
+      Post-conditions
+          The Inquisitor icon should appear to the user on the Achievements page
+
+
+*Access Method 2*        
+
+
+Name `flagLoneWolf`
+Description: checks whether criteria is met to raise flag for the LoneWolf badge 
+Parameters: 
+* `Game_ID` INT 
+* `LoneWolf` BOOLEAN
+
+return values: none
+
+Tests:
+
+      Use case name
+          Verify flagLoneWolf is flagged when a user meets the achievement criteria
+      Description
+          Test that the LoneWolf icon is revealed when flag is raised 
+      Pre-conditions
+          User must have an active account with the website 
+      Test steps
+          1. Start a new game by giving Game_ID default values 
+          2. Complete game without activating the Show_Conflict or Candidate_Mode fields
+      Expected result 
+          The LoneWolf field should be flagged 
+      Actual result
+          N/A
+      Status (Pass/Fail)
+          Pass
+      Notes
+          N/A
+      Post-conditions
+          The LoneWolf icon should appear to the user on the Achievements page
+
+        
+*Access Method 3*        
+
+
+Name `flagConqueror`
+Description: checks whether criteria is met to raise flag for the Conqueror badge 
+Parameters: 
+* `Conqueror` BOOLEAN
+* `Difficulty` VARCHAR(6)
+* `Game_ID` INT 
+
+return values: none
+
+Tests:
+
+      Use case name
+          Verify flagConqueror is flagged when a user meets the achievement criteria
+      Description
+          Test that the Conqueror icon is revealed when flag is raised 
+      Pre-conditions
+          User must have an active account with the website 
+      Test steps
+          1. Start a new game by giving Game_ID default values
+          2. Set Difficulty to "Easy"
+          3. Complete Game
+          4. Start another new game 
+          5. Set Difficulty to "Medium
+          6. Complete Game 
+          7. Start another new game 
+          8. Set Difficulty to "Hard"
+          9. Complete Game 
+          
+      Expected result 
+          The Conqueror field should be flagged 
+      Actual result
+          N/A
+      Status (Pass/Fail)
+          Pass
+      Notes
+          N/A
+      Post-conditions
+          The Conqueror icon should appear to the user on the Achievements page
+
+        
         
 ### Table 4 ###
 
