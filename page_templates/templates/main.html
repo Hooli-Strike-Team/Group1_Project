@@ -1,26 +1,58 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block title %}Main{% endblock %}
+{% block title %}Main{% endblock %} 
 
 {% block content %}
+<div class="wrapper-container">
   <div class="game-container">
-    <div id="info-container">
-      <div id="difficulty-setting">Difficulty: Easy</div>
-      <div id="timer">Time: 00:00</div>
-      <div id="mistakes-count">Mistakes: 0</div>
-  </div>
+    <div class="left-container">
+      <div id="info-container">
+        <div id="difficulty-setting">
+          <span class="material-icons-outlined"> psychology </span>
+          <span>EXPERT</span>
+        </div>
+        <div id="timer">
+          <span class="material-icons-outlined">timer</span>
+          <span>00:00</span>
+        </div>
+        <div id="mistakes-count">
+          <span class="material-icons-outlined">close</span>
+          <span>0 / 10</span>
+        </div>
+      </div>
 
-    <div id="sudoku-board">
-      {% for row in range(9) %}
-        {% for col in range(9) %}
-          <div class="cell {% if row % 3 == 0 and row != 0 %}subgrid-top{% endif %} {% if col % 3 == 0 and col != 0 %}subgrid-left{% endif %}"></div>
-        {% endfor %}
-      {% endfor %}
-    </div>
-    <div class="digits-container">
-      {% for digit in range(1, 10) %}
+      <div id="sudoku-board">
+        {% for row in range(9) %} {% for col in range(9) %}
+        <div
+          class="cell {% if row % 3 == 0 and row != 0 %}subgrid-top{% endif %} {% if col % 3 == 0 and col != 0 %}subgrid-left{% endif %}"
+        ></div>
+        {% endfor %} {% endfor %}
+      </div>
+      <div class="actions-container">
+        <button class="action-button erase-button">Erase</button>
+        <button class="action-button score-button" disabled>Score: 100</button>
+        <button class="action-button undo-button">Undo</button>
+      </div>
+
+      <div class="digits-container">
+        {% for digit in range(1, 10) %}
         <button class="digit-button" data-digit="{{digit}}">{{digit}}</button>
-      {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+    <div id="right-box">
+      <div class="user-info-box">
+        <i class="fa-solid fa-circle-user user-icon"></i>
+        <span class="username">Username</span>
+        <a href="#" class="account-link">Account Info</a>
+      </div>
+      <div>
+        <button class="right-box-button" id="mistakes-button">Mistakes</button>
+        <button class="right-box-button" id="hints-button">Hints</button>
+        <button class="right-box-button" id="notes-button">Notes</button>
+      </div>
+      <div class="placeholder-box"></div>
     </div>
   </div>
-{% endblock %}
+  {% endblock %}
+</div>

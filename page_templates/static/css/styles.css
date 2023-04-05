@@ -110,7 +110,7 @@ h3 {
 }
 
 /* Targets only header button icon when .header-button-link element 
-       is hovered over */
+   is hovered over */
 .header-button-link:hover .header-button-icon {
   /* Darker light green */
   color: #2db896;
@@ -271,6 +271,17 @@ h3 {
 /******************
  *  Achievements  *
  ******************/
+
+/*********************************************************
+ * Badge design adopted from the following resource:
+ *
+ *   Title: Hexagon Badges with Font Awesome Icons
+ *   Author: Olivia Ng
+ *   Date: January 4, 2018
+ *   Code version: 1.0
+ *   Availability: https://codepen.io/oliviale/pen/qpPByV
+ *********************************************************/
+
   .achievements-wrapper {
     display: flex;
     align-items: center;
@@ -409,6 +420,7 @@ h3 {
     cursor: pointer;
     text-align: center;
   }
+
 /********************
  *  Create Account  *
  ********************/
@@ -683,12 +695,28 @@ h3 {
  *  Main  *
  **********/
 
+/* Wrapper container */
+.wrapper-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center; /* Change to center */
+  margin: 2rem auto;
+}
+
 /* Game container */
 .game-container {
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 2rem auto;
+  max-width: 1200px;
+}
+
+.left-container {
+  display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2rem auto;
+  margin-right: 2rem; /* Add space between left-container and right-box */
 }
 
 #info-container {
@@ -697,15 +725,31 @@ h3 {
   width: 100%;
   max-width: 24rem;
   margin-bottom: 0.625rem;
+  align-items: center;
 }
 
-#difficulty-setting,
-#timer,
+#difficulty-setting, 
+#timer, 
 #mistakes-count {
-  flex: 1;
-  text-align: center;
-  font-size: 1rem;
-  font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    font-weight: 500;
+    width: 33.3%;
+}
+
+#difficulty-setting .material-icons-outlined {
+  font-size: 2rem;
+  margin-right: 0.2rem;
+}
+
+#timer .material-icons-outlined {
+  margin-right: 0.2rem;
+}
+
+#mistakes-count .material-icons-outlined {
+  margin-right: 0.2rem;
 }
 
 /* Sudoku board */
@@ -747,6 +791,36 @@ h3 {
   border-left: 0.125rem solid #666666;
 }
 
+/* Actions container */
+.actions-container {
+  display: flex;
+  justify-content: space-between;
+  width: 23.4rem;
+  /* Same width as Sudoku board */
+  margin-top: 1rem;
+}
+
+/* Action buttons */
+.action-button {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #888888;
+  border: 0.00625rem solid #ffffff;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  text-align: center;
+}
+
+.action-button:hover {
+  background-color: #2db896;
+}
+
+.score-button {
+  background-color: #aaaaaa;
+  cursor: default;
+}
 
 /* Digits container */
 .digits-container {
@@ -771,6 +845,72 @@ h3 {
 
 .digit-button:hover {
   background-color: #2db896;
+}
+
+/* Right box */
+#right-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 18.75rem;
+  height: 24.05rem;
+  background-color: #f5f5f5;
+  border: 1px solid #cccccc;
+  border-radius: 0.25rem;
+  margin-top: 2.61rem;
+  padding: 0;
+}
+
+/* User info box */
+.user-info-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 18.75rem;
+  height: 3rem;
+  background-color: #ffffff;
+  border-radius: 0.25rem;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+/* User icon */
+.user-icon {
+  font-size: 1.5rem;
+  color: #888888;
+}
+
+/* Username */
+.username {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333333;
+}
+
+/* Account link */
+.account-link {
+  font-size: 1rem;
+  color: #2db896;
+  text-decoration: none;
+}
+
+.account-link:hover {
+  text-decoration: underline;
+}
+
+
+/* Right box buttons */
+.right-box-button {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #888888;
+  border: 0.00625rem solid #ffffff;
+  border-radius: 0.2rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  text-align: center;
 }
 
 /***********
@@ -816,7 +956,3 @@ h3 {
     float: right;
     width: 50%;
 }
-
-/*************
- *  Create Account  *
- *************/
