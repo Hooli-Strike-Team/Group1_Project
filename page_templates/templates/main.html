@@ -12,11 +12,11 @@
           <span>EXPERT</span>
         </div>
         <div id="timer">
-          <span class="material-icons-outlined">timer</span>
+          <span class="material-icons-outlined"> timer </span>
           <span>00:00</span>
         </div>
         <div id="mistakes-count">
-          <span class="material-icons-outlined">close</span>
+          <span class="material-icons-outlined"> close </span>
           <span>0 / 10</span>
         </div>
       </div>
@@ -42,16 +42,29 @@
     </div>
     <div id="right-box">
       <div class="user-info-box">
-        <i class="fa-solid fa-circle-user user-icon"></i>
-        <span class="username">Username</span>
+        <div id="username-wrapper">
+          <i class="fa-solid fa-circle-user user-icon"></i>
+          <span class="username">Username</span>
+        </div>
         <a href="#" class="account-link">Account Info</a>
       </div>
-      <div>
+      <div id="right-box-buttons-container">
         <button class="right-box-button" id="mistakes-button">Mistakes</button>
         <button class="right-box-button" id="hints-button">Hints</button>
         <button class="right-box-button" id="notes-button">Notes</button>
       </div>
       <div class="placeholder-box"></div>
+      <div class="buttons-container">
+        <button class="right-box-button bottom-buttons" id="tutorial-button">
+          <span class="material-icons-outlined">school</span>
+            Tutorial
+        </button>
+        <button class="right-box-button bottom-buttons" id="statistics-button">
+          <span class="material-icons-outlined">insights</span>
+            Statistics
+        </button>
+
+      </div>
     </div>
   </div>
   {% endblock %}
