@@ -184,9 +184,9 @@ WGL R4C
                 TBD
             Notes:
                 Since the user must create an account to possess valid login credentials, it makes sense to perform this test before
-                testing User_Account interactions with Login page (discussed next).
+                testing User_Account interactions with Login page (discussed next). Attempts to add an account under an existing email address should fail gracefully under this route. Likewise for duplicate record insertions.
             Post-conditions:
-                Create Account record must exist and persist in the User_Account table.
+                Create Account record must exist and persist in the User_Account table. 
 
 #### Method 2: The 'User_Login' Access Method ####
 
@@ -220,7 +220,7 @@ WGL R4C
         Status (Pass/Fail):
             TBD
         Notes:
-            None.
+            Attempts to login with invalid username and password should fail. Form fields in the Login page should be in all ways protected from SQL injection attacks. This means using fixed length form fields and possibly screening the user's input prior to making an API request.
         Post-conditions:
             User is directed to the game page.
 
