@@ -4,6 +4,12 @@
 
 {% block content %}
   <div class="game-container">
+    <div id="info-container">
+      <div id="difficulty-setting">Difficulty: Easy</div>
+      <div id="timer">Time: 00:00</div>
+      <div id="mistakes-count">Mistakes: 0</div>
+  </div>
+
     <div id="sudoku-board">
       {% for row in range(9) %}
         {% for col in range(9) %}

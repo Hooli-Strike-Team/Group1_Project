@@ -691,14 +691,31 @@ h3 {
   margin: 2rem auto;
 }
 
+#info-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 24rem;
+  margin-bottom: 0.625rem;
+}
+
+#difficulty-setting,
+#timer,
+#mistakes-count {
+  flex: 1;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
 /* Sudoku board */
 #sudoku-board {
   display: grid;
-  grid-template-rows: repeat(9, 2.6rem);
-  grid-template-columns: repeat(9, 2.6rem);
+  grid-template-rows: repeat(9, 2.67rem);
+  grid-template-columns: repeat(9, 2.67rem);
   border: 0.125rem solid #666666;
-  width: 23.4rem; /* (2.6rem * 9) */
-  height: 23.4rem; /* (2.6rem * 9) */
+  width: 24.03rem; /* 2.67rem * 9 */
+  height: 24.03rem; /* 2.67rem * 9 */
   margin: 0 auto;
 }
 
@@ -707,9 +724,7 @@ h3 {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 2.475rem; /* 2.6rem - 2 * 0.0625rem */
-  height: 2.475rem; /* 2.6rem - 2 * 0.0625rem */
-  background-color: #f0f0f0;
+  background-color: #ffffff;
   font-size: 1.2rem;
   border: 0.0625rem solid #666666;
 }
@@ -721,6 +736,7 @@ h3 {
 
 #sudoku-board .subgrid-right {
   border-right: 0.125rem solid #666666;
+  margin-right: -0.03125rem; /* Adjust for the border */
 }
 
 #sudoku-board .subgrid-bottom {
@@ -730,6 +746,7 @@ h3 {
 #sudoku-board .subgrid-left {
   border-left: 0.125rem solid #666666;
 }
+
 
 /* Digits container */
 .digits-container {
