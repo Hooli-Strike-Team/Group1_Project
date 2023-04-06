@@ -1,136 +1,58 @@
-<!-- INTEGRATE WITH OTHER FORMS AFTER ESTABLISHING FORM AND FUNCTION -->
+{% extends "base.html" %} 
 
-{% extends "base.html" %}
-
-{% block title %}Login{% endblock %}
-{% block buttons %}{% endblock %}
-<hr>
-<!-- INSERT HTML HERE TO INTEGRATE THE HEADER -->
-
+{% block title %}Login{% endblock %} 
 
 {% block content %}
-<!-- <!DOCTYPE html>
-<html> -->
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body {font-family: Arial, Helvetica, sans-serif;}
-            input[type=text], input[type=password] {
-                width: 100%;
-                padding: 12px 20px;
-                margin: 8px 0;
-                display: inline-block;
-                border: 1px solid #ccc;
-                box-sizing: border-box;
-            }
-            button {
-                background-color: #04AA6D;
-                border: none;
-                color: white;
-                padding: 15px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 18px;
-                margin: 8px 4px;
-                cursor: pointer;
-                width: 180px;
-            }
-            button:hover {
-                opacity: 0.8;
-            }
-            .imgcontainer {
-                text-align: center;
-                margin: 24px 0 12px 0;
-            }
-            img.image {
-                width: 40%;
-                border-radius: 50%;
-            }
-            .container {
-                padding: 16px;
-            }
-            span.psw {
-                float: right;
-                padding-top: 16px;
-            }
-            /* Change styles for span and cancel button on extra small screens */
-            @media screen and (max-width: 300px) {
-                span.psw {
-                    display: block;
-                    float: none;
-                }
-            }
-            
-            .flex-container {
-                display: flex;
-            }
+<!-- Flexbox for text box and image container -->
+<div class="main-content">
+  <!-- Container for text box -->
+  <div class="text-box">
+    <h2 id="content-header">Welcome to Sudoku Sage!</h2>
 
-            .flex-child {
-                flex: 1;
-            }
-            .flex-child:first-child {
-                margin-right: 30px;
-                margin-left: 30px;
-            }
-            .flex-main-container {
-                box-sizing: border-box;
-                border: 1px solid black;
-                display: flex;
-                margin-top: 20px;
-                margin-bottom: 20px;
-                margin-left: 20px;
-                margin-right: 20px;
-            }
-            
-        </style>
-    </head>
-    <body>
-        <!-- start of the main div -->
-        <div class="flex-main-container">
-            <!-- start of the left div -->
-            <div class="flex-child green">
-                <div class="imgcontainer">
-                    <img src="{{ url_for('static', filename='images/logo_weights/logo_16px_green_dash.png') }}" alt="Logo"/>
-                </div>
-                <h2>Welcome to Sudoku Tutor!</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </p>
-                <!-- TO DO -->
-                <!-- end of the left div --> 
-            </div>
-            <!-- end of the left div -->
-            <div class="vl" style="float: center;"></div>
-            <!-- start of the right div -->
-            <div class="flex-child magenta">
-                <form action="/action_page.php" method="post">
-                    <div class="container">
-                        <h1>Sign In</h1>
-                        <label for="uname"><h2><b>Username</b></h2></label>
-                        <input type="text" placeholder="" name="uname" required>
-                        <label for="psw"><h2><b>Password</b></h2></label>
-                        <input type="password" placeholder="" name="psw" required>
-                        <label>
-                            <input type="checkbox" checked="checked" name="remember"> Remember me
-                        </label>
-                        <div class="flex-container">
-                            <div class="flex-child magenta">
-                                <a href="#">Forgot password?</a>
-                            </div>
-                            <div class="flex-child green">
-                                <a href="#">Create Account</a>
-                            </div>
-                        </div>
-                        <button type="submit">Sign In</button>
-                    </div>
-                </form>
-            </div>
-            <!-- end of the right div -->    
-        </div><!-- end of the main div -->
-        
-{% endblock %}   
-<!--     </body>
-</html> -->
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+      commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+      cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+      est laborum.
+    </p>
+  </div>
 
+  <div class="flex-child magenta">
+    <form action="" method="post">
+      <div class="container">
+        <h1>Sign In</h1>
+        <label for="uname"
+          ><h2><b>Username</b></h2></label
+        >
+        <!-- Add wrapper around input and links -->
+        <div class="input-wrapper">
+          <input type="text" placeholder="" name="uname" required />
+        </div>
+        <label for="psw"
+          ><h2><b>Password</b></h2></label
+        >
+        <input type="password" placeholder="" name="psw" required />
+        <label class="remember-me">
+          <input type="checkbox" checked="checked" name="remember" /> Remember
+          me
+        </label>
+        <div class="links-wrapper">
+          <a href="#" class="forgot-password">Forgot password?</a>
+          <a href="#" class="create-account">Create Account</a>
+        </div>
+        <!-- End of edited HTML -->
+        <button class="login-button" type="submit">Sign In</button>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %} 
 
+{% block extra_js %} 
+{% if show_logged_in_content %}
+<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+{% endif %} 
+{% endblock %}

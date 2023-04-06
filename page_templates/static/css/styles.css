@@ -723,7 +723,7 @@ h3 {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 24rem;
+  max-width: 27rem; /* Change from 24rem to 27rem */
   margin-bottom: 0.625rem;
   align-items: center;
 }
@@ -740,7 +740,6 @@ h3 {
 }
 
 #difficulty-setting .material-icons-outlined {
-  font-size: 2rem;
   margin-right: 0.2rem;
 }
 
@@ -752,14 +751,13 @@ h3 {
   margin-right: 0.2rem;
 }
 
-/* Sudoku board */
 #sudoku-board {
   display: grid;
-  grid-template-rows: repeat(9, 2.67rem);
-  grid-template-columns: repeat(9, 2.67rem);
+  grid-template-rows: repeat(9, 3rem); /* Change from 2.67rem to 3rem */
+  grid-template-columns: repeat(9, 3rem); /* Change from 2.67rem to 3rem */
   border: 0.125rem solid #666666;
-  width: 24.03rem; /* 2.67rem * 9 */
-  height: 24.03rem; /* 2.67rem * 9 */
+  width: 27rem; /* Change from 24.03rem to 27rem (3rem * 9) */
+  height: 27rem; /* Change from 24.03rem to 27rem (3rem * 9) */
   margin: 0 auto;
 }
 
@@ -795,8 +793,7 @@ h3 {
 .actions-container {
   display: flex;
   justify-content: space-between;
-  width: 23.4rem;
-  /* Same width as Sudoku board */
+  width: 27rem; /* Change from 24.17rem to 27rem */
   margin-top: 1rem;
 }
 
@@ -826,7 +823,7 @@ h3 {
 .digits-container {
   display: flex;
   justify-content: space-between;
-  width: 24rem;
+  width: 27rem; /* Change from 24rem to 27rem */
   margin-top: 1rem;
 }
 
@@ -855,14 +852,12 @@ h3 {
   align-items: center;
   width: 18.75rem;
   height: 24.05rem;
-  background-color: #f5f5f5;
-  border: 1px solid #cccccc;
   border-radius: 0.25rem;
-  margin-top: 2.61rem;
+  margin-top: 2.22rem;
   padding: 0;
 }
 
-/* User info box */
+/* User information box */
 .user-info-box {
   display: flex;
   align-items: center;
@@ -870,13 +865,15 @@ h3 {
   width: 18.75rem;
   height: 3.8rem;
   background-color: #ffffff;
+  border: 2px solid #cccccc;
   border-radius: 0.25rem;
   margin-bottom: 1rem;
 }
 
 /* User icon */
 .user-icon {
-  font-size: 1.5rem;
+  margin-right: 0.45rem;
+  font-size: 1.95rem;
   color: #888888;
 }
 
@@ -895,9 +892,9 @@ h3 {
 
 /* Account link */
 .account-link {
-  font-size: 1rem;
-  color: #2db896;
-  text-decoration: none;
+    font-size: 0.83rem;
+    color: #2db896;
+    text-decoration: none;
 }
 
 .account-link:hover {
@@ -922,7 +919,7 @@ h3 {
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  margin-top: 1rem;
+  flex-direction: column;
 }
 
 #right-box-buttons-container {
@@ -950,7 +947,27 @@ h3 {
   background-color: #e0e0e0; /* Light gray background */
   border: 1px solid #cccccc;
   border-radius: 4px;
+  margin: 1rem;
+}
+
+.top-buttons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.new-game-button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
   margin-top: 1rem;
+}
+
+.new-game-button {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
 }
 
 /***********
@@ -980,19 +997,126 @@ h3 {
 /*************
  *  Sign In  *
  *************/
-.outer-div {
-    background-color: yellow;
-    width: 100px;
+
+/* <meta name="viewport" content="width=device-width, initial-scale=1"> */
+/* body {font-family: Arial, Helvetica, sans-serif;} */
+
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  margin: 0.5rem 0;
+  display: inline-block;
+  border: 0.0625rem solid #ccc;
+  box-sizing: border-box;
 }
 
-.left-inner-div {
-    background-color: red;
-    float: left;
-    width: 50%;
+input[type="password"] {
+  margin-bottom: 1rem;
 }
 
-.right-inner-div {
-    background-color: blue;
-    float: right;
-    width: 50%;
+label input[type="checkbox"][name="remember"] {
+  margin-bottom: 0.5rem;
 }
+
+.login-button {
+  margin: 1rem auto 0 auto;
+  border-radius: 0.2rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  background-color: #578172;
+  border: 0.125rem solid #578172;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.125rem;
+  cursor: pointer;
+  width: 11.25rem;
+}
+
+.login-button:hover {
+  opacity: 0.8;
+}
+
+.imgcontainer {
+  text-align: center;
+  margin: 1.5rem 0 0.75rem 0;
+}
+
+/* img.image {
+  width: 40%;
+  border-radius: 50%;
+} */
+
+.container {
+  padding: 1rem;
+}
+
+span.psw {
+  float: right;
+  padding-top: 1rem;
+}
+
+/* Change styles for span and cancel button on extra small screens */
+@media screen and (max-width: 18.75rem) {
+  span.psw {
+    display: block;
+    float: none;
+  }
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-child {
+  flex: 1;
+}
+
+.flex-child:first-child {
+  margin: 0 1.875rem 0 1.53rem;
+}
+
+.flex-main-container {
+  box-sizing: border-box;
+  border: 0.0625rem solid black;
+  display: flex;
+  margin: 1.25rem;
+}
+
+/* Start of new CSS */
+.container h1 {
+  margin-top: -0.5rem;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+label h2 b {
+  font-weight: 500;
+}
+
+.links-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.forgot-password,
+.create-account {
+  font-weight: 500;
+  color: #444444;
+}
+
+.remember-me {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+/* End of new CSS */
+
+/********************
+ *  Create Account  *
+ ********************/
