@@ -887,6 +887,12 @@ h3 {
   color: #333333;
 }
 
+#username-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Account link */
 .account-link {
   font-size: 1rem;
