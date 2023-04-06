@@ -540,18 +540,122 @@ Table Description:
     Holds saved games for users
     
 Fields:
-    GameID - Primary key generated for game
-    AccountName - Foriegn Key
-    GameState - string with data for game state
+    GameID, STRING - Primary key generated for game 
+    AccountName, STRING - Foriegn Key
+    GameState, STRING - string with data for game state
     
 Tests:
-    /* todo */
+    1. Saving a game adds a new game file to database 
+    2. Recalling a game retrieves correct game file in database
+    3. Saving a retrieved game overwrites correct game file 
+    4. Only correct accounts can retrive their respective games  
+    5. AccountName files that do not match existing accounts will not be saved 
     
 Access Methods:
-    getSettings - return all fields, use for displaying game board and settings page
-        '''
-        Name
-        Description
-        Parameters
-        return values
-        List of tests for verifying each access method
+    *Access Method 1*
+
+Name: `saveGame` <br>
+Description: updates a specific game by recording the game state with a string <br>
+
+Parameters:
+
+* `GameID` STRING
+* `AccountName` STRING
+* `GameState` STRING
+
+Return values: none 
+
+Tests:
+    
+      Use case name
+          Verify that a data entry is updated with correct GameState string, AccountName, and GameID
+      Description
+          Test that the game is saved correctly in the table 
+      Pre-conditions
+          AccountName is valid, GameID created and valid, 
+      Test steps
+          1. Check to see if there is another table entry with the same GameID. 
+          2a. If so, overwite the table entry with the new GameState
+          2b. If not, create new table entry with respective parameters 
+          3. Verify new table entry 
+      Expected result
+          There should be a new entry in the table for the game 
+      Actual result
+          N/A
+      Status (Pass/Fail)
+          N/A
+      Notes
+          N/A
+      Post-conditions
+          The new entry in the table should remain stable and retrieveable for other tests 
+          
+*Access Method 2*
+
+Name: `recallGame` <br> 
+Description: retrieves a Games entry and populates the game based on the GameState string. 
+
+Parameters:
+
+* `GameID` STRING
+* `AccountName` STRING
+
+Return values: `GameState` STRING
+
+Tests:
+
+      Use case name
+          Verify a game is retrieved correctly from the table 
+      Description
+          Test the load game procedure works correctly 
+      Pre-conditions
+          AccountName is valid, GameID is valid and both correspond to a table entry within Games table 
+      Test steps
+          1. Verify GameId exists
+          2. Verify the AccountName for table entry matches the AccountName retrieving the table entry 
+          3. Change Sudoku board appearance based on GameState STRING
+      Expected result
+          The board state changes based on the table entry accessed, matching a previously saved entry 
+      Actual result
+          N/A
+      Status (Pass/Fail)
+          Pass
+      Notes
+          N/A
+      Post-conditions
+          The user is now able to continue to change the gamestate and resume completing the sudoku puzzle 
+          
+*Access Method 3*
+
+Name: `recallGame` <br> 
+Description: verifies that only the corresponding account may access the saved game state. 
+
+Parameters:
+
+* `GameID` STRING
+* `AccountName` STRING
+
+Return values: `None`
+
+Tests:
+
+      Use case name
+          Verify an invalid user cannot access a table entry 
+      Description
+          Tests that when a user tries to select GameID that does not correspond to their AccountName, the user is denied 
+      Pre-conditions
+          Valid Games Table entry, with an incorrect AccountName for the entry. 
+      Test steps
+          1. Retrieve a game table entry as in recallGame above. 
+          2. Provide a valid GameID, GameState, and an invalid AccountName
+          3. The AccountName provided will not match the table entry 
+          4. The action is canceled as a result 
+      Expected result
+          Nothing will occur, error message for user, no changes to games table 
+      Actual result
+          N/A
+      Status (Pass/Fail)
+          N/A
+      Notes
+          N/A
+      Post-conditions
+          No changes, the user is successfully blocked from modifying a game that they do not have access to. 
