@@ -409,9 +409,6 @@ h3 {
     cursor: pointer;
     text-align: center;
   }
-/********************
- *  Create Account  *
- ********************/
 
 /****************
  *  Difficulty  *
@@ -789,52 +786,69 @@ h3 {
 
 input[type=text], input[type=password] {
   width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
+  padding: 0.75rem 1.25rem;
+  margin: 0.5rem 0;
   display: inline-block;
-  border: 1px solid #ccc;
+  border: 0.0625rem solid #ccc;
   box-sizing: border-box;
 }
+
+input[type="password"] {
+  margin-bottom: 1rem;
+}
+
+label input[type="checkbox"][name="remember"] {
+  margin-bottom: 0.5rem;
+}
+
 button {
-  background-color: #04AA6D;
-  border: none;
-  color: white;
-  padding: 15px;
+  margin: 1rem auto 0 auto;
+  border-radius: 0.2rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  background-color: #578172;
+  border: 0.125rem solid #578172;
+  color: #ffffff;
+  padding: 0.5rem 1rem;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 18px;
-  margin: 8px 4px;
+  font-size: 1.125rem;
   cursor: pointer;
-  width: 180px;
+  width: 11.25rem;
 }
+
 button:hover {
   opacity: 0.8;
 }
+
 .imgcontainer {
-   text-align: center;
-   margin: 24px 0 12px 0;
+  text-align: center;
+  margin: 1.5rem 0 0.75rem 0;
 }
-img.image {
+
+/* img.image {
   width: 40%;
   border-radius: 50%;
-}
+} */
+
 .container {
-  padding: 16px;
+  padding: 1rem;
 }
+
 span.psw {
   float: right;
-  padding-top: 16px;
+  padding-top: 1rem;
 }
 
 /* Change styles for span and cancel button on extra small screens */
-@media screen and (max-width: 300px) {
+@media screen and (max-width: 18.75rem) {
   span.psw {
-  display: block;
-  float: none;
+    display: block;
+    float: none;
   }
 }
-            
+
 .flex-container {
   display: flex;
 }
@@ -842,20 +856,50 @@ span.psw {
 .flex-child {
   flex: 1;
 }
+
 .flex-child:first-child {
-  margin-right: 30px;
-  margin-left: 30px;
-}
-.flex-main-container {
-  box-sizing: border-box;
-  border: 1px solid black;
-  display: flex;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
+  margin: 0 1.875rem 0 1.53rem;
 }
 
-/*************
+.flex-main-container {
+  box-sizing: border-box;
+  border: 0.0625rem solid black;
+  display: flex;
+  margin: 1.25rem;
+}
+
+/* Start of new CSS */
+.container h1 {
+  margin-top: -0.5rem;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+label h2 b {
+  font-weight: 500;
+}
+
+.links-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.forgot-password,
+.create-account {
+  font-weight: 500;
+  color: #444444;
+}
+
+.remember-me {
+  display: block;
+  margin-bottom: 0.75rem;
+}
+/* End of new CSS */
+
+/********************
  *  Create Account  *
- *************/
+ ********************/
