@@ -801,7 +801,7 @@ label input[type="checkbox"][name="remember"] {
   margin-bottom: 0.5rem;
 }
 
-button {
+.login-button {
   margin: 1rem auto 0 auto;
   border-radius: 0.2rem;
   font-family: "Montserrat", sans-serif;
@@ -818,7 +818,7 @@ button {
   width: 11.25rem;
 }
 
-button:hover {
+.login-button:hover {
   opacity: 0.8;
 }
 
