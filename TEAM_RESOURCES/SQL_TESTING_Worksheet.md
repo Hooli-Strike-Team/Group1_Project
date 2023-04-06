@@ -57,64 +57,64 @@ WGL R4C
         User_Account
     Description:
         User_Account holds user data tuples containing the attributes: 'Username', 'Password', 'First_Name', 'Last_Name', and 'Email'. 
-        User_Account will be populated via a form submission on the Create Account page.
-        Username and Password are stored and verified in this table to grant the users with access to the rest of the application.
+        The User_Account table will be populated via a form submission route associated with the Create Account page.
+        Username and Password are stored and verified within this table to grant users access to the rest of the application.
     Field Descriptions:
         Username, VARCHAR(32) - Primary Key
-        Password, VARCHAR(16)
-        First_Name, VARCHAR(50)
-        Last_Name, VARCHAR(50)
-        Email, VARCHAR(320) - UNIQUE
+        Password, VARCHAR(16) - NOT NULL
+        First_Name, VARCHAR(50) - NOT NULL
+        Last_Name, VARCHAR(50) - NOT NULL
+        Email, VARCHAR(320) - UNIQUE, NOT NULL
     Tests for Table Verification:
         (see below)
 #### 'User_Account' Table Test 1 Description ####
 
-        User_Account Test 1: Insertion of a valid record.
+        User_Account Test 1: Create the User_Account table, insert a valid record, verify the insertion.
         Use case name:
-            "Valid Insert"
+            "Create Table / Valid Insert"
         Description:
-            Insert a valid record, then retrieve the record(s) to verify the table works as intended.
+            Create the User_Account table and insert a valid record. Then retrieve the record(s) to verify the insertion.
         Pre-conditions
-            The User_Account table must exist.
+            The User_Account table must be created prior to performing the test.
             User_Account table constraints must be in place.
             Inserted data must agree with the table constraints.
-        Test steps
-            1. Create the User_Account table (if it does not already exist).
-            2. Insert a tuple of valid test data.
-            3. '''SELECT * FROM User_Account''' to view the data and verify that the record has been inserted.
-        Expected result
-            The inserted tuple should be clearly visible from the result of the SELECT query.
-        Actual result
-            TBD
-        Status (Pass/Fail)
-            TBD
-        Notes
-            None.
-        Post-conditions
-            Tuple exists in the User_Account table.
-#### 'User_Account' Table Test 2 Description ####
-
-        User_Account Test 2: Insertion of a duplicate record.
-        Use case name:
-            "Duplicate Record Insert"
-        Description:
-            Inserting a duplicate record into the User_Account table should fail.
-        Pre-conditions:
-            The User_Account table must exist.
-            User_Account table constraints must be in place.
-            Inserted record must already exist in the User_Account table.
         Test steps:
-            1. Insert a valid tuple into the User_Account table.
-            2. Re-insert the tuple from step one into the User_Account table.
-            3. Observe the result.
+            1. Create the User_Account table (if it does not already exist).
+            2. Insert a tuple of valid test data. I.e., following the table constraints given above.
+            3. '''SELECT * FROM User_Account''' to view the data and verify that the record has been inserted.
         Expected result:
-            An error should occur, citing a violation of the User_Account table constraints.
+            The inserted tuple should be clearly visible in the result of the SELECT query.
         Actual result:
             TBD
         Status (Pass/Fail):
             TBD
         Notes:
-            Insertion of a duplicate record will be rejected by the database API, which may result in unexpected application behavior. As a result, it is probably best to SELECT COUNT the matching records first, then evaluate the results and perform the correct action. If this result is not 0, the record should be refused by the route performing the verification, NOT by the database API itself. 
+            Test 
+        Post-conditions:
+            Tuple exists in the User_Account table.
+#### 'User_Account' Table Test 2 Description ####
+
+        User_Account Test 2: Insertion of a record with a duplicate Username.
+        Use case name:
+            "Duplicate Record Insert"
+        Description:
+            Inserting a record containing a duplicate Username into the User_Account table should fail.
+        Pre-conditions:
+            The User_Account table must exist.
+            User_Account table constraints must be in place.
+            Inserted record must contain a Username that already exists in the User_Account table.
+        Test steps:
+            1. Ensure that at least one valid tuple is inserted in the User_Account table.
+            2. Insert a tuple containing the same Username as one of the valid record(s) from step 1.
+            3. Observe the result.
+        Expected result:
+            An error should occur, citing a violation of the User_Account table primary key constraint on Username.
+        Actual result:
+            TBD
+        Status (Pass/Fail):
+            TBD
+        Notes:
+            Insertion of a duplicate username should be rejected by the database API if the table constraints have been implemented correctly. Observe the API behavior during this insertion and consider this information when developing the User_Account access routes. 
         Post-conditions:
             None.
 #### 'User_Account' Table Test 3 Description ####
@@ -123,25 +123,24 @@ WGL R4C
         Use case name:
             "Existing Email Insert"
         Description:
-            Each account must contain a unique email address. Attempting to create a second account with an existing email address must fail.
-        Pre-conditions
-            The User_Account table must exist.
-            User_Account table constraints must be in place.
-            The test record should mimic an attempt to create an account with an existing email address.
-        Test steps
-            1. Insert a valid record, or choose a valid record from User_Account.
-            2. Create a test record containing an existing email address, all other attributes should be valid.
-            3. Insert the record from step 2.
-            4. Observe the result.
-        Expected result
-            The insertion should fail based on the UNIQUE attribute constraint placed on "Email".
-        Actual result
+            Attempting to create an account with an existing email address should fail.
+        Pre-conditions:
+            The User_Account table must exist, with stated table constraints in place.
+            User_Account table should be populated with valid record(s) prior to performing the test.
+            Other than the Email parameter, the test record should contain valid user data.
+        Test steps:
+            1. Create a test record that contains an existing email address. (All other attributes should conform to the User_Account table constraints.)
+            2. Insert the record.
+            3. Observe the result.
+        Expected result:
+            An error should occur, citing a violation of the User_Account UNIQUE table constraint on the 'Email' attribute.
+        Actual result:
             TBD
-        Status (Pass/Fail)
+        Status (Pass/Fail):
             TBD
-        Notes
-            As mentioned before, we should not place undue strain on the API. If necessary, submit a query to gather information about whether the email adress exists inside the User_Account table and then handle the user's request based on this information.
-        Post-conditions
+        Notes:
+            Insertion of a duplicate email should be rejected by the database API if the table constraints have been implemented correctly. Observe the API behavior during this insertion and consider this information when developing the User_Account access routes.
+        Post-conditions:
             None.
 
 ### 'User_Account' Access Method Descriptions ###
@@ -151,79 +150,90 @@ WGL R4C
     Name: 
         'Create_User_Account'
     Description:
-        Create_User_Account will insert a tuple of new user data into the User_Account table when the user fills in the Create Account form with valid information and clicks the submit button.
+        Create_User_Account should insert a tuple filled with new user data into the User_Account table when the user fills in the Create Account form with valid information and clicks the submit button. If the insert is valid with respect to the stated table constraints, the user should be directed to the Login page.
+        If the user attempts to create an account with an existing Username or Email, no new record shall be created, and a message should be presented to the user on the same page explaining the error.
     Parameters:
-        Username, Password, First_Name, Last_Name, and Email
+        Username, Password, First_Name, Last_Name, Email, Create Account button
     Return values:  
-        Redirect to the Login page.
-    List of tests for verifying each access method: 
+        User is directed to the Login page if correct information was provided.
+        Error message is displayed if Username exists in the table.
+        Error message is displayed if Email exists in the table.
+    List of tests for verifying the access method: 
         'Create_User_Account' Test 1:
             Use case name:
-                "Valid Account Creation"
+                "Create Valid Account"
             Description:
-                Verify that entering valid form data into the "Create Account" produces a new record in the User_Account table. This data must be made available to subsequent routes.
+                Verify that entering valid form data into the "Create Account" page produces a new record in the User_Account table and redirects the user to the Login page. Inserted data must remain in the table for access by subsequent routes. Entries containing duplicate Username and/or Email should fail to produce a new record and render the initial view along with an appropriate error message.
             Pre-conditions:
-                The User_Account table must exist with the given table constraints.
+                The User_Account table must exist with stated constraints.
                 The Username test instance must not exist in User_Account.
                 The Email test instance must not exist in User_Account.
-                Password, First_Name, and Last_Name must be entered as well. 
+                Password, First_Name, and Last_Name must be provided. 
             Test steps:
                 1. Navigate to 'Create an Account' page
-                2. Provide a valid username
-                3. Provide a password
-                4. Provide a first name
-                5. Provide a last name
-                6. Provide a unique email address
+                2. Provide a unique username (required)
+                3. Provide a password (required)
+                4. Provide a first name (required)
+                5. Provide a last name (required)
+                6. Provide a unique email address (required)
                 7. Click the 'Create Account' button
+                8. Observe the application behavior and monitor any changes to the User_Account table.
+                9. Repeat steps 1-8 with a record containing a duplicate Username.
+                10. Repeat steps 1-8 with a record containing a duplicate Email.
+                11. Repeat steps 1-8 with a record containing a duplicate Username and Email.
             Expected result:
-                A tuple should appear in User_Account describing the new user including his/her login credentials. 
-                User should be directed to the 'Login' page following a successful registration.
+                Steps 1-8: A tuple should appear in the User_Account table containing the new user's data if table constraints were observed. Upon successful account creation, the user should be directed to the 'Login' page.
+                Steps 9-11: If the inserted record contains a duplicate Username, Email, or both, then no new record should be inserted into User_Account, and the user should be prompted on the same page to try again (i.e., no redirect).
             Actual result:
                 TBD
             Status (Pass/Fail):
                 TBD
             Notes:
-                Since the user must create an account to possess valid login credentials, it makes sense to perform this test before
-                testing User_Account interactions with Login page (discussed next). Attempts to add an account under an existing email address should fail gracefully under this route. Likewise for duplicate record insertions.
+                Since the user must create an account to possess valid login credentials, it makes sense to perform this test before testing the User_Account interactions with Login page (discussed next). Attempts to add an account under an existing email address and/or Username should fail gracefully and present the user with a message describing the error.
             Post-conditions:
-                Create Account record must exist and persist in the User_Account table. 
+                Valid account records must persist in the User_Account table to provide record access to subsequent routes. 
 
 #### Method 2: The 'User_Login' Access Method ####
 
     Name: 
         'User_Login'
     Description:
-        The User_Login access method should verify that the user's login credentials exist in the User_Account table and, if so, 
-        direct the user to the game page.
+        The User_Login access method should verify that the user's login credentials exist in the User_Account table and, if so, redirect the user to the user's home page. 
+        If the provided information is incorrect or does not exist in the User_Account table, the login attempt should fail, and the user should be presented with an error message in place of a redirect.
     Parameters:
-        Username, Password
+        Username, Password, Login Button
     Return values:
-        None.
+        Redirect to Home page if credentials are successfully verified.
+        Present an error message if credentials are incorrect and/or do not exist.
     List of tests for verifying each access method: 
         User_Login Test 1:
         Use case name:
-            "Successful Login"
+            "Test Login"
         Description:
-            Verify that a user with valid login credentials is granted access to the application. 
+            Verify that a user with valid login credentials is granted access to the rest of the application. 
+            Verify that a incorrect and/or non-existent login credentials do NOT provide access to the rest of the application.
         Pre-conditions:
-            The user must be registered via the 'Create Account' page, and must provide valid login credentials.
+            At least one user must be registered via the 'Create Account' page to provide a set of valid login credentials.
         Test steps:
-            1. Navigate to the Login page
-            2. Provide valid user name
-            3. Provide valid password
-            4. Click 'Sign In' button
+            1. Navigate to the Login page.
+            2. Provide valid user name.
+            3. Provide valid password.
+            4. Click 'Sign In' button.
+            5. Observe the behavior of the application.
+            6. Repeat steps 1-5 using an invalid username and correct password.
+            7. Repeat steps 1-5 using an invalid password and correct username.
         Expected result:
-            If the user provided a valid Username and Password combination, they should be directed to the Game page.
-            If the user provides a faulty Username/Password combination, the rendered view should not change.
+            Steps 1-5: If a valid Username and Password combination is provided, clicking 'Sign In' button should invoke a redirect to the user's home page.
+            Steps 6-7: If a faulty Username/Password combination is provided, the rendered view should not change and a message should appear describing the error. 
         Actual result:
             TBD
         Status (Pass/Fail):
             TBD
         Notes:
-            Attempts to login with invalid username and password should fail. Form fields in the Login page should be in all ways protected from SQL injection attacks. This means using fixed length form fields and possibly screening the user's input prior to making an API request.
+            Attempts to login with invalid username and password should fail. Fixed length form fields and user input screening should be implemented when designing the route to eliminate the risk of an SQL injection attack. 
         Post-conditions:
-            User is directed to the game page.
-
+            User is directed to the game page upon successful login. 
+            Login page is rendered with appropriate error message upon a failed login attempt.
      
 ## Achievement_Stats Table ##
 ### 'Achievement_Stats' Table Description ###
