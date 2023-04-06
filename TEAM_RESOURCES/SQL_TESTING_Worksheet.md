@@ -225,42 +225,126 @@ WGL R4C
             User is directed to the game page.
 
      
-### Table 2 ###
-Table Name: Statistics
+## Achievement_Stats Table ##
+### 'Achievement_Stats' Table Description ###
 
-Table Description:
-    Holds account statistics for calculating achievements and displaying for users
-    
-Fields:
-    AccountName - Primary and Foriegn Key
-    EasyGamesCompleted
-    MedGamesCompleted
-    EasyTime
-    MedTime
-    HardTime
-    AccountLevel
-    
-Tests:
-    /* todo */
-    
-Access Methods:
-    getStats - return all fields for display
-        '''
-        Name
-        Description
-        Parameters
-        return values
-        List of tests for verifying each access method
-        '''
-    
-    calcAchievements - update Achievements table based on current account stats
-        '''
-        Name
-        Description
-        Parameters
-        return values
-        List of tests for verifying each access method
-        '''
+    Name: 
+        Achievement_Stats
+    Description:
+        Achievement_Stats holds usesr account data for stored for triggering achievements
+        Achievement_Stats attributes: 'Username', 'EasyGamesCompleted', 'MedGamesCompleted', 'HardGamesCompleted',
+            'Best_Time_Easy', 'Best_Time_Med', 'Best_Time_Hard', and 'AccountLevel'
+        Achievement_Stats entries will initialized with creation of a user account and given AccountLevel = 0, with other fields null. 
+        Any updates to a user's Achievement_Stats entry will trigger a check to update the user's User_Achievements entry.
+    Field Descriptions:
+        Username, VARCHAR(32) - Primary Key, Foreign Key
+        EasyGamesCompleted, INT
+        MedGamesCompleted, INT
+        HardGamesCompleted, INT
+        Best_Time_Easy, FLOAT
+        Best_Time_Med, FLOAT
+        Best_Time_Hard, FLOAT
+        AccountLevel, FLOAT
+    Tests for Table Verification:
+        (see below)
+
+#### 'Achievement_Stats' Table Test 1 Description ####
+
+    Achievement_Stats Test 1: Creation of User Stats Entry .
+    Use case name:
+        "User Stats Creation"
+    Description:
+        Updating any of the Best_Time fields should fail if the entry is larger than the current entry.
+    Pre-conditions:
+        The User_Account table must exist.
+        The Achievement_Stats table must exist.
+        Achievement_Stats trigger must have been created.
+    Test steps
+        1. Insert a tuple of valid data into User_Account with specified username
+        2. '''SELECT * FROM Achievement_Stats WHERE Username = username''' to view the data and verify that the record has been inserted.
+        3. Ensure Username = username, AccountLevel = 0, GamesComleted fields = 0, and Best_Time fields = NULL
+    Expected result
+        The Achievement_Stats table should contain an intialzed (empty) stats tuple corresponding to the user added to User_Account.
+    Actual result
+        TBD
+    Status (Pass/Fail)
+        TBD
+    Notes
+        None.
+    Post-conditions
+        Properly initialized entry exists in the Achievement_Stats table.    
+        
+#### 'Achievement_Stats' Table Test 2 Description ####
+
+    Achievement_Stats Test 2: Slower Time Update
+    Use case name:
+        "Slower Time"
+    Description:
+        Insert a new user in User_Account with username USERNAME, then retrieve the record with priamry key USERNAME to verify initialization.
+    Pre-conditions
+        The Achievement_Stats table must exist.
+        Achievement_Stats constraints must be implemented.
+        User Stats entry created for user.
+        Best_Time_Easy, Best_Time_Med, and Best_Time_Hard have been updated from initialized NULL value for the given user.
+    Test steps
+        1. '''SELECT * FROM Achievement_Stats WHERE Username = username''' to view the data.
+        2. Select new times to insert such that newTimeEasy > Best_Time_Easy, newTimeMed >Best_Time_Med, and newTimeHard > Best_Time_Hard
+        3.  Run update query:
+            '''UPDATE AchievementStats
+              SET Best_Time_Easy=newTimeEasy,
+                  Best_Time_Med=newTimeMed,
+                  Best_Time_Hard=newTimeHard,
+              WHERE Username = username
+           ''' 
+        4. '''SELECT * FROM Achievement_Stats WHERE Username = username''' to view the data again.
+        5. Ensure no field has been changed from the original Select query in step 1.
+        
+    Expected result
+        The Achievement_Stats table should not update Best_Time fields if the updated times are greater than current values.
+    Actual result
+        TBD
+    Status (Pass/Fail)
+        TBD
+    Notes
+        This condidition should likely also be checked by logic in the web page before attempting to update the database.
+    Post-conditions
+        There should be no change to the Achievement_Stats table.    
+        
+### 'Achievement_Stats' Access Method Descriptions ###
+
+#### 'Achievement_Stats' Access Method 1 Description ####
+
+    Name: 
+        'getStats'
+    Description:
+        The getStats method should return a list the values for all fields of Achievement_Stats for a given user 
+    Parameters:
+        Username
+    Return values:
+        [EasyGamesCompleted, MedGamesCompleted, HardGamesCompleted, Best_Time_Easy, Best_Time_Med, Best_Time_Hard, AccountLevel]
+    List of tests for verifying each access method: 
+        getStats Test 1:
+        Use case name:
+            "Check Stats"
+        Description:
+            Verify that getStats produces the same output as an SQL query for the username provided. 
+        Pre-conditions:
+            The user must have an entry created in User_Account.
+        Test steps:
+            1. Call function user_stats = getStats(username)
+            2. Run query '''SELECT * FROM Achievement_Stats WHERE Username = username'''
+            3. Verify values in user_stats match output from query
+        Expected result:
+            Values in user_stats should match output from SQL selection query
+        Actual result:
+            TBD
+        Status (Pass/Fail):
+            TBD
+        Notes:
+            This access method will be used for displaying stats and possibly for updating User_Achievements through javascript.
+        Post-conditions:
+            List of achievement stats has been passed from the fuction.
+
         
 ### Table 3 ###
 
