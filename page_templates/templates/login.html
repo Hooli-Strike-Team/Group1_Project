@@ -1,52 +1,124 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block title %}Login{% endblock %}
+{% block title %}Home{% endblock %} 
 
-<!-- COMMENTS -->
-<hr>
+{% block content %} 
 
-<!-- start of the main div -->
-{% block content %}
-<div class="flex-main-container">
-    <!-- start of the left div -->
-    <div class="flex-child green">
-        <div class="imgcontainer">
-            <img src="{{ url_for('static', filename='images/logo_weights/logo_16px_green_dash.png') }}" alt="Logo"/>
-        </div>
-        <h2>Welcome to Sudoku Tutor!</h2>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <!-- TO DO: Include vertical rule -->
-        <!-- end of the left div --> 
-    </div>
-    <!-- end of the left div -->
-    <div class="vl" style="float: center;"></div>
-    <!-- start of the right div -->
-    <div class="flex-child magenta">
-        <form action="/action_page.php" method="post">
-            <div class="container">
-                <h1>Sign In</h1>
-                <label for="uname"><h2><b>Username</b></h2></label>
-                <input type="text" placeholder="" name="uname" required>
-                <label for="psw"><h2><b>Password</b></h2></label>
-                <input type="password" placeholder="" name="psw" required>
-                <label>
-                    <input type="checkbox" checked="checked" name="remember"> Remember me
-                </label>
-                <div class="flex-container">
-                    <div class="flex-child magenta">
-                        <a href="#">Forgot password?</a>
-                    </div>
-                    <div class="flex-child green">
-                        <a href="#">Create Account</a>
-                    </div>
-                </div>
-                <button type="submit">Sign In</button>
+<!-- Flexbox for text box and image container -->
+<div class="main-content">
+  <!-- Container for text box -->
+  <div class="text-box">
+    <h2 id="content-header">Welcome To Sudoku Sage!</h2>
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+  </div>
+
+  <div class="flex-child magenta">
+    <form action="" method="post">
+      <div class="container">
+        <h1>Sign In</h1>
+        <label for="uname"><h2><b>Username</b></h2></label>
+        <input type="text" placeholder="" name="uname" required>
+        <label for="psw"><h2><b>Password</b></h2></label>
+        <input type="password" placeholder="" name="psw" required>
+        <label>
+          <input type="checkbox" checked="checked" name="remember"> Remember me
+          </label>
+          <div class="flex-container">
+            <div class="flex-child magenta">
+              <a href="#">Forgot password?</a>
             </div>
-        </form>
+            <div class="flex-child green">
+              <a href="#">Create Account</a>
+            </div>
+          </div>
+        <button type="submit">Sign In</button>
+      </div>
+    </form>
+  </div>
+  
+    
+  <!-- Container for image -->
+<!--   <div class="image-container">
+    <img
+      src="{{ url_for('static', filename='images/home/alt_img_green.png') }}"
+      alt="Solution"
+    />
+  </div> -->
+    
+  
+
+</div>
+
+<!-- Flexbox for features -->
+<div class="main-content increase-top-margin">
+  <div class="feature-wrapper">
+    <!-- Container for feature #1 -->
+    <div class="feature-container">
+      <!-- Header for feature #1 -->
+      <div class="feature-header">
+        <div class="feature-icon">
+          <span class="material-icons-outlined"> sentiment_satisfied_alt </span>
+        </div>
+        <h2>User-Friendly Interface</h2>
+      </div>
+
+      <!-- Text box for feature #1 -->
+      <div class="feature-text-box">
+        <p>
+          Designed with simplicity and ease of use in mind, Sudoku Sage's
+          intuitive interface provides you with a seamless puzzle-solving
+          experience.
+        </p>
+      </div>
     </div>
-    <!-- end of the right div -->    
-</div><!-- end of the main div -->        
+
+    <!-- Container for feature #2 -->
+    <div class="feature-container">
+      <!-- Header for feature #2 -->
+      <div class="feature-header">
+        <div class="feature-icon">
+          <span class="material-icons-outlined"> school </span>
+        </div>
+        <h2>Real-Time Guidance and Feedback</h2>
+      </div>
+
+      <!-- Text box for feature #2 -->
+      <div class="feature-text-box">
+        <p>
+          Sudoku Sage's real-time guidance helps you to understand the logic
+          behind each recommended strategy, reducing your dependence on
+          traditional hints.
+        </p>
+      </div>
+    </div>
+
+    <!-- Container for feature #3 -->
+    <div class="feature-container">
+      <!-- Header for feature #3 -->
+      <div class="feature-header">
+        <div class="feature-icon">
+          <span class="material-icons-outlined"> insights </span>
+        </div>
+        <h2>Motivation-Boosting Progress Tracking</h2>
+      </div>
+
+      <!-- Text box for feature #3 -->
+      <div class="feature-text-box align-left">
+        <p>
+          Stay inspired and visualize your improvement with our dynamic progress
+          tracking tools. Earn badges and reach milestones as you advance
+          through puzzle challenges.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
 
+{% block extra_js %} 
+{% if show_logged_in_content %}
+<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+{% endif %}
+{% endblock %}
