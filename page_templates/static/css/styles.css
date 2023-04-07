@@ -708,8 +708,9 @@ h3 {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
   margin: 2rem auto;
-  max-width: 75rem;
+  max-width: 85rem; 
 }
 
 .left-container {
@@ -717,14 +718,15 @@ h3 {
   flex-direction: column;
   align-items: center;
   /* Add space between left-container and right-box */
-  margin-right: 2rem;
+  margin-right: 3rem;
+  margin-top: -2rem;
 }
 
 #info-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 27rem;
+  max-width: 32rem;
   margin-bottom: 0.625rem;
   align-items: center;
 }
@@ -735,7 +737,7 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.15rem;
+  font-size: 1.2rem;
   font-weight: 500;
   width: 33.3%;
 }
@@ -754,11 +756,11 @@ h3 {
 
 #sudoku-board {
   display: grid;
-  grid-template-rows: repeat(9, 3rem);
-  grid-template-columns: repeat(9, 3rem);
+  grid-template-rows: repeat(9, 3.555rem);
+  grid-template-columns: repeat(9, 3.555rem);
   border: 0.125rem solid #666666;
-  width: 27rem;
-  height: 27rem;
+  width: 32rem; 
+  height: 32rem;
   margin: 0 auto;
 }
 
@@ -768,18 +770,22 @@ h3 {
   justify-content: center;
   align-items: center;
   background-color: #ffffff;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   border: 0.0625rem solid #666666;
 }
 
 /* Subgrid borders */
 #sudoku-board .subgrid-top {
-  border-top: 0.125rem solid #666666;
+  border-top: 0.15625rem solid #666666;
+}
+
+#sudoku-board .subgrid-left {
+  border-left: 0.15625rem solid #666666;
 }
 
 #sudoku-board .subgrid-right {
   border-right: 0.125rem solid #666666;
-  /* Adjust for border */
+  /* Adjusts for border */
   margin-right: -0.03125rem;
 }
 
@@ -787,57 +793,44 @@ h3 {
   border-bottom: 0.125rem solid #666666;
 }
 
-#sudoku-board .subgrid-left {
-  border-left: 0.125rem solid #666666;
-}
-
-/* Actions container */
-.actions-container {
-  display: flex;
-  justify-content: space-between;
-  width: 27rem;
-  margin-top: 1rem;
-  font-family: 
-}
-
-/* Action buttons */
-.action-button {
-  font-family: Montserrat;
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: #ffffff;
-  background-color: #888888;
-  border: 0.00625rem solid #ffffff;
-  border-radius: 0.2rem;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  text-align: center;
-}
-
-.action-button:hover {
-  background-color: #2db896;
-}
-
-.score-button {
-  background-color: #aaaaaa;
-  cursor: default;
-}
-
 /* Digit buttons */
 .digit-button {
-  width: 2.4rem;
-  height: 4rem;
-  font-size: 2rem;
-  font-weight: 500;
-  background-color: #39d7ac;
-  color: #ffffff;
-  border: 0.00625rem solid #ffffff;
-  border-radius: 0.4rem;
-  cursor: pointer;
+    width: 2.4rem;
+    height: 4rem;
+    font-size: 2rem;
+    font-weight: 500;
+    background-color: #39d7ac;
+    color: #ffffff;
+    border: 0.125rem solid #39d7ac;
+    border-radius: 0.4rem;
+    cursor: pointer;
 }
 
 .digit-button:hover {
   background-color: #2db896;
+}
+
+.x-button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: #ffffff;
+  width: 100%;
+  max-width: 17.75rem;
+  background-color: #2db896;
+  border: 0.125rem solid #2db896;
+  border-radius: 0.25rem;
+  padding: 0.5rem 1.5rem;
+  cursor: pointer;
+  margin: 0.5rem 0;
+}
+
+.x-button:hover {
+    background-color: #249a7e;
+}
+
+.x-button .material-icons-outlined {
+  font-size: 1.9rem;
 }
 
 /* Right box */
@@ -847,9 +840,9 @@ h3 {
   justify-content: space-between;
   align-items: center;
   width: 18.75rem;
-  height: 24.05rem;
+  height: 35.8rem;
   border-radius: 0.25rem;
-  margin-top: 2.22rem;
+  margin-top: -0.4rem;
   padding: 0;
 }
 
@@ -857,14 +850,13 @@ h3 {
 .user-info-box {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  width: 18.75rem;
-  height: 3.8rem;
+  justify-content: space-between;
+  width: 93%;
+  height: 2rem;
   background-color: #ffffff;
   border: 0.125rem solid #cccccc;
   border-radius: 0.25rem;
-  margin-bottom: 1rem;
-  padding: 1rem 0;
+  padding: 0.75rem;
 }
 
 /* User icon */
@@ -900,7 +892,7 @@ h3 {
 
 /* Right box buttons */
 .right-box-button {
-  font-family: Montserrat;
+  font-family: , sans-serif;
   font-size: 1.2rem;
   font-weight: 500;
   color: #ffffff;
@@ -910,6 +902,10 @@ h3 {
   padding: 0.5rem 1rem;
   cursor: pointer;
   text-align: center;
+}
+
+.right-box-button:hover {
+  background-color: #777777;
 }
 
 .buttons-container {
@@ -951,10 +947,9 @@ h3 {
   align-items: center;
   flex-wrap: wrap;
   width: 100%;
-  height: 16rem;
-  background-color: #f2f2f2;
+  height: 20rem;
+  background-color: #eaeaea;
   border-radius: 0.25rem;
-  margin: 1rem;
   padding: 0;
 }
 
@@ -993,7 +988,7 @@ h3 {
 }
 
 .new-game-button {
-  font-family: Montserrat;
+  font-family: "Montserrat", sans-serif;
   color: #666666;
   width: 100%;
   max-width: 18.75rem;
@@ -1001,6 +996,10 @@ h3 {
   background-color: #ffffff;
   border: 0.125rem solid #cccccc;
   color: #333333;
+}
+
+.new-game-button:hover {
+  background-color: #fafafa;
 }
 
 /***********
@@ -1069,7 +1068,7 @@ label input[type="checkbox"][name="remember"] {
 }
 
 .login-button:hover {
-  opacity: 0.8;
+  background-color: #2db896;
 }
 
 .imgcontainer {

@@ -28,11 +28,6 @@
         ></div>
         {% endfor %} {% endfor %}
       </div>
-      <div class="actions-container">
-        <button class="action-button erase-button">Erase</button>
-        <button class="action-button score-button" disabled>Score: 100</button>
-        <button class="action-button undo-button">Undo</button>
-      </div>
     </div>
     <div id="right-box">
       <div class="user-info-box">
@@ -51,6 +46,11 @@
         {% for digit in range(1, 10) %}
         <button class="digit-button placeholder-digit-button" data-digit="{{digit}}">{{digit}}</button>
         {% endfor %}
+        <button class="x-button">
+          <span class="material-icons-outlined">
+            backspace
+          </span>
+        </button>
       </div>
       <div class="buttons-container">
         <div class="top-buttons">
