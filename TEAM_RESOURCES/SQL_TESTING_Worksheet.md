@@ -211,7 +211,7 @@ WGL R4C
             "Test Login"
         Description:
             Verify that a user with valid login credentials is granted access to the rest of the application. 
-            Verify that a incorrect and/or non-existent login credentials do NOT provide access to the rest of the application.
+            Verify that a incorrect and/or empty login credentials do NOT provide access to the rest of the application.
         Pre-conditions:
             At least one user must be registered via the 'Create Account' page to provide a set of valid login credentials.
         Test steps:
@@ -222,9 +222,12 @@ WGL R4C
             5. Observe the behavior of the application.
             6. Repeat steps 1-5 using an invalid username and correct password.
             7. Repeat steps 1-5 using an invalid password and correct username.
+            8. Repeat steps 1-5 using an valid username and empty password field.
+            9. Repeat steps 1-5 using an valid password and empty username field.
+            10. Repeat steps 1-5 with an empty username and password field.
         Expected result:
             Steps 1-5: If a valid Username and Password combination is provided, clicking 'Sign In' button should invoke a redirect to the user's home page.
-            Steps 6-7: If a faulty Username/Password combination is provided, the rendered view should not change and a message should appear describing the error. 
+            Steps 6-10: If a faulty Username/Password combination is provided, the rendered view should not change and a message should appear describing the error. 
         Actual result:
             TBD
         Status (Pass/Fail):
