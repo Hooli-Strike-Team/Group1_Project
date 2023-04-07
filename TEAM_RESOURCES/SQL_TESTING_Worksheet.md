@@ -236,7 +236,7 @@ WGL R4C
             All attempts to login with invalid username and password combination should fail. Fixed length form fields and user input screening should be implemented when designing the route to eliminate the possibility of an SQL injection attack. 
         Post-conditions:
             User is directed to the game page upon successful login. 
-            Login page is rendered with appropriate error message upon a failed login attempt.
+            Login page is rendered with appropriate error message after a failed login attempt.
      
 ## Achievement_Stats Table ##
 ### 'Achievement_Stats' Table Description ###
