@@ -233,7 +233,7 @@ WGL R4C
         Status (Pass/Fail):
             TBD
         Notes:
-            Attempts to login with invalid username and password should fail. Fixed length form fields and user input screening should be implemented when designing the route to eliminate the risk of an SQL injection attack. 
+            All attempts to login with invalid username and password combination should fail. Fixed length form fields and user input screening should be implemented when designing the route to eliminate the risk of an SQL injection attack. 
         Post-conditions:
             User is directed to the game page upon successful login. 
             Login page is rendered with appropriate error message upon a failed login attempt.
