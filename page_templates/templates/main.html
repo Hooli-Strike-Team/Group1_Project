@@ -33,12 +33,6 @@
         <button class="action-button score-button" disabled>Score: 100</button>
         <button class="action-button undo-button">Undo</button>
       </div>
-
-      <div class="digits-container">
-        {% for digit in range(1, 10) %}
-        <button class="digit-button" data-digit="{{digit}}">{{digit}}</button>
-        {% endfor %}
-      </div>
     </div>
     <div id="right-box">
       <div class="user-info-box">
@@ -53,16 +47,23 @@
         <button class="right-box-button" id="hints-button">Hints</button>
         <button class="right-box-button" id="notes-button">Notes</button>
       </div>
-      <div class="placeholder-box"></div>
+      <div class="placeholder-box">
+        {% for digit in range(1, 10) %}
+        <button class="digit-button placeholder-digit-button" data-digit="{{digit}}">{{digit}}</button>
+        {% endfor %}
+      </div>
       <div class="buttons-container">
         <div class="top-buttons">
           <button class="right-box-button bottom-buttons" id="tutorial-button">
             <span class="material-icons-outlined">school</span>
-              Tutorial
+            Tutorial
           </button>
-          <button class="right-box-button bottom-buttons" id="statistics-button">
+          <button
+            class="right-box-button bottom-buttons"
+            id="statistics-button"
+          >
             <span class="material-icons-outlined">insights</span>
-              Statistics
+            Statistics
           </button>
         </div>
         <div class="new-game-button-container">

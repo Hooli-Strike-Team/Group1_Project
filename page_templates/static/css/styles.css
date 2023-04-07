@@ -699,7 +699,7 @@ h3 {
 .wrapper-container {
   display: flex;
   justify-content: space-around;
-  align-items: center; /* Change to center */
+  align-items: center;
   margin: 2rem auto;
 }
 
@@ -716,14 +716,15 @@ h3 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-right: 2rem; /* Add space between left-container and right-box */
+  /* Add space between left-container and right-box */
+  margin-right: 2rem;
 }
 
 #info-container {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  max-width: 27rem; /* Change from 24rem to 27rem */
+  max-width: 27rem; 
   margin-bottom: 0.625rem;
   align-items: center;
 }
@@ -753,11 +754,11 @@ h3 {
 
 #sudoku-board {
   display: grid;
-  grid-template-rows: repeat(9, 3rem); /* Change from 2.67rem to 3rem */
-  grid-template-columns: repeat(9, 3rem); /* Change from 2.67rem to 3rem */
+  grid-template-rows: repeat(9, 3rem); 
+  grid-template-columns: repeat(9, 3rem); 
   border: 0.125rem solid #666666;
-  width: 27rem; /* Change from 24.03rem to 27rem (3rem * 9) */
-  height: 27rem; /* Change from 24.03rem to 27rem (3rem * 9) */
+  width: 27rem; 
+  height: 27rem;
   margin: 0 auto;
 }
 
@@ -778,7 +779,8 @@ h3 {
 
 #sudoku-board .subgrid-right {
   border-right: 0.125rem solid #666666;
-  margin-right: -0.03125rem; /* Adjust for the border */
+  /* Adjust for border */
+  margin-right: -0.03125rem;
 }
 
 #sudoku-board .subgrid-bottom {
@@ -793,7 +795,7 @@ h3 {
 .actions-container {
   display: flex;
   justify-content: space-between;
-  width: 27rem; /* Change from 24.17rem to 27rem */
+  width: 27rem;
   margin-top: 1rem;
 }
 
@@ -817,14 +819,6 @@ h3 {
 .score-button {
   background-color: #aaaaaa;
   cursor: default;
-}
-
-/* Digits container */
-.digits-container {
-  display: flex;
-  justify-content: space-between;
-  width: 27rem; /* Change from 24rem to 27rem */
-  margin-top: 1rem;
 }
 
 /* Digit buttons */
@@ -868,6 +862,7 @@ h3 {
   border: 2px solid #cccccc;
   border-radius: 0.25rem;
   margin-bottom: 1rem;
+  padding: 1rem 0;
 }
 
 /* User icon */
@@ -892,9 +887,9 @@ h3 {
 
 /* Account link */
 .account-link {
-    font-size: 0.83rem;
-    color: #2db896;
-    text-decoration: none;
+  font-size: 0.83rem;
+  color: #2db896;
+  text-decoration: none;
 }
 
 .account-link:hover {
@@ -940,21 +935,52 @@ h3 {
   margin-right: 0.5rem;
 }
 
-/* Placeholder box */
+.placeholder-digit-button {
+  font-size: 1.4rem;
+  width: calc(33% - 1rem);
+  height: 4rem;
+  margin: 0.5rem;
+}
+
 .placeholder-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
   width: 100%;
-  height: 14rem;
-  background-color: #e0e0e0; /* Light gray background */
-  border: 1px solid #cccccc;
+  height: 16rem;
+  background-color: #f2f2f2;
   border-radius: 4px;
   margin: 1rem;
+  padding: 0;
 }
+
+.digit-grid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+
+.digit-row {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.grid-digit {
+  width: 18%;
+  margin: 1%;
+  max-height: 42px;
+}
+
 
 .top-buttons {
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 1rem;
 }
 
 .new-game-button-container {
@@ -968,6 +994,9 @@ h3 {
   width: 100%;
   max-width: 300px;
   text-align: center;
+  background-color: #fff;
+  border: 2px solid #cccccc;
+  color: #333333;
 }
 
 /***********
