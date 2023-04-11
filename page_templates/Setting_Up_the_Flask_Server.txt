@@ -1,0 +1,15 @@
+Setting Up the Flask Server and Python Virtual Environment
+
+Step 1:
+	. venv/bin/activate
+
+Step 2:
+	. ./setup.cmds
+
+Step 3:
+	flask --app test_app.py run
+
+Step 4: 
+	go to https://coding.csel.io/user/<username>/proxy/3308/
+
+
