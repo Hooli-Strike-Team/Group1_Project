@@ -1025,28 +1025,18 @@ h3 {
   border-radius: 1.3rem;
 }
 
-.intro {
+.rules_image {
   float: left; 
   margin-bottom: 30px;
   margin-right: 25px;
 
 }
 
-.introduction {
+.rules_descript {
   display: block;
 }
 
-.solved-puzzle {
-  float: left; 
-  margin-bottom: 30px;
-  margin-right: 25px;
 
-}
-
-.solved-ex {
-  display: block;
-
-}
 
 
 
