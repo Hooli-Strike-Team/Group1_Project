@@ -21,21 +21,21 @@ def index():
     return render_template('homepage.html')
 
 
-<!-- route for a basic frontend login page -->
-# Route user to the login page. Supports GET and POST HTTP methods.
+# Login page route
+# source: https://realpython.com/introduction-to-flask-part-2-creating-a-login-page/
 @app.route('/prefix_url/login', methods=['GET', 'POST'])
 def login():
+    error = None
     if request.method == 'POST':
-        username = request.form['uname']  # name="uname" in login.html
-        password = request.form['psw']  # name="psw" in login.html
-        # verify uname and password is correct via DB query here.
-        return redirect(url_for('index'))  # re-route to home page if successful.
-    else:
-        username = None  # 
-    return render_template('login.html')
+        # call DB API here and introduce server-side logic to verify user credentials.
+        if request.form['username'] != 'admin' or request.form['password'] != 'admin':
+            error = 'Invalid Credentials. Please try again.'
+        else:
+            return redirect(url_for('home'))
+    return render_template('login.html', error=error)  # return an error message if exists.
 
 
-# Route user to the Create Account page.
+# Create Account page route
 def create_account('/prefix_url/create_account', methods=['POST']):
     return render_template('create_account.html')
 
