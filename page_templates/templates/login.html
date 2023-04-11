@@ -32,13 +32,13 @@
         <!-- USERNAME FIELD -->
         <label for="uname"><h2><b>Username</b></h2></label>
         <div class="input-wrapper">
-          <input type="text" placeholder="" name="username" value="{{ request.form.username }}">
+          <input type="text" placeholder="" name="username" value="{{ request.form.username }}" required>
         </div>
 
         <!-- PASSWORD FIELD -->
         <label for="psw"><h2><b>Password</b></h2></label>
         <div class="input-wrapper">
-            <input type="password" placeholder="" name="password" value="{{ request.form.password }}">
+            <input type="password" placeholder="" name="password" value="{{ request.form.password }}" required>
         </div>
           
         <!-- REMEMBER ME CHECKBOX -->
