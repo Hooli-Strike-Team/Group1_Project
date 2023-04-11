@@ -25,9 +25,10 @@ def index():
 # source: https://realpython.com/introduction-to-flask-part-2-creating-a-login-page/
 @app.route('/prefix_url/login', methods=['GET', 'POST'])
 def login():
+    # route needs DB access to perform its' primary function(s)
     error = None
     if request.method == 'POST':
-        # call DB API here and introduce server-side logic to verify user credentials.
+        # introduce server-side logic to validate user credentials via Db query.
         if request.form['username'] != 'admin' or request.form['password'] != 'admin':
             error = 'Invalid Credentials. Please try again.'
         else:
@@ -37,6 +38,7 @@ def login():
 
 # Create Account page route
 def create_account('/prefix_url/create_account', methods=['POST']):
+    # route needs DB access to perform its' primary function
     return render_template('create_account.html')
 
 
