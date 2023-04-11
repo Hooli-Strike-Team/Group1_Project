@@ -1,0 +1,34 @@
+Setting Up the Flask Server and Python Virtual Environment
+
+Step 1:
+	. venv/bin/activate
+
+Step 2:
+	. ./setup.cmds
+
+Step 3:
+	flask --app test_app.py run
+
+Step 4: 
+	go to https://coding.csel.io/user/<username>/proxy/3308/
+
+
+ROUTES:
+
+Main Landing Page:
+    https://coding.csel.io/user/<username>/proxy/3308/
+    
+Login Page:
+    https://coding.csel.io/user/<username>/proxy/3308/login
+    
+Rules Page:
+    https://coding.csel.io/user/<username>/proxy/3308/rules
+    
+Achievements Page:
+    https://coding.csel.io/user/<username>/proxy/3308/achievements
+    
+Settings Page:
+    https://coding.csel.io/user/<username>/proxy/3308/settings
+    
+Create Account Page:
+    https://coding.csel.io/user/<username>/proxy/3308/create-account
