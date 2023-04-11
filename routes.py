@@ -6,9 +6,6 @@ from markupsafe import escape, Markup
 
 app = Flask(__name__)
 
-# Eventually we need to migrate our application to a production environment (e.g. Heroku or AWS)
-# We probably want the application to remain portable enough to run in a local Linux environment as well. 
-
 # wrapper for handling proxy server in the csel.io development environment. Has no effect in a locally-hosted server. 
 prefix.use_PrefixMiddleware(app)
 
