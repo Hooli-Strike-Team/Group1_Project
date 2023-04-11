@@ -3,12 +3,13 @@
 {% block title %}Login{% endblock %} 
 
 {% block content %}
-<!-- Flexbox for text box and image container -->
+
+<!-- START MAIN DIV -->
 <div class="main-content">
-  <!-- Container for text box -->
+    
+  <!-- START OF LEFT DIV (TEXT CONTAINER) -->
   <div class="text-box">
     <h2 id="content-header">Welcome to Sudoku Sage!</h2>
-
     <p>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -20,35 +21,46 @@
     </p>
   </div>
 
+  <!-- START OF RIGHT DIV (FORM ELEMENTS) -->
   <div class="flex-child magenta">
-    <form action="" method="post">
-      <div class="container">
+    <form action="" method="POST">  <!-- FIX ME: DEFINE "action" -->
+        
+      <div class="container">    
+        <!-- TITLE, RIGHT DIV -->
         <h1>Sign In</h1>
-        <label for="uname"
-          ><h2><b>Username</b></h2></label
-        >
-        <!-- Add wrapper around input and links -->
+          
+        <!-- USERNAME FIELD -->
+        <label for="uname"><h2><b>Username</b></h2></label>
         <div class="input-wrapper">
-          <input type="text" placeholder="" name="uname" required />
+          <input type="text" placeholder="" name="username" value="{{ request.form.username }}">
         </div>
-        <label for="psw"
-          ><h2><b>Password</b></h2></label
-        >
-        <input type="password" placeholder="" name="psw" required />
-        <label class="remember-me">
-          <input type="checkbox" checked="checked" name="remember" /> Remember
+
+        <!-- PASSWORD FIELD -->
+        <label for="psw"><h2><b>Password</b></h2></label>
+        <div class="input-wrapper">
+            <input type="password" placeholder="" name="password" value="{{ request.form.password }}">
+        </div>
+          
+        <!-- REMEMBER ME CHECKBOX -->
+<!--         <label class="remember-me">
+          <input type="checkbox" checked="checked" name="remember"> Remember
           me
-        </label>
+        </label> -->
+          
+        <!-- FORGOT PASSWORD + CREATE ACCOUNT LINKS -->
         <div class="links-wrapper">
           <a href="#" class="forgot-password">Forgot password?</a>
           <a href="{{ url_for('create_account') }}" class="create-account">Create Account</a>
         </div>
-        <!-- End of edited HTML -->
-        <button class="login-button" type="submit">Sign In</button>
+          
+        <!-- LOGIN BUTTON -->
+        <button class="login-button" type="submit" value="Login">Sign In</button>
+          
       </div>
     </form>
-  </div>
-</div>
+  </div>  <!-- END OF RIGHT DIV -->
+</div>  <!-- END OF MAIN DIV -->
+
 {% endblock %} 
 
 {% block extra_js %} 
