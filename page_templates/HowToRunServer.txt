@@ -1,0 +1,3 @@
+. venv/bin/activate
+. ./setup.cmds
+flask --app test_app.py run
