@@ -22,23 +22,24 @@ def index():
 
 
 <!-- route for a basic frontend login page -->
+# Route user to the login page. Supports GET and POST HTTP methods.
 @app.route('/prefix_url/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
-        return redirect(url_for('index'))
+        username = request.form['uname']  # name="uname" in login.html
+        password = request.form['psw']  # name="psw" in login.html
+        # verify uname and password is correct via DB query here.
+        return redirect(url_for('index'))  # re-route to home page if successful.
     else:
-        username = None
-    return '''
-        <h3>Please enter your username and password.</h3>
-        <form method = "POST">
-            <p>Username: <input type=text name=username></p>
-            <p>Password: <input type=text name=password></p>
-            <p><input type=submit value=Login></p>
-        </form>
-        <base href="" />
-        <h3>Return to <a href="{{ url_for('homepage') }}">Home</a>
-    '''
+        username = None  # 
+    return render_template('login.html')
+
+
+# Route user to the Create Account page.
+def create_account('/prefix_url/create_account', methods=['POST']):
+    return render_template('create_account.html')
+
+
 
 <!--ADD NEW ROUTES ABOVE THIS LINE-->
 
