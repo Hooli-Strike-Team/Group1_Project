@@ -201,17 +201,17 @@
     * Tory: finish GameSettings table for Milestone 5 and continue to incorporate new content into pages
     
   
-<p align="left">
- <img width="350" height="240" src="images/weekly_status/4_weeks_left.png">
+<p align="center">
+ <img width="550" height="440" src="images/weekly_status/4_weeks_left.png">
 </p>
 <p align="center">
- <img width="350" height="240" src="images/weekly_status/3_weeks_left.png">
-</p>
-<p align="right">
- <img width="350" height="240" src="images/weekly_status/2_weeks_left.png">
+ <img width="550" height="440" src="images/weekly_status/3_weeks_left.png">
 </p>
 <p align="center">
- <img width="350" height="240" src="images/weekly_status/1_week_left.png">
+ <img width="550" height="440" src="images/weekly_status/2_weeks_left.png">
+</p>
+<p align="center">
+ <img width="550" height="440" src="images/weekly_status/1_week_left.png">
 </p>
 
 ### Week 7: April 10-16 ###
