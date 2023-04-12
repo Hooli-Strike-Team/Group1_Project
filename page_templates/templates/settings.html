@@ -1,3 +1,60 @@
 {% extends "base.html" %}
-
 {% block title %}Settings{% endblock %}
+{% block content %}
+
+<!--TO DO:
+on/off labels inside switch (optional) -->
+
+<div class="settings-wrapper">
+    <div class="settings">
+        <h1>SETTINGS</h1>
+          <hr class="settings_line">
+            <div class="settings_descript">
+                <p>SHOW MISTAKES</p>
+            </div>
+            <div class=settings_slider>
+                  <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                        </label>
+            </div>
+            <div style="clear: both; margin-bottom: 20px;"></div>
+            <hr class="settings_line">
+            <div class="settings_descript">
+                <p>SHOW CLOCK</p>
+            </div>
+            <div class=settings_slider>
+                  <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                        </label>
+            </div>  
+            <div style="clear: both; margin-bottom: 20px;"></div>
+            <hr class="settings_line">
+            <div class="settings_descript">
+                <p>CANIDATE MODE</p>
+            </div>
+            <div class=settings_slider>
+                  <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                        </label>
+            </div>  
+            <div style="clear: both; margin-bottom: 20px;"></div>
+            <hr class="settings_line">
+            <div class="settings_descript">
+                <p>SHOW HINTS</p>
+            </div>
+            <div class=settings_slider>
+                  <label class="switch">
+                  <input type="checkbox">
+                  <span class="slider round"></span>
+                        </label>
+            </div>  
+            <div style="clear: both; margin-bottom: 20px;"></div>
+    </div>
+ 
+</div> 
+
+{% endblock %}\
+
