@@ -202,16 +202,16 @@
     
   
 <p align="center">
- <img width="650" height="340" src="images/weekly_status/4_weeks_left.png">
+ <img width="650" height="440" src="images/weekly_status/4_weeks_left.png">
 </p>
 <p align="center">
- <img width="650" height="340" src="images/weekly_status/3_weeks_left.png">
+ <img width="650" height="440" src="images/weekly_status/3_weeks_left.png">
 </p>
 <p align="center">
- <img width="650" height="340" src="images/weekly_status/2_weeks_left.png">
+ <img width="650" height="440" src="images/weekly_status/2_weeks_left.png">
 </p>
 <p align="center">
- <img width="650" height="340" src="images/weekly_status/1_week_left.png">
+ <img width="650" height="440" src="images/weekly_status/1_week_left.png">
 </p>
 
 ### Week 7: April 10-16 ###
