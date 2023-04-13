@@ -222,7 +222,10 @@
     * Ben: Completed Milestone 5 SQL page "Games". 
     * Paul: 
         * Finished first draft of the "Rules" page
-    * Tory: ...
+        * Helped Ben finish the "Settings" page
+        * Helped Matt implement a working sudoku game on the main page
+        * Oversaw the completion of our weekly goals layed out on Trello
+    * Tory: ** Well earned vacation **
     
 * In Progress 
     * Matt: Javascript implementation of Sudoku game / better CSS integration
@@ -230,8 +233,9 @@
     * Ben: Settings page HTML/CSS
     * Paul: 
         * Work on "Rules" page
-    * Tory: ...
-
+        * Work with Ben on "Settings" page
+        * Work with Matt on implementing a working sudoku game 
+    * Tory: ** Well earned vacation **
 * To Do 
     * Matt: Javascript Implementation of Sudoku Solver
     * Micah: Determine the best database hosting option to support development and deployment of the Sudoku Tutor/Sage application. 
@@ -241,4 +245,8 @@
         * Meet with Ben to work on the "Settings Page"
         * Meet with Matt to implement the Sudoku Game on the "Main Page" 
         * Ensure that we "finish" the entire front end of the website before the end of the week 
-    * Tory: ...
+    * Tory: ** Well earned vacation **
+    
+<p align="center">
+ <img width="650" height="440" src="images/weekly_status/goal1_complete.png">
+</p>
