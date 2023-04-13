@@ -159,8 +159,8 @@ class SudokuDOM {
     static display_board(
         sudoku_object,
         sudoku_squares,
-        string_box,
-        sudoku_wiki_link,
+        // string_box,
+        // sudoku_wiki_link,
         change_square_color = true
     ) {
         const board = sudoku_object.get_board();
@@ -183,10 +183,10 @@ class SudokuDOM {
         //SudokuDOM.display_string(sudoku_object, string_box, sudoku_wiki_link);
     }
 
-    static display_string(sudoku_object, string_box, sudoku_wiki_link) {
-        string_box.value = sudoku_object.get_string();
-        sudoku_wiki_link.href = 'https://www.sudokuwiki.org/sudoku.htm?bd=' + sudoku_object.get_string();
-    }
+    // static display_string(sudoku_object, string_box, sudoku_wiki_link) {
+    //     string_box.value = sudoku_object.get_string();
+    //     sudoku_wiki_link.href = 'https://www.sudokuwiki.org/sudoku.htm?bd=' + sudoku_object.get_string();
+    // }
 
     static clear_board(sudoku_squares, change_square_color = true) {
         for ( let row = 0; row <= 8; row++ ) {
@@ -230,49 +230,87 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // const algorithm = document.getElementById('algorithm');
     // const validate_button = document.getElementById('validate');
     // const legal_moves_button = document.getElementById('legal-moves');
+    const xbutton = document.querySelector(".x-button");
 
     const game1 = new Sudoku();
     const sudoku_squares = Helper.createArray(9,9);
+    const keypad = Helper.createArray(9);
     // These are real constants, so these get MACRO_CASE
-    const CUSTOM_PUZZLE_SELECTEDINDEX = 3;
-    const DEFAULT_PUZZLE_SELECTEDINDEX = 6;
+    // const CUSTOM_PUZZLE_SELECTEDINDEX = 3;
+    // const DEFAULT_PUZZLE_SELECTEDINDEX = 6;
     const PUZZLE_SIZE = 9;
 
     // Store all the Sudoku square <input type="text"> elements in variables for quick accessing
-    for ( let row = 0; row <= 8; row++ ) {
-        for ( let col = 0; col <= 8; col++ ) {
+    for ( let row = 0; row < PUZZLE_SIZE; row++ ) {
+        for ( let col = 0; col < PUZZLE_SIZE; col++ ) {
             sudoku_squares[row][col] = sudoku_table.children[col+row*PUZZLE_SIZE].children[0];
         }
     }
-
-    // Simple version of Listener, adds input to board
-    for ( let row = 0; row <= 8; row++ ) {
-        for ( let col = 0; col <= 8; col++ ) {
+    
+    // Store all the keypad button elements in variables for quick accessing (index off by 1 of value)
+    for (let i = 1; i<10;i++) {
+        keypad[i-1] = document.getElementById('digit-'+i)
+    }
+    
+    // Simple version of Sudoku Cell Listener, adds input to board
+    for ( let row = 0; row < PUZZLE_SIZE; row++ ) {
+        for ( let col = 0; col < PUZZLE_SIZE; col++ ) {
             sudoku_squares[row][col].addEventListener('input', function(e) {
                 game1.make_move(row, col, e.target.value);
                 console.log(game1.board)
-            
+            });
+            sudoku_squares[row][col].addEventListener("mousedown", function(e) {
+                let element = document.querySelector(".selected-square");
+                if (element){
+                    element.classList.remove("selected-square");
+                }
+                sudoku_squares[row][col].classList.add('selected-square');
+
             });
         }
     }
-    
-    new_button.addEventListener('click', function(e) {
-        temp_board = [
-            [0,0,4,0,8,0,0,2,9],
-            [0,0,0,0,0,0,0,0,4],
-            [0,8,5,0,0,2,0,0,7],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0],
-            [0,0,0,0,0,0,0,0,0]
-        ];
-        SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link, true);
+
+    // Creates listener for each keypad button, inputs value in display and array (index off by 1 of value)
+    for (let i = 1; i<10;i++) {
+        keypad[i-1].addEventListener('click', function(e) {
+            let key_num = this.getAttribute('data-digit')
+            let element = document.querySelector('.selected-square');
+            if(element){
+                element.value = key_num
+                let cell_name = element.id
+                let cell_num = cell_name.split('-')[1]
+                let row = Math.floor(cell_num/PUZZLE_SIZE)
+                let col = cell_num%PUZZLE_SIZE
+                game1.make_move(row, col, this.getAttribute('data-digit'));
+                console.log(game1.board)
+            }
+        })
     }
+    
+    // Keypad Backspace
+    xbutton.addEventListener('click',function(e) {
+        let element = document.querySelector('.selected-square');
+        if(element){
+            element.value = ""
+            let cell_name = element.id
+            let cell_num = cell_name.split('-')[1]
+            let row = Math.floor(cell_num/PUZZLE_SIZE)
+            let col = cell_num%PUZZLE_SIZE
+            game1.make_move(row, col, 0);
+        }
+    })
+    
+    // Create New Game 
+    // Temporarily read from string
+    new_button.addEventListener('click', function(e) {
+        beginner = "080100007000070960026900130000290304960000082502047000013009840097020000600003070"
+        game1.set_board(beginner);
+        SudokuDOM.display_board(game1, sudoku_squares, true);
+    })
 
 /* Full functinoality below
-
+   // Sudoku Cell Listener
+   
     for ( let row = 0; row <= 8; row++ ) {
         for ( let col = 0; col <= 8; col++ ) {
             sudoku_squares[row][col].addEventListener('input', function(e) {

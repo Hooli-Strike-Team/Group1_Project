@@ -780,12 +780,29 @@ h3 {
     color: transparent;
     text-shadow: 0 0 0 black;
     font-size: 1.6rem;
-    background: none;
     text-align: center;
     border: none;
     position: relative;
-    z-index: 1; /*on top of candidates*/+
+    z-index: 1; /*on top of candidates*/
+    margin: 0px;
 }
+
+/* Imported Game Cells */
+
+// FIX BORDERS
+.imported-square {
+    background: gray;
+}
+
+.selected-square {
+    background: #39d7ac;
+}
+
+/* Invalid cell highlight */
+.invalid {
+    border: 2px red;
+}
+
 
 /* Subgrid borders */
 #sudoku-board .subgrid-top {

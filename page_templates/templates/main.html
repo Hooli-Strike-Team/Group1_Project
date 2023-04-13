@@ -2,17 +2,6 @@
 
 {% block js_source %}src="{{ url_for('static', filename='js/sudoku.js') }}"{% endblock %} 
 {% block script %}
-var board = [
-    , , ,4, ,8, ,2,9
-    , , , , , , , , ,4
-    ,8,5, , ,2, , , ,7
-    , , ,8,3,7,4,2, ,
-    , ,2, , , , , , ,
-    , , ,3,2,6,1,7, ,
-    , , , , ,9,3,6,1,2
-    ,2, , , , , ,4, ,3
-    ,1,3, ,6,4,2, ,7,undefined
-    ]
 {% endblock %} 
 {% block title %}Main{% endblock %} 
 
@@ -59,7 +48,7 @@ var board = [
       </div>
       <div class="placeholder-box">
         {% for digit in range(1, 10) %}
-        <button class="digit-button placeholder-digit-button" data-digit="{{digit}}">{{digit}}</button>
+        <button class="digit-button placeholder-digit-button" id="digit-{{digit}}" data-digit="{{digit}}">{{digit}}</button>
         {% endfor %}
         <button class="x-button">
           <span class="material-icons-outlined">
