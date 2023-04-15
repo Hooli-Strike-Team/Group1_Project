@@ -1,170 +1,131 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
 
-{% block title %}Rules{% endblock %}
+{% block title %}Rules{% endblock %} 
 
-{% block content %}
+{% block content%}
 <div class="rules-wrapper">
   <div class="rules">
     <h1>Rules</h1>
     <div class="rules_image">
-        <img src="static/images/rules/Sudoku_17d_animation.gif" alt="Sudoku Gif"                      style="width:300px;height:300px;">
+      <img
+        src="static/images/rules/Sudoku_17d_animation.gif"
+        alt="Sudoku Gif"
+        style="width: 300px; height: 300px;"
+      />
     </div>
     <div class="rules_descript">
-        <p>
-            This is an example of a Sudoku Game being played.
-        </p> 
-        <p>
-            A typical game is played on a 9x9 grid. The grid is split up into 9 blocks, consisting of 3x3 cells. 
-        </p> 
-        <p> 
-            Notice that the only numbers allowed are between 1 - 9. (0 is not played) 
-        </p>
+      <p>This is an example of a Sudoku game in progress.</p>
+      <p>
+        A standard Sudoku game is played on a 9x9 grid, which is divided into
+        nine 3x3 blocks of cells.
+      </p>
+      <p>The numbers used in the game range from 1 to 9 (0 is not included).</p>
     </div>
-      
-      <div style="clear: both; margin-bottom: 20px;"></div> 
-      
+
+    <div style="clear: both; margin-bottom: 20px;"></div>
+
     <div class="rules_image">
-        <img src="static/images/rules/Sudoku_Solved.png" alt="Sudoku Solved"  style="width:300px;height:300px;">
+      <img
+        src="static/images/rules/Sudoku_Solved.png"
+        alt="Sudoku Solved"
+        style="width: 300px; height: 300px;"
+      />
     </div>
     <div class="rules_descript">
-        <p>
-            This is an example of a solved game. 
-        </p>    
-        <p>    
-            The black numbers were given at the start, and the player added in the blue.
-        </p> 
-        <p> 
-            <b>NOTICE!</b>
-        </p>
-        <p>
-            No number is repeated in any:       
-        </p>
-        <p>
-            <u>Column</u>
-        </p>
-        <p>
-            <u>Row</u>
-        </p>
-        <p>
-            <u>3x3 Block</u>
-        </p>
+      <p>This is an example of a solved Sudoku game.</p>
+      <p>
+        The <span style="color: #000000; font-weight: bold;">black</span> numbers were provided at the beginning of the game, and the
+        player filled in the <span style="color: #00a8f3; font-weight: bold;">blue</span> numbers to solve the puzzle.
+      </p>
+      <p>
+        <b>Note:</b>
+      </p>
+      <p>
+        In a valid Sudoku solution, no number is repeated in any <b>column</b>,
+        <b>row</b>, or <b>3x3 block</b>!
+      </p>
     </div>
-      
-    <div style="clear: both; margin-bottom: 20px;"></div> 
-      
+
+    <div style="clear: both; margin-bottom: 20px;"></div>
+
     <h1>Mistakes</h1>
-    <div class="rules_image"> 
-         <img src="static/images/rules/mistake_1.png" alt="Mistake 1"  style="width:300px;height:300px;">
-    
-    
-    
-        <h6> 
-            (Greenspan and Lee)
-        </h6>
-      </div>
-    <div class="rules_descript">
-        <p>
-            The blue 
-            <b>5</b>
-            is in the wrong spot! 
-        </p>
-        <p>
-            There's already a 
-            <b>5</b> 
-            in the same 
-            <u>COLUMN</u>
-            , highlighted in red.
-        </p>
-    
-      </div> 
-    <div style="clear: both; margin-bottom: 20px;"></div> 
     <div class="rules_image">
-        <img src="static/images/rules/mistake_2.png" alt="Mistake 2"  style="width:300px;height:300px;">
-    
-    
-    
-        <h6> 
-            (Greenspan and Lee)
-        </h6>
+      <img
+        src="static/images/rules/mistake_1.png"
+        alt="Mistake 1"
+        style="width: 300px; height: 300px;"
+      />
+
+      <h6>(Greenspan and Lee)</h6>
     </div>
     <div class="rules_descript">
-        <p>
-            The blue 
-            <b>9</b>
-            is in the wrong spot!
-        </p>
-        <p>
-            There's already a 
-            <b>9</b>
-            in the same 
-            <u>ROW</u>
-            , highlighted in red.
-        </p>
+      <p>The <span style="color: #00a8f3; font-weight: bold;">5</span> is in the wrong spot!</p>
+      <p>
+        There is already a <span style="color: #000000; font-weight: bold;">5</span> (highlighted in red) in the same column.
+      </p>
+    </div>
+    <div style="clear: both; margin-bottom: 20px;"></div>
+    <div class="rules_image">
+      <img
+        src="static/images/rules/mistake_2.png"
+        alt="Mistake 2"
+        style="width: 300px; height: 300px;"
+      />
+
+      <h6 style="margin-top: 0.4rem;">(Greenspan and Lee)</h6>
+    </div>
+    <div class="rules_descript">
+      <p>The <span style="color: #00a8f3; font-weight: bold;">9</span> is in the wrong spot!</p>
+      <p>There is already a <span style="color: #000000; font-weight: bold;">9</span> (highlighted in red) in the same row.</p>
     </div>
 
-    <div style="clear: both; margin-bottom: 20px;"></div> 
+    <div style="clear: both; margin-bottom: 20px;"></div>
     <div class="rules_image">
-        <img src="static/images/rules/mistake_3.png" alt="Mistake 3"  style="width:300px;height:300px;">
-        <h6> 
-            (Greenspan and Lee)
-        </h6>
+      <img
+        src="static/images/rules/mistake_3.png"
+        alt="Mistake 3"
+        style="width: 300px; height: 300px;"
+      />
+      <h6 style="margin-top: 0.4rem;">(Greenspan and Lee)</h6>
     </div>
     <div class="rules_descript">
-        <p>
-            The blue 
-            <b>1</b>
-            is in the wrong spot!
-        </p>
-        <p>
-            There's already a
-            <b>1</b>
-            in the same 
-            <u>3X3 BLOCK</u>
-            , highlighted in red. 
-    </div>
-  
-    <div style="clear: both; margin-bottom: 20px;"></div> 
-    <div class="rules_image">
-        <img src="static/images/rules/mistake_4.png" alt="Mistake 4"  style="width:300px;height:300px;">
-        <h6> 
-            (Greenspan and Lee)
-        </h6>
-    </div>
-    <div class="rules_descript">
-        <p>
-            Triple Trouble!
-        </p>
-        
-        <p>
-            The blue 
-            <b>9</b>
-            is already found in the same 
-            <u>COLUNM</u>,
-            <u>ROW</u>
-            and 
-            <u> 3X3 BLOCK!!</u>
-        </p>
-        <p>
-            All highlighted in red...
-        </p>
-            
+      <p>The <span style="color: #00a8f3; font-weight: bold;">1</span> is in the wrong spot!</p>
+      <p>
+        There is already a <span style="color: #000000; font-weight: bold;">1</span> (highlighted in red) in the same 3x3 block.
+      </p>
     </div>
 
-    
-      
-      
-      
+    <div style="clear: both; margin-bottom: 20px;"></div>
+    <div class="rules_image">
+      <img
+        src="static/images/rules/mistake_4.png"
+        alt="Mistake 4"
+        style="width: 300px; height: 300px;"
+      />
+      <h6 style="margin-top: 0.4rem;">(Greenspan and Lee)</h6>
+    </div>
+    <div class="rules_descript">
+      <p>Triple Trouble!</p>
+
+      <p>
+        The <span style="color: #00a8f3; font-weight: bold;">9</span> is in the wrong spot! It is repeated in the same
+        column, row, and 3x3 block (all instances are highlighted in red).
+      </p>
+    </div>
   </div>
 </div>
-<div style="margin-bottom: 50px;"></div> 
-<h1>Work Cited:</h1>
+<div style="display: flex; flex-direction: column; width: 44.25rem; margin: 0 auto;">
+  <h1 style="font-size: 1.2rem; margin-top: 3rem;">Works Cited</h1>
 
-<p>
-    Feldmann, Jan. “Sudoku Coach - Learn Rules and Techniques.” Sudoku Coach - Play, Learn, and More..., 2020, https://sudoku.coach/en/learn. 
-</p>
+  <p>
+    Feldmann, Jan. “Sudoku Coach - Learn Rules and Techniques.” Sudoku Coach -
+    Play, Learn, and More..., 2020, https://sudoku.coach/en/learn.
+  </p>
 
-<p>
-    Greenspan, Gideon, and Rachel Lee. “Web Sudoku - Billions of Free Sudoku Puzzles to Play Online.” Web Sudoku - Billions of Free Sudoku Puzzles to Play Online, 2005, https://websudoku.com/. 
-</p>
+  <p>
+    Greenspan, Gideon, and Rachel Lee. “Web Sudoku - Billions of Free Sudoku
+    Puzzles to Play Online." Web Sudoku - Billions of Free Sudoku Puzzles to Play
+    Online, 2005, https://websudoku.com/.
+  </p>
 
 {% endblock %}
