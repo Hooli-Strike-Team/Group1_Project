@@ -3,49 +3,37 @@
 {% block title %}Login{% endblock %} 
 
 {% block content %}
-<!-- Flexbox for text box and image container -->
-<div class="flex-child magenta">
-  <form action="" method="post">
-    <div class="rules-wrapper">
-      <div class="rules">
-        <h1>Create a New Account</h1>
-        <div class="ca-fileds">
+<div class="rules-wrapper">
+  <div class="rules create-account">
+    <h1>Create Account</h1>
+    <div class="ca-fields">
+      <form action="" method="post">
         <!-- USERNAME FEILD -->
-        <label for="uname"
-          ><h3>Username</h3></label
-        >
+        <label for="uname"><h3>Username</h3></label>
         <div class="ca-input-wrapper">
           <input type="text" placeholder="" name="uname" required />
         </div>
 
         <!-- PASSWORD FEILD -->
-        <label for="psw"
-          ><h3>Password</h3></label
-        >
+        <label for="psw"><h3>Password</h3></label>
         <div class="ca-input-wrapper">
           <input type="password" placeholder="" name="psw" required />
         </div>
 
         <!-- FIRST NAME FEILD -->
-        <label for="fname"
-          ><h3>First Name</h3></label
-        >
+        <label for="fname"><h3>First Name</h3></label>
         <div class="ca-input-wrapper">
           <input type="text" placeholder="" name="fname" required />
         </div>
 
         <!-- LAST NAME FEILD -->
-        <label for="lname"
-          ><h3>Last Name</h3></label
-        >
+        <label for="lname"><h3>Last Name</h3></label>
         <div class="ca-input-wrapper">
           <input type="text" placeholder="" name="lname" required />
         </div>
 
         <!-- EMAIL FEILD -->
-        <label for="email"
-          ><h3>E-mail Address</h3></label
-        >
+        <label for="email"><h3>E-mail Address</h3></label>
         <div class="ca-input-wrapper">
           <input type="text" placeholder="" name="email" required />
         </div>
@@ -59,10 +47,9 @@
             <a class="sign-in-link" href="{{ url_for('login') }}">Sign In</a>
           </div>
         </div>
-        </div>
-      </div>
+      </form>
     </div>
-  </form>
+  </div>
 </div>
 {% endblock %} 
 

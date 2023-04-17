@@ -304,10 +304,6 @@ h3 {
   margin: 1rem auto;
 }
 
-.achievement-badges {
-  width: 33.2588rem;
-}
-
 .badge-wrapper {
   display: inline-block;
   position: relative;
@@ -323,7 +319,7 @@ h3 {
   background: rgba(0, 0, 0, 0.6);
   text-align: center;
   color: #fff;
-  border-radius: 3px;
+  border-radius: 0.1875rem;
   padding: 0.35rem 0.5rem;
   box-sizing: border-box;
   pointer-events: none;
@@ -432,24 +428,34 @@ h3 {
 .rules h3 {
   font-size: 1.4rem;
   font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.rules.create-account {
+  width: 32rem;
+  color: #666666;
 }
 
 .ca-input-wrapper {
   position: relative;
 }
 
+.ca-fields {
+  margin: 0 1.875rem 0 1.53rem;
+}
+
 .ca-input-wrapper input[type=text],
 .ca-input-wrapper input[type=password]{
-  width: 27.6rem;
   padding: 0.75rem 1.25rem;
   margin: 0.5rem 0;
   display: inline-block;
   border: 0.0625rem solid #ccc;
   box-sizing: border-box;
+  border-radius: 0.1875rem;
 }
 
 .ca-login-button {
-  margin: 1.4rem 4.18rem 1rem 0;
+  margin: 0 5.26rem 0 0;
   border-radius: 0.2rem;
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
@@ -463,10 +469,6 @@ h3 {
   font-size: 1.125rem;
   cursor: pointer;
   width: 11.25rem;
-}
-
-.ca-has-account {
-  margin-top: 1.4rem;
 }
 
 /****************
@@ -604,6 +606,7 @@ h3 {
 
 .create-sign-in-wrapper {
   display: flex;
+  margin: 2rem 0 1rem;
 }
 
 .main-content .create-account-button {
@@ -1078,8 +1081,8 @@ h3 {
 }
 
 .image-size {
-  width: 300px;
-  height: 300px;
+  width: 18.75rem;
+  height: 18.75rem;
 }
 
 .rules-description {
@@ -1158,7 +1161,7 @@ h3 {
 }
 
 .settings {
-  width: 40rem;
+  width: 30rem;
   margin: 3rem 0 2rem;
   padding: 1rem 2rem;
   border: 0.125rem solid #666666;
