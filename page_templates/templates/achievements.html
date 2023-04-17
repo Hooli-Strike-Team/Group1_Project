@@ -8,9 +8,8 @@
     <div class="achievements-content">
      <h1>Achievements</h1>
 ​
-      <div>
+      <div class="achievement-badges">
          
-        
         {% if risk_taker == True %}
   
         <div class="badge-wrapper">
@@ -22,7 +21,6 @@
           </div>
           <div class="badge-desc">Complete Three HARD Puzzles</div>
         </div>
-          
           
         {% endif %}
         
@@ -37,7 +35,6 @@
           </div>
           <div class="badge-desc">Complete Three HARD Puzzles</div>
         </div>
-          
           
         {% endif %}
   
@@ -55,8 +52,7 @@
           
         {% endif %} 
           
-          
-         {% if lone_wolf == False %}
+        {% if lone_wolf == False %}
 ​
         <div class="badge-wrapper">
           <div class="badge lone-wolf locked">
@@ -69,7 +65,6 @@
         </div>
           
         {% endif %} 
-        
           
         {% if puzzle_master == True %}
   
@@ -129,7 +124,6 @@
         </div>
         
         {% endif %} 
-          
         
         {% if inquisitor == True %} 
 ​
@@ -144,9 +138,8 @@
         </div>
         
        {% endif %} 
-   
-          
-        {% if inquisitor == False %} 
+       
+       {% if inquisitor == False %} 
 ​
         <div class="badge-wrapper">
           <div class="badge inquisitor locked">
@@ -159,7 +152,6 @@
         </div>
         
        {% endif %}   
-          
           
        {% if conqueror == True %} 
   
@@ -175,8 +167,7 @@
           </div>
         </div>
     
-        {% endif %} 
-     
+        {% endif %}
           
        {% if conqueror == False %} 
   
@@ -193,7 +184,6 @@
         </div>
     
         {% endif %} 
-  
           
       </div>
     </div>

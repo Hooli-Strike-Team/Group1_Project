@@ -4,58 +4,70 @@
 
 {% block content %}
 <!-- Flexbox for text box and image container -->
-<div class="main-content">
-  <div class="flex-child magenta">
-    <form action="" method="post">
-      <div class="container">
-        <!--  -->
-        <h1>Create An Account</h1>
-          
+<div class="flex-child magenta">
+  <form action="" method="post">
+    <div class="rules-wrapper">
+      <div class="rules">
+        <h1>Create a New Account</h1>
+        <div class="ca-fileds">
         <!-- USERNAME FEILD -->
-        <label for="uname"><h3><b>Username</b></h3></label>
-        <div class="input-wrapper">
+        <label for="uname"
+          ><h3>Username</h3></label
+        >
+        <div class="ca-input-wrapper">
           <input type="text" placeholder="" name="uname" required />
         </div>
-          
+
         <!-- PASSWORD FEILD -->
-        <label for="psw"><h3><b>Password</b></h3></label>
-        <div class="input-wrapper">
-            <input type="password" placeholder="" name="psw" required />
+        <label for="psw"
+          ><h3>Password</h3></label
+        >
+        <div class="ca-input-wrapper">
+          <input type="password" placeholder="" name="psw" required />
         </div>
-          
+
         <!-- FIRST NAME FEILD -->
-        <label for="fname"><h3><b>First Name</b></h3></label>
-        <div class="input-wrapper">
+        <label for="fname"
+          ><h3>First Name</h3></label
+        >
+        <div class="ca-input-wrapper">
           <input type="text" placeholder="" name="fname" required />
         </div>
-        
+
         <!-- LAST NAME FEILD -->
-        <label for="lname"><h3><b>Last Name</b></h3></label>
-        <div class="input-wrapper">
+        <label for="lname"
+          ><h3>Last Name</h3></label
+        >
+        <div class="ca-input-wrapper">
           <input type="text" placeholder="" name="lname" required />
         </div>
-          
+
         <!-- EMAIL FEILD -->
-        <label for="email"><h3><b>Email</b></h3></label>
-        <div class="input-wrapper">
+        <label for="email"
+          ><h3>E-mail Address</h3></label
+        >
+        <div class="ca-input-wrapper">
           <input type="text" placeholder="" name="email" required />
         </div>
-          
+
         <!-- LINK TO LOGIN PAGE -->
-        <div class="links-wrapper">
-          <a href="{{ url_for('login') }}" class="forgot-password">Already have an account? -> Login</a>
-        </div> 
-        
-          <!-- LOGIN BUTTON -->
-        <button class="login-button" type="submit">Create Account</button>
+        <div class="create-sign-in-wrapper">
+          <button class="ca-login-button" type="submit">Create Account</button>
+          <div class="ca-has-account">
+            <div>Already have an account?</div>
+            <!-- LOGIN BUTTON -->
+            <a class="sign-in-link" href="{{ url_for('login') }}">Sign In</a>
+          </div>
+        </div>
+        </div>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 </div>
 {% endblock %} 
 
 {% block extra_js %} 
-{% if show_logged_in_content %}
-<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
-{% endif %} 
+  {% if show_logged_in_content %}
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+  {% endif %} 
 {% endblock %}
