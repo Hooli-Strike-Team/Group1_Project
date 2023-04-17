@@ -1,60 +1,69 @@
-{% extends "base.html" %}
-{% block title %}Settings{% endblock %}
+{% extends "base.html" %} 
+
+{% block title %}Settings{% endblock %} 
+
 {% block content %}
-
-<!--TO DO:
-on/off labels inside switch (optional) -->
-
+<!-- TODO: on/off labels inside switch (optional) -->
 <div class="settings-wrapper">
-    <div class="settings">
-        <h1>SETTINGS</h1>
-          <hr class="settings_line">
-            <div class="settings_descript">
-                <p>SHOW MISTAKES</p>
-            </div>
-            <div class=settings_slider>
-                  <label class="switch">
-                  <input type="checkbox">
-                  <span class="slider round"></span>
-                        </label>
-            </div>
-            <div style="clear: both; margin-bottom: 20px;"></div>
-            <hr class="settings_line">
-            <div class="settings_descript">
-                <p>SHOW CLOCK</p>
-            </div>
-            <div class=settings_slider>
-                  <label class="switch">
-                  <input type="checkbox">
-                  <span class="slider round"></span>
-                        </label>
-            </div>  
-            <div style="clear: both; margin-bottom: 20px;"></div>
-            <hr class="settings_line">
-            <div class="settings_descript">
-                <p>CANIDATE MODE</p>
-            </div>
-            <div class=settings_slider>
-                  <label class="switch">
-                  <input type="checkbox">
-                  <span class="slider round"></span>
-                        </label>
-            </div>  
-            <div style="clear: both; margin-bottom: 20px;"></div>
-            <hr class="settings_line">
-            <div class="settings_descript">
-                <p>SHOW HINTS</p>
-            </div>
-            <div class=settings_slider>
-                  <label class="switch">
-                  <input type="checkbox">
-                  <span class="slider round"></span>
-                        </label>
-            </div>  
-            <div style="clear: both; margin-bottom: 20px;"></div>
+  <div class="settings">
+    <h1>Settings</h1>
+    <div class="settings-item">
+      <div class="settings-description">
+        <p>SHOW MISTAKES</p>
+      </div>
+      <div class="settings-slider">
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+          <span class="slider-label on">On</span>
+          <span class="slider-label off">Off</span>
+        </label>
+
+      </div>
     </div>
- 
-</div> 
+    <hr class="settings-line" />
+    <div class="settings-item">
+      <div class="settings-description">
+        <p>SHOW CLOCK</p>
+      </div>
+      <div class="settings-slider">
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+          <span class="slider-label on">On</span>
+          <span class="slider-label off">Off</span>
+        </label>
+      </div>
+    </div>
+    <hr class="settings-line" />
+    <div class="settings-item">
+      <div class="settings-description">
+        <p>CANDIDATE MODE</p>
+      </div>
+      <div class="settings-slider">
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+          <span class="slider-label on">On</span>
+          <span class="slider-label off">Off</span>
+        </label>
+      </div>
+    </div>
+    <hr class="settings-line" />
+    <div class="settings-item">
+      <div class="settings-description">
+        <p>SHOW HINTS</p>
+      </div>
+      <div class="settings-slider">
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider round"></span>
+          <span class="slider-label on">On</span>
+          <span class="slider-label off">Off</span>
+        </label>
+      </div>
+    </div>
+  </div>
+</div>
 
-{% endblock %}\
-
+{% endblock %}

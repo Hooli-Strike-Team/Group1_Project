@@ -291,7 +291,7 @@ h3 {
   
   .achievements {
     width: auto;
-    margin: 1.5rem 0 auto;
+    margin: 3rem 0 2rem;
     padding: 1rem 2rem;
     /* Dark gray border */
     border: 0.125rem solid #666666;
@@ -1012,12 +1012,11 @@ h3 {
   display: flex;
   align-items: center;
   flex-direction: column;
-  
 }
 
 .rules {
   width: 40rem;
-  margin: 1.5rem 0 auto;
+  margin: 3rem 0 auto;
   padding: 1rem 2rem;
   /* Dark gray border */
   border: 0.125rem solid #666666;
@@ -1025,60 +1024,126 @@ h3 {
   border-radius: 1.3rem;
 }
 
-.rules_image {
-  float: left; 
-  margin-bottom: 30px;
-  margin-right: 25px;
-
+.rules h1 {
+  margin-bottom: 3rem;
 }
 
-.rules_descript {
-  display: block;
+.rules-row {
+  display: flex;
+  margin-bottom: 2rem;
 }
 
+.image-size {
+  width: 300px;
+  height: 300px;
+}
 
+.rules-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-left: 1rem;
+}
 
+.rules-description p:first-child {
+  margin-top: 0;
+}
 
+.rules-description span {
+  font-weight: bold;
+}
 
+.rules-note {
+  margin-top: -0.5rem;
+}
+
+.rules-triple {
+  font-weight: 600;
+}
+
+.rules h6 {
+  margin-top: 0.4rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.rules .clear {
+  clear: both;
+  margin-bottom: 1.25rem;
+}
+
+.rules .citation {
+  font-size: 1.2rem;
+  margin-top: 3rem;
+}
+
+.blue-text {
+  color: #00a8f3;
+  font-weight: bold;
+}
+
+.black-text {
+  color: #000000;
+  font-weight: bold;
+}
+
+.citation-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 44.25rem;
+  margin: 0 auto;
+}
+
+.citation-wrapper h1 {
+  font-size: 1.2rem;
+  margin-top: 2.6rem;
+}
+
+.citation-wrapper:last-child {
+  margin-bottom: 1rem;
+}
 
 /**************
  *  Settings  *
  **************/
 
 .settings-wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: auto;
-  }
-
-.settings {
-    width: auto;
-    margin: 1.5rem 0 auto;
-    padding: 1rem 2rem;
-    /* Dark gray border */
-    border: 0.125rem solid #666666;
-    /* Adds border radius on all sides */
-    border-radius: 1.3rem;
-  }
-
-.settings_descript {
-  float: left; 
-  margin-bottom: 30px;
-  margin-right: 800px;
-
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.settings_slider {
+.settings {
+  width: 40rem;
+  margin: 3rem 0 2rem;
+  padding: 1rem 2rem;
+  border: 0.125rem solid #666666;
+  border-radius: 1.3rem;
+}
+
+.settings h1 {
+  margin-bottom: 3rem;
+}
+
+.settings-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.875rem;
+}
+
+.settings-description {
+}
+
+.settings-slider {
   display: block;
-  float: right; 
 }
 
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 34px;
+  width: 3.6rem;
+  height: 1.75rem;
 }
 
 .switch input {
@@ -1094,48 +1159,77 @@ h3 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
+  background-color: #cccccc;
   -webkit-transition: .4s;
   transition: .4s;
+  overflow: hidden;
 }
 
 .slider:before {
   position: absolute;
   content: "";
-  height: 26px;
-  width: 26px;
-  left: 4px;
-  bottom: 4px;
-  background-color: white;
+  height: 1.25rem;
+  width: 1.25rem;
+  left: 0.25rem;
+  bottom: 0.25rem;
+  background-color: #ffffff;
   -webkit-transition: .4s;
   transition: .4s;
 }
 
 input:checked + .slider {
-  background-color: #2196F3;
+  background-color: #39d7ac;
 }
 
 input:focus + .slider {
-  box-shadow: 0 0 1px #2196F3;
+  box-shadow: 0 0 0.0625rem #39d7ac;
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
-  transform: translateX(26px);
+  -webkit-transform: translateX(1.85rem);
+  -ms-transform: translateX(1.85rem);
+  transform: translateX(1.85rem);
 }
 
 .slider.round {
-  border-radius: 34px;
+  border-radius: 2.125rem;
 }
 
 .slider.round:before {
   border-radius: 50%;
 }
 
-.settings_line {
-    margin-bottom: 50px;
-}    
+.slider-label {
+  position: absolute;
+  font-size: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: .4s;
+}
+
+.slider-label.on {
+  left: 0.6rem;
+  color: #ffffff;
+  opacity: 0;
+}
+
+.slider-label.off {
+  right: 0.6rem;
+  color: #333333;
+  opacity: 1;
+}
+
+input:checked ~ .slider-label.on {
+  opacity: 1;
+}
+
+input:checked ~ .slider-label.off {
+  opacity: 0;
+}
+
+.settings-line {
+  margin-bottom: 2.6rem;
+}
 
 /*************
  *  Sign In  *
