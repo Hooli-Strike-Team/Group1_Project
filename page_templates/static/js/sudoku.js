@@ -220,7 +220,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const sudoku_table = document.getElementById('sudoku-board');
     // const solve_button = document.getElementById('solve');
     // const restart_button = document.getElementById('restart');
-    // const hint_button = document.getElementById('hint');
+    const hint_button = document.getElementById('hints-button');
     // const import_button = document.getElementById('import');
     const new_button = document.getElementById('new-game-button');
     // const string_box = document.getElementById('string-box');
@@ -231,6 +231,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // const validate_button = document.getElementById('validate');
     // const legal_moves_button = document.getElementById('legal-moves');
     const xbutton = document.querySelector(".x-button");
+    const mistakes_button = document.getElementById('mistakes-button')
 
     const game1 = new Sudoku();
     const sudoku_squares = Helper.createArray(9,9);
@@ -299,6 +300,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             game1.make_move(row, col, 0);
         }
     })
+    var m = 0;
     
     // Create New Game 
     // Temporarily read from string
@@ -306,7 +308,30 @@ window.addEventListener('DOMContentLoaded', (e) => {
         beginner = "080100007000070960026900130000290304960000082502047000013009840097020000600003070"
         game1.set_board(beginner);
         SudokuDOM.display_board(game1, sudoku_squares, true);
+        document.getElementById('strike-counter').innerHTML = " 0 / 10"; // reset the mistakes counter 
+        m = 0
+
     })
+    
+    // increases m by 1 each time the mistakes button is clicked
+    mistakes_button.addEventListener('click', function(e) {
+        m = m + 1
+        if (m <= 10) {
+            document.getElementById('strike-counter').innerHTML = m + " / 10";   
+        }
+        
+      
+        
+    })
+    
+    // increases m by 1 each time the hints button is clicked 
+    hint_button.addEventListener('click', function(e) {
+        m = m + 1
+         if (m <= 10) {
+            document.getElementById('strike-counter').innerHTML = m + " / 10";   
+        }
+    })
+    
 
 /* Full functinoality below
    // Sudoku Cell Listener
