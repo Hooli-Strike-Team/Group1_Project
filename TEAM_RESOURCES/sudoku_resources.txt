@@ -13,3 +13,8 @@ Sudoku Resources:
 1.) https://www.sudokuwiki.org/sudoku.htm    # Hews very close to our original goal of a tutor, and has strategies that can be implemented as individual types of solver
 2.) http://norvig.com/sudoku.html            # Walks through wrting a efficient-ish general python solver
 3.) https://github.com/pocketjoso/sudokuJS   # minimum step sudoku solver that could help with hints, has good html/css/js display
+
+
+Current implementation sources:
+https://github.com/pocketjoso/sudokuJS
+https://jsfiddle.net/AdmiralAkbar2/z6rv70h4/229/
