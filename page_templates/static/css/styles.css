@@ -840,10 +840,8 @@ h3 {
 }
 
 /* Imported Game Cells */
-
-// FIX BORDERS
 .imported-square {
-    background: gray;
+    background-color: #eeeeee;
 }
 
 .selected-square {
@@ -854,7 +852,6 @@ h3 {
 .invalid {
     border: 2px red;
 }
-
 
 /* Subgrid borders */
 #sudoku-board .subgrid-top {
