@@ -1,11 +1,12 @@
-{% extends "base.html" %} 
+{% extends "base.html" %}
 
-{% block title %}Rules{% endblock %} 
+{% block title %}Rules{% endblock %}
 
 {% block content %}
 <div class="rules-wrapper">
   <div class="rules">
     <h1>Rules</h1>
+    <h3>The Basics</h3>
     
     <div class="rules-row">
       <div class="rules-image">
@@ -14,8 +15,8 @@
           alt="Sudoku Gif"
           class="image-size"
         />
+        <h6>(Feldman)</h6>
       </div>
-      
       <div class="rules-description">
         <p>This is an example of a Sudoku game in progress.</p>
         <p>
@@ -33,6 +34,7 @@
           alt="Sudoku Solved"
           class="image-size"
         />
+        <h6>(Feldman)</h6>
       </div>
       <div class="rules-description">
         <p>This is an example of a solved Sudoku game.</p>
@@ -50,9 +52,7 @@
         </p>
       </div>
     </div>
-
-    <h1>Mistakes</h1>
-    
+    <h3>Mistakes</h3>
     <div class="rules-row">
       <div class="rules-image">
         <img
@@ -60,7 +60,6 @@
           alt="Mistake 1"
           class="image-size"
         />
-
         <h6>(Greenspan and Lee)</h6>
       </div>
       <div class="rules-description">
@@ -71,7 +70,6 @@
         </p>
       </div>
     </div>
-    
     <div class="rules-row">
       <div class="rules-image">
         <img
@@ -79,7 +77,6 @@
           alt="Mistake 2"
           class="image-size"
         />
-
         <h6>(Greenspan and Lee)</h6>
       </div>
       <div class="rules-description">
@@ -90,7 +87,6 @@
         </p>
       </div>
     </div>
-
     <div class="rules-row">
       <div class="rules-image">
         <img
@@ -108,7 +104,6 @@
         </p>
       </div>
     </div>
-
     <div class="rules-row">
       <div class="rules-image">
         <img
@@ -120,25 +115,22 @@
       </div>
       <div class="rules-description">
         <p class="rules-triple">Triple Trouble</p>
-
         <p>The <span class="blue-text">9</span> is in the wrong spot!</p>
-
         <p>
-          There is already a <span class="black-text">9</span> in the same column, row, and 3x3 block (all instances are
-          highlighted in red).
+          There is already a <span class="black-text">9</span> in the same column, 
+          row, and 3x3 block (all instances are highlighted in red).
         </p>
       </div>
     </div>
+
   </div>
 </div>
 <div class="citation-wrapper">
   <h1>Works Cited</h1>
-
   <p>
     Feldmann, Jan. “Sudoku Coach - Learn Rules and Techniques.” Sudoku Coach -
     Play, Learn, and More..., 2020, https://sudoku.coach/en/learn.
   </p>
-
   <p>
     Greenspan, Gideon, and Rachel Lee. “Web Sudoku - Billions of Free Sudoku
     Puzzles to Play Online." Web Sudoku - Billions of Free Sudoku Puzzles to

@@ -75,6 +75,10 @@ def show_achievements():
 @app.route('/settings')
 def show_settings():
     return render_template('settings.html')
+  
+@app.route('/tutorial')
+def show_tutorial():
+    return render_template('tutorial.html')
 
 ################################################################################
 
