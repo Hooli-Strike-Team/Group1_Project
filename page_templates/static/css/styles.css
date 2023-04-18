@@ -432,6 +432,7 @@ h3 {
 }
 
 .rules.create-account {
+  margin-bottom: 2rem;
   width: 32rem;
   color: #666666;
 }
@@ -469,6 +470,10 @@ h3 {
   font-size: 1.125rem;
   cursor: pointer;
   width: 11.25rem;
+}
+
+.create-sign-in-wrapper.create-account {
+  margin: 2rem 0 2rem;
 }
 
 /****************
@@ -1175,11 +1180,20 @@ h3 {
 .settings-item {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 1.875rem;
+  align-items: top;
+  margin-bottom: 1.75rem;
+}
+
+.settings-item.show-hints {
+  margin-bottom: 0.95rem;
 }
 
 .settings-description {
+  font-size: 1.2rem;
+}
+
+.settings-description p {
+  margin-top: 0;
 }
 
 .settings-slider {
