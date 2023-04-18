@@ -16,21 +16,20 @@
           class="image-size"
         />
         <h6>(Feldman)</h6>
-        <p>Notated candidates.</p>
+        <p>
+          The 5 and 6 cannot occupy any of the highlighted cells. Therefore, 
+          they must be placed in the remaining two uncolored cells.
+        </p>
         <img
           src="static/images/tutorial/hidden_pairs2.png"
           alt="Hidden Pairs Image 2"
           class="image-size"
         />
         <h6>(Feldman)</h6>
-        <p>First possible outcome.</p>
-        <img
-          src="static/images/tutorial/hidden_pairs3.png"
-          alt="Hidden Pairs Image 3"
-          class="image-size"
-        />
-        <h6>(Feldman)</h6>
-        <p>Second possible outcome.</p>
+        <p>
+          One of the two possible placements for 5 and 6. A later clue will 
+          reveal which of the outcomes is part of the solution.
+        </p>
       </div>
       <div class="rules-description tutorial">
         <p>
@@ -86,30 +85,27 @@
     <div class="rules-row tutorial">
       <div class="rules-image tutorial">
         <img
-          src="static/images/tutorial/locked_candidate_intro.png"
+          src="static/images/tutorial/locked_candidate_ltbr.png"
+          alt="Locked Candidate Image 1"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p>
+          <i>Line-to-Block Reduction</i> :&ensp;The 2 in the lower-middle block
+          limits the placement of a 2 to two specific cells within the 
+          upper-right block.
+        </p>
+        <img
+          src="static/images/tutorial/locked_candidate_btlr.png"
           alt="Locked Candidate Image 2"
           class="image-size"
         />
         <h6>(Feldman)</h6>
         <p>
-          The 6 in the upper-right block restricts the placement of a 6 in the
-          seventh cell of the third row. Accordingly, one of the first two cells 
-          in the third row must contain a 6.
+          <i>Block-to-Line Reduction</i> :&ensp;The 5 in the lower-right block 
+          limits the placement of a 5 to two specific cells within the 
+          upper-middle block.
         </p>
-        <img
-          src="static/images/tutorial/locked_candidate_ltbr.png"
-          alt="Locked Candidate Image 2"
-          class="image-size"
-        />
-        <h6>(Feldman)</h6>
-        <p>Example of Line-to-Block Reduction.</p>
-        <img
-          src="static/images/tutorial/locked_candidate_btlr.png"
-          alt="Locked Candidate Image 3"
-          class="image-size"
-        />
-        <h6>(Feldman)</h6>
-        <p>Example of Block-to-Line Reduction.</p>
       </div>
       <div class="rules-description tutorial">
         <p>
@@ -171,7 +167,20 @@
           class="image-size"
         />
         <h6>(Feldman)</h6>
-        <p>Example of an X-Wing.</p>
+        <p>
+          The cells that are highlighted in green make up the X-Wing. The
+          candidates that are highlighted in red can be eliminated.
+        </p>
+        <img
+          src="static/images/tutorial/x-wing_non_ex.png"
+          alt="X-Wing Image 2"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p class="tutorial-image-description">
+          An X-Wing that is completely contained within a single block is not
+          possible because there would be a repeated number in that block.
+        </p>
       </div>
       
       <div class="rules-description tutorial">
@@ -191,7 +200,7 @@
           in one of the two cells in the corresponding columns. Thus, the number 
           cannot appear in any other cells within those columns.
         </p>
-        <p>To apply the X-Wing technique:, do the following:</p>
+        <p>To apply the X-Wing technique, do the following:</p>
         <ol>
           <li>
             Identify two rows where a specific number appears as a candidate in 
@@ -224,28 +233,43 @@
    <div class="rules-row tutorial">
       <div class="rules-image tutorial">
         <img
-          src="static/images/tutorial/swordfish.png"
+          src="static/images/tutorial/swordfish1.png"
           alt="Swordfish Image 1"
           class="image-size"
         />
         <h6>(Feldman)</h6>
-        <p>Example of a Swordfish.</p>
+        <p>
+          The only distinction between the Swordfish technique and the X-Wing
+          technique is that the configuration of a Swordfish is slightly more 
+          difficult to identify because it is composed of nine cells rather 
+          than four cells.
+        </p>
+        <img
+          src="static/images/tutorial/swordfish2.png"
+          alt="Swordfish Image 2"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p class="tutorial-image-description">
+          The cells that are highlighted in green and yellow make up the 
+          Swordfish. The candidates that are highlighted in red can be eliminated.
+        </p>
       </div>
       <div class="rules-description tutorial">
         <p>
           The <span><b>Swordfish</b></span> technique is is an advanced Sudoku 
           solving strategy that builds on the X-Wing technique. Whereas an X-Wing 
           consists of a 2x2 matrix of cells, the Swordfish technique works with a 
-          3x3 matrix of cells. The swordfish technique is also called a 3x3 Fish.
+          3x3 matrix of cells. A Swordfish is also called a 3x3 Fish.
         </p>
         <p>
           The Swordfish technique works by identifying a specific number that 
           appears in exactly three cells in each of the three rows or columns, 
-          forming a 3x3 matrix of cells. The configuration allows us to eliminate 
+          forming a 3x3 matrix of cells. The configuration allows you to eliminate 
           the number as a candidate from the other cells in the intersecting rows 
           or columns.
         </p>
-        <p>To apply the Swordfish technique:, do the following:</p>
+        <p>To apply the Swordfish technique, do the following:</p>
         <ol>
           <li>
             Identify a number that appears in exactly three cells in each of the 
@@ -268,10 +292,10 @@
           the intersecting rows or columns.
         </p>
         <p>
-          Essentially, the Swordfish technique helps you to eliminate candidates 
-          from the Sudoku grid by identifying a specific number restricted within 
-          a 3x3 matrix of rows or columns. The technique can be more challenging 
-          to spot when compared to the X-Wing, but it can be a powerful tool for 
+          Essentially, the Swordfish technique helps you to rule out candidates 
+          by identifying a specific number that is restricted within a 3x3 matrix 
+          of rows or columns. The technique can be more challenging to use when 
+          compared to the X-Wing, but it is nevertheless a powerful tool for 
           solving advanced Sudoku puzzles.
         </p>
       </div>
@@ -281,12 +305,25 @@
    <div class="rules-row tutorial">
       <div class="rules-image tutorial">
         <img
-          src="static/images/tutorial/jellyfish.png"
+          src="static/images/tutorial/jellyfish1.png"
           alt="Jellfish Image 1"
           class="image-size"
         />
         <h6>(Feldman)</h6>
-        <p>Example of a Jellyfish.</p>
+        <p>
+          The Jellyfish technique functions similarly to both the X-Wing and
+          Swordfish techniques.
+        </p>
+        <img
+          src="static/images/tutorial/jellyfish2.png"
+          alt="Jellfish Image 1"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p class="tutorial-image-description">
+          The cells that are highlighted in blue make up the complementary 
+          Column-to-Row Jellyfish.
+        </p>
       </div>
       <div class="rules-description tutorial">
         <p>
@@ -306,9 +343,8 @@
         <p>To apply the Jellyfish technique, do the following:</p>
         <ol>
           <li>
-            Look for four rows (or columns) in which a specific candidate appears 
-            in exactly four cells and is aligned in such a way that they also 
-            occupy only four columns (or rows).
+            Look for a candidate that is confined to four columns in four
+            selected rows.
           </li>
           <li>
             If you find a Jellyfish configuration, you can eliminate the candidate 

@@ -58,7 +58,10 @@
       </div>
       <div class="buttons-container">
         <div class="top-buttons">
-          <button class="right-box-button bottom-buttons" id="tutorial-button">
+          <button class="right-box-button bottom-buttons" 
+                  id="tutorial-button"
+                  onclick="window.location.href='{{ url_for('show_tutorial') }}'"
+          >
             <span class="material-icons-outlined">school</span>
             Tutorial
           </button>
