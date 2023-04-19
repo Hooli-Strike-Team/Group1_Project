@@ -31,6 +31,7 @@ def create(db_filename):
                 RiskTaker BOOLEAN,
                 SpeedRunner BOOLEAN,
                 Conqueror BOOLEAN,
+                PRIMARY KEY(Username) 
                 FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
                 
             """)
@@ -47,6 +48,7 @@ def create(db_filename):
                 Best_Time_Med FLOAT,
                 Best_Time_Hard FLOAT,
                 AccountLevel FLOAT,
+                PRIMARY KEY(Username)
                 FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
                 
             """)
