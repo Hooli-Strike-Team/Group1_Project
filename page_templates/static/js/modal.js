@@ -15,4 +15,3 @@ function hideModal(event) {
     modal.style.display = 'none';
   }
 }
-
