@@ -31,7 +31,7 @@ def create(db_filename):
                 RiskTaker BOOLEAN,
                 SpeedRunner BOOLEAN,
                 Conqueror BOOLEAN,
-                PRIMARY KEY(Username) 
+                PRIMARY KEY(Username), 
                 FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
                 
             """)
@@ -48,7 +48,7 @@ def create(db_filename):
                 Best_Time_Med FLOAT,
                 Best_Time_Hard FLOAT,
                 AccountLevel FLOAT,
-                PRIMARY KEY(Username)
+                PRIMARY KEY(Username),
                 FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
                 
             """)
@@ -61,7 +61,7 @@ def create(db_filename):
                 Game_ID INT,
                 Current_Time TEXT,
                 Game BLOB,
-                PRIMARY KEY(Game_ID) 
+                PRIMARY KEY(Game_ID), 
                 FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
 
             """)
@@ -70,13 +70,15 @@ def create(db_filename):
     c.execute("""
             
             CREATE TABLE IF NOT EXISTS Game_Settings(
-                Game_ID INT,
+                Username INT,
                 Show_Mistakes BOOLEAN,
                 Show_Clock BOOLEAN,
                 Show_Hints BOOLEAN,
                 Candidate_Mode BOOLEAN,
+                Show_Mistakes_Counter BOOLEAN,
                 Difficulty VARCHAR(6),
-                FOREIGN KEY(Game_ID) REFERENCES Games_In_Progress(Game_ID)) 
+                PRIMARY KEY(Username), 
+                FOREIGN KEY(Username) REFERENCES Games_In_Progress(Username)) 
             
             """)
     
