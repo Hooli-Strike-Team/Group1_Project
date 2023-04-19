@@ -302,6 +302,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     })
     var m = 0;
     
+   /*
     // Create New Game 
     // Temporarily read from string
     new_button.addEventListener('click', function(e) {
@@ -312,6 +313,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         m = 0
 
     })
+    */
     
     // increases m by 1 each time the mistakes button is clicked
     mistakes_button.addEventListener('click', function(e) {
@@ -331,7 +333,40 @@ window.addEventListener('DOMContentLoaded', (e) => {
             document.getElementById('strike-counter').innerHTML = m + " / 10";   
         }
     })
-    
+  
+    /* Code for difficulty modal */
+  
+    // Get difficulty modal and its elements
+    const modal = document.getElementById('difficultyModal');
+    const closeButton = document.querySelector('.close');
+    const expertButton = document.getElementById('expert');
+  
+    // Opens difficulty modal
+    function openModal() {
+      modal.style.display = 'block';
+    }
+  
+    // Closes difficulty modal
+    function closeModal() {
+      modal.style.display = 'none';
+    }
+  
+    // Add event listener to open difficulty modal on click
+    new_button.addEventListener('click', openModal);
+  
+    // Add event listener to close difficulty modal
+    closeButton.addEventListener('click', closeModal);
+  
+    // Add event listener to "Expert" button
+    expertButton.addEventListener('click', function (e) {
+      closeModal();
+  
+      beginner = "080100007000070960026900130000290304960000082502047000013009840097020000600003070";
+      game1.set_board(beginner);
+      SudokuDOM.display_board(game1, sudoku_squares, true);
+      document.getElementById('strike-counter').innerHTML = " 0 / 10"; // reset the mistakes counter
+      m = 0;
+    });
 
 /* Full functinoality below
    // Sudoku Cell Listener
