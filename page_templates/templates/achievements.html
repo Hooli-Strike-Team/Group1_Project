@@ -1,17 +1,19 @@
-{% extends "base.html" %} 
-​
-{% block title %}Achievements{% endblock %} 
-​
+<!-- Inherits from base.html -->
+{% extends "base.html" %}
+
+<!-- Sets page title as "Achievements" -->
+{% block title %}Achievements{% endblock %}
+
+<!-- Main content of page -->
 {% block content %}
 <div class="achievements-wrapper">
   <div class="achievements">
     <div class="achievements-content">
-     <h1>Achievements</h1>
-​
+      <h1>Achievements</h1>
+      <!-- Container for badges -->
       <div class="achievement-badges">
-         
+        <!-- If user has earned Risk Taker badge, show badge -->
         {% if risk_taker == True %}
-  
         <div class="badge-wrapper">
           <div class="badge risk-taker">
             <div class="circle">
@@ -21,84 +23,73 @@
           </div>
           <div class="badge-desc">Complete Three HARD Puzzles</div>
         </div>
-          
-        {% endif %}
-        
-        {% if risk_taker == False %}
-  
+        {% else %}
+        <!-- Otherwise, show locked Risk Taker badge -->
         <div class="badge-wrapper">
           <div class="badge risk-taker locked">
             <div class="circle">
-              <i class="fa-solid fa-lock"></i>
+              <i class="fa fa-lock"></i>
             </div>
             <div class="ribbon">Risk Taker</div>
           </div>
           <div class="badge-desc">Complete Three HARD Puzzles</div>
         </div>
-          
         {% endif %}
-  
+
+        <!-- If user has earned Lone Wolf badge, show badge -->
         {% if lone_wolf == True %}
-​
         <div class="badge-wrapper">
           <div class="badge lone-wolf">
             <div class="circle">
-              <i class="fa-solid fa-user-secret"></i>
+              <i class="fa fa-user-secret"></i>
             </div>
             <div class="ribbon">Lone Wolf</div>
           </div>
           <div class="badge-desc">Complete One Puzzle Without Hints</div>
         </div>
-          
-        {% endif %} 
-          
-        {% if lone_wolf == False %}
-​
+        {% else %}
+        <!-- Otherwise, show locked Lone Wolf badge -->
         <div class="badge-wrapper">
           <div class="badge lone-wolf locked">
             <div class="circle">
-              <i class="fa-solid fa-lock"></i>
+              <i class="fa fa-lock"></i>
             </div>
             <div class="ribbon">Lone Wolf</div>
           </div>
           <div class="badge-desc">Complete One Puzzle Without Hints</div>
         </div>
-          
-        {% endif %} 
-          
+        {% endif %}
+
+        <!-- If user has earned Puzzle Master badge, show badge -->
         {% if puzzle_master == True %}
-  
         <div class="badge-wrapper">
           <div class="badge puzzle-master">
             <div class="circle">
-              <i class="fa-solid fa-crown"></i>
+              <i class="fa fa-crown"></i>
             </div>
             <div class="ribbon">Puzzle Master</div>
           </div>
           <div class="badge-desc">Reach MAX Level</div>
         </div>
-          
-        {% endif %}    
-          
-        {% if puzzle_master == False %}
-  
+        {% else %}
+        <!-- Otherwise, show locked Puzzle Master badge -->
         <div class="badge-wrapper">
           <div class="badge puzzle-master locked">
             <div class="circle">
-              <i class="fa-solid fa-lock"></i>
+              <i class="fa fa-lock"></i>
             </div>
             <div class="ribbon">Puzzle Master</div>
           </div>
           <div class="badge-desc">Reach MAX Level</div>
         </div>
-          
-        {% endif %}  
-          
-         {% if speed_runner == True %} 
+        {% endif %}
+
+        <!-- If user has earned Speed Runner badge, show badge -->
+        {% if speed_runner == True %}
         <div class="badge-wrapper">
           <div class="badge speed-runner">
             <div class="circle">
-              <i class="fa-solid fa-person-running"></i>
+              <i class="fa fa-person-running"></i>
             </div>
             <div class="ribbon">Speed Runner</div>
           </div>
@@ -106,11 +97,8 @@
             Complete One HARD Puzzle in Less Than 10 Minutes
           </div>
         </div>
-        
-        {% endif %} 
-            
-          
-        {% if speed_runner == False %} 
+        {% else %}
+        <!-- Otherwise, show locked Speed Runner badge -->
         <div class="badge-wrapper">
           <div class="badge speed-runner locked">
             <div class="circle">
@@ -122,25 +110,23 @@
             Complete One HARD Puzzle in Less Than 10 Minutes
           </div>
         </div>
-        
-        {% endif %} 
-        
-        {% if inquisitor == True %} 
-​
+        {% endif %}
+
+        <!-- If user has earned Inquisitor badge, show badge -->
+        {% if inquisitor == True %}
         <div class="badge-wrapper">
           <div class="badge inquisitor">
             <div class="circle">
-              <i class="fa-solid fa-question"></i>
+              <i class="fa fa-question"></i>
             </div>
             <div class="ribbon">Inquisitor</div>
           </div>
-          <div class="badge-desc">Request a Hint Five Times for the Same Puzzle</div>
+          <div class="badge-desc">
+            Request a Hint Five Times for the Same Puzzle
+          </div>
         </div>
-        
-       {% endif %} 
-       
-       {% if inquisitor == False %} 
-​
+        {% else %}
+        <!-- Otherwise, show locked Inquisitor badge -->
         <div class="badge-wrapper">
           <div class="badge inquisitor locked">
             <div class="circle">
@@ -148,17 +134,18 @@
             </div>
             <div class="ribbon">Inquisitor</div>
           </div>
-          <div class="badge-desc">Request a Hint Five Times for the Same Puzzle</div>
+          <div class="badge-desc">
+            Request a Hint Five Times for the Same Puzzle
+          </div>
         </div>
-        
-       {% endif %}   
-          
-       {% if conqueror == True %} 
-  
+        {% endif %}
+
+        <!-- If user has earned Conqueror badge, show badge -->
+        {% if conqueror == True %}
         <div class="badge-wrapper">
           <div class="badge conqueror">
             <div class="circle">
-              <i class="fa-solid fa-mountain"></i>
+              <i class="fa fa-mountain"></i>
             </div>
             <div class="ribbon">Conqueror</div>
           </div>
@@ -166,15 +153,12 @@
             Complete One Puzzle at Each Difficulty Level
           </div>
         </div>
-    
-        {% endif %}
-          
-       {% if conqueror == False %} 
-  
+        {% else %}
+        <!-- Otherwise, show locked Conqueror badge -->
         <div class="badge-wrapper">
           <div class="badge conqueror locked">
             <div class="circle">
-              <i class="fa-solid fa-lock"></i>
+              <i class="fa fa-lock"></i>
             </div>
             <div class="ribbon">Conqueror</div>
           </div>
@@ -182,9 +166,7 @@
             Complete One Puzzle at Each Difficulty Level
           </div>
         </div>
-    
-        {% endif %} 
-          
+        {% endif %}
       </div>
     </div>
   </div>

@@ -1,27 +1,41 @@
-{% extends "base.html" %} 
+<!-- Inherits from base.html -->
+{% extends "base.html" %}
 
-{% block title %}Difficulty{% endblock %} 
+<!-- Sets page title as "Difficulty" -->
+{% block title %}Difficulty{% endblock %}
 
+<!-- Main content of page -->
 {% block content %}
+<!-- Main content wrapper -->
 <div class="main-content difficulty-content">
+  <!-- Difficulty header -->
   <h2 class="difficulty-header">Select Difficulty</h2>
+  <!-- Container for difficulty buttons -->
   <div class="difficulty-buttons">
+    <!-- Easy difficulty button -->
     <button class="difficulty-button" id="easy">
       EASY
+      <!-- Easy difficulty stars -->
       <div class="stars">
         <span class="material-icons-outlined">star</span>
       </div>
     </button>
+    
+    <!-- Hard difficulty button -->
     <button class="difficulty-button" id="hard">
       HARD
+      <!-- Hard difficulty stars -->
       <div class="stars">
         <span class="material-icons-outlined">star</span>
         <span class="material-icons-outlined">star</span>
         <span class="material-icons-outlined">star</span>
       </div>
     </button>
+    
+    <!-- Expert difficulty button -->
     <button class="difficulty-button" id="expert">
       EXPERT
+      <!-- Expert difficulty stars -->
       <div class="stars">
         <span class="material-icons-outlined">star</span>
         <span class="material-icons-outlined">star</span>

@@ -1,8 +1,11 @@
+<!-- Inherits from base.html -->
 {% extends "base.html" %} 
 
+<!-- Sets page title as "Home" -->
 {% block title %}Home{% endblock %} 
 
 {% block buttons%}
+<!-- "Create Account" and "Sign In" buttons -->
 <button
   class="create-account-button"
   onclick="window.location.href='{{ url_for('create_account') }}'"
@@ -17,9 +20,10 @@
 </button>
 {% endblock %} 
 
+<!-- Main content of page -->
 {% block content %} 
+<!-- If user is logged in, show modal -->
 {% if show_logged_in_content %}
-<!-- Modal -->
 <div id="loggedInModal" class="modal" onclick="hideModal(event)">
   <div class="modal-content">
     <p id="hello_user">
@@ -27,12 +31,14 @@
       <span class="material-icons-outlined">waving_hand</span>.
     </p>
     <p id="welcome_back">Welcome back!</p>
+    <!-- "New Game" button -->
     <button
       onclick="location.href='{{ url_for('show_difficulty') }}'"
       class="btn"
     >
       New Game
     </button>
+    <!-- "Resume Game" button -->
     <button onclick="location.href='{{ url_for('main') }}'" class="btn">
       Resume Game
     </button>
@@ -40,9 +46,9 @@
 </div>
 {% endif %}
 
-<!-- Flexbox for text box and image container -->
+<!-- Main content container -->
 <div class="main-content">
-  <!-- Container for text box -->
+  <!-- Text box container -->
   <div class="text-box">
     <h2 id="content-header">Sudoku Mastery Made Simple</h2>
     <p>
@@ -53,7 +59,7 @@
       throughout your Sudoku journey.
     </p>
 
-    <!-- Container for "Create Account" and "Sign In" buttons -->
+    <!-- "Create Account" and "Sign In" buttons container -->
     <div class="create-sign-in-wrapper">
       <button
         class="create-account-button"
@@ -68,7 +74,7 @@
     </div>
   </div>
 
-  <!-- Container for image -->
+  <!-- Image container -->
   <div class="image-container">
     <img
       src="{{ url_for('static', filename='images/home/alt_img_green.png') }}"
@@ -77,12 +83,12 @@
   </div>
 </div>
 
-<!-- Flexbox for features -->
+<!-- Features container -->
 <div class="main-content increase-top-margin">
   <div class="feature-wrapper">
-    <!-- Container for feature #1 -->
+    <!-- Feature #1 container -->
     <div class="feature-container">
-      <!-- Header for feature #1 -->
+      <!-- Feature #1 header -->
       <div class="feature-header">
         <div class="feature-icon">
           <span class="material-icons-outlined"> sentiment_satisfied_alt </span>
@@ -90,7 +96,7 @@
         <h2>User-Friendly Interface</h2>
       </div>
 
-      <!-- Text box for feature #1 -->
+      <!-- Feature #1 text box -->
       <div class="feature-text-box">
         <p>
           Designed with simplicity and ease of use in mind, Sudoku Sage's
@@ -100,7 +106,7 @@
       </div>
     </div>
 
-    <!-- Container for feature #2 -->
+    <!-- Feature #2 container -->
     <div class="feature-container">
       <!-- Header for feature #2 -->
       <div class="feature-header">
@@ -110,7 +116,7 @@
         <h2>Real-Time Guidance and Feedback</h2>
       </div>
 
-      <!-- Text box for feature #2 -->
+      <!-- Feature #2 text box -->
       <div class="feature-text-box">
         <p>
           Sudoku Sage's real-time guidance helps you to understand the logic
@@ -120,9 +126,9 @@
       </div>
     </div>
 
-    <!-- Container for feature #3 -->
+    <!-- Feature #3 container -->
     <div class="feature-container">
-      <!-- Header for feature #3 -->
+      <!-- Feature #3 header -->
       <div class="feature-header">
         <div class="feature-icon">
           <span class="material-icons-outlined"> insights </span>
@@ -130,7 +136,7 @@
         <h2>Motivation-Boosting Progress Tracking</h2>
       </div>
 
-      <!-- Text box for feature #3 -->
+      <!-- Feature #3 text box -->
       <div class="feature-text-box align-left">
         <p>
           Stay inspired and visualize your improvement with our dynamic progress

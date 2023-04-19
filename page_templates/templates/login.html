@@ -1,67 +1,61 @@
-{% extends "base.html" %} 
+<!-- Inherits from base.html -->
+{% extends "base.html" %}
 
-{% block title %}Login{% endblock %} 
+<!-- Sets page title as "Sign In" -->
+{% block title %}Sign In{% endblock %}
 
 {% block content %}
-
-<!-- START MAIN DIV -->
+<!-- Main content container -->
 <div class="main-content">
-    
-  <!-- START OF LEFT DIV (TEXT CONTAINER) -->
+  <!-- Left container for text -->
   <div class="text-box">
     <h2 id="content-header">Welcome to Sudoku Sage!</h2>
     <p>
-      Welcome to Sudoku Sage, where we empower you to improve your problem-solving 
-      and deductive reasoning skills through guided learning experiences. Our web 
-      application blends in-game assistance with progress tracking features to ensure 
+      Welcome to Sudoku Sage, where we empower you to improve your problem-solving
+      and deductive reasoning skills through guided learning experiences. Our web
+      application blends in-game assistance with progress tracking features to ensure
       that you remain supported and engaged throughout your Sudoku journey.
     </p>
   </div>
 
-  <!-- START OF RIGHT DIV (FORM ELEMENTS) -->
+  <!-- Right container for form elements -->
   <div class="flex-child magenta">
-    <form action="" method="POST">  <!-- FIX ME: DEFINE "action" -->
-        
-      <div class="container">    
-        <!-- TITLE, RIGHT DIV -->
+    <!-- Login form -->
+    <form action="" method="POST">  <!-- TODO: Define "action" -->
+
+      <div class="container">
+        <!-- Page title -->
         <h1>Sign In</h1>
-          
-        <!-- USERNAME FIELD -->
+
+        <!-- Username field -->
         <label for="uname"><h2><b>Username</b></h2></label>
         <div class="input-wrapper">
           <input type="text" placeholder="" name="username" value="{{ request.form.username }}" required>
         </div>
 
-        <!-- PASSWORD FIELD -->
+        <!-- Password field -->
         <label for="psw"><h2><b>Password</b></h2></label>
         <div class="input-wrapper">
             <input type="password" placeholder="" name="password" value="{{ request.form.password }}" required>
         </div>
-          
-        <!-- REMEMBER ME CHECKBOX -->
-<!--         <label class="remember-me">
-          <input type="checkbox" checked="checked" name="remember"> Remember
-          me
-        </label> -->
-          
-        <!-- FORGOT PASSWORD + CREATE ACCOUNT LINKS -->
+
+        <!-- Forgotten password and create account links -->
         <div class="links-wrapper">
           <a href="#" class="forgot-password">Forgot password?</a>
           <a href="{{ url_for('create_account') }}" class="create-account">Create Account</a>
         </div>
-          
-        <!-- LOGIN BUTTON -->
+
+        <!-- Login button -->
         <button class="login-button" type="submit" value="Login">Sign In</button>
-          
+
       </div>
     </form>
-  </div>  <!-- END OF RIGHT DIV -->
-</div>  <!-- END OF MAIN DIV -->
+  </div> 
+</div>
+{% endblock %}
 
-{% endblock %} 
-
-{% block extra_js %} 
+{% block extra_js %}
 {% if show_logged_in_content %}
 <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
-{% endif %} 
+{% endif %}
 {% endblock %}

@@ -1,51 +1,73 @@
-{% extends "base.html" %} 
+<!-- Inherits from base.html -->
+{% extends "base.html" %}
 
-{% block js_source %}src="{{ url_for('static', filename='js/sudoku.js') }}"{% endblock %} 
-{% block script %}
-{% endblock %} 
-{% block title %}Main{% endblock %} 
+<!-- Block for JavaScript source and script content -->
+{% block js_source %}src="{{ url_for('static', filename='js/sudoku.js') }}"{% endblock %}
+{% block script %}{% endblock %}
 
+<!-- Sets page title as "Main" -->
+{% block title %}Main{% endblock %}
+
+<!-- Main content of page -->
 {% block content %}
 <div class="wrapper-container">
   <div class="game-container">
+    <!-- Left container -->
     <div class="left-container">
+      <!-- Information container -->
       <div id="info-container">
+        <!-- Difficulty setting -->
         <div id="difficulty-setting">
           <span class="material-icons-outlined"> stars </span>
           <span>EXPERT</span>
         </div>
+
+        <!-- Timer -->
         <div id="timer">
           <span class="material-icons-outlined"> timer </span>
           <span>00:00</span>
         </div>
+
+        <!-- Mistakes count -->
         <div id="mistakes-count">
           <span class="material-icons-outlined"> close </span>
           <span id="strike-counter">0 / 10</span>
         </div>
       </div>
 
+      <!-- Sudoku board -->
       <div id="sudoku-board">
-        {% for row in range(9) %} {% for col in range(9) %}
+        {% for row in range(9) %}
+        {% for col in range(9) %}
         <div
           class="cell {% if row % 3 == 0 and row != 0 %}subgrid-top{% endif %} {% if col % 3 == 0 and col != 0 %}subgrid-left{% endif %}">
           <input type='text' pattern='\\d*' novalidate id='input-{{ col + row * 9 }}'>
         </div>
-        {% endfor %} {% endfor %}
+        {% endfor %}
+        {% endfor %}
       </div>
     </div>
+
+    <!-- Right container -->
     <div id="right-box">
+      <!-- User information box -->
       <div class="user-info-box">
         <div id="username-wrapper">
           <i class="fa-solid fa-circle-user user-icon"></i>
           <span class="username">Username</span>
         </div>
+        <!-- Account details link -->
         <a href="#" class="account-link">Account Details</a>
       </div>
+
+      <!-- Right container buttons -->
       <div id="right-box-buttons-container">
         <button class="right-box-button" id="mistakes-button">Mistakes</button>
         <button class="right-box-button" id="hints-button">Hints</button>
         <button class="right-box-button" id="notes-button">Notes</button>
       </div>
+
+      <!-- Placeholder box -->
       <div class="placeholder-box">
         {% for digit in range(1, 10) %}
         <button class="digit-button placeholder-digit-button" id="digit-{{digit}}" data-digit="{{digit}}">{{digit}}</button>
@@ -56,15 +78,21 @@
           </span>
         </button>
       </div>
+
+      <!-- Buttons container -->
       <div class="buttons-container">
+        <!-- Top buttons container -->
         <div class="top-buttons">
-          <button class="right-box-button bottom-buttons" 
+          <!-- "Tutorial" button -->
+          <button class="right-box-button bottom-buttons"
                   id="tutorial-button"
                   onclick="window.location.href='{{ url_for('show_tutorial') }}'"
           >
             <span class="material-icons-outlined">school</span>
             Tutorial
           </button>
+
+          <!-- "Resume" button -->
           <button
             class="right-box-button bottom-buttons"
             id="resume-button"
@@ -73,7 +101,10 @@
             Resume
           </button>
         </div>
+
+        <!-- "New Game" button container -->
         <div class="new-game-button-container">
+          <!-- "New Game" button -->
           <button class="right-box-button new-game-button" id="new-game-button">
             New Game
           </button>
@@ -81,5 +112,5 @@
       </div>
     </div>
   </div>
-  {% endblock %}
+{% endblock %}
 </div>
