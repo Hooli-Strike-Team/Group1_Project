@@ -316,8 +316,13 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // increases m by 1 each time the mistakes button is clicked
     mistakes_button.addEventListener('click', function(e) {
         m = m + 1
-        if (m <= 10) {
+        if (m < 10) {
             document.getElementById('strike-counter').innerHTML = m + " / 10";   
+        }
+        else if (m == 10) {
+            document.getElementById('strike-counter').innerHTML = m + " / 10";   
+
+            rendermodal()
         }
         
       
@@ -327,10 +332,43 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // increases m by 1 each time the hints button is clicked 
     hint_button.addEventListener('click', function(e) {
         m = m + 1
-         if (m <= 10) {
+        if (m < 10) {
             document.getElementById('strike-counter').innerHTML = m + " / 10";   
         }
+        else if (m == 10) {
+            document.getElementById('strike-counter').innerHTML = m + " / 10";   
+
+            rendermodal()
+        }
     })
+    
+    function rendermodal(event) {
+        
+        // Show modal window when page loads
+        document.getElementById('mistake-limit-model').style.display = 'block';
+        
+        var modal = document.getElementById('mistake-limit-model');
+
+        modal.addEventListener('click', hidemistakes)
+    }
+    
+    
+    
+    function hidemistakes(event) {
+      // Get modal element by ID
+      var modal = document.getElementById('mistake-limit-model');
+      // Get content of modal
+      var content = document.querySelector('.modal-mistakes-content');
+
+      // Check if element that was clicked is either modal background or not a 
+      // child of content
+      if (event.target == modal || !content.contains(event.target)) {
+        // Hide modal
+        modal.style.display = 'none';
+        m = 0
+        document.getElementById('strike-counter').innerHTML = " 0 / 10"; // reset the mistakes counter 
+      }
+    }
     
 
 /* Full functinoality below
