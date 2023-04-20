@@ -266,7 +266,7 @@
         * Repurposed "Statistics" button as "Resume" button
         * Cleaned up stylesheet and templates and added additional comments
         * Created Tutorial Page
-        * Created a new branch `note_feature` with a partial implementation of
+        * Created new branch `note_feature` with partial implementation of
           notes feature
         * Displayed contents of Difficulty Page in modal window on Main Page
         * Finished integrating pages that were completed last week into website
