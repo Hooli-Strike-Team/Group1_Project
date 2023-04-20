@@ -261,7 +261,15 @@
         * Finished creating a Base SQL Database 
         * Implemented a mistakes counter that tracks the number of clicks on the "Hints" or "Mistakes" button 
         * Created a Modal that alerts users when they have maxed out the mistakes count 
-    * Tory:...
+    * Tory:
+        * Fixed styling issue with "imported-square" class (identified by Matt)
+        * Repurposed "Statistics" button as "Resume" button
+        * Cleaned up stylesheet and templates and added additional comments
+        * Created Tutorial Page
+        * Created a new branch `note_feature` with a partial implementation of
+          notes feature
+        * Displayed contents of Difficulty Page in modal window on Main Page
+        * Finished integrating pages that were completed last week into website
     
 * In Progress 
     * Matt: 
@@ -274,7 +282,8 @@
         * Get help from team to complete the notes feature 
         * Assist team in completing their goals for the week
         * Make sure the team finshes the "Main" page by the end of this cycle
-    * Tory:...
+    * Tory:
+        * Create tests for each completed task
 * To Do 
     * Matt: 
     * Micah:... 
@@ -284,7 +293,9 @@
         * Implement the Mistakes counter
         * Create an alert for Maxing out mistakes
         * Help with the notes feature 
-    * Tory:...
+    * Tory:
+        * Help team to refine notes feature
+        * Assist others with their assigned tasks as needed
     
 <p align="center">
  <img width="650" height="440" src="images/weekly_status/main_page_progress1.png">
