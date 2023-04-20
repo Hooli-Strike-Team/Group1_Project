@@ -256,7 +256,7 @@
 * Completed 
     * Matt:...
     * Micah:... 
-    * Ben:... 
+    * Ben: Settings page HTML/CSS
     * Paul: 
         * Finished creating a Base SQL Database 
         * Implemented a mistakes counter that tracks the number of clicks on the "Hints" or "Mistakes" button 
@@ -266,7 +266,7 @@
 * In Progress 
     * Matt: 
     * Micah:...
-    * Ben:...
+    * Ben: Timer function
     * Paul: 
         * Get help from team to complete the notes feature 
         * Assist team in completing their goals for the week
@@ -275,7 +275,7 @@
 * To Do 
     * Matt:...
     * Micah:... 
-    * Ben:...
+    * Ben: 
     * Paul: 
         * Starting Coding the Base SQL Database based on the ER Diagrams
         * Implement the Mistakes counter
