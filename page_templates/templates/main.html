@@ -39,9 +39,15 @@
       <div id="sudoku-board">
         {% for row in range(9) %}
         {% for col in range(9) %}
-        <div
-          class="cell {% if row % 3 == 0 and row != 0 %}subgrid-top{% endif %} {% if col % 3 == 0 and col != 0 %}subgrid-left{% endif %}">
-          <input type='text' pattern='\\d*' novalidate id='input-{{ col + row * 9 }}'>
+        <!-- Each cell has (1) input element and (2) notes <div> -->
+        <div class="cell 
+          {% if row % 3 == 0 and row != 0 %}subgrid-top{% endif %} 
+          {% if col % 3 == 0 and col != 0 %}subgrid-left{% endif %}">
+          <!-- Input element (i.e., where user enters value) -->
+          <input type='text' pattern='\\d*' novalidate id='input-{{ col + row * 9 }}' data-notes="">
+
+          <!-- Notes <div> (appears when user is in notes mode) -->
+          <div class="notes"></div>
         </div>
         {% endfor %}
         {% endfor %}

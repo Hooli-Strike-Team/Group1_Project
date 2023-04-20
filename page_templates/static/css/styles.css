@@ -915,12 +915,15 @@ h3 {
   font-size: 1.6rem;
   /* Dark gray border */
   border: 0.0625rem solid #666666;
+  /* Makes position of notes container relative to cell */
+  position: relative;
 }
 
 /* Sudoku cell input */
 #sudoku-board .cell input {
   /* Removes input cursor from cells */
   color: transparent;
+  /* Black */
   text-shadow: 0 0 0 #000000;
   font-size: 1.6rem;
   text-align: center;
@@ -930,6 +933,11 @@ h3 {
   z-index: 1;
   /* top, bottom: 0; right, left: 0 */
   margin: 0;
+}
+
+#sudoku-board .cell input.notes-active {
+  /* Makes background of input element transparent */
+  background-color: transparent;
 }
 
 /* Imported game cells */
@@ -1019,6 +1027,7 @@ h3 {
 }
 
 .x-button:hover {
+  /* Medium green */
   background-color: #249a7e;
 }
 
@@ -1303,6 +1312,30 @@ h3 {
   font-size: 1.4rem;
   /* White */
   color: #ffffff;
+}
+
+/* Styles for notes feature */
+.notes {
+  font-size: 0.8rem;
+  /* Medium gray */
+  color: #888888;
+  display: flex;
+  /* Centers notes horizontally */
+  justify-content: center;
+  /* Centers notes vertically */
+  align-items: center;
+  /* Positions notes above input element */
+  z-index: 1;
+  /* Sets notetaking area to width and height of Sudoku cell */
+  width: 100%;
+  height: 100%;
+  /* Positions notes container relative to cell */
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Makes it so notes container is not interactive (i.e., events pass through 
+     to input element) */
+  pointer-events: none;
 }
 
 /***********
