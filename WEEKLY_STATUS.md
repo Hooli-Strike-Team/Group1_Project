@@ -250,3 +250,43 @@
 <p align="center">
  <img width="650" height="440" src="images/weekly_status/goal1_complete.png">
 </p>
+
+### Week 8: April 17-24 ###
+
+* Completed 
+    * Matt:...
+    * Micah:... 
+    * Ben:... 
+    * Paul: 
+        * Finished creating a Base SQL Database 
+        * Implemented a mistakes counter that tracks the number of clicks on the "Hints" or "Mistakes" button 
+        * Created a Modal that alerts users when they have maxed out the mistakes count 
+    * Tory:...
+    
+* In Progress 
+    * Matt: 
+    * Micah:...
+    * Ben:...
+    * Paul: 
+        * Get help from team to complete the notes feature 
+        * Assist team in completing their goals for the week
+        * Make sure the team finshes the "Main" page by the end of this cycle
+    * Tory:...
+* To Do 
+    * Matt:...
+    * Micah:... 
+    * Ben:...
+    * Paul: 
+        * Starting Coding the Base SQL Database based on the ER Diagrams
+        * Implement the Mistakes counter
+        * Create an alert for Maxing out mistakes
+        * Help with the notes feature 
+    * Tory:...
+    
+<p align="center">
+ <img width="650" height="440" src="images/weekly_status/main_page_progress1.png">
+</p>
+
+<p align="center">
+ <img width="650" height="440" src="images/weekly_status/main_page_progress2.png">
+</p>
