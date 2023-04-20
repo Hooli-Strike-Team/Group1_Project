@@ -265,6 +265,9 @@
     
 * In Progress 
     * Matt: 
+        * Finish sudoku game behaviour w/ Tories css fixes
+        * Help Tory with Notes feature
+        * Javascript solver/help feature
     * Micah:...
     * Ben: Timer function to keep track on time spend in-game
     * Paul: 
@@ -273,7 +276,7 @@
         * Make sure the team finshes the "Main" page by the end of this cycle
     * Tory:...
 * To Do 
-    * Matt:...
+    * Matt: 
     * Micah:... 
     * Ben: Find a way to end the puzzle once complete
     * Paul: 
