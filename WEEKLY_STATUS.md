@@ -255,7 +255,7 @@
 
 * Completed 
     * Matt:...
-    * Micah:... 
+    * Micah: Discussed SQL options with the team, including data collection for entries into the tables that will support session data. 
     * Ben: Settings page HTML/CSS
     * Paul: 
         * Finished creating a Base SQL Database 
@@ -276,7 +276,8 @@
         * Finish sudoku game behaviour w/ Tories css fixes
         * Help Tory with Notes feature
         * Javascript solver/help feature
-    * Micah:...
+    * Micah: 
+        * Taking a look at the database materials that Paul started, testing the database response, making edits, pushing test data, and getting the database ready to incorporate into the application. 
     * Ben: Timer function to keep track on time spend in-game
     * Paul: 
         * Get help from team to complete the notes feature 
@@ -286,7 +287,8 @@
         * Create tests for each completed task
 * To Do 
     * Matt: 
-    * Micah:... 
+    * Micah: 
+        * Discuss SQL starter materials with Paul, and work on front-end touchups with the rest of the team.
     * Ben: Find a way to end the puzzle once complete
     * Paul: 
         * Starting Coding the Base SQL Database based on the ER Diagrams
