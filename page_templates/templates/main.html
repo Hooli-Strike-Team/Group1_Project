@@ -55,7 +55,10 @@
         {% for col in range(9) %}
         <div
           class="cell {% if row % 3 == 0 and row != 0 %}subgrid-top{% endif %} {% if col % 3 == 0 and col != 0 %}subgrid-left{% endif %}">
-          <input type='text' pattern='\\d*' novalidate id='input-{{ col + row * 9 }}'>
+          <input type='text' pattern='\\d*' novalidate id='input-{{ col + row * 9 }}' data-notes="">
+          
+          <!-- Notes <div> (appears when user is in notes mode) -->
+          <div class="notes"></div>
         </div>
         {% endfor %}
         {% endfor %}

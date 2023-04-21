@@ -85,6 +85,47 @@ class Sudoku {
         }
         this.board[row][col] = value;
     }
+  
+    add_note(inputEl, newDigit) {
+      // Get notes container for current cell input
+      const notesDiv = inputEl.nextElementSibling;
+      
+      // Get current notes for cell
+      const currentNotes = inputEl.getAttribute("data-notes");
+
+      if (currentNotes.includes(newDigit)) {
+        inputEl.setAttribute("data-notes", currentNotes.replace(newDigit, ""));
+      } else {
+        inputEl.setAttribute("data-notes", currentNotes + newDigit);
+      }
+
+      // Update notes container with new notes
+      const notesArray = inputEl.getAttribute("data-notes").split("");
+      // Clear notes container
+      notesDiv.innerHTML = "";
+
+      notesArray.forEach((note, index) => {
+        const noteElem = document.createElement("div");
+        // Set text content of note element
+        noteElem.textContent = note;
+        noteElem.classList.add("note" + note);
+        // Add note element to notes container
+        notesDiv.appendChild(noteElem);
+      });
+
+      // Clear input value of cell
+      inputEl.value = "";
+    }
+  
+    clear_notes(inputEl) {
+      // Get notes container for current cell input
+      const notesDiv = inputEl.nextElementSibling;
+      
+      inputEl.setAttribute("data-notes", "");
+      
+      // Clear notes container
+      notesDiv.innerHTML = "";
+    }
     
     is_valid_input(value) {
         const regex = new RegExp('^[1-9]$');
@@ -302,7 +343,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // const validate_button = document.getElementById('validate');
     // const legal_moves_button = document.getElementById('legal-moves');
     const xbutton = document.querySelector(".x-button");
-    const mistakes_button = document.getElementById('mistakes-button')
+    const mistakes_button = document.getElementById('mistakes-button');
+    const notes_button = document.getElementById('notes-button');
 
     const game1 = new Sudoku();
     const sudoku_squares = Helper.createArray(9,9);
@@ -315,6 +357,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // Tags can be edited based on Mistakes/Hint button flags to add/remove css
     const invalid_tag = "invalid"
     const hint_tag = "invalid"
+    
+    // Flag for turning notes mode on and off
+    let notes_mode = false;
 
     // Store all the Sudoku square <input type="text"> elements in variables for quick accessing
     for ( let row = 0; row < PUZZLE_SIZE; row++ ) {
@@ -344,18 +389,25 @@ window.addEventListener('DOMContentLoaded', (e) => {
                 }
                 
                 var input = e.target.value
-                console.log('input',input)
+                console.log('input', input)
+              
                 // Check if input is valid number and check entire board state
                 if(game1.is_valid_input(input)) {
-                    game1.make_move(row, col, input);
-                    console.log(game1.board);
-                    let state = game1.board_state(sudoku_squares,invalid_tag)
-                    if (!state.is_legal) {
-                        // add to mistake counter
-                        console.log("legal move: ", state.is_legal)
-                    }
-                    if (state.is_legal && state.is_finished) {
-                        // do game end things
+                  
+                    if (notes_mode) {
+                      game1.add_note(e.target, input);
+                    } else {
+                      game1.clear_notes(e.target);
+                      game1.make_move(row, col, input);
+                      console.log(game1.board);
+                      let state = game1.board_state(sudoku_squares,invalid_tag)
+                      if (!state.is_legal) {
+                          // add to mistake counter
+                          console.log("legal move: ", state.is_legal)
+                      }
+                      if (state.is_legal && state.is_finished) {
+                          // do game end things
+                      }
                     }
                 }
                 else {
@@ -388,6 +440,19 @@ window.addEventListener('DOMContentLoaded', (e) => {
                 sudoku_squares[row][col].classList.add('selected-square');
 
             });
+          
+            // check if key pressed is backspace, and if in notes mode, delete notes
+            sudoku_squares[row][col].addEventListener('keydown', function(e) {
+              let element = document.querySelector(".selected-square");
+
+              if (element) {
+                const key = e.keyCode || e.charCode;
+
+                if( (key == 8 || key == 46) && notes_mode ) {
+                  game1.clear_notes(element);
+                }
+              }
+            });
         }
     }
 
@@ -402,8 +467,14 @@ window.addEventListener('DOMContentLoaded', (e) => {
                 let cell_num = cell_name.split('-')[1]
                 let row = Math.floor(cell_num/PUZZLE_SIZE)
                 let col = cell_num%PUZZLE_SIZE
-                game1.make_move(row, col, this.getAttribute('data-digit'));
-                console.log(game1.board)
+                
+                if (notes_mode) {
+                  game1.add_note(element, key_num);
+                } else {
+                  game1.make_move(row, col, this.getAttribute('data-digit'));
+                  game1.clear_notes(element);
+                  console.log(game1.board)
+                }
             }
         })
     }
@@ -417,7 +488,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
             let cell_num = cell_name.split('-')[1]
             let row = Math.floor(cell_num/PUZZLE_SIZE)
             let col = cell_num%PUZZLE_SIZE
-            game1.make_move(row, col, 0);
+            
+            if (notes_mode) {
+              game1.clear_notes(element);
+            } else {
+              game1.make_move(row, col, 0);
+            }
         }
     })
     var m = 0;
@@ -463,6 +539,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
             rendermodal()
         }
     })
+  
+    // toggle notes mode when notes button is clicked
+    notes_button.addEventListener('click', function(e) {
+      e.target.classList.toggle('active');
+      notes_mode = !notes_mode;
+    });
     
     
     // render modal for the mistakes counter warning     
