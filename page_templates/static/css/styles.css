@@ -1369,23 +1369,72 @@ h3 {
   pointer-events: none;
 }
 
+/* Sets background color of active notes button */
 #notes-button.active {
-  background-color:#2db896;
+  /* Darker light green */
+  background-color: #2db896;
 }
 
-.notes > div { position:absolute; }
+/* Sets position of immediate child <div> elements inside notes container 
+   to absolute */
+.notes > div {
+  position: absolute;
+}
 
-.note1 { top:1px;left:2px; }
-.note2 { top:1px;left:calc(50% - 3.5px); }
-.note3 { top:1px;right:2px; }
-.note4 { top:calc(50% - 8.75px);left:2px; }
-.note5 { top:calc(50% - 8.75px);left:calc(50% - 3.5px); }
-.note6 { top:calc(50% - 8.75px);right:2px; }
-.note7 { bottom:1px;left:2px; }
-.note8 { bottom:1px;left:calc(50% - 3.5px); }
-.note9 { bottom:1px;right:2px; }
+/* Positions notes elements in 3x3 grid layout */
+.note1 {
+  /* Top-left corner */
+  top: 0.0625rem;
+  left: 0.125rem;
+}
 
+.note2 {
+  /* Top-middle */
+  top: 0.0625rem;
+  left: calc(50% - 0.21875rem);
+}
 
+.note3 {
+  /* Top-right corner */
+  top: 0.0625rem;
+  right: 0.125rem;
+}
+
+.note4 {
+  /* Middle-left */
+  top: calc(50% - 0.546875rem);
+  left: 0.125rem;
+}
+
+.note5 {
+  /* Center */
+  top: calc(50% - 0.546875rem);
+  left: calc(50% - 0.21875rem);
+}
+
+.note6 {
+  /* Middle-right */
+  top: calc(50% - 0.546875rem);
+  right: 0.125rem;
+}
+
+.note7 {
+  /* Bottom-left corner */
+  bottom: 0.0625rem;
+  left: 0.125rem;
+}
+
+.note8 {
+  /* Bottom-middle */
+  bottom: 0.0625rem;
+  left: calc(50% - 0.21875rem);
+}
+
+.note9 {
+  /* Bottom-right */
+  bottom: 0.0625rem;
+  right: 0.125rem;
+}
 
 /***********
  *  Rules  *
