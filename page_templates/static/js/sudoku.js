@@ -85,12 +85,23 @@ class Sudoku {
         }
         this.board[row][col] = value;
     }
+    
+    is_valid_input(value) {
+        const regex = new RegExp('^[1-9]$');
+        if (!regex.test(value)) {
+            console.log("not number")
+            return false;
+        }
+        return true;
+    }
 
     is_legal_move(row, col, value) {
-        value = toString(value);
-
-        // check for non numbers
-        if ( ! value.match(/^[1-9]$/m) ) {
+        var strvalue = toString(value);
+        const regex = new RegExp('^[1-9]$');
+        
+        //check for non numbers
+        if (!regex.test(value)) {
+            console.log("not number")
             return false;
         }
 
@@ -98,6 +109,7 @@ class Sudoku {
         // TODO: foreach getRowSquares
         for ( let i = 0; i <= 8; i++ ) {
             if ( value == this.board[row][i] ) {
+                console.log("duplicate row")
                 return false;
             }
         }
@@ -106,6 +118,7 @@ class Sudoku {
         // TODO: foreach getColumnSquares
         for ( let i = 0; i <= 8; i++ ) {
             if ( value == this.board[i][col] ) {
+                console.log("duplicate col")
                 return false;
             }
         }
@@ -117,6 +130,7 @@ class Sudoku {
         for ( let i = 0 + row_offset; i <= 2 + row_offset; i++ ) {
             for ( let j = 0 + col_offset; j <= 2 + col_offset; j++ ) {
                 if ( value == this.board[i][j] ) {
+                    console.log("duplicate square")
                     return false;
                 }
             }
@@ -124,6 +138,62 @@ class Sudoku {
 
         return true;
     }
+    
+    board_state(sudoku_squares, invalid_tag) {
+        const regex = new RegExp('^[1-9]$');
+        var is_legal = true;
+        var is_finished = true;
+        
+        // Run check for every cell
+        for ( let row = 0; row <= 8; row++ ) {
+            for ( let col = 0; col <= 8; col++ ) {
+                
+                // Check if any squares are blank
+                if (this.board[row][col] == 0){
+                    is_finished = false;
+                }
+                
+                // Zeros are non-entries and shouldn't be compared
+                else {
+                    // Clear any previous flags
+                    sudoku_squares[row][col].classList.remove(invalid_tag);
+                    
+                    // check row
+                    for ( let i = 0; i <= 8; i++ ) {
+                        if ( this.board[row][col] == this.board[row][i] && col !=i) {
+                            sudoku_squares[row][col].classList.add(invalid_tag);
+                            is_legal = false;
+                        }
+                    }
+
+                    // check column
+                    // TODO: foreach getColumnSquares
+                    for ( let i = 0; i <= 8; i++ ) {
+                        if ( this.board[row][col] == this.board[i][col] && row !=i) {
+                            sudoku_squares[row][col].classList.add(invalid_tag);
+                            is_legal = false;
+                        }
+                    }
+
+                    // check 3x3 grid
+                    // TODO: foreach getBoxSquares
+                    const row_offset = Math.floor(row/3)*3;
+                    const col_offset = Math.floor(col/3)*3;
+                    for ( let i = 0 + row_offset; i <= 2 + row_offset; i++ ) {
+                        for ( let j = 0 + col_offset; j <= 2 + col_offset; j++ ) {
+                            if ( this.board[row][col] == this.board[i][j] && !(row == i && col == j)) {
+                                sudoku_squares[row][col].classList.add(invalid_tag);
+                                is_legal = false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // returns object with is_legal and is_finished as attributes
+        return { is_legal, is_finished };
+    }
+    
 }
 
 class SudokuSquare {
@@ -159,8 +229,6 @@ class SudokuDOM {
     static display_board(
         sudoku_object,
         sudoku_squares,
-        // string_box,
-        // sudoku_wiki_link,
         change_square_color = true
     ) {
         const board = sudoku_object.get_board();
@@ -169,6 +237,7 @@ class SudokuDOM {
             for ( let col = 0; col <= 8; col++ ) {
                 const input = sudoku_squares[row][col];
                 input.classList.remove('hint');
+                input.classList.remove('invalid');
                 input.disabled = false;
 
                 if ( board[row][col] != 0 ) {
@@ -200,6 +269,7 @@ class SudokuDOM {
     }
 
     static highlight_illegal_move(obj){
+        //obj.classList.remove("selected-square");
         obj.classList.add('invalid');
         setTimeout(function(){
             obj.classList.remove('invalid');
@@ -212,6 +282,7 @@ class SudokuDOM {
             obj.classList.remove('hint');
         }, 2000);
     }
+    
 }
 
 // DOMContentLoaded event occurs when all html is loaded and scripts are executed
@@ -240,6 +311,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // const CUSTOM_PUZZLE_SELECTEDINDEX = 3;
     // const DEFAULT_PUZZLE_SELECTEDINDEX = 6;
     const PUZZLE_SIZE = 9;
+    
+    // Tags can be edited based on Mistakes/Hint button flags to add/remove css
+    const invalid_tag = "invalid"
+    const hint_tag = "invalid"
 
     // Store all the Sudoku square <input type="text"> elements in variables for quick accessing
     for ( let row = 0; row < PUZZLE_SIZE; row++ ) {
@@ -257,14 +332,59 @@ window.addEventListener('DOMContentLoaded', (e) => {
     for ( let row = 0; row < PUZZLE_SIZE; row++ ) {
         for ( let col = 0; col < PUZZLE_SIZE; col++ ) {
             sudoku_squares[row][col].addEventListener('input', function(e) {
-                game1.make_move(row, col, e.target.value);
-                console.log(game1.board)
-            });
+                // clear highlights when you select cell
+                e.target.classList.remove(invalid_tag);
+                e.target.classList.remove(hint_tag);
+                
+                
+                // target.value tracks all inputs since page load unless cleared
+                let str_input = e.target.value.toString()
+                if (str_input.length > 1){
+                    e.target.value = str_input[1]
+                }
+                
+                var input = e.target.value
+                console.log('input',input)
+                // Check if input is valid number and check entire board state
+                if(game1.is_valid_input(input)) {
+                    game1.make_move(row, col, input);
+                    console.log(game1.board);
+                    let state = game1.board_state(sudoku_squares,invalid_tag)
+                    if (!state.is_legal) {
+                        // add to mistake counter
+                        console.log("legal move: ", state.is_legal)
+                    }
+                    if (state.is_legal && state.is_finished) {
+                        // do game end things
+                    }
+                }
+                else {
+                      e.target.value = "";
+                      game1.make_move(row, col, 0)
+                      console.log(game1.board);
+                      game1.board_state(sudoku_squares,invalid_tag)
+                }
+                
+
+
+                
+                // if (  !game1.is_legal_move(row, col, input) && e.target.value != "" ) {
+                //     e.target.value = "";
+                //     SudokuDOM.highlight_illegal_move(e.target);
+                //     } 
+                // else {
+                //         game1.make_move(row, col, input);
+                //         console.log(game1.board);
+                    // }
+            })
+
             sudoku_squares[row][col].addEventListener("mousedown", function(e) {
+                // Search for old highlited cell and remove it if exists
                 let element = document.querySelector(".selected-square");
                 if (element){
                     element.classList.remove("selected-square");
                 }
+                // Add highlight css for clicked cell
                 sudoku_squares[row][col].classList.add('selected-square');
 
             });
