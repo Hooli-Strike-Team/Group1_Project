@@ -44,7 +44,7 @@
           {% if row % 3 == 0 and row != 0 %}subgrid-top{% endif %} 
           {% if col % 3 == 0 and col != 0 %}subgrid-left{% endif %}">
           <!-- Input element (i.e., where user enters value) -->
-          <input type='text' pattern='\\d*' novalidate id='input-{{ col + row * 9 }}' data-notes="">
+          <input type='text' pattern="[1-9]" novalidate id='input-{{ col + row * 9 }}' data-notes="">
 
           <!-- Notes <div> (appears when user is in notes mode) -->
           <div class="notes"></div>

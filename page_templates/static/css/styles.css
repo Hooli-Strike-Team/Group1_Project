@@ -949,6 +949,11 @@ h3 {
 .selected-square {
   /* Light green */
   background-color: #39d7ac;
+  color: #ffffff !important;
+}
+
+.selected-square:focus {
+  outline: none !important;
 }
 
 /* Invalid cell highlight */
@@ -1117,6 +1122,10 @@ h3 {
   padding: 0.5rem 1rem;
   cursor: pointer;
   text-align: center;
+}
+
+.right-box-button.active {
+  background-color:#2db896 !important;
 }
 
 .right-box-button:hover {
@@ -1317,13 +1326,6 @@ h3 {
 /* Styles for notes feature */
 .notes {
   font-size: 0.8rem;
-  /* Medium gray */
-  color: #888888;
-  display: flex;
-  /* Centers notes horizontally */
-  justify-content: center;
-  /* Centers notes vertically */
-  align-items: center;
   /* Positions notes above input element */
   z-index: 1;
   /* Sets notetaking area to width and height of Sudoku cell */
@@ -1337,6 +1339,19 @@ h3 {
      to input element) */
   pointer-events: none;
 }
+
+.notes > div { position:absolute; }
+
+.note1 { top:1px;left:2px; }
+.note2 { top:1px;left:calc(50% - 3.5px); }
+.note3 { top:1px;right:2px; }
+.note4 { top:calc(50% - 8.75px);left:2px; }
+.note5 { top:calc(50% - 8.75px);left:calc(50% - 3.5px); }
+.note6 { top:calc(50% - 8.75px);right:2px; }
+.note7 { bottom:1px;left:2px; }
+.note8 { bottom:1px;left:calc(50% - 3.5px); }
+.note9 { bottom:1px;right:2px; }
+
 
 /***********
  *  Rules  *

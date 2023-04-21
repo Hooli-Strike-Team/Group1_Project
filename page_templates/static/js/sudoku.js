@@ -280,14 +280,47 @@ window.addEventListener("DOMContentLoaded", () => {
     keypad[i - 1].addEventListener("click", function () {
       let key_num = this.getAttribute("data-digit");
       let element = document.querySelector(".selected-square");
+      
       if (element) {
-        element.value = key_num;
-        let cell_name = element.id;
-        let cell_num = cell_name.split("-")[1];
-        let row = Math.floor(cell_num / PUZZLE_SIZE);
-        let col = cell_num % PUZZLE_SIZE;
-        game1.make_move(row, col, this.getAttribute("data-digit"));
-        console.log(game1.board);
+        if (notesMode) {
+          // Get notes container for current cell input
+          const notesDiv = element.nextElementSibling;
+          // Get current notes for cell
+          const currentNotes = element.getAttribute("data-notes");
+          // Get new input value
+          const newDigit = key_num;
+
+          if (currentNotes.includes(newDigit)) {
+            element.setAttribute("data-notes", currentNotes.replace(newDigit, ""));
+          } else {
+            element.setAttribute("data-notes", currentNotes + newDigit);
+          }
+
+          // Update notes container with new notes
+          const notesArray = element.getAttribute("data-notes").split("");
+          // Clear notes container
+          notesDiv.innerHTML = "";
+
+          notesArray.forEach((note, index) => {
+            const noteElem = document.createElement("div");
+            // Set text content of note element
+            noteElem.textContent = note;
+            noteElem.classList.add("note" + note);
+            // Add note element to notes container
+            notesDiv.appendChild(noteElem);
+          });
+
+          // Clear input value of cell
+          element.value = "";
+        } else {
+          element.value = key_num;
+          let cell_name = element.id;
+          let cell_num = cell_name.split("-")[1];
+          let row = Math.floor(cell_num / PUZZLE_SIZE);
+          let col = cell_num % PUZZLE_SIZE;
+          game1.make_move(row, col, this.getAttribute("data-digit"));
+          console.log(game1.board);
+        }
       }
     });
   }
@@ -302,6 +335,12 @@ window.addEventListener("DOMContentLoaded", () => {
       let row = Math.floor(cell_num / PUZZLE_SIZE);
       let col = cell_num % PUZZLE_SIZE;
       game1.make_move(row, col, 0);
+      
+      if (notesMode) {
+        // Get notes container for current cell input
+        const notesDiv = element.nextElementSibling;
+        notesDiv.innerHTML = "";
+      }
     }
   });
 
@@ -353,50 +392,60 @@ window.addEventListener("DOMContentLoaded", () => {
     const cellInput = document.getElementById(`input-${i}`);
     // Get notes container for current cell input
     const notesDiv = cellInput.nextElementSibling;
+    
+    cellInput.addEventListener("keydown", function(e) {
+      var key = e.keyCode || e.charCode;
 
+      if( (key == 8 || key == 46) && notesMode ) {
+        notesDiv.innerHTML = "";
+      }
+    });
+    
     cellInput.addEventListener("input", function (e) {
-      if (notesMode) {
-        // Prevent default input behavior
-        e.preventDefault();
-        // Get current notes for cell
-        const currentNotes = this.getAttribute("data-notes");
-        // Get new input value
-        const newDigit = e.data;
+      var validationRegex = /[1-9]/g;
+      
+      if (validationRegex.test(e.data)) {
+        if (notesMode) {
+          // Prevent default input behavior
+          e.preventDefault();
+          // Get current notes for cell
+          const currentNotes = this.getAttribute("data-notes");
+          // Get new input value
+          const newDigit = e.data;
 
-        if (currentNotes.includes(newDigit)) {
-          this.setAttribute("data-notes", currentNotes.replace(newDigit, ""));
+          if (currentNotes.includes(newDigit)) {
+            this.setAttribute("data-notes", currentNotes.replace(newDigit, ""));
+          } else {
+            this.setAttribute("data-notes", currentNotes + newDigit);
+          }
+
+          // Update notes container with new notes
+          const notesArray = this.getAttribute("data-notes").split("");
+          // Clear notes container
+          notesDiv.innerHTML = "";
+
+          notesArray.forEach((note, index) => {
+            const noteElem = document.createElement("div");
+            // Set text content of note element
+            noteElem.textContent = note;
+            noteElem.classList.add("note" + note);
+            // Add note element to notes container
+            notesDiv.appendChild(noteElem);
+          });
+
+          // Clear input value of cell
+          this.value = "";
         } else {
-          this.setAttribute("data-notes", currentNotes + newDigit);
+          // Clear notes container when notes mode is off
+          notesDiv.innerHTML = "";
+
+          // Existing input handling code
+          const row = Math.floor(i / 9);
+          const col = i % 9;
+
+          game1.make_move(row, col, e.target.value);
+          console.log(game1.board);
         }
-
-        // Update notes container with new notes
-        const notesArray = this.getAttribute("data-notes").split("");
-        // Clear notes container
-        notesDiv.innerHTML = "";
-
-        notesArray.forEach((note, index) => {
-          const noteElem = document.createElement("div");
-          // Set text content of note element
-          noteElem.textContent = note;
-          // Set horizontal and vertical positions of note element in grid
-          noteElem.style.gridColumn = (index % 3) + 1;
-          noteElem.style.gridRow = Math.floor(index / 3) + 1;
-          // Add note element to notes container
-          notesDiv.appendChild(noteElem);
-        });
-
-        // Clear input value of cell
-        this.value = "";
-      } else {
-        // Clear notes container when notes mode is off
-        notesDiv.innerHTML = "";
-        
-        // Existing input handling code
-        const row = Math.floor(i / 9);
-        const col = i % 9;
-
-        game1.make_move(row, col, e.target.value);
-        console.log(game1.board);
       }
     });
   }
