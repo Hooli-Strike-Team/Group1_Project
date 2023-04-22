@@ -639,6 +639,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         m = 0;
     });
     
+    /* Code for Restart Button */ 
     restart_button.addEventListener('click', function(e) {
             game1.restart_puzzle();
             SudokuDOM.display_board(game1, sudoku_squares, true);
