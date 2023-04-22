@@ -3,7 +3,6 @@
 
 <!-- Block for JavaScript source and script content -->
 {% block js_source %}src="{{ url_for('static', filename='js/sudoku.js') }}"{% endblock %}
-{% block script %}{% endblock %}
 
 <!-- Sets page title as "Main" -->
 {% block title %}Main{% endblock %}
@@ -98,13 +97,14 @@
         <!-- Top buttons container -->
         <div class="top-buttons">
           <!-- "Tutorial" button -->
-          <button class="right-box-button bottom-buttons"
+          <a class="right-box-button bottom-buttons"
                   id="tutorial-button"
-                  onclick="window.location.href='{{ url_for('show_tutorial') }}'"
+                  href="{{ url_for('show_tutorial') }}"
+                  target="_blank"
           >
             <span class="material-icons-outlined">school</span>
             Tutorial
-          </button>
+          </a>
 
           <!-- "Resume" button -->
           <button

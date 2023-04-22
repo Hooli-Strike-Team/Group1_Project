@@ -528,10 +528,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             mistakes_mode = !mistakes_mode;
 
         }, 100);
-         
-
     });
-    
     
     /* Code for mistakes limit modal window */
 

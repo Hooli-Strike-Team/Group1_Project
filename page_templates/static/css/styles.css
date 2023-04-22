@@ -1099,7 +1099,7 @@ h3 {
 
 /* Right box buttons */
 .right-box-button {
-  font-family: , sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 1.2rem;
   /* Medium text */
   font-weight: 500;
@@ -1137,9 +1137,14 @@ h3 {
 
 .bottom-buttons {
   display: flex;
-  width: 8.875rem;
+  width: 9rem;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+}
+
+a.bottom-buttons { 
+  text-decoration: none !important; 
 }
 
 .bottom-buttons .material-icons-outlined {
