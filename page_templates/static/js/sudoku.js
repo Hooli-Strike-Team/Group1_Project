@@ -115,7 +115,7 @@ class Sudoku {
         // Clear input value of cell
         inputEl.value = "";
     }
-
+    
     clear_notes(inputEl) {
         // Get notes container for current cell input
         const notesDiv = inputEl.nextElementSibling;
@@ -125,7 +125,7 @@ class Sudoku {
         // Clear notes container
         notesDiv.innerHTML = "";
     }
-    
+    // Input to another cell clears all highlights 
     clear_mistakes(sudoku_squares, invalid_tag) {
         for ( let row = 0; row <= 8; row++ ) {
             for ( let col = 0; col <= 8; col++ ) {
