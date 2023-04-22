@@ -359,6 +359,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
     // Flag for turning notes mode on and off
     let notes_mode = false;
+    
+    // Flag for turning mistakes mode on and off
+    let mistakes_mode = false;
 
     // Store all the Sudoku square <input type="text"> elements in variables for 
     // quick access
@@ -402,14 +405,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         game1.clear_notes(e.target);
                         game1.make_move(row, col, input);
                         console.log(game1.board);
-                        let state = game1.board_state(sudoku_squares, invalid_tag)
-                        if ( ! state.is_legal ) {
-                            // Add to mistake counter
-                            console.log("legal move: ", state.is_legal)
-                        }
-                        if ( state.is_legal && state.is_finished ) {
+        
+
+                       // if ( state.is_legal && state.is_finished ) {
                             // Do game end actions
-                        }
+                      // }
                     }
                 }
                 else {
@@ -515,7 +515,24 @@ window.addEventListener('DOMContentLoaded', (e) => {
         e.target.classList.toggle('active');
         notes_mode = !notes_mode;
     });
+    
+    // Mistakes button shows users all invalid squares 
+     mistakes_button.addEventListener('click', function (e) {
+        e.target.classList.add('active');
+        game1.board_state(sudoku_squares, invalid_tag)
+        console.log("legal move")
+        mistakes_mode = !mistakes_mode;
 
+        setTimeout(function () {
+            e.target.classList.remove('active');
+            mistakes_mode = !mistakes_mode;
+
+        }, 100);
+         
+
+    });
+    
+    
     /* Code for mistakes limit modal window */
 
     var m = 0;
