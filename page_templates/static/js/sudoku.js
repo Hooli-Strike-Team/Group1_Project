@@ -339,7 +339,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // DOM elements stored as constants
     const sudoku_table = document.getElementById('sudoku-board');
     // const solve_button = document.getElementById('solve');
-    // const restart_button = document.getElementById('restart');
+    const restart_button = document.getElementById('restart-button');
     const hint_button = document.getElementById('hints-button');
     // const import_button = document.getElementById('import');
     const new_button = document.getElementById('new-game-button');
@@ -637,6 +637,14 @@ window.addEventListener('DOMContentLoaded', (e) => {
         // Reset mistakes counter
         document.getElementById('strike-counter').innerHTML = " 0 / 10";
         m = 0;
+    });
+    
+    restart_button.addEventListener('click', function(e) {
+            game1.restart_puzzle();
+            SudokuDOM.display_board(game1, sudoku_squares, true);
+            // Reset mistakes counter
+            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            m = 0;
     });
 
     /* Full functinoality below:
