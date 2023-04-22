@@ -125,6 +125,15 @@ class Sudoku {
         // Clear notes container
         notesDiv.innerHTML = "";
     }
+    
+    clear_mistakes(sudoku_squares, invalid_tag) {
+        for ( let row = 0; row <= 8; row++ ) {
+            for ( let col = 0; col <= 8; col++ ) {
+                sudoku_squares[row][col].classList.remove(invalid_tag);
+
+            }
+        }
+    }
 
     is_valid_input(value) {
         const regex = new RegExp('^[1-9]$');
@@ -354,7 +363,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
     // Tags can be edited based on "Mistakes"/"Hint" button flags to 
     // add/remove CSS
-    const invalid_tag = "invalid"
+    let invalid_tag = "null" 
     const hint_tag = "invalid"
 
     // Flag for turning notes mode on and off
@@ -405,7 +414,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         game1.clear_notes(e.target);
                         game1.make_move(row, col, input);
                         console.log(game1.board);
-        
+                        game1.clear_mistakes(sudoku_squares, invalid_tag)
+                      
 
                        // if ( state.is_legal && state.is_finished ) {
                             // Do game end actions
@@ -518,16 +528,20 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
     // Mistakes button shows users all invalid squares 
      mistakes_button.addEventListener('click', function (e) {
+        invalid_tag = "invalid" 
         e.target.classList.add('active');
         game1.board_state(sudoku_squares, invalid_tag)
-        console.log("legal move")
         mistakes_mode = !mistakes_mode;
+
 
         setTimeout(function () {
             e.target.classList.remove('active');
             mistakes_mode = !mistakes_mode;
 
         }, 100);
+         
+        
+
     });
     
     /* Code for mistakes limit modal window */
