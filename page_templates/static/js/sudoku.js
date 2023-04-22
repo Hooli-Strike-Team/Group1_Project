@@ -423,6 +423,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                     }
                 }
                 else {
+                    // clear input and update board state with non-entry
                     e.target.value = "";
                     game1.make_move(row, col, 0)
                     console.log(game1.board);
