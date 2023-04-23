@@ -588,30 +588,34 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // Render modal window for the mistakes counter warning     
     function rendermodal(event) {
         // Show modal window when page loads
-        var modal = document.getElementById('mistake-limit-model');
-        
-        modal.style.display = 'block';
+        var modal_mistakes = document.getElementById('mistake-limit-model');
+        modal_mistakes.style.display = 'block';
 
-        modal.addEventListener('click', hidemistakes)
+        modal_mistakes.addEventListener('click', hidemistakes)
     }
 
     // Code for clicking out of mistakes modal window
     function hidemistakes(event) {
         // Get modal window element by ID
-        var modal = document.getElementById('mistake-limit-model');
+        var modal_mistakes = document.getElementById('mistake-limit-model');
         // Get content of modal window
-        var content = document.querySelector('.modal-mistakes-content');
+        var content_mistakes = document.querySelector('.modal-mistakes-content');
 
         // Check if element that is clicked on is either modal window background 
         // or not a child of content
-        if ( event.target == modal || !content.contains(event.target) ) {
+        if ( event.target == modal_mistakes || !content_mistakes.contains(event.target) ) {
             // Hide modal window
-            modal.style.display = 'none';
+            modal_mistakes.style.display = 'none';
             m = 0
 
             // Reset mistakes counter
             document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            // Taker users back to New Game Difficulty Menu
+            openModal() 
+
         }
+        
+        
     }
     
     /* Code for End of Game Notification Modal Window */
@@ -623,10 +627,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
         var modal = document.getElementById('completed-game-model');
         
         modal.style.display = 'block';
-        modal.addEventListener('click', hidemistakes)
+        modal.addEventListener('click', hidecompleted)
     }
     // Code for clicking out of the Completed game modal
-    function hidemistakes(event) {
+    function hidecompleted(event) {
         // Get modal window element by ID
         var modal = document.getElementById('completed-game-model');
         // Get content of modal window
@@ -641,7 +645,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
             // Reset mistakes counter
             document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            // Takes users back to New Game
+            openModal() 
+        
         }
+        
     }
     
     
