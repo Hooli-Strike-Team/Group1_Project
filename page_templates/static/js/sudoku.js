@@ -414,12 +414,20 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         game1.clear_notes(e.target);
                         game1.make_move(row, col, input);
                         console.log(game1.board);
+                        let state = game1.board_state(sudoku_squares, invalid_tag)
+                        
+                        // clear all highlighted mistakes 
                         game1.clear_mistakes(sudoku_squares, invalid_tag)
-                      
+                        
 
-                       // if ( state.is_legal && state.is_finished ) {
+                        console.log("Legal", state.is_legal);
+                        console.log("Complete", state.is_finished);
+                        // Check to see if game is completed correctly
+                        if ( state.is_legal && state.is_finished ) {
                             // Do game end actions
-                      // }
+                            console.log("game complete");
+                            completedmodal();
+                        }
                     }
                 }
                 else {
@@ -580,8 +588,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // Render modal window for the mistakes counter warning     
     function rendermodal(event) {
         // Show modal window when page loads
-        document.getElementById('mistake-limit-model').style.display = 'block';
         var modal = document.getElementById('mistake-limit-model');
+        
+        modal.style.display = 'block';
 
         modal.addEventListener('click', hidemistakes)
     }
@@ -604,7 +613,38 @@ window.addEventListener('DOMContentLoaded', (e) => {
             document.getElementById('strike-counter').innerHTML = " 0 / 10";
         }
     }
+    
+    /* Code for End of Game Notification Modal Window */
+    
+    // Render modal window for completed game
+    function completedmodal(event) {
+        // Show modal window when page loads
+       
+        var modal = document.getElementById('completed-game-model');
+        
+        modal.style.display = 'block';
+        modal.addEventListener('click', hidemistakes)
+    }
+    // Code for clicking out of the Completed game modal
+    function hidemistakes(event) {
+        // Get modal window element by ID
+        var modal = document.getElementById('completed-game-model');
+        // Get content of modal window
+        var content = document.querySelector('.modal-completed-content');
 
+        // Check if element that is clicked on is either modal window background 
+        // or not a child of content
+        if ( event.target == modal || !content.contains(event.target) ) {
+            // Hide modal window
+            modal.style.display = 'none';
+            m = 0
+
+            // Reset mistakes counter
+            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+        }
+    }
+    
+    
     /* Code for difficulty modal window */
 
     // Get difficulty modal window and its elements
@@ -647,6 +687,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
             document.getElementById('strike-counter').innerHTML = " 0 / 10";
             m = 0;
     });
+    
+    
 
     /* Full functinoality below:
 
