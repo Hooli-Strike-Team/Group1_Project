@@ -1644,11 +1644,6 @@ a.bottom-buttons {
   margin-bottom: 1.75rem;
 }
 
-/* Adjusts margin for hints item */
-.settings-item.show-hints {
-  margin-bottom: 0.95rem;
-}
-
 .settings-description {
   font-size: 1.2rem;
 }
