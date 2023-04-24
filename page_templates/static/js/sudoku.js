@@ -360,6 +360,18 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // const CUSTOM_PUZZLE_SELECTEDINDEX = 3;
     // const DEFAULT_PUZZLE_SELECTEDINDEX = 6;
     const PUZZLE_SIZE = 9;
+    
+    // Begins timer 
+    const callback = () => {
+            console.log('callback function called!');
+        }
+
+    const timer = new Timer();
+        timer.set(0, 'timer1', callback);
+        // set limit after which callback function should be called, 12 hours = 43200 seconds 
+        timer.setTimeLimit(43200); 
+        // start the timer 
+        timer.start('COUNT_UP');
 
     // Tags can be edited based on "Mistakes"/"Hint" button flags to 
     // add/remove CSS
