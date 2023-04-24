@@ -10,6 +10,7 @@
 <!-- Main content of page -->
 {% block content %}
 
+{% if mistakes_counter %}
 <!-- Mistakes Modal --> 
 
 <div id="mistake-limit-model" class="modal-mistakes">
@@ -21,6 +22,9 @@
         </div>
     </div>
 </div>
+{% endif %}
+
+
 
 <!--Completed Game Modal --> 
 
@@ -49,11 +53,14 @@
         <div class="timer"> 
             <div id="timer1"></div>
         </div>
-
+  
         <!-- Mistakes count -->
         <div id="mistakes-count">
+          {% if mistakes_counter %} <!-- Show Counter Only if Slider is set to on--> 
           <span class="material-icons-outlined"> close </span>
           <span id="strike-counter">0 / 10</span>
+          {% endif %}
+
         </div>
       </div>
 
