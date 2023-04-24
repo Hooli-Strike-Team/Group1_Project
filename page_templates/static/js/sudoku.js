@@ -363,7 +363,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
     // Begins timer 
     const callback = () => {
-            console.log('callback function called!');
+            console.log('timer initiated');
         }
 
     const timer = new Timer();
@@ -439,6 +439,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             // Do game end actions
                             console.log("game complete");
                             completedmodal();
+                            console.log("timer ended"); 
+                            timer.stop(); //ends timer at game completion
                         }
                     }
                 }
