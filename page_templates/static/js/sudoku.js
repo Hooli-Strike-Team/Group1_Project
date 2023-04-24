@@ -351,6 +351,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // const validate_button = document.getElementById('validate');
     // const legal_moves_button = document.getElementById('legal-moves');
     const xbutton = document.querySelector(".x-button");
+    
+    
+    const mistakes_counter = false // Temporary value to insure that the Mistakes feature has Two diffrent modes 
+                                  // Will be fixed with implementation of the Settings database 
+    
+    
     const mistakes_button = document.getElementById('mistakes-button');
     const notes_button = document.getElementById('notes-button');
     const game1 = new Sudoku();
@@ -431,6 +437,18 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         // clear all highlighted mistakes 
                         game1.clear_mistakes(sudoku_squares, invalid_tag)
                         
+                        // If the mistakes toggle is on, highlight invalid cells 
+                        if (!state.is_legal && mistakes_counter == false && mistakes_mode)  {
+                            let state = game1.board_state(sudoku_squares, "invalid");
+                            console.log("Default Mistakes Mode On"); 
+                        }
+                        // If the mistakes toggle is off, clear all highlights   
+                        if (!state.is_legal && mistakes_counter == false && !mistakes_mode) {
+                            game1.clear_mistakes(sudoku_squares, "invalid");
+                            console.log("Default Mistakes Mode Off"); 
+                        }
+                        
+                         
 
                         console.log("Legal", state.is_legal);
                         console.log("Complete", state.is_finished);
@@ -442,6 +460,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             console.log("timer ended"); 
                             timer.stop(); //ends timer at game completion
                         }
+                        
                     }
                 }
                 else {
@@ -551,14 +570,23 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
  
     
+    
+    
+    /* Code for default mistakes feature */ 
+    if(mistakes_counter == false) {
+        
+        mistakes_button.addEventListener('click', function (e) {
+               e.target.classList.toggle('active');
+               mistakes_mode = !mistakes_mode; 
+        });
+    }
+    
+    
    
     
     
     /* Code for mistakes limit modal window */
 
-    const mistakes_counter = false // Temporary value to insure that the Mistakes feature has Two diffrent modes 
-                                  // Will be fixed with implementation of the Settings database 
-    
     if(mistakes_counter == true) {
         
         
@@ -585,20 +613,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
         // Increment m by 1 each time the "Mistakes" button is clicked
         mistakes_button.addEventListener('click', function (e) {
-            m = m + 1
-
-            if ( m < 10 ) {
-                document.getElementById('strike-counter').innerHTML = m + " / 10";
-            }
-            else if ( m == 10 ) {
-                document.getElementById('strike-counter').innerHTML = m + " / 10";
-
-                rendermodal()
-            }
-        })
-
-        // Increment m by 1 each time the "Hints" button is clicked 
-        hint_button.addEventListener('click', function (e) {
             m = m + 1
 
             if ( m < 10 ) {
@@ -667,10 +681,15 @@ window.addEventListener('DOMContentLoaded', (e) => {
         if ( event.target == modal || !content.contains(event.target) ) {
             // Hide modal window
             modal.style.display = 'none';
-            m = 0
+            
 
-            // Reset mistakes counter
-            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            if (mistakes_counter == true) { // TODO: Implement Database 
+                // Reset mistakes counter
+                m = 0
+                document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            }
+            
+            
             // Takes users back to New Game
             openModal() 
         
@@ -708,18 +727,27 @@ window.addEventListener('DOMContentLoaded', (e) => {
         beginner = "080100007000070960026900130000290304960000082502047000013009840097020000600003070";
         game1.set_board(beginner);
         SudokuDOM.display_board(game1, sudoku_squares, true);
-        // Reset mistakes counter
-        document.getElementById('strike-counter').innerHTML = " 0 / 10";
-        m = 0;
+        
+        if (mistakes_counter == true) { // TODO: Implement Database 
+          
+            // Reset mistakes counter
+            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            m = 0;
+        }
     });
     
     /* Code for Restart Button */ 
     restart_button.addEventListener('click', function(e) {
             game1.restart_puzzle();
             SudokuDOM.display_board(game1, sudoku_squares, true);
-            // Reset mistakes counter
-            document.getElementById('strike-counter').innerHTML = " 0 / 10";
-            m = 0;
+            
+            if (mistakes_counter == true) { // TODO: Implement Database 
+        
+                // Reset mistakes counter
+                document.getElementById('strike-counter').innerHTML = " 0 / 10";
+                m = 0;
+                
+            }
     });
     
     
