@@ -46,9 +46,15 @@ def create_account():
 def login():
     return render_template('login.html')
 
+
+
+#testing for the Mistakes counter slider in settings 
+mistakes_counter = False 
+
+
 @app.route('/main')
 def main():
-    return render_template('main.html')
+    return render_template('main.html', mistakes_counter=mistakes_counter)
 
 @app.route('/difficulty')
 def show_difficulty():
