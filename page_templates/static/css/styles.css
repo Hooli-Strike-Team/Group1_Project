@@ -1047,7 +1047,7 @@ h3 {
 .user-info-box {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   height: 3rem;
   /* White */
@@ -1064,7 +1064,7 @@ h3 {
 
 /* User icon */
 .user-icon {
-  margin-right: 0.45rem;
+  margin-right: 0.5rem;
   font-size: 1.95rem;
   /* Medium gray */
   color: #888888;
