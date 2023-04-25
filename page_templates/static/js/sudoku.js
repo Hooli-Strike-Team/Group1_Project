@@ -352,6 +352,17 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // const legal_moves_button = document.getElementById('legal-moves');
     const xbutton = document.querySelector(".x-button");
     
+    // *************************** FIX *************************** 
+    // Pull Data from Database 
+    /*
+    var con = sqlite3.connect("settings_test_db")
+    with con:
+            for result in con.execute("SELECT * FROM Game_Settings;"):
+                var timer_flag = result[1] 
+                var mistakes_counter = result[2] 
+    con.close()
+    */
+    // *************************** FIX ***************************
     
     const mistakes_counter = false // Temporary value to insure that the Mistakes feature has Two diffrent modes 
                                   // Will be fixed with implementation of the Settings database 
@@ -466,6 +477,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             completedmodal();
                             console.log("timer ended"); 
                             timer.stop(); //ends timer at game completion
+                            
+                            // *************************** TODO  ***************************
+                            // run update query for game completion at difficulty
+                            // run update query for time completion at difficulty
                         }
                         
                     }
@@ -586,6 +601,16 @@ window.addEventListener('DOMContentLoaded', (e) => {
                e.target.classList.toggle('active');
                mistakes_mode = !mistakes_mode; 
                console.log("mistakes_mode", mistakes_mode)
+            
+               if (mistakes_counter == false && mistakes_mode == false) {
+                    game1.clear_mistakes(sudoku_squares, "invalid");
+                }
+            
+               if (mistakes_counter == false && mistakes_mode == true) {
+                    game1.board_state(sudoku_squares, "invalid");
+                }
+            
+            
         });
     }
     
