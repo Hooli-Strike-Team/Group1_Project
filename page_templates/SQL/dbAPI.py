@@ -5,10 +5,7 @@
 #Purpose: Create a database for the website 
 
 import sqlite3 
-
-
-
-                      
+           
 def create(db_filename):
     conn = sqlite3.connect(db_filename) 
     c = conn.cursor() 
@@ -76,8 +73,6 @@ def create(db_filename):
             CREATE TABLE IF NOT EXISTS Game_Settings(
                 Username INT,
                 Show_Clock BOOLEAN,
-                Show_Hints BOOLEAN,
-                Candidate_Mode BOOLEAN,
                 Show_Mistakes_Counter BOOLEAN,
                 PRIMARY KEY(Username), 
                 FOREIGN KEY(Username) REFERENCES Games_In_Progress(Username)) 
@@ -105,7 +100,6 @@ def print_tables(db_filename): # Prints information in tables to be used for deb
             
 def delete_tables(db_filename):
     conn = sqlite3.connect(db_filename) 
-    
     with sqlite3.connect(db_filename) as conn:
         c = conn.cursor() 
         #Create User_Account Table
@@ -115,3 +109,4 @@ def delete_tables(db_filename):
         c.execute("DROP TABLE IF EXISTS Games_In_Progress;")
         c.execute("DROP TABLE IF EXISTS Game_Settings;")
         conn.commit()
+        
