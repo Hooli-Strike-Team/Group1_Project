@@ -704,6 +704,14 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const modal = document.getElementById('difficultyModal');
     const closeButton = document.querySelector('.close');
     const expertButton = document.getElementById('expert');
+  
+    // Get any parameters from the URL
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const newGame = urlParams.get('new');
+  
+    if (newGame)
+      openModal();
 
     // Opens difficulty modal window
     function openModal() {
