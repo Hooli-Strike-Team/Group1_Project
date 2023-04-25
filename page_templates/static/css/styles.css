@@ -1151,6 +1151,10 @@ a.bottom-buttons {
   margin-right: 0.5rem;
 }
 
+.bottom-buttons span { 
+  pointer-events: none;
+}
+
 .placeholder-digit-button {
   font-size: 1.4rem;
   width: calc(33% - 1rem);
@@ -1230,7 +1234,7 @@ a.bottom-buttons {
   background-color: #fafafa;
 }
 
-/* mistakes counter modal */ 
+/* Mistakes counter modal */ 
 
 .modal-mistakes {
   display: none;
@@ -1307,8 +1311,6 @@ a.bottom-buttons {
   font-size: 1.5rem;
   text-align: center;
 }
-
-
 
 .close {
   color: #aaaaaa;
