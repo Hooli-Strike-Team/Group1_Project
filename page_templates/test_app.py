@@ -1,6 +1,8 @@
 import prefix
+import os
+import sqlite3
 
-from flask import Flask, url_for, render_template, redirect, session
+from flask import Flask, url_for, render_template, redirect, session, g
 
 # Create app to use in Flask application
 app = Flask(__name__)
@@ -20,13 +22,37 @@ app.secret_key = 'Hooli-Strike-Team'
 ##       test_app.py whenever the value of logged_in is changed
 ##
 logged_in = True
+db_path = './SQL/settings_test_db'
 
+# Flask handler opens and closes connection on teardown
+def get_db():
+    if 'db' not in g:
+        g.db = sqlite3.connect(db_path)
 
+    return g.db
+
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+
+# @app.route('username/updateboard', methods=('POST',))
+# def boardupdate(username):
+    
+@app.route('/testdb', methods=('POST',))
+def testingdb(username):
+    # If login has been simulated, display modal window
+    db = getdb()
+    with db:
+        for user in [{'Username':'USER1'},{'Username':'USER2'},{'Username':'USER3'},{'Username':'USER4'}]:
+            db.execute("INSERT INTO User_Account VALUES (:Username, 'password','first','last','email@email.com');",user)
+    
 # Insert wrapper for handling PROXY when using csel.io virtual machine
 prefix.use_PrefixMiddleware(app)   
 
 # Test route to show prefix settings
-@app.route('/prefix_url')  
+@app.route('/prefix_url')
 def prefix_url():
     return 'The URL for this page is {}'.format(url_for('prefix_url'))
 

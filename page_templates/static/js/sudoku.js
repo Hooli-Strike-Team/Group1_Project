@@ -82,7 +82,6 @@ class Sudoku {
         if ( value === '' ) {
             value = 0;
         }
-        this.board[row][col] = value;
     }
 
     add_note(inputEl, newDigit) {
