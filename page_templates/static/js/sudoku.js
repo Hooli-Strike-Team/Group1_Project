@@ -712,7 +712,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const closeButton = document.querySelector('.close');
     const expertButton = document.getElementById('expert');
     const easyButton = document.getElementById('easy'); 
-  
+    const hardButton = document.getElementById('hard'); 
     
     // Get any parameters from the URL
     const queryString = window.location.search;
@@ -722,22 +722,47 @@ window.addEventListener('DOMContentLoaded', (e) => {
     if (newGame)
       openModal();
     
-    // Hard Code Easy Sudoku Games 
+    /* HardCode Easy Sudoku Games */
     const easy_game_1 = "000004028406000005100030600000301000087000140000709000002010003900000507670400000";
             // Solution: 735164928426978315198532674249381756387256149561749832852617493914823567673495281  
     
-    const easy_game_2 = "309000400200709000087000000750060230600904008028050041000000590000106007006000104";
-            // Solution: 369218475215749863487635912754861239631924758928357641173482596542196387896573124
-    
-    const easy_game_3 = "690000140700080000002070060400703000001000300000901004050010600000040002073000058";
+    const easy_game_2 = "690000140700080000002070060400703000001000300000901004050010600000040002073000058";
             // Solution: 698532147715684923342179865486723591921458376537961284254817639869345712173296458
     
-    const easy_game_4 = "401000600700601000095000000140050820800409006032060057000000780000907002004000903";
+    const easy_game_3 = "000004076705000009300010200000907000041000780000103000006030001500000604820400000";
+            // Solution: 182594376765328419394716258238947165941652783657183942476235891513879624829461537
+    
+    const easy_game_4 = "850000370200040000006010050400109000003000100000307004060070200000080007041000096";
+            // Solution: 854692371217543968936718452482169735673854129195327684568971243329486517741235896
+
+    
+    
+    /* HardCode Hard Sudoku Games */ 
+    const hard_game_1 = "309000400200709000087000000750060230600904008028050041000000590000106007006000104"; 
+            // Solution: 369218475215749863487635912754861239631924758928357641173482596542196387896573124
+    
+    const hard_game_2 = "401000600700601000095000000140050820800409006032060057000000780000907002004000903";
             // Solution: 421375698783691245695284371146753829857429136932168457219536784368947512574812963
     
-    const easy_game_5 = "000081074000304900400200501090040060000605000070090010907008006008502000320760000";
+    const hard_game_3 = "000081074000304900400200501090040060000605000070090010907008006008502000320760000";
             // Solution: 532981674761354982489276531895147263143625897276893415957418326618532749324769158
+          
+    const hard_game_4 = "000067023000205800600800709010090070000506000060040090105002004009403000470180000";
+            // Solution: 851967423947235816623814759514398672798526341362741598135672984289453167476189235
     
+    /* HardCode expert Sudoku Games */ 
+    const expert_game_1 = "000704005020010070000080002090006250600070008053200010400090000030060090200407000";
+            // Solution:   981724365324615879765983142197836254642571938853249716476398521538162497219457683
+    
+    const expert_game_2 = "204060000030509020000300000400200007069070810700006004000002000090105070000080205";
+            // Solution:   254861739137549628986327541413258967569473812728916354645792183892135476371684295
+    
+    const expert_game_3 = "000704002090060030000090004010002350800070006052600090200080000070010020500407000";
+            // Solution:   386754912794261835125893674617942358839175246452638791241389567978516423563427189
+    
+    const expert_game_4 = "502080000070501090000200000400600007018070960700002004000003000020905030000060402";
+            // Solution:   592486173674531298381297546453619827218374965769852314145723689826945731937168452
+          
     // Opens difficulty modal window
     function openModal() {
         modal.style.display = 'block';
@@ -758,19 +783,36 @@ window.addEventListener('DOMContentLoaded', (e) => {
     let easy = 0 
     easyButton.addEventListener('click', function (e) {
         closeModal();
-        var easy_arr = [easy_game_1, easy_game_2, easy_game_3, easy_game_4, easy_game_5];
+        var easy_arr = [easy_game_1, easy_game_2, easy_game_3, easy_game_4];
         game1.set_board(easy_arr[easy]);
         SudokuDOM.display_board(game1, sudoku_squares, true);
         
-        if (easy < 4) {
+        if (easy < 3) {
         easy = easy + 1;
         }
         else {
             easy = 0;
         }
-        
-
-
+        if (mistakes_counter == true) { // TODO: Implement Database 
+          
+            // Reset mistakes counter
+            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            m = 0;
+        }
+    });
+    // Add event listener to "Hard" Button
+    let hard = 0
+    hardButton.addEventListener('click', function (e) {
+        closeModal();
+        var hard_arr = [hard_game_1, hard_game_2, hard_game_3, hard_game_4] 
+        game1.set_board(hard_arr[hard]);
+        SudokuDOM.display_board(game1, sudoku_squares, true);
+        if (hard < 3) {
+            hard = hard + 1;
+        }
+        else {
+            hard = 0;
+        }
         if (mistakes_counter == true) { // TODO: Implement Database 
           
             // Reset mistakes counter
@@ -780,12 +822,18 @@ window.addEventListener('DOMContentLoaded', (e) => {
     });
 
     // Add event listener to "Expert" button
+    let expert = 0
     expertButton.addEventListener('click', function (e) {
         closeModal();
-        beginner = "080100007000070960026900130000290304960000082502047000013009840097020000600003070";
-        game1.set_board(beginner);
+        var expert_arr = [expert_game_1, expert_game_2, expert_game_3, expert_game_4]
+        game1.set_board(expert_arr[expert]);
         SudokuDOM.display_board(game1, sudoku_squares, true);
-        
+        if (expert < 3) {
+            expert = expert + 1; 
+        }
+        else {
+            expert = 0;
+        }
         if (mistakes_counter == true) { // TODO: Implement Database 
           
             // Reset mistakes counter
