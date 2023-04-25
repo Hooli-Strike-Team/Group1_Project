@@ -1,11 +1,14 @@
 #!/usr/bin/python3 
 
-#Authors: Paul Schneider
+#Authors: Paul Schneider TEST
 #Date: April 2023
 #Purpose: Create a database for the website 
 
 import sqlite3 
 
+
+
+                      
 def create(db_filename):
     conn = sqlite3.connect(db_filename) 
     c = conn.cursor() 
@@ -99,16 +102,16 @@ def print_tables(db_filename): # Prints information in tables to be used for deb
         for attr in c.fetchall() :
             print ("\t\t", attr)
 
+            
 def delete_tables(db_filename):
     conn = sqlite3.connect(db_filename) 
-    c = conn.cursor() 
+    
     with sqlite3.connect(db_filename) as conn:
-        with c as conn.cursor()
-            #Create User_Account Table
-            c.execute('''
-                    DROP TABLE IF NOT EXISTS User_Account;
-                    DROP TABLE IF NOT EXISTS User_Achievements;
-                    DROP TABLE IF NOT EXISTS Achievement_Stats;
-                    DROP TABLE IF NOT EXISTS Games_In_Progress;
-                    '''
-            conn.commit()
+        c = conn.cursor() 
+        #Create User_Account Table
+        c.execute("DROP TABLE IF EXISTS User_Account;")
+        c.execute("DROP TABLE IF EXISTS User_Achievements;")
+        c.execute("DROP TABLE IF EXISTS Achievement_Stats;")
+        c.execute("DROP TABLE IF EXISTS Games_In_Progress;")
+        c.execute("DROP TABLE IF EXISTS Game_Settings;")
+        conn.commit()
