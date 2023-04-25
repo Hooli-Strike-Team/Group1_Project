@@ -61,6 +61,7 @@ def create(db_filename):
                 Game_ID INT,
                 Current_Time TEXT,
                 Game BLOB,
+                Difficulty VARCHAR(6),
                 PRIMARY KEY(Game_ID), 
                 FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
 
@@ -71,12 +72,10 @@ def create(db_filename):
             
             CREATE TABLE IF NOT EXISTS Game_Settings(
                 Username INT,
-                Show_Mistakes BOOLEAN,
                 Show_Clock BOOLEAN,
                 Show_Hints BOOLEAN,
                 Candidate_Mode BOOLEAN,
                 Show_Mistakes_Counter BOOLEAN,
-                Difficulty VARCHAR(6),
                 PRIMARY KEY(Username), 
                 FOREIGN KEY(Username) REFERENCES Games_In_Progress(Username)) 
             
@@ -99,4 +98,17 @@ def print_tables(db_filename): # Prints information in tables to be used for deb
         c.execute("PRAGMA table_info(%s);"%t[0])
         for attr in c.fetchall() :
             print ("\t\t", attr)
-    
+
+def delete_tables(db_filename):
+    conn = sqlite3.connect(db_filename) 
+    c = conn.cursor() 
+    with sqlite3.connect(db_filename) as conn:
+        with c as conn.cursor()
+            #Create User_Account Table
+            c.execute('''
+                    DROP TABLE IF NOT EXISTS User_Account;
+                    DROP TABLE IF NOT EXISTS User_Achievements;
+                    DROP TABLE IF NOT EXISTS Achievement_Stats;
+                    DROP TABLE IF NOT EXISTS Games_In_Progress;
+                    '''
+            conn.commit()
