@@ -705,7 +705,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
         
     }
     
-    
     /* Code for difficulty modal window */
 
     // Get difficulty modal window and its elements
@@ -713,6 +712,15 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const closeButton = document.querySelector('.close');
     const expertButton = document.getElementById('expert');
     const easyButton = document.getElementById('easy'); 
+  
+    
+    // Get any parameters from the URL
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const newGame = urlParams.get('new');
+  
+    if (newGame)
+      openModal();
     
     // Hard Code Easy Sudoku Games 
     const easy_game_1 = "000004028406000005100030600000301000087000140000709000002010003900000507670400000";
