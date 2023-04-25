@@ -438,12 +438,19 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         game1.clear_mistakes(sudoku_squares, invalid_tag)
                         
                         // If the mistakes toggle is on, highlight invalid cells 
-                        if (!state.is_legal && mistakes_counter == false && mistakes_mode)  {
+                        if (!state.is_legal && mistakes_counter == false && mistakes_mode == true)  {
                             let state = game1.board_state(sudoku_squares, "invalid");
                             console.log("Default Mistakes Mode On"); 
                         }
+                        else if (state.is_legal && mistakes_counter == false && mistakes_mode == true) {
+                            
+                            game1.clear_mistakes(sudoku_squares, "invalid")
+                            console.log("Clear All mistakes");
+
+                        }
+                            
                         // If the mistakes toggle is off, clear all highlights   
-                        if (!state.is_legal && mistakes_counter == false && !mistakes_mode) {
+                        if (!state.is_legal && mistakes_counter == false && mistakes_mode == false) {
                             game1.clear_mistakes(sudoku_squares, "invalid");
                             console.log("Default Mistakes Mode Off"); 
                         }
@@ -578,6 +585,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         mistakes_button.addEventListener('click', function (e) {
                e.target.classList.toggle('active');
                mistakes_mode = !mistakes_mode; 
+               console.log("mistakes_mode", mistakes_mode)
         });
     }
     
@@ -704,15 +712,24 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const modal = document.getElementById('difficultyModal');
     const closeButton = document.querySelector('.close');
     const expertButton = document.getElementById('expert');
-  
-    // Get any parameters from the URL
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const newGame = urlParams.get('new');
-  
-    if (newGame)
-      openModal();
-
+    const easyButton = document.getElementById('easy'); 
+    
+    // Hard Code Easy Sudoku Games 
+    const easy_game_1 = "000004028406000005100030600000301000087000140000709000002010003900000507670400000";
+            // Solution: 735164928426978315198532674249381756387256149561749832852617493914823567673495281  
+    
+    const easy_game_2 = "309000400200709000087000000750060230600904008028050041000000590000106007006000104";
+            // Solution: 369218475215749863487635912754861239631924758928357641173482596542196387896573124
+    
+    const easy_game_3 = "690000140700080000002070060400703000001000300000901004050010600000040002073000058";
+            // Solution: 698532147715684923342179865486723591921458376537961284254817639869345712173296458
+    
+    const easy_game_4 = "401000600700601000095000000140050820800409006032060057000000780000907002004000903";
+            // Solution: 421375698783691245695284371146753829857429136932168457219536784368947512574812963
+    
+    const easy_game_5 = "000081074000304900400200501090040060000605000070090010907008006008502000320760000";
+            // Solution: 532981674761354982489276531895147263143625897276893415957418326618532749324769158
+    
     // Opens difficulty modal window
     function openModal() {
         modal.style.display = 'block';
@@ -728,6 +745,31 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
     // Add event listener to close difficulty modal window
     closeButton.addEventListener('click', closeModal);
+    
+    // Add event listener to "Easy" Button 
+    let easy = 0 
+    easyButton.addEventListener('click', function (e) {
+        closeModal();
+        var easy_arr = [easy_game_1, easy_game_2, easy_game_3, easy_game_4, easy_game_5];
+        game1.set_board(easy_arr[easy]);
+        SudokuDOM.display_board(game1, sudoku_squares, true);
+        
+        if (easy < 4) {
+        easy = easy + 1;
+        }
+        else {
+            easy = 0;
+        }
+        
+
+
+        if (mistakes_counter == true) { // TODO: Implement Database 
+          
+            // Reset mistakes counter
+            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            m = 0;
+        }
+    });
 
     // Add event listener to "Expert" button
     expertButton.addEventListener('click', function (e) {
