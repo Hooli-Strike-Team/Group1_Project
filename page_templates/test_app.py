@@ -57,8 +57,10 @@ def testingdb(command):
         #db = getdb()
         db = sqlite3.connect(db_path)
         with db:
-            for user in [{'Username':'USER1'},{'Username':'USER2'},{'Username':'USER3'},{'Username':'USER4'}]:
-                db.execute("INSERT INTO User_Account VALUES (:Username, 'password','first','last','email@email.com');",user)
+            for user in [{'Username':'RandyBoBandy-71'},]:
+                db.execute("INSERT INTO User_Account VALUES (:Username, 'LarBear25','Paul','Schneider','dogluver@email.com');",user)
+                
+            
         db.close()
         return 'post'
     
@@ -69,7 +71,19 @@ def testingdb(command):
              for result in db.execute("SELECT * FROM User_Account;"):
                     results.append(result)
         db.close()
+        
         return results
+    
+    
+@app.route('/test_recieve', methods=['POST', 'GET'])
+def recieve():
+    error = None
+    if request.method == 'POST':
+           return request.form["data"]
+  
+    return "Failed" 
+    
+    
     
 # Insert wrapper for handling PROXY when using csel.io virtual machine
 prefix.use_PrefixMiddleware(app)   
@@ -98,7 +112,7 @@ def login():
 
 
 #testing for the Mistakes counter slider in settings 
-mistakes_counter = True 
+mistakes_counter = False 
 
 
 @app.route('/main')

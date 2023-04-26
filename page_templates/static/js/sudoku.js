@@ -881,6 +881,30 @@ window.addEventListener('DOMContentLoaded', (e) => {
     });
     
     
+    /* Code for Settings Modal */ 
+    
+    const modalsettings = document.getElementById('settingsmodal');
+    const settings_closeButton = document.querySelector('.close-settings');
+    const settings_button = document.getElementById('settings-button'); 
+    
+    // Opens settings modal window
+    function settings_openModal() {
+        console.log("Openmodal clicked") 
+        modalsettings.style.display = 'block';
+    }
+
+    // Closes settings modal window
+    function settings_closeModal() {
+        modalsettings.style.display = 'none';
+    }
+
+    // Add event listener to open settings modal window on click
+    settings_button.addEventListener('click', settings_openModal);
+                           
+                                     
+    // Add event listener to close settings modal window
+    settings_closeButton.addEventListener('click', settings_closeModal);
+    
 
     /* Full functinoality below:
 
@@ -1124,3 +1148,20 @@ class Timer {
         this.control = false;
     }
 }
+
+const xhr = new XMLHttpRequest();
+xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/test_recieve");
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+const body = JSON.stringify({
+  title: "Hello World",
+  body: "My POST request",
+  userId: 900,
+});
+xhr.onload = () => {
+  if (xhr.readyState == 4 && xhr.status == 201) {
+    console.log(JSON.parse(xhr.responseText));
+  } else {
+    console.log(`Error: ${xhr.status}`);
+  }
+};
+xhr.send(body);
