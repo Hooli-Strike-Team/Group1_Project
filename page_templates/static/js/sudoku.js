@@ -824,6 +824,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
             document.getElementById('strike-counter').innerHTML = " 0 / 10";
             m = 0;
         }
+        // restarts timer
+        timer.set(0, 'timer1', callback); 
     });
     // Add event listener to "Hard" Button
     let hard = 0
@@ -844,6 +846,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
             document.getElementById('strike-counter').innerHTML = " 0 / 10";
             m = 0;
         }
+        //restarts timer
+        timer.set(0, 'timer1', callback);   
     });
 
     // Add event listener to "Expert" button
@@ -865,6 +869,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
             document.getElementById('strike-counter').innerHTML = " 0 / 10";
             m = 0;
         }
+        //restarts timer
+        timer.set(0, 'timer1', callback); 
     });
     
     /* Code for Restart Button */ 
@@ -896,8 +902,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
     // Closes settings modal window
     function settings_closeModal() {
-        modalsettings.style.display = 'none';
-    }
+        modalsettings.style.display = 'none';  
+    } 
 
     // Add event listener to open settings modal window on click
     settings_button.addEventListener('click', settings_openModal);
