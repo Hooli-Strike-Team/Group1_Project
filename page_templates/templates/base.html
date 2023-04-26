@@ -32,12 +32,48 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
     />
-    
-    <!-- Script tag with block for JavaScript source and script content -->
-    <script {% block js_source %}{% endblock %}>
-      {% block script %}{% endblock %}
-    </script>
+      
 
+
+    <!-- Script tag with block for JavaScript source and script content --> 
+     <script {% block js_source %}{% endblock %}>
+      {% block script %}
+      window.addEventListener('DOMContentLoaded', (e) => {
+            /* Code for Settings Modal on Achievements and Rules Page */ 
+
+            const modalsettings = document.getElementById('settingsmodal');
+            const settings_closeButton = document.querySelector('.close-settings');
+            const settings_button = document.getElementById('settings-button'); 
+
+            // Opens settings modal window
+            function settings_openModal() {
+                console.log("Openmodal clicked") 
+                modalsettings.style.display = 'block';
+            }
+
+            // Closes settings modal window
+            function settings_closeModal() {
+                modalsettings.style.display = 'none';
+            }
+
+            // Add event listener to open settings modal window on click
+            settings_button.addEventListener('click', settings_openModal);
+
+
+
+            // Add event listener to close settings modal window
+            settings_closeButton.addEventListener('click', settings_closeModal);
+          
+      }) 
+      
+      
+      
+      {% endblock %}
+    </script>
+    
+   
+
+      
     <!-- Block for page title -->
     <title>Sudoku Sage - {% block title %}{% endblock %}</title>
   </head>
@@ -75,16 +111,60 @@
         </a>
 
         <!-- Settings button -->
-        <a href="{{ url_for('show_settings') }}" class="header-button-link">
-          <span class="header-button-icon material-icons-outlined"
+          
+          
+        <div class="header-button-link">  
+          <span class="header-button-icon material-icons-outlined" id="settings-button"
             >settings</span
           >
           <span class="header-button-label">Settings</span>
-        </a>
+            
+        </div>
+          
         {% endblock %}
-      </div>
-    </div>
 
+      </div>
+      <!--  Setting Modal --> 
+        <div id="settingsmodal" class="settings-modal">
+            <div class="settings-modal-content">
+                <span class="close-settings">&times;</span>
+                <p class="select-slider">
+                    Select Difficulty
+                </p>
+                <!-- Show Clock Slider --> 
+                
+                <div class="settings-item">
+                  <div class="settings-description">
+                    <p>SHOW CLOCK</p>
+                  </div>
+                  <div class="settings-slider">
+                    <label class="switch">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                      <span class="slider-label on">On</span>
+                      <span class="slider-label off">Off</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <!-- Mistake Counter Slider --> 
+                <div class="settings-item">
+                  <div class="settings-description">
+                    <p>MISTAKES COUNTER</p>
+                  </div>
+                  <div class="settings-slider">
+                    <label class="switch">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                      <span class="slider-label on">On</span>
+                      <span class="slider-label off">Off</span>
+                    </label>
+                  </div>
+                </div>
+
+            </div>
+        </div> 
+    </div>
     <!-- Main content container -->
     <div id="content">
       <!-- Block for main content of page -->

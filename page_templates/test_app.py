@@ -49,7 +49,7 @@ def login():
 
 
 #testing for the Mistakes counter slider in settings 
-mistakes_counter = True 
+mistakes_counter = False 
 
 
 @app.route('/main')
