@@ -1,5 +1,8 @@
 Setting Up the Flask Server and Python Virtual Environment
 
+YOU MAY NEED TO INSTALL Flask-SQLAlchemy extension IN YOUR VIRTUAL ENV
+pip install -U Flask-SQLAlchemy
+
 Step 1:
 	. venv/bin/activate
 
