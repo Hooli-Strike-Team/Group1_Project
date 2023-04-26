@@ -9,9 +9,7 @@ from flask import Flask, url_for, render_template, redirect, session, g, request
 app = Flask(__name__)
 # Secret key for session object
 app.secret_key = 'Hooli-Strike-Team'
-
-################################################################################
-## Global flag that simulates a logged in state for testing the modal window
+g
 ## for the home page.
 ##
 ##   1. Set logged_in to either True or False
