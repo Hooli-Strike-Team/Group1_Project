@@ -59,8 +59,10 @@ def testingdb(command):
         #db = getdb()
         db = sqlite3.connect(db_path)
         with db:
-            for user in [{'Username':'USER1'},{'Username':'USER2'},{'Username':'USER3'},{'Username':'USER4'}]:
-                db.execute("INSERT INTO User_Account VALUES (:Username, 'password','first','last','email@email.com');",user)
+            for user in [{'Username':'RandyBoBandy-71'},]:
+                db.execute("INSERT INTO User_Account VALUES (:Username, 'LarBear25','Paul','Schneider','dogluver@email.com');",user)
+                
+            
         db.close()
         return 'post'
     
