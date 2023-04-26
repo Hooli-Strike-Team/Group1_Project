@@ -73,7 +73,19 @@ def testingdb(command):
              for result in db.execute("SELECT * FROM User_Account;"):
                     results.append(result)
         db.close()
+        
         return results
+    
+    
+@app.route('/test_recieve', methods=['POST', 'GET'])
+def recieve():
+    error = None
+    if request.method == 'POST':
+           return request.form["data"]
+  
+    return "Failed" 
+    
+    
     
 # Insert wrapper for handling PROXY when using csel.io virtual machine
 prefix.use_PrefixMiddleware(app)   

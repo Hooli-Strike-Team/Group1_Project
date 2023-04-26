@@ -1148,3 +1148,20 @@ class Timer {
         this.control = false;
     }
 }
+
+const xhr = new XMLHttpRequest();
+xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/test_recieve");
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+const body = JSON.stringify({
+  title: "Hello World",
+  body: "My POST request",
+  userId: 900,
+});
+xhr.onload = () => {
+  if (xhr.readyState == 4 && xhr.status == 201) {
+    console.log(JSON.parse(xhr.responseText));
+  } else {
+    console.log(`Error: ${xhr.status}`);
+  }
+};
+xhr.send(body);
