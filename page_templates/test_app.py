@@ -2,7 +2,8 @@ import prefix
 import os
 import sqlite3
 
-from flask import Flask, url_for, render_template, redirect, session, g
+from flask import Flask, url_for, render_template, redirect, session, g, request
+from flask_sqlalchemy import SQLAlchemy
 
 # Create app to use in Flask application
 app = Flask(__name__)
@@ -24,29 +25,40 @@ app.secret_key = 'Hooli-Strike-Team'
 logged_in = True
 db_path = './SQL/settings_test_db'
 
+# create the extension
+db = SQLAlchemy()
+# create the app
+app = Flask(__name__)
+# configure the SQLite database, relative to the app instance folder
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + db_path
+# initialize the app with the extension
+db.init_app(app)
+
 # Flask handler opens and closes connection on teardown
-def get_db():
-    if 'db' not in g:
-        g.db = sqlite3.connect(db_path)
+# def get_db():
+#     if 'db' not in g:
+#         g.db = sqlite3.connect(db_path)
 
-    return g.db
+#     return g.db
 
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+# @app.teardown_appcontext
+# def close_connection(exception):
+#     db = getattr(g, '_database', None)
+#     if db is not None:
+#         db.close()
 
 # @app.route('username/updateboard', methods=('POST',))
 # def boardupdate(username):
     
-@app.route('/testdb', methods=('POST',))
-def testingdb(username):
+@app.route('/testdb', methods=(['POST', 'GET']))
+def testingdb():
     # If login has been simulated, display modal window
-    db = getdb()
-    with db:
-        for user in [{'Username':'USER1'},{'Username':'USER2'},{'Username':'USER3'},{'Username':'USER4'}]:
-            db.execute("INSERT INTO User_Account VALUES (:Username, 'password','first','last','email@email.com');",user)
+    if request.method == 'POST':
+        db = getdb()
+        with db:
+            for user in [{'Username':'USER1'},{'Username':'USER2'},{'Username':'USER3'},{'Username':'USER4'}]:
+                db.execute("INSERT INTO User_Account VALUES (:Username, 'password','first','last','email@email.com');",user)
+    return 'db touched'
     
 # Insert wrapper for handling PROXY when using csel.io virtual machine
 prefix.use_PrefixMiddleware(app)   
