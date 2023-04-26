@@ -3,7 +3,7 @@ import os
 import sqlite3
 
 from flask import Flask, url_for, render_template, redirect, session, g, request
-from flask_sqlalchemy import SQLAlchemy
+# from flask_sqlalchemy import SQLAlchemy
 
 # Create app to use in Flask application
 app = Flask(__name__)
