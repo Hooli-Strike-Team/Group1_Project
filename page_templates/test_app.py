@@ -196,7 +196,7 @@ def login():
                 FROM User_Account
                 WHERE Username = ? AND Password = ?;
                 """, (username, password))
-                user_exists = query.fetchone()[0]
+                user_exists = query.fetchone()
                 app.logger.info(user_exists)
                 app.logger.info(username)
                 app.logger.info(password)
