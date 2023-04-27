@@ -241,21 +241,42 @@ def show_difficulty():
 def show_rules():
     return render_template('rules.html')
 
-
-risk_taker = True # if the user has met the requirements for the Risk Taker badge
+risk_taker = False  # if the user has met the requirements for the Risk Taker badge
 lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
-puzzle_master = True # if the user has met the requirements for the Puzzle Master badge
+puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
 speed_runner = False # if the user has met the requirements for the Speed Runner badge
-inquisitor = True # if the user has met the requirements for the Inquisitor badge
+inquisitor = False # if the user has met the requirements for the Inquisitor badge
 conqueror = False # if the user has met the requirements for the Conqueror badge 
 
-@app.route('/achievements')
-def show_achievements():
+@app.route('/achievements', methods=['POST', 'GET'])
+def show_achievements(risk_taker=risk_taker):
     ## Pull from database to set flags
     ## Select Query
-    return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master,
-                            speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
 
+    error = None
+    if request.method == 'POST':
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+        with db:
+                #db.execute("INSERT INTO Achievement_Stats VALUES (:Username, :EasyGamesCompleted, :MedGamesCompleted, :HardGamesCompleted, :Best_Time_Easy, :Best_Time_Med, :Best_Time_Hard, :AccountLevel);",data)
+                
+                for result in db.execute("SELECT * FROM Achievement_Stats;"):
+                 
+                    app.logger.info("HardGamesCompleted", result[3])
+                    
+
+                    if (result[3] >= 3): 
+                        risk_taker = True
+                        app.logger.info("Risk_Taker",risk_taker) 
+                        return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
+
+                
+
+        db.close()
+        app.logger.info(data)
+    return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
+
+   
 
 @app.route('/settings')
 def show_settings():
