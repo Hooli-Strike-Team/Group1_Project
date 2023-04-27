@@ -84,36 +84,7 @@ class Sudoku {
         }
         this.board[row][col] = value;
         
-        var game_state = get_string();
-        // send to database
-        /*
-        Columns of Games_In_Progress
-		 (0, 'Username', 'VARCHAR(32)', 0, None, 0)
-		 (1, 'Game_ID', 'INT', 0, None, 1)
-		 (2, 'Current_Time', 'TEXT', 0, None, 0)
-		 (3, 'Game', 'BLOB', 0, None, 0)
-		 (4, 'Difficulty', 'VARCHAR(6)', 0, None, 0)
-         */
         
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/game_state");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        const body = JSON.stringify({
-          User_Account: username,
-          Game_ID: gameid,
-          Current_Time: current_time,
-          Game: game_state,
-          Difficulty: current_difficulty
-        });
-        xhr.onload = () => {
-          if (xhr.readyState == 4 && xhr.status == 201) {
-            console.log(JSON.parse(xhr.responseText));
-          } else {
-            console.log(`Error: ${xhr.status}`);
-          }
-        };
-        xhr.send(body);
-
     }
 
     add_note(inputEl, newDigit) {
@@ -513,6 +484,29 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             // run update query for game completion at difficulty
                                 // POST to route, run update query
                             // run update query for time completion at difficulty
+                            
+                            const xhr = new XMLHttpRequest();
+                            xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/achievements");
+                            xhr.setRequestHeader("Content-Type", "application/json");
+                            const body = JSON.stringify({
+                              Username: "RandyBoBandy-71",
+                              EasyGamesCompleted: 0,
+                              MedGamesCompleted: 0,
+                              HardGamesCompleted: 3,
+                              Best_Time_Easy: 0,
+                              Best_Time_Med: 0, 
+                              Best_Time_Hard: 0, 
+                              AccountLevel: 0, 
+                            });
+                            xhr.onload = () => {
+                              if (xhr.readyState == 4 && xhr.status == 201) {
+                                console.log(JSON.parse(xhr.responseText));
+                              } else {
+                                console.log(`Error: ${xhr.status}`);
+                              }
+                            };
+                            xhr.send(body);
+     
                         }
                         
                     }
@@ -780,7 +774,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
       openModal();
     
     /* HardCode Easy Sudoku Games */
-    const easy_game_1 = "000004028406000005100030600000301000087000140000709000002010003900000507670400000";
+    const easy_game_1 = "735164928426978315198532674249381756387256149561749832852617493914823567673495280";
+          // "000004028406000005100030600000301000087000140000709000002010003900000507670400000";
             // Solution: 735164928426978315198532674249381756387256149561749832852617493914823567673495281  
     
     const easy_game_2 = "690000140700080000002070060400703000001000300000901004050010600000040002073000058";
@@ -1185,32 +1180,12 @@ class Timer {
     }
 }
 
-// POST Method 
-const xhr = new XMLHttpRequest();
-xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/test_receive");
-xhr.setRequestHeader("Content-Type", "application/json");
-const body = JSON.stringify({
-  User_Account: "User10",
-  Password: "password",
-  First_Name: '10Name',
-  First_Name: '10Last',
-  Email: 'name10@email.com'
-});
-xhr.onload = () => {
-  if (xhr.readyState == 4 && xhr.status == 201) {
-    console.log(JSON.parse(xhr.responseText));
-  } else {
-    console.log(`Error: ${xhr.status}`);
-  }
-};
-xhr.send(body);
-
 
 
 // GET Method 
 
 const XHR = new XMLHttpRequest();
-XHR.open("GET", "https://coding.csel.io/user/matu8568/proxy/3308/test_get");
+XHR.open("GET", "https://coding.csel.io/user/pasc9915/proxy/3308/test_get");
 XHR.send();
 XHR.responseType = "json";
 XHR.onload = () => {
