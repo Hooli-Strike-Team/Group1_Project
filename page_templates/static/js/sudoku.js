@@ -24,12 +24,14 @@ function http_get(route) {
     XHR.onload = () => {
       if (XHR.readyState == 4 && XHR.status == 200) {
         const data = JSON.parse(XHR.response);
-        // console.log(data);
+        console.log(data)
+        return data
       } else {
         console.log(`Error: ${XHR.status}`);
+        return
       }
     };
-    return data
+
 }
 
 class Sudoku {
@@ -1255,3 +1257,4 @@ XHR.onload = () => {
   }
 };
 */
+http_get('test_get')
