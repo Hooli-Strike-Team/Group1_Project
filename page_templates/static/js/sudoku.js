@@ -1,3 +1,39 @@
+function http_post(route,json_body) {
+    const url = "https://coding.csel.io/user/matu8568/proxy/3308/"
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url + route);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    const body = JSON.stringify(json_body);
+    xhr.onload = () => {
+      if (xhr.readyState == 4 && xhr.status == 201) {
+        console.log(JSON.parse(xhr.responseText));
+      } else {
+        console.log(`Error: ${xhr.status}`);
+      }
+    };
+    xhr.send(body);
+    return
+}
+
+function http_get(route) {
+    const url = "https://coding.csel.io/user/matu8568/proxy/3308/"
+    const XHR = new XMLHttpRequest();
+    XHR.open("GET",  url + route);
+    XHR.send();
+    XHR.responseType = "json";
+    XHR.onload = () => {
+      if (XHR.readyState == 4 && XHR.status == 200) {
+        const data = JSON.parse(XHR.response);
+        console.log(data)
+        return data
+      } else {
+        console.log(`Error: ${XHR.status}`);
+        return
+      }
+    };
+
+}
+
 class Sudoku {
     constructor() {
         this.blank_board = [
@@ -83,6 +119,38 @@ class Sudoku {
             value = 0;
         }
         this.board[row][col] = value;
+        
+        var game_state = get_string();
+        // send to database
+        /*
+        Columns of Games_In_Progress
+		 (0, 'Username', 'VARCHAR(32)', 0, None, 0)
+		 (1, 'Game_ID', 'INT', 0, None, 1)
+		 (2, 'Current_Time', 'TEXT', 0, None, 0)
+		 (3, 'Game', 'BLOB', 0, None, 0)
+		 (4, 'Difficulty', 'VARCHAR(6)', 0, None, 0)
+         */
+        /*
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/game_state");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        const body = JSON.stringify({
+          User_Account: username,
+          Game_ID: gameid,
+          Current_Time: current_time,
+          Game: game_state,
+          Difficulty: current_difficultyf
+        });
+        xhr.onload = () => {
+          if (xhr.readyState == 4 && xhr.status == 201) {
+            console.log(JSON.parse(xhr.responseText));
+          } else {
+            console.log(`Error: ${xhr.status}`);
+          }
+        };
+        xhr.send(body);
+        */
+
     }
 
     add_note(inputEl, newDigit) {
@@ -355,12 +423,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // *************************** FIX *************************** 
     // Pull Data from Database 
     /*
-    var con = sqlite3.connect("settings_test_db")
-    with con:
-            for result in con.execute("SELECT * FROM Game_Settings;"):
-                var timer_flag = result[1] 
-                var mistakes_counter = result[2] 
-    con.close()
+    
     */
     // *************************** FIX ***************************
     
@@ -480,6 +543,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             
                             // *************************** TODO  ***************************
                             // run update query for game completion at difficulty
+                                // POST to route, run update query
                             // run update query for time completion at difficulty
                         }
                         
@@ -892,6 +956,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const modalsettings = document.getElementById('settingsmodal');
     const settings_closeButton = document.querySelector('.close-settings');
     const settings_button = document.getElementById('settings-button'); 
+    const settings_mistakes = document.getElementById('settings-button'); 
+    const settings_timer = document.getElementById('settings-button'); 
     
     // Opens settings modal window
     function settings_openModal() {
@@ -910,6 +976,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                      
     // Add event listener to close settings modal window
     settings_closeButton.addEventListener('click', settings_closeModal);
+    
     
 
     /* Full functinoality below:
@@ -1154,3 +1221,45 @@ class Timer {
         this.control = false;
     }
 }
+
+/*/
+// POST Method 
+const xhr = new XMLHttpRequest();
+xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/test_receive");
+xhr.setRequestHeader("Content-Type", "application/json");
+const body = JSON.stringify({
+  User_Account: "User10",
+  Password: "password",
+  First_Name: '10Name',
+  First_Name: '10Last',
+  Email: 'name10@email.com'
+});
+xhr.onload = () => {
+  if (xhr.readyState == 4 && xhr.status == 201) {
+    console.log(JSON.parse(xhr.responseText));
+  } else {
+    console.log(`Error: ${xhr.status}`);
+  }
+};
+xhr.send(body);
+
+
+
+// GET Method 
+
+const XHR = new XMLHttpRequest();
+XHR.open("GET", "https://coding.csel.io/user/matu8568/proxy/3308/test_get");
+XHR.send();
+XHR.responseType = "json";
+XHR.onload = () => {
+  if (XHR.readyState == 4 && XHR.status == 200) {
+    const data = XHR.response;
+    var parsed_data = JSON.parse(data)
+    console.log(parsed_data[0].Username);
+    console.log(xhr.responseText)
+  } else {
+    console.log(`Error: ${XHR.status}`);
+  }
+};
+*/
+http_get('test_get')
