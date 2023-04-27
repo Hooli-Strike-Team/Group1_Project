@@ -151,18 +151,7 @@ def home():
     
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 #    AREA BELOW IS UNDER CONSTRUCTION - Micah
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
-    return db
-    
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
     
 @app.route('/create-account', methods = ['POST', 'GET'])
 def create_account():
@@ -175,7 +164,7 @@ def create_account():
             firstname = str(request.form['fname'])
             lastname = str(request.form['lname'])
             email = str(request.form['email']) 
-            with sqlite3.connect(DATABASE) as con: # fails here
+            with sqlite3.connect(DATABASE) as con:  # db connection object
                 cur = con.cursor()
                 cur.execute("""
                 INSERT INTO User_Account
@@ -184,21 +173,52 @@ def create_account():
                 """, (username, password, firstname, lastname, email))
                 con.commit()
                 msg = "Record successfully added"
+                return redirect('login')
+        except:
+            con.rollback()
+            con.close()
+            msg = "error in insert operation"
+            return render_template('create-account.html', msg=msg)
+    else:
+        return render_template('create-account.html')
+    
+
+@app.route('/login', methods = ['POST', 'GET'])
+def login():
+    # return render_template('login.html')
+    if request.method == 'POST':
+        # addrec()
+        # return render_template('create-account.html')
+        try:
+            username = str(request.form['uname'])
+            password = str(request.form['psw'])
+            with sqlite3.connect(DATABASE) as con:  # db connection object
+                cur = con.cursor()
+                # NEED NEW QUERY
+                # cur.execute("""
+                # INSERT INTO User_Account
+                # (Username,Password,First_Name,Last_Name,Email) 
+                # VALUES (?,?,?,?,?);
+                # """, (username, password, firstname, lastname, email))
+                con.commit()
+                msg = "Record successfully added"
                 # return render_template("login.html")
         except:
             con.rollback()
+            con.close()
             msg = "error in insert operation"
-            return render_template('create-account.html')
+            return render_template('create-account.html', msg=msg)
         finally:
-            return render_template("login.html",msg = msg)
+            return redirect('login')
             con.close()
     else:
-        return render_template('create-account.html')
+        return render_template('login.html')
 
 
-@app.route('/login')
-def login():
-    return render_template('login.html')
+
+
+
+
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 #    AREA BELOW IS UNDER CONSTRUCTION - Micah
