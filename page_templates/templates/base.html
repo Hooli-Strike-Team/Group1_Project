@@ -32,47 +32,9 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
     />
-      
-
 
     <!-- Script tag with block for JavaScript source and script content --> 
-     <script {% block js_source %}{% endblock %}>
-      {% block script %}
-      window.addEventListener('DOMContentLoaded', (e) => {
-            /* Code for Settings Modal on Achievements and Rules Page */ 
-
-            const modalsettings = document.getElementById('settingsmodal');
-            const settings_closeButton = document.querySelector('.close-settings');
-            const settings_button = document.getElementById('settings-button'); 
-
-            // Opens settings modal window
-            function settings_openModal() {
-                console.log("Openmodal clicked") 
-                modalsettings.style.display = 'block';
-            }
-
-            // Closes settings modal window
-            function settings_closeModal() {
-                modalsettings.style.display = 'none';
-            }
-
-            // Add event listener to open settings modal window on click
-            settings_button.addEventListener('click', settings_openModal);
-
-
-
-            // Add event listener to close settings modal window
-            settings_closeButton.addEventListener('click', settings_closeModal);
-          
-      }) 
-      
-      
-      
-      {% endblock %}
-    </script>
-    
-   
-
+      <script {% block js_source %}src="{{ url_for('static', filename='js/settings-modal.js') }}"{% endblock %}></script>
       
     <!-- Block for page title -->
     <title>Sudoku Sage - {% block title %}{% endblock %}</title>
@@ -111,7 +73,6 @@
         </a>
 
         <!-- Settings button -->
-          
           
         <div class="header-button-link">  
           <span class="header-button-icon material-icons-outlined" id="settings-button"
