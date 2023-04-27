@@ -82,6 +82,38 @@ class Sudoku {
         if ( value === '' ) {
             value = 0;
         }
+        this.board[row][col] = value;
+        
+        var game_state = get_string();
+        // send to database
+        /*
+        Columns of Games_In_Progress
+		 (0, 'Username', 'VARCHAR(32)', 0, None, 0)
+		 (1, 'Game_ID', 'INT', 0, None, 1)
+		 (2, 'Current_Time', 'TEXT', 0, None, 0)
+		 (3, 'Game', 'BLOB', 0, None, 0)
+		 (4, 'Difficulty', 'VARCHAR(6)', 0, None, 0)
+         */
+        
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/game_state");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        const body = JSON.stringify({
+          User_Account: username,
+          Game_ID: gameid,
+          Current_Time: current_time,
+          Game: game_state,
+          Difficulty: current_difficulty
+        });
+        xhr.onload = () => {
+          if (xhr.readyState == 4 && xhr.status == 201) {
+            console.log(JSON.parse(xhr.responseText));
+          } else {
+            console.log(`Error: ${xhr.status}`);
+          }
+        };
+        xhr.send(body);
+
     }
 
     add_note(inputEl, newDigit) {
@@ -479,6 +511,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             
                             // *************************** TODO  ***************************
                             // run update query for game completion at difficulty
+                                // POST to route, run update query
                             // run update query for time completion at difficulty
                         }
                         
@@ -886,6 +919,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const modalsettings = document.getElementById('settingsmodal');
     const settings_closeButton = document.querySelector('.close-settings');
     const settings_button = document.getElementById('settings-button'); 
+    const settings_mistakes = document.getElementById('settings-button'); 
+    const settings_timer = document.getElementById('settings-button'); 
     
     // Opens settings modal window
     function settings_openModal() {
@@ -904,6 +939,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                      
     // Add event listener to close settings modal window
     settings_closeButton.addEventListener('click', settings_closeModal);
+    
     
 
     /* Full functinoality below:
@@ -1151,7 +1187,7 @@ class Timer {
 
 // POST Method 
 const xhr = new XMLHttpRequest();
-xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/test_recieve");
+xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/test_receive");
 xhr.setRequestHeader("Content-Type", "application/json");
 const body = JSON.stringify({
   User_Account: "User10",
@@ -1174,7 +1210,7 @@ xhr.send(body);
 // GET Method 
 
 const XHR = new XMLHttpRequest();
-XHR.open("GET", "https://coding.csel.io/user/pasc9915/proxy/3308/test_get");
+XHR.open("GET", "https://coding.csel.io/user/matu8568/proxy/3308/test_get");
 XHR.send();
 XHR.responseType = "json";
 XHR.onload = () => {

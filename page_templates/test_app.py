@@ -53,30 +53,37 @@ handler = logging.FileHandler("test.log")  # Create the file logger
 app.logger.addHandler(handler)             # Add it to the built-in logger
 app.logger.setLevel(logging.DEBUG)         # Set the log level to debug
     
-@app.route('/testdb/<command>', methods=(['POST', 'GET']))
-def testingdb(command):
-    # If login has been simulated, display modal window
-    if command == 'insert':
-        #db = getdb()
+@app.route('/post_achievements', methods=['POST', 'GET'])
+def post_achievements():
+    error = None
+    if request.method == 'POST':
+        data = request.get_json()
         db = sqlite3.connect(db_path)
         with db:
-            for user in [{'Username':'RandyBoBandy-71'},]:
-                db.execute("INSERT INTO User_Account VALUES (:Username, 'LarBear25','Paul','Schneider','dogluver@email.com');",user)
-                
-            
+                db.execute("UPDATE Achievement_Stats VALUES ();",data)
+
         db.close()
-        return 'post'
+        app.logger.info(data)
+        return 'nothing'
+    app.logger.info('not post')
+    return "Not POST" 
     
-    if command == 'select': 
+@app.route('/game_state', methods=['POST', 'GET'])
+def get_game_state():
+    error = None
+    if request.method == 'POST':
+        data = request.get_json()
         db = sqlite3.connect(db_path)
-        results = []
         with db:
-             for result in db.execute("SELECT * FROM User_Account;"):
-                    results.append(result)
+                db.execute("UPDATE Games_In_Progress VALUES (:User_Account, :Game_ID, :Current_Time, :Game,:Difficulty);",data)
+                for result in db.execute("SELECT * FROM User_Account;"):
+                    results.append(result) 
+
         db.close()
-        
-        return results
-    
+        app.logger.info(data)
+        return 'nothing'
+    app.logger.info('not post')
+    return "Not POST" 
     
 @app.route('/test_receive', methods=['POST', 'GET'])
 def receive():
@@ -101,14 +108,14 @@ def test_get():
         db = sqlite3.connect(db_path)
         results = [] 
         with db:
-             for user in [{'Username':'RandyBoBandy-71'},]:
-                db.execute("INSERT INTO User_Account VALUES (:Username, 'LarBear25','Paul','Schneider','dogluver@email.com');",user)
-                
+             # for user in [{'Username':'RandyBoBandy-71'},]:
+             #    db.execute("INSERT INTO User_Account VALUES (:Username, 'LarBear25','Paul','Schneider','dogluver@email.com');",user)
+                # c.execute("SELECT name FROM sqlite_master WHERE type='table';")
                 for result in db.execute("SELECT * FROM User_Account;"):
                     results.append(result) 
         db.close()
 
-    return jsonify(results) 
+    return results
     
     
 # Insert wrapper for handling PROXY when using csel.io virtual machine
@@ -163,6 +170,8 @@ conqueror = False # if the user has met the requirements for the Conqueror badge
 
 @app.route('/achievements')
 def show_achievements():
+    ## Pull from database to set flags
+    ## Select Query
     return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master,
                             speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
 
