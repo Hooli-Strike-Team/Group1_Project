@@ -94,7 +94,7 @@ class Sudoku {
 		 (3, 'Game', 'BLOB', 0, None, 0)
 		 (4, 'Difficulty', 'VARCHAR(6)', 0, None, 0)
          */
-        
+        /*
         const xhr = new XMLHttpRequest();
         xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/game_state");
         xhr.setRequestHeader("Content-Type", "application/json");
@@ -103,7 +103,7 @@ class Sudoku {
           Game_ID: gameid,
           Current_Time: current_time,
           Game: game_state,
-          Difficulty: current_difficulty
+          Difficulty: current_difficultyf
         });
         xhr.onload = () => {
           if (xhr.readyState == 4 && xhr.status == 201) {
@@ -113,6 +113,7 @@ class Sudoku {
           }
         };
         xhr.send(body);
+        */
 
     }
 
