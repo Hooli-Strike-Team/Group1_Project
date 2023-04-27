@@ -120,7 +120,14 @@ class Sudoku {
         }
         this.board[row][col] = value;
         
-        var game_state = get_string();
+        let str = '';
+        for ( let row = 0; row <= 8; row++ ) {
+            for ( let col = 0; col <= 8; col++ ) {
+                str += this.board[row][col];
+            }
+        }
+        
+        var game_state = str;
         var game_json = [{'Username':'Test_User','Game_ID':'1234','Current_Time':'1234','Game':game_state,'Difficulty':'Expert'}]
         http_post('game_state',game_json)
         // send to database
