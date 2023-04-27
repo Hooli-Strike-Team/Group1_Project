@@ -3,7 +3,7 @@ import sqlite3
 
 from flask import Flask, url_for, render_template, redirect, request, session, g
 
-DATABASE = './SQL/controller_db.db'
+DATABASE='/SQL/controller_db.db'
 
 # Create app to use in Flask application
 app = Flask(__name__)
@@ -61,22 +61,36 @@ def close_connection(exception):
 @app.route('/create-account', methods = ['POST', 'GET'])
 def create_account():
     if request.method == 'POST':
-        # form input name="uname" (in create-account.html)
-        user_name = request.form.get("uname")
-        # form input name="psw"
-        password = request.form.get("psw")
-        # form input name="fname"
-        first_name = request.form.get("fname")
-        # form input name="lname"
-        last_name = request.form.get("lname")
-        # form input name="email"
-        email = request.form.get("email")
-        return render_template("login.html")
+        addrec()
+        # return render_template('create-account.html')
     else:
         return render_template('create-account.html')
-    
-    return render_template('create-account.html')
-
+        
+        
+@app.route('/addrec',methods = ['POST', 'GET'])
+def addrec():
+    if request.method == 'POST':
+        try:
+            username = request.form['uname']
+            password = request.form['psw']
+            firstname = request.form['fname']
+            lastname = request.form['lname']
+            email = request.form['email'] 
+            with sql.connect(DATABASE) as con: # fails here
+                cur = con.cursor()
+                cur.execute("""
+                INSERT INTO students (name,addr,city,pin) 
+                VALUES (?,?,?,?)",(nm,addr,city,pin) 
+                """)
+                con.commit()
+                msg = "Record successfully added"
+        except:
+            con.rollback()
+            # msg = "error in insert operation"
+            return render_template('create-account.html')
+        finally:
+            return render_template("login.html",msg = msg)
+            con.close()
 
 
 @app.route('/login')
