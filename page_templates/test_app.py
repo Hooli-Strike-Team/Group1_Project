@@ -3,7 +3,7 @@ import sqlite3
 
 from flask import Flask, url_for, render_template, redirect, request, session, g
 
-DATABASE='/SQL/controller_db.db'
+DATABASE="controller_db"
 
 # Create app to use in Flask application
 app = Flask(__name__)
@@ -61,36 +61,33 @@ def close_connection(exception):
 @app.route('/create-account', methods = ['POST', 'GET'])
 def create_account():
     if request.method == 'POST':
-        addrec()
+        # addrec()
         # return render_template('create-account.html')
-    else:
-        return render_template('create-account.html')
-        
-        
-@app.route('/addrec',methods = ['POST', 'GET'])
-def addrec():
-    if request.method == 'POST':
         try:
-            username = request.form['uname']
-            password = request.form['psw']
-            firstname = request.form['fname']
-            lastname = request.form['lname']
-            email = request.form['email'] 
-            with sql.connect(DATABASE) as con: # fails here
+            username = str(request.form['uname'])
+            password = str(request.form['psw'])
+            firstname = str(request.form['fname'])
+            lastname = str(request.form['lname'])
+            email = str(request.form['email']) 
+            with sqlite3.connect(DATABASE) as con: # fails here
                 cur = con.cursor()
                 cur.execute("""
-                INSERT INTO students (name,addr,city,pin) 
-                VALUES (?,?,?,?)",(nm,addr,city,pin) 
-                """)
+                INSERT INTO User_Account
+                (Username,Password,First_Name,Last_Name,Email) 
+                VALUES (?,?,?,?,?);
+                """, (username, password, firstname, lastname, email))
                 con.commit()
                 msg = "Record successfully added"
+                # return render_template("login.html")
         except:
             con.rollback()
-            # msg = "error in insert operation"
+            msg = "error in insert operation"
             return render_template('create-account.html')
         finally:
             return render_template("login.html",msg = msg)
             con.close()
+    else:
+        return render_template('create-account.html')
 
 
 @app.route('/login')
