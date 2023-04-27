@@ -151,18 +151,7 @@ def home():
     
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 #    AREA BELOW IS UNDER CONSTRUCTION - Micah
-## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
-def get_db():
-    db = getattr(g, '_database', None)
-    if db is None:
-        db = g._database = sqlite3.connect(DATABASE)
-    return db
-    
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
     
 @app.route('/create-account', methods = ['POST', 'GET'])
 def create_account():
@@ -175,7 +164,7 @@ def create_account():
             firstname = str(request.form['fname'])
             lastname = str(request.form['lname'])
             email = str(request.form['email']) 
-            with sqlite3.connect(DATABASE) as con: # fails here
+            with sqlite3.connect(DATABASE) as con:  # db connection object
                 cur = con.cursor()
                 cur.execute("""
                 INSERT INTO User_Account
@@ -184,24 +173,50 @@ def create_account():
                 """, (username, password, firstname, lastname, email))
                 con.commit()
                 msg = "Record successfully added"
+                return redirect('login')
+        except:
+            con.rollback()
+            con.close()
+            msg = "error in insert operation"
+            return render_template('create-account.html', msg=msg)
+    else:
+        return render_template('create-account.html')
+    
+
+@app.route('/login', methods = ['POST', 'GET'])
+def login():
+    # return render_template('login.html')
+    if request.method == 'POST':
+        # addrec()
+        # return render_template('create-account.html')
+        try:
+            username = str(request.form['uname'])
+            password = str(request.form['psw'])
+            with sqlite3.connect(DATABASE) as con:  # db connection object
+                cur = con.cursor()
+                # NEED NEW QUERY
+                # cur.execute("""
+                # INSERT INTO User_Account
+                # (Username,Password,First_Name,Last_Name,Email) 
+                # VALUES (?,?,?,?,?);
+                # """, (username, password, firstname, lastname, email))
+                con.commit()
+                msg = "Record successfully added"
                 # return render_template("login.html")
         except:
             con.rollback()
+            con.close()
             msg = "error in insert operation"
-            return render_template('create-account.html')
+            return render_template('create-account.html', msg=msg)
         finally:
-            return render_template("login.html",msg = msg)
+            return redirect('login')
             con.close()
     else:
-        return render_template('create-account.html')
+        return render_template('login.html')
 
-
-@app.route('/login')
-def login():
-    return render_template('login.html')
 
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
-#    AREA BELOW IS UNDER CONSTRUCTION - Micah
+#    AREA ABOVE IS UNDER CONSTRUCTION - Micah
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 
 
@@ -226,21 +241,42 @@ def show_difficulty():
 def show_rules():
     return render_template('rules.html')
 
-
-risk_taker = True # if the user has met the requirements for the Risk Taker badge
+risk_taker = False  # if the user has met the requirements for the Risk Taker badge
 lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
-puzzle_master = True # if the user has met the requirements for the Puzzle Master badge
+puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
 speed_runner = False # if the user has met the requirements for the Speed Runner badge
-inquisitor = True # if the user has met the requirements for the Inquisitor badge
+inquisitor = False # if the user has met the requirements for the Inquisitor badge
 conqueror = False # if the user has met the requirements for the Conqueror badge 
 
-@app.route('/achievements')
-def show_achievements():
+@app.route('/achievements', methods=['POST', 'GET'])
+def show_achievements(risk_taker=risk_taker):
     ## Pull from database to set flags
     ## Select Query
-    return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master,
-                            speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
 
+    error = None
+    if request.method == 'POST':
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+        with db:
+                #db.execute("INSERT INTO Achievement_Stats VALUES (:Username, :EasyGamesCompleted, :MedGamesCompleted, :HardGamesCompleted, :Best_Time_Easy, :Best_Time_Med, :Best_Time_Hard, :AccountLevel);",data)
+                
+                for result in db.execute("SELECT * FROM Achievement_Stats;"):
+                 
+                    app.logger.info("HardGamesCompleted", result[3])
+                    
+
+                    if (result[3] >= 3): 
+                        risk_taker = True
+                        app.logger.info("Risk_Taker",risk_taker) 
+                        return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
+
+                
+
+        db.close()
+        app.logger.info(data)
+    return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
+
+   
 
 @app.route('/settings')
 def show_settings():

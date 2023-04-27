@@ -547,6 +547,29 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             // run update query for game completion at difficulty
                                 // POST to route, run update query
                             // run update query for time completion at difficulty
+                            
+                            const xhr = new XMLHttpRequest();
+                            xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/achievements");
+                            xhr.setRequestHeader("Content-Type", "application/json");
+                            const body = JSON.stringify({
+                              Username: "RandyBoBandy-71",
+                              EasyGamesCompleted: 0,
+                              MedGamesCompleted: 0,
+                              HardGamesCompleted: 3,
+                              Best_Time_Easy: 0,
+                              Best_Time_Med: 0, 
+                              Best_Time_Hard: 0, 
+                              AccountLevel: 0, 
+                            });
+                            xhr.onload = () => {
+                              if (xhr.readyState == 4 && xhr.status == 201) {
+                                console.log(JSON.parse(xhr.responseText));
+                              } else {
+                                console.log(`Error: ${xhr.status}`);
+                              }
+                            };
+                            xhr.send(body);
+     
                         }
                         
                     }
@@ -814,7 +837,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
       openModal();
     
     /* HardCode Easy Sudoku Games */
-    const easy_game_1 = "000004028406000005100030600000301000087000140000709000002010003900000507670400000";
+    const easy_game_1 = "735164928426978315198532674249381756387256149561749832852617493914823567673495280";
+          // "000004028406000005100030600000301000087000140000709000002010003900000507670400000";
             // Solution: 735164928426978315198532674249381756387256149561749832852617493914823567673495281  
     
     const easy_game_2 = "690000140700080000002070060400703000001000300000901004050010600000040002073000058";
@@ -1224,6 +1248,7 @@ class Timer {
     }
 }
 
+
 /*/
 // POST Method 
 const xhr = new XMLHttpRequest();
@@ -1250,7 +1275,7 @@ xhr.send(body);
 // GET Method 
 
 const XHR = new XMLHttpRequest();
-XHR.open("GET", "https://coding.csel.io/user/matu8568/proxy/3308/test_get");
+XHR.open("GET", "https://coding.csel.io/user/pasc9915/proxy/3308/test_get");
 XHR.send();
 XHR.responseType = "json";
 XHR.onload = () => {
