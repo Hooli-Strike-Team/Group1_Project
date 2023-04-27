@@ -60,7 +60,7 @@ def create(db_filename):
                 Username VARCHAR(32),
                 Game_ID INT,
                 Current_Time TEXT,
-                Game BLOB,
+                Game VARCHAR(100),
                 Difficulty VARCHAR(6),
                 PRIMARY KEY(Game_ID), 
                 FOREIGN KEY(Username) REFERENCES User_Account(Username)) 

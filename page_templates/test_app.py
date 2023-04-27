@@ -79,7 +79,7 @@ def get_game_state():
         data = request.get_json()
         db = sqlite3.connect(db_path)
         with db:
-                db.execute("UPDATE Games_In_Progress VALUES (:User_Account, :Game_ID, :Current_Time, :Game,:Difficulty);",data)
+                db.execute('''UPDATE Games_In_Progress SET 'Current_Time' = :Current_Time, 'Game' = :Game WHERE 'Game_ID' = :Game_ID, data''')
                 for result in db.execute("SELECT * FROM User_Account;"):
                     results.append(result) 
 

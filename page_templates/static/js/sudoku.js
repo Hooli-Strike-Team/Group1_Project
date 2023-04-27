@@ -121,6 +121,8 @@ class Sudoku {
         this.board[row][col] = value;
         
         var game_state = get_string();
+        var game_json = [{'Username':'Test_User','Game_ID':'1234','Current_Time':'1234','Game':game_state,'Difficulty':'Expert'}]
+        http_post('game_state',game_json)
         // send to database
         /*
         Columns of Games_In_Progress
