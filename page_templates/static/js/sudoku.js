@@ -1149,6 +1149,7 @@ class Timer {
     }
 }
 
+// POST Method 
 const xhr = new XMLHttpRequest();
 xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/test_recieve");
 xhr.setRequestHeader("Content-Type", "application/json");
@@ -1167,3 +1168,20 @@ xhr.onload = () => {
   }
 };
 xhr.send(body);
+
+
+
+// GET Method 
+
+const XHR = new XMLHttpRequest();
+XHR.open("GET", "https://coding.csel.io/user/pasc9915/proxy/3308/test_get");
+XHR.send();
+XHR.responseType = "json";
+XHR.onload = () => {
+  if (XHR.readyState == 4 && XHR.status == 200) {
+    const data = XHR.response;
+    console.log(data);
+  } else {
+    console.log(`Error: ${XHR.status}`);
+  }
+};

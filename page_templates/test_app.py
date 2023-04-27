@@ -3,7 +3,7 @@ import os
 import sqlite3
 import logging
 
-from flask import Flask, url_for, render_template, redirect, session, g, request
+from flask import Flask, url_for, render_template, redirect, session, g, request, jsonify
 # from flask_sqlalchemy import SQLAlchemy
 
 # Create app to use in Flask application
@@ -78,8 +78,8 @@ def testingdb(command):
         return results
     
     
-@app.route('/test_recieve', methods=['POST', 'GET'])
-def recieve():
+@app.route('/test_receive', methods=['POST', 'GET'])
+def receive():
     error = None
     if request.method == 'POST':
         data = request.get_json()
@@ -92,7 +92,23 @@ def recieve():
         return 'nothing'
     app.logger.info('not post')
     return "Not POST" 
+
     
+@app.route('/test_get', methods=['POST', 'GET'])
+def test_get():
+    error = None
+    if request.method == 'GET':
+        db = sqlite3.connect(db_path)
+        results = [] 
+        with db:
+             for user in [{'Username':'RandyBoBandy-71'},]:
+                db.execute("INSERT INTO User_Account VALUES (:Username, 'LarBear25','Paul','Schneider','dogluver@email.com');",user)
+                
+                for result in db.execute("SELECT * FROM User_Account;"):
+                    results.append(result) 
+        db.close()
+
+    return jsonify(results) 
     
     
 # Insert wrapper for handling PROXY when using csel.io virtual machine
