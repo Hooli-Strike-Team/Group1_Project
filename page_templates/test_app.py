@@ -40,17 +40,17 @@ db_path = './SQL/settings_test_db'
 ############## Striaght SQLite Version ##############
 # Flask handler opens and closes connection on teardown
 
-def get_db():
-    if 'db' not in g:
-        g.db = sqlite3.connect(db_path)
+# def get_db():
+#     if 'db' not in g:
+#         g.db = sqlite3.connect(db_path)
 
-    return g.db
+#     return g.db
 
-@app.teardown_appcontext
-def close_connection(exception):
-    db = getattr(g, '_database', None)
-    if db is not None:
-        db.close()
+# @app.teardown_appcontext
+# def close_connection(exception):
+#     db = getattr(g, '_database', None)
+#     if db is not None:
+#         db.close()
 
 ########## Logging ###################
 handler = logging.FileHandler("test.log")  # Create the file logger
