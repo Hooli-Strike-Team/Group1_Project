@@ -1,3 +1,36 @@
+function http_post(route,json_body) {
+    const url = "https://coding.csel.io/user/matu8568/proxy/3308/"
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", url + route);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    const body = JSON.stringify(json_body);
+    xhr.onload = () => {
+      if (xhr.readyState == 4 && xhr.status == 201) {
+        console.log(JSON.parse(xhr.responseText));
+      } else {
+        console.log(`Error: ${xhr.status}`);
+      }
+    };
+    xhr.send(body);
+}
+
+function http_get(route) {
+    const url = "https://coding.csel.io/user/matu8568/proxy/3308/"
+    const XHR = new XMLHttpRequest();
+    XHR.open("GET",  url + route);
+    XHR.send();
+    XHR.responseType = "json";
+    XHR.onload = () => {
+      if (XHR.readyState == 4 && XHR.status == 200) {
+        const data = JSON.parse(XHR.response);
+        // console.log(data);
+      } else {
+        console.log(`Error: ${XHR.status}`);
+      }
+    };
+    return data
+}
+
 class Sudoku {
     constructor() {
         this.blank_board = [
@@ -387,12 +420,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // *************************** FIX *************************** 
     // Pull Data from Database 
     /*
-    var con = sqlite3.connect("settings_test_db")
-    with con:
-            for result in con.execute("SELECT * FROM Game_Settings;"):
-                var timer_flag = result[1] 
-                var mistakes_counter = result[2] 
-    con.close()
+    
     */
     // *************************** FIX ***************************
     
@@ -1186,6 +1214,7 @@ class Timer {
     }
 }
 
+/*/
 // POST Method 
 const xhr = new XMLHttpRequest();
 xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/test_receive");
@@ -1217,8 +1246,11 @@ XHR.responseType = "json";
 XHR.onload = () => {
   if (XHR.readyState == 4 && XHR.status == 200) {
     const data = XHR.response;
-    console.log(data);
+    var parsed_data = JSON.parse(data)
+    console.log(parsed_data[0].Username);
+    console.log(xhr.responseText)
   } else {
     console.log(`Error: ${XHR.status}`);
   }
 };
+*/

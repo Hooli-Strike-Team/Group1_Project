@@ -111,8 +111,17 @@ def test_get():
              # for user in [{'Username':'RandyBoBandy-71'},]:
              #    db.execute("INSERT INTO User_Account VALUES (:Username, 'LarBear25','Paul','Schneider','dogluver@email.com');",user)
                 # c.execute("SELECT name FROM sqlite_master WHERE type='table';")
-                for result in db.execute("SELECT * FROM User_Account;"):
-                    results.append(result) 
+                # for result in db.execute("SELECT * FROM User_Account;"):
+                #     results.append(result) 
+                for result in db.execute('''SELECT json_group_array( json_object(
+                                                    'Username', Username,
+                                                    'Password', Password,
+                                                    'First_Name', First_Name,
+                                                    'Last_Name', Last_Name,
+                                                    'Email', Email))
+                                          FROM User_Account
+                                          '''):
+                    results.append(result)
         db.close()
 
     return results
