@@ -215,9 +215,6 @@ def login():
         return render_template('login.html')
 
 
-
-
-
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 #    AREA ABOVE IS UNDER CONSTRUCTION - Micah
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
