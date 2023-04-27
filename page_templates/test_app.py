@@ -36,6 +36,7 @@ db_path = './SQL/settings_test_db'
 
 ############## Striaght SQLite Version ##############
 # Flask handler opens and closes connection on teardown
+
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(db_path)
