@@ -20,35 +20,36 @@
 
   <!-- Right container for form elements -->
   <div class="flex-child magenta">
-    <!-- Login form -->
-    <form action="" method="POST">  <!-- TODO: Define "action" -->
-
+      
+    <!-- Login form start -->
+    <form action="" method="post"> 
       <div class="container">
         <!-- Page title -->
         <h1>Sign In</h1>
-
         <!-- Username field -->
-        <label for="uname"><h2><b>Username</b></h2></label>
+        <label for="Username"><h2><b>Username</b></h2></label>
         <div class="input-wrapper">
-          <input type="text" placeholder="" name="username" value="{{ request.form.username }}" required>
+          <input type="text" placeholder="Username" name="uname" required />
         </div>
 
         <!-- Password field -->
-        <label for="psw"><h2><b>Password</b></h2></label>
+        <label for="Password"><h2><b>Password</b></h2></label>
         <div class="input-wrapper">
-            <input type="password" placeholder="" name="password" value="{{ request.form.password }}" required>
+            <input type="password" placeholder="Password" name="psw" required />
         </div>
 
-        <!-- Forgotten password and create account links -->
+        <!-- 'Forgot Password' and 'Create Account' links -->
         <div class="links-wrapper">
+          <!-- TODO: implement JS pop-up window telling user to check their email. -->
           <a href="#" class="forgot-password">Forgot password?</a>
           <a href="{{ url_for('create_account') }}" class="create-account">Create Account</a>
         </div>
 
-        <!-- Login button -->
-        <button class="login-button" type="submit" value="Login">Sign In</button>
+        <!-- 'Sign In' button sends a POST request to the server.-->
+        <button type="submit" value="VALUE2" class="login-button" name="action2">Sign In</button>
 
       </div>
+    <!-- Sign-in form end -->
     </form>
   </div> 
 </div>
