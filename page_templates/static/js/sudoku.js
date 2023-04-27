@@ -1150,12 +1150,14 @@ class Timer {
 }
 
 const xhr = new XMLHttpRequest();
-xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/test_recieve");
-xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/test_recieve");
+xhr.setRequestHeader("Content-Type", "application/json");
 const body = JSON.stringify({
-  title: "Hello World",
-  body: "My POST request",
-  userId: 900,
+  User_Account: "User10",
+  Password: "password",
+  First_Name: '10Name',
+  First_Name: '10Last',
+  Email: 'name10@email.com'
 });
 xhr.onload = () => {
   if (xhr.readyState == 4 && xhr.status == 201) {

@@ -1,6 +1,7 @@
 import prefix
 import os
 import sqlite3
+import logging
 
 from flask import Flask, url_for, render_template, redirect, session, g, request
 # from flask_sqlalchemy import SQLAlchemy
@@ -47,8 +48,10 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
-# @app.route('username/updateboard', methods=('POST',))
-# def boardupdate(username):
+########## Logging ###################
+handler = logging.FileHandler("test.log")  # Create the file logger
+app.logger.addHandler(handler)             # Add it to the built-in logger
+app.logger.setLevel(logging.DEBUG)         # Set the log level to debug
     
 @app.route('/testdb/<command>', methods=(['POST', 'GET']))
 def testingdb(command):
@@ -79,9 +82,16 @@ def testingdb(command):
 def recieve():
     error = None
     if request.method == 'POST':
-           return request.form["data"]
-  
-    return "Failed" 
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+        with db:
+                db.execute("INSERT INTO User_Account VALUES (:User_Account, 'LarBear25','Paul','Schneider','dogluver@email.com');",data)
+
+        db.close()
+        app.logger.info(data)
+        return 'nothing'
+    app.logger.info('not post')
+    return "Not POST" 
     
     
     
