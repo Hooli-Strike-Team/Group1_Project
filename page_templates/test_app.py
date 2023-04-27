@@ -1,6 +1,9 @@
 import prefix
+import sqlite3
 
-from flask import Flask, url_for, render_template, redirect, session
+from flask import Flask, url_for, render_template, redirect, request, session, g
+
+DATABASE = './SQL/controller_db.db'
 
 # Create app to use in Flask application
 app = Flask(__name__)
@@ -38,13 +41,55 @@ def home():
     else:
         return render_template('home.html', show_logged_in_content=False)
 
-@app.route('/create-account')
+    
+    
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+#    AREA BELOW IS UNDER CONSTRUCTION - Micah
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+def get_db():
+    db = getattr(g, '_database', None)
+    if db is None:
+        db = g._database = sqlite3.connect(DATABASE)
+    return db
+    
+@app.teardown_appcontext
+def close_connection(exception):
+    db = getattr(g, '_database', None)
+    if db is not None:
+        db.close()
+    
+@app.route('/create-account', methods = ['POST', 'GET'])
 def create_account():
+    if request.method == 'POST':
+        # form input name="uname" (in create-account.html)
+        user_name = request.form.get("uname")
+        # form input name="psw"
+        password = request.form.get("psw")
+        # form input name="fname"
+        first_name = request.form.get("fname")
+        # form input name="lname"
+        last_name = request.form.get("lname")
+        # form input name="email"
+        email = request.form.get("email")
+        return render_template("login.html")
+    else:
+        return render_template('create-account.html')
+    
     return render_template('create-account.html')
+
+
 
 @app.route('/login')
 def login():
     return render_template('login.html')
+
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+#    AREA BELOW IS UNDER CONSTRUCTION - Micah
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+
+
+
+
 
 
 
