@@ -12,6 +12,7 @@ function http_post(route,json_body) {
       }
     };
     xhr.send(body);
+    return
 }
 
 function http_get(route) {
