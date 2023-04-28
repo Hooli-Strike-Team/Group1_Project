@@ -939,21 +939,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
         timer.set(0, 'timer1', callback);
         
     });
-    
-    
-    /* Code for Settings Modal */ 
-    const settings_clock = document.getElementById('settings-clock');
-    const settings_mistakes = document.getElementById('settings-mistakes');
-    const timer_wrapper = document.querySelector('.timer');
-    const mistakes_count = document.getElementById('mistakes-count');
-    
-    settings_clock.addEventListener('change', function(e) {
-      timer_wrapper.style.visibility = e.target.checked ? "visible" : "hidden"; 
-    });
-  
-    settings_mistakes.addEventListener('change', function(e) {
-      mistakes_count.style.visibility = e.target.checked ? "visible" : "hidden"; 
-    });
   
     /* Full functinoality below:
 

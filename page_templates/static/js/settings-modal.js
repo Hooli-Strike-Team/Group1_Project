@@ -51,7 +51,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
           }
       })
       .then(response => response.text())
-      .then(result => console.log(result))
+      .then(result => {
+        // Set visibility of the timer and mistakes counter if on the Main page
+        if (timer_wrapper) timer_wrapper.style.visibility = settings_clock.checked ? "visible" : "hidden";
+        if (mistakes_count) mistakes_count.style.visibility = settings_mistakes.checked ? "visible" : "hidden";
+      })
       .catch(error => console.error(error));
     }
 
