@@ -120,9 +120,9 @@ class Sudoku {
         }
         this.board[row][col] = value;
         
-        var game_state = get_string();
-        var game_json = [{'Username':'Test_User','Game_ID':'1234','Current_Time':'1234','Game':game_state,'Difficulty':'Expert'}]
-        http_post('game_state',game_json)
+        // var game_state = get_string();
+        // var game_json = [{'Username':'Test_User','Game_ID':'1234','Current_Time':'1234','Game':game_state,'Difficulty':'Expert'}]
+        // http_post('game_state',game_json)
         // send to database
         /*
         Columns of Games_In_Progress
@@ -545,7 +545,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             // run update query for time completion at difficulty
                             
                             const xhr = new XMLHttpRequest();
-                            xhr.open("POST", "https://coding.csel.io/user/visw4412/proxy/3308/achievements");
+                            xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/record");
                             xhr.setRequestHeader("Content-Type", "application/json");
                             const body = JSON.stringify({
                               Username: "RandyBoBandy-71",
