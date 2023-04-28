@@ -545,7 +545,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             // run update query for time completion at difficulty
                             
                             const xhr = new XMLHttpRequest();
-                            xhr.open("POST", "https://coding.csel.io/user/visw4412/proxy/3308/achievements");
+                            xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/record");
                             xhr.setRequestHeader("Content-Type", "application/json");
                             const body = JSON.stringify({
                               Username: "RandyBoBandy-71",

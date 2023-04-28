@@ -288,34 +288,45 @@ def show_achievements():
     ## Pull from database to set flags
     ## Select Query
     risk_taker = False
-    error = None
+    test = 0 
+    if request.method == 'GET':
+        db = sqlite3.connect(db_path)
+                
+        for result in db.execute("SELECT * FROM Achievement_Stats;"):
+                 
+            app.logger.info("HardGamesCompleted", result[3])
+            test = result[3]
+                    
+            if (test >= 3): 
+                risk_taker = True 
+                print("Risk_Taker",type(risk_taker))
+                print("Result_1",test)
+                    
+        db.close()
+
+    print("Result_2",test)
+    print("Risk_Taker",risk_taker)
+    
+    return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, 
+                           speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
+   
+
+@app.route('/record', methods=['POST', 'GET'])    
+def record_stats():
     if request.method == 'POST':
         data = request.get_json()
         db = sqlite3.connect(db_path)
-        test = 0 
         with db:
-                #db.execute("INSERT INTO Achievement_Stats VALUES (:Username, :EasyGamesCompleted, :MedGamesCompleted, :HardGamesCompleted, :Best_Time_Easy, :Best_Time_Med, :Best_Time_Hard, :AccountLevel);",data)
-                
-                for result in db.execute("SELECT * FROM Achievement_Stats;"):
-                 
-                    app.logger.info("HardGamesCompleted", result[3])
-                    test = result[3]
-                    
-                    if (test >= 3): 
-                        risk_taker = True 
-                        print("Risk_Taker",risk_taker)
-                        print("Result",test)
-                    
-        db.close()
-        app.logger.info(data)
+    
+            db.execute("INSERT INTO Achievement_Stats VALUES (:Username, :EasyGamesCompleted, :MedGamesCompleted, :HardGamesCompleted, :Best_Time_Easy, :Best_Time_Med, :Best_Time_Hard, :AccountLevel);",data)
+            
+            db.execute('''UPDATE Games_In_Progress SET 'Current_Time' = :Current_Time, 'Game' = :Game WHERE 'Game_ID' = :Game_ID ''', data)
+            
+        db.close() 
+        
+    return "Achievement Stats Updated" 
 
-        print("Result",test)
 
-                    
-    return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, 
-                           speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
-
-   
 
 @app.route('/settings')
 def show_settings():
