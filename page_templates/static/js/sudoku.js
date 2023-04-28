@@ -120,6 +120,7 @@ class Sudoku {
         }
         this.board[row][col] = value;
         
+        // create string from current board
         let str = '';
         for ( let row = 0; row <= 8; row++ ) {
             for ( let col = 0; col <= 8; col++ ) {
@@ -127,38 +128,12 @@ class Sudoku {
             }
         }
         
+        // send board string to database
+        // TODO need current username, gameid, time still
         var game_state = str;
         var game_json = [{'Username':'Test_User','Game_ID':'1235','Current_Time':'1235','Game':game_state,'Difficulty':'Expert'}]
         http_post('game_state',game_json)
-        // send to database
-        /*
-        Columns of Games_In_Progress
-		 (0, 'Username', 'VARCHAR(32)', 0, None, 0)
-		 (1, 'Game_ID', 'INT', 0, None, 1)
-		 (2, 'Current_Time', 'TEXT', 0, None, 0)
-		 (3, 'Game', 'BLOB', 0, None, 0)
-		 (4, 'Difficulty', 'VARCHAR(6)', 0, None, 0)
-         */
-        /*
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/game_state");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        const body = JSON.stringify({
-          User_Account: username,
-          Game_ID: gameid,
-          Current_Time: current_time,
-          Game: game_state,
-          Difficulty: current_difficultyf
-        });
-        xhr.onload = () => {
-          if (xhr.readyState == 4 && xhr.status == 201) {
-            console.log(JSON.parse(xhr.responseText));
-          } else {
-            console.log(`Error: ${xhr.status}`);
-          }
-        };
-        xhr.send(body);
-        */
+
 
     }
 
