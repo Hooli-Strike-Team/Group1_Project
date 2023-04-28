@@ -56,18 +56,18 @@ window.addEventListener('DOMContentLoaded', (e) => {
     }
 
     // Add event listener to open settings modal window on click
-    settings_button.addEventListener('click', settings_openModal);
+    if (settings_button) settings_button.addEventListener('click', settings_openModal);
 
     // Add event listener to close settings modal window
-    settings_closeButton.addEventListener('click', settings_closeModal);
+    if (settings_closeButton) settings_closeButton.addEventListener('click', settings_closeModal);
   
     // Add event listener to settings clock change
-    settings_clock.addEventListener('change', function(e) {
+    if (settings_clock) settings_clock.addEventListener('change', function(e) {
       update_settings();
     });
   
     // Add event listener to settings mistakes change
-    settings_mistakes.addEventListener('change', function(e) {
+    if (settings_mistakes) settings_mistakes.addEventListener('change', function(e) {
       update_settings();
     });
   

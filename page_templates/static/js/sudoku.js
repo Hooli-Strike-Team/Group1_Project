@@ -1,5 +1,5 @@
 function http_post(route,json_body) {
-    const url = "https://coding.csel.io/user/matu8568/proxy/3308/"
+    const url = "https://coding.csel.io/user/visw4412/proxy/3308/"
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url + route);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -16,7 +16,7 @@ function http_post(route,json_body) {
 }
 
 function http_get(route) {
-    const url = "https://coding.csel.io/user/matu8568/proxy/3308/"
+    const url = "https://coding.csel.io/user/visw4412/proxy/3308/"
     const XHR = new XMLHttpRequest();
     XHR.open("GET",  url + route);
     XHR.send();
@@ -549,7 +549,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             // run update query for time completion at difficulty
                             
                             const xhr = new XMLHttpRequest();
-                            xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/achievements");
+                            xhr.open("POST", "https://coding.csel.io/user/visw4412/proxy/3308/achievements");
                             xhr.setRequestHeader("Content-Type", "application/json");
                             const body = JSON.stringify({
                               Username: "RandyBoBandy-71",
@@ -1261,7 +1261,7 @@ xhr.send(body);
 // GET Method 
 
 const XHR = new XMLHttpRequest();
-XHR.open("GET", "https://coding.csel.io/user/pasc9915/proxy/3308/test_get");
+XHR.open("GET", "https://coding.csel.io/user/visw4412/proxy/3308/test_get");
 XHR.send();
 XHR.responseType = "json";
 XHR.onload = () => {
