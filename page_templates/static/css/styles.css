@@ -1704,7 +1704,7 @@ p.select-slider {
   display: flex;
   justify-content: space-between;
   align-items: top;
-  margin-bottom: 1.75rem;
+  margin-top: 1rem;
 }
 
 .settings-description {
@@ -1724,6 +1724,7 @@ p.select-slider {
   display: inline-block;
   width: 3.6rem;
   height: 1.75rem;
+  cursor: pointer;
 }
 
 .switch input {
@@ -1740,7 +1741,7 @@ p.select-slider {
   right: 0;
   bottom: 0;
   /* Light gray */
-  background-color: #cccccc;
+  background-color: #e6e6e6;
   -webkit-transition: .4s;
   transition: .4s;
   overflow: hidden;
