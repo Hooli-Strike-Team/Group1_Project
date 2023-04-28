@@ -4,7 +4,7 @@
 
 // generalized post
 function http_post(route,json_body) {
-    const url = "https://coding.csel.io/user/visw4412/proxy/3308/"
+    const url = "https://coding.csel.io/user/matu8568/proxy/3308/"
     const xhr = new XMLHttpRequest();
     xhr.open("POST", url + route);
     xhr.setRequestHeader("Content-Type", "application/json");
@@ -22,7 +22,7 @@ function http_post(route,json_body) {
 
 // generalized get
 function http_get(route) {
-    const url = "https://coding.csel.io/user/visw4412/proxy/3308/"
+    const url = "https://coding.csel.io/user/matu8568/proxy/3308/"
     const XHR = new XMLHttpRequest();
     XHR.open("GET",  url + route);
     XHR.send();
@@ -46,9 +46,9 @@ function get_settings_values(username) {
   fetch('game_settings/' + username)
   .then(response => response.json())
   .then(data => {
-    // Set the clock checkbox
+    // Save clock setting
     var is_clock_on = data[0][1]; 
-    // Set the mistakes checkbox
+    // Save mistakes setting
     var is_mistakes_on = data[0][2];
     console.log("mistake_toggle: ",is_mistakes_on)
 
@@ -449,6 +449,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // const validate_button = document.getElementById('validate');
     // const legal_moves_button = document.getElementById('legal-moves');
     const xbutton = document.querySelector(".x-button");
+    const settings_mistakes = document.getElementById('settings-mistakes');
     
     // *************************** FIX *************************** 
     // Pull Data from Database 
@@ -535,8 +536,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         game1.clear_notes(e.target);
                         game1.make_move(row, col, input);
                         console.log(game1.board);
-                        let state = game1.board_state(sudoku_squares, invalid_tag)
-                        let is_mistakes_counter_on = get_settings_values('Test_User') //TODO test user replaced by user from cookie
+                        var state = game1.board_state(sudoku_squares, invalid_tag)
+                        var is_mistakes_counter_on = settings_mistakes.checked
                         console.log("on move, mistakes counter is:", is_mistakes_counter_on)
                         console.log("on move, mistakes mode is:", mistakes_mode)
                         
