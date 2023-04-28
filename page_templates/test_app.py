@@ -76,23 +76,54 @@ def post_achievements():
 def get_game_state():
     error = None
     if request.method == 'POST':
-        data = request.get_json()[0]
-        app.logger.info(data)
+        data = request.get_json()
         db = sqlite3.connect(db_path)
-        results = []
         with db:
-                db.execute('''UPDATE Games_In_Progress 
-                                SET "Current_Time" = :Current_Time, "Game" = :Game 
-                                WHERE "Game_ID" = :Game_ID''', data)
-                for result in db.execute("SELECT * FROM Games_In_Progress;"):
+                db.execute('''UPDATE Games_In_Progress SET 'Current_Time' = :Current_Time, 'Game' = :Game WHERE 'Game_ID' = :Game_ID, data''')
+                for result in db.execute("SELECT * FROM User_Account;"):
                     results.append(result) 
 
         db.close()
         app.logger.info(data)
-        app.logger.info(results)
         return 'nothing'
     app.logger.info('not post')
     return "Not POST" 
+  
+@app.route('/game_settings/<string:username>', methods=['GET', 'POST'])
+def game_settings(username):
+    if request.method == 'GET':
+        db = sqlite3.connect(db_path)
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM Game_Settings WHERE Username = ?", (username,))
+        results = cursor.fetchall()
+        db.close()
+        return jsonify(results)
+
+    if request.method == 'POST':
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+
+        # Check if record already exists with the given username
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM Game_Settings WHERE Username = ?", (username,))
+        result = cursor.fetchone()
+
+        if result is None:
+            # Record doesn't exist, so insert a new row
+            db.execute("INSERT INTO Game_Settings (Username, Show_Clock, Show_Mistakes_Counter) VALUES (?, ?, ?)",
+                        (username, data['Show_Clock'], data['Show_Mistakes_Counter']))
+            db.commit()
+            db.close()
+            app.logger.info(data)
+            return 'Record inserted successfully'
+        else:
+            # Record already exists, so update the existing row
+            db.execute("UPDATE Game_Settings SET Show_Clock = ?, Show_Mistakes_Counter = ? WHERE Username = ?",
+                        (data['Show_Clock'], data['Show_Mistakes_Counter'], username))
+            db.commit()
+            db.close()
+            app.logger.info(data)
+            return 'Record updated successfully'
     
 @app.route('/test_receive', methods=['POST', 'GET'])
 def receive():
