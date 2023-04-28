@@ -241,7 +241,6 @@ def show_difficulty():
 def show_rules():
     return render_template('rules.html')
 
-risk_taker = False  # if the user has met the requirements for the Risk Taker badge
 lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
 puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
 speed_runner = False # if the user has met the requirements for the Speed Runner badge
@@ -249,32 +248,36 @@ inquisitor = False # if the user has met the requirements for the Inquisitor bad
 conqueror = False # if the user has met the requirements for the Conqueror badge 
 
 @app.route('/achievements', methods=['POST', 'GET'])
-def show_achievements(risk_taker=risk_taker):
+def show_achievements():
     ## Pull from database to set flags
     ## Select Query
-
+    risk_taker = False
     error = None
     if request.method == 'POST':
         data = request.get_json()
         db = sqlite3.connect(db_path)
+        test = 0 
         with db:
                 #db.execute("INSERT INTO Achievement_Stats VALUES (:Username, :EasyGamesCompleted, :MedGamesCompleted, :HardGamesCompleted, :Best_Time_Easy, :Best_Time_Med, :Best_Time_Hard, :AccountLevel);",data)
                 
                 for result in db.execute("SELECT * FROM Achievement_Stats;"):
                  
                     app.logger.info("HardGamesCompleted", result[3])
+                    test = result[3]
                     
-
-                    if (result[3] >= 3): 
-                        risk_taker = True
-                        app.logger.info("Risk_Taker",risk_taker) 
-                        return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
-
-                
-
+                    if (test >= 3): 
+                        risk_taker = True 
+                        print("Risk_Taker",risk_taker)
+                        print("Result",test)
+                    
         db.close()
         app.logger.info(data)
-    return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
+
+        print("Result",test)
+
+                    
+    return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, 
+                           speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
 
    
 
