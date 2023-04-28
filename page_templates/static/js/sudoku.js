@@ -1,3 +1,8 @@
+// ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+// #    Front End and Back End Functions                    ##
+// ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+
+// generalized post
 function http_post(route,json_body) {
     const url = "https://coding.csel.io/user/visw4412/proxy/3308/"
     const xhr = new XMLHttpRequest();
@@ -15,6 +20,7 @@ function http_post(route,json_body) {
     return
 }
 
+// generalized get
 function http_get(route) {
     const url = "https://coding.csel.io/user/visw4412/proxy/3308/"
     const XHR = new XMLHttpRequest();
@@ -33,6 +39,28 @@ function http_get(route) {
     };
 
 }
+
+// Get initial settings values from DB
+// Modified function from settings-modal.js, not sure if can import from and use file at same time
+function get_settings_values(username) { 
+  fetch('game_settings/' + username)
+  .then(response => response.json())
+  .then(data => {
+    // Set the clock checkbox
+    var is_clock_on = data[0][1]; 
+    // Set the mistakes checkbox
+    var is_mistakes_on = data[0][2];
+    console.log("mistake_toggle: ",is_mistakes_on)
+
+    return is_mistakes_on
+  })
+  .catch(error => console.error(error));
+    // does there need to be a return if error?
+}
+
+// ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+// #    Sudoku Board Functions                              ##
+// ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
 class Sudoku {
     constructor() {
@@ -476,7 +504,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         keypad[i - 1] = document.getElementById('digit-' + i)
     }
 
-    // Simple version of Sudoku Cell Listener that adds input to board
+    // Sudoku Cell Listener adds input to board
     for ( let row = 0; row < PUZZLE_SIZE; row++ ) {
         for ( let col = 0; col < PUZZLE_SIZE; col++ ) {
             sudoku_squares[row][col].addEventListener('input', function (e) {
@@ -493,6 +521,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
                 var input = e.target.value
                 console.log('input', input)
+                
 
                 // Check whether input is valid number and check entire 
                 // board state
@@ -500,31 +529,44 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
                     if ( notes_mode ) {
                         game1.add_note(e.target, input);
-                    } else {
+                    }
+                    // ##  ##  ##  ## ## ## ## MAKE MOVE FROM KEYBOARD ##  ##  ##  ## ## ## ##
+                    else {
                         game1.clear_notes(e.target);
                         game1.make_move(row, col, input);
                         console.log(game1.board);
                         let state = game1.board_state(sudoku_squares, invalid_tag)
+                        let is_mistakes_counter_on = get_settings_values('Test_User') //TODO test user replaced by user from cookie
+                        console.log("on move, mistakes counter is:", is_mistakes_counter_on)
+                        console.log("on move, mistakes mode is:", mistakes_mode)
                         
                         // clear all highlighted mistakes 
                         game1.clear_mistakes(sudoku_squares, invalid_tag)
                         
-                        // If the mistakes toggle is on, highlight invalid cells 
-                        if (!state.is_legal && mistakes_mode == true)  {
-                            let state = game1.board_state(sudoku_squares, "invalid");
-                            //console.log("Default Mistakes Mode On"); 
-                        }
-                        else if (state.is_legal && mistakes_mode == true) {
-                            
-                            game1.clear_mistakes(sudoku_squares, "invalid")
-                            //console.log("Clear All mistakes");
+                        // Check if Mistakes Toggle is off
+                        if (is_mistakes_counter_on) {
+                            // If the mistakes toggle is on, highlight invalid cells 
+                            if (!state.is_legal && mistakes_mode == true)  {
+                                let state = game1.board_state(sudoku_squares, "invalid");
+                                //console.log("Default Mistakes Mode On"); 
+                            }
+                            else if (state.is_legal && mistakes_mode == true) {
 
+                                game1.clear_mistakes(sudoku_squares, "invalid")
+                                //console.log("Clear All mistakes");
+
+                            }
+
+                            // If the mistakes toggle is off, clear all highlights   
+                            if (mistakes_mode == false) {
+                                game1.clear_mistakes(sudoku_squares, "invalid");
+                                //console.log("Default Mistakes Mode Off"); 
+                            }
                         }
-                            
-                        // If the mistakes toggle is off, clear all highlights   
-                        if (!state.is_legal && mistakes_mode == false) {
+                        // Mistakes Toggle is On
+                        else {
+                            // Remove Highlight as soon as move is made
                             game1.clear_mistakes(sudoku_squares, "invalid");
-                            //console.log("Default Mistakes Mode Off"); 
                         }
                         
                          
@@ -630,7 +672,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
                 if ( notes_mode ) {
                     game1.add_note(element, key_num);
-                } else {
+                } 
+                // ##  ##  ##  ## ## ## ## MAKE MOVE FROM KEYPAD ##  ##  ##  ## ## ## ##
+                else {
                     game1.make_move(row, col, this.getAttribute('data-digit'));
                     game1.clear_notes(element);
                     console.log(game1.board)
@@ -1182,46 +1226,3 @@ class Timer {
         this.control = false;
     }
 }
-
-
-/*/
-// POST Method 
-const xhr = new XMLHttpRequest();
-xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/test_receive");
-xhr.setRequestHeader("Content-Type", "application/json");
-const body = JSON.stringify({
-  User_Account: "User10",
-  Password: "password",
-  First_Name: '10Name',
-  First_Name: '10Last',
-  Email: 'name10@email.com'
-});
-xhr.onload = () => {
-  if (xhr.readyState == 4 && xhr.status == 201) {
-    console.log(JSON.parse(xhr.responseText));
-  } else {
-    console.log(`Error: ${xhr.status}`);
-  }
-};
-xhr.send(body);
-
-
-
-// GET Method 
-
-const XHR = new XMLHttpRequest();
-XHR.open("GET", "https://coding.csel.io/user/visw4412/proxy/3308/test_get");
-XHR.send();
-XHR.responseType = "json";
-XHR.onload = () => {
-  if (XHR.readyState == 4 && XHR.status == 200) {
-    const data = XHR.response;
-    var parsed_data = JSON.parse(data)
-    console.log(parsed_data[0].Username);
-    console.log(xhr.responseText)
-  } else {
-    console.log(`Error: ${XHR.status}`);
-  }
-};
-*/
-http_get('test_get')
