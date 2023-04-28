@@ -128,7 +128,7 @@ class Sudoku {
         }
         
         var game_state = str;
-        var game_json = [{'Username':'Test_User','Game_ID':'1234','Current_Time':'1234','Game':game_state,'Difficulty':'Expert'}]
+        var game_json = [{'Username':'Test_User','Game_ID':'1235','Current_Time':'1235','Game':game_state,'Difficulty':'Expert'}]
         http_post('game_state',game_json)
         // send to database
         /*

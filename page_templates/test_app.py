@@ -76,15 +76,19 @@ def post_achievements():
 def get_game_state():
     error = None
     if request.method == 'POST':
-        data = request.get_json()
+        data = request.get_json()[0]
+        app.logger.info(data)
         db = sqlite3.connect(db_path)
+        results = []
         with db:
-                db.execute('''UPDATE Games_In_Progress SET 'Current_Time' = :Current_Time, 'Game' = :Game WHERE 'Game_ID' = :Game_ID, data''')
-                for result in db.execute("SELECT * FROM User_Account;"):
+                db.execute('''UPDATE Games_In_Progress SET "Current_Time" = :Current_Time, "Game" = :Game 
+                                                        WHERE "Game_ID" = :Game_ID''', data)
+                for result in db.execute("SELECT * FROM Games_In_Progress;"):
                     results.append(result) 
 
         db.close()
         app.logger.info(data)
+        app.logger.info(results)
         return 'nothing'
     app.logger.info('not post')
     return "Not POST" 
