@@ -1,0 +1,92 @@
+Here is what I see as left do to accomplish currently, please let me know if you have run into anything else-
+
+Website Functionality:
+ * SET UP HOSTING ON LIVE SERVER
+
+ * Pass cookie from login status and username to other pages 
+ 	* May need to store log-in status in database but probably not?
+ 	* Make splash page modal display only if logged in based on cookie
+ 		* Resume game button pulls data from Games_In_Progress table (update game, timer, difficulty, mistakes count)
+ 	* Display Username on main game page
+
+ * Automatically create database entries for other tables when a user account is created
+
+ * Display actual current game difficulty top left of main board
+
+ * Create Games_In_Progress entry when new game started
+
+ * Fix mistakes counter functionality - highlighting not being cleared on new input (Matt fix)
+ * Fix mistake highlighting working with keypad input (Matt fix)
+
+ * Save clock time on board input and game end (Ben/Matt)
+
+ * Update User_Achievements based on Achievement_Stats table (Paul)
+
+ * Do testing checks from PAGE_TESTING and SQL_TESTING and document
+
+ * Gather documentation from coding comments
+
+Presentation (5/4 at 5:30pm)
+	* 10-15 minutes including demo
+	* Topics to cover:
+		Title of Project
+		Team members' names
+		Vision and Description of the Product
+
+		All the tools your team used
+		Name of the tool and purpose
+		Your team's evaluation of the tool: Excellent? Useless?
+
+		Challenges you encountered, how you overcame them, how your plans changed
+
+		Demonstration of your project 
+
+	* Deliverables:
+		* Presentation is supposed to be "Manager to Manager" discussion of project
+			* More of a retrospective on the process than a product pitch
+		* Slide Deck
+			* High level overview of goal of project
+			* Show each tool
+				* Evaluation of tools
+				* Evaluation of processes
+				* Tools to cover:
+					project tracker
+					version control
+					database
+					testing
+					auto-documenter
+					deployment environment
+					programming languages and frameworks
+					code editors
+					anything else?
+			* Challenges you encountered, how you overcame them, how your plans changed
+		* Project Demo
+			* Dr. Knox suggested pre-recording a demo (and could just be what we submit for the final project submission)
+				* Record it with audio for final turn in but turn off audio and just talk live over it for presentation?
+
+Final Submission (5/8):
+	* Deliverable: Create a final report markdown file FINAL_REPORT.md with the following information:
+		Project Title
+		Team members' names
+		Project tracker link (Instructor can access) - Trello Link
+		Link to 5 minute video: a demo for a potential customer (could be same one you used in the presentation)
+		Version control repository link (make sure the instructor(s) have access)
+		Include a Final Status Report
+			What you completed 
+			What you were in the middle of implementing
+			What you had planned for the future
+			Any known problems (bugs, issues)
+		List your public hosting site and make sure that it is available
+		
+	* Make sure that your repository has the following files committed to remote repository:
+			REAMDE.md
+			WEEKLY_STATUS.md
+			PAGE_TESTING.md
+			SQL_TESTING.md
+			FINAL_REPORT.md
+			Project presentation files from Milestone 5
+			Video of demo
+			Source code
+			Test cases
+			Source documentation, and auto-doc files
+			Link to Public Deployment Site (Heroku or similar)
