@@ -33,19 +33,9 @@
       href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined"
     />
 
-    <!-- Script tag with block for JavaScript source and script content -->
-    <script
-      {%
-      block
-      js_source
-      %}src="{{ url_for('static', filename='js/settings-modal.js') }}"
-      {%
-      endblock
-      %}
-    ></script>
-
-    <script src="{{ url_for('static', filename='js/settings-modal.js') }}"></script>
-
+    <!-- Script tag with block for JavaScript source and script content --> 
+      <script {% block js_source %}src="{{ url_for('static', filename='js/settings-modal.js') }}"{% endblock %}></script>
+      
     <!-- Block for page title -->
     <title>Sudoku Sage - {% block title %}{% endblock %}</title>
   </head>
@@ -83,51 +73,58 @@
         </a>
 
         <!-- Settings button -->
-
-        <div class="header-button-link">
-          <span
-            class="header-button-icon material-icons-outlined"
-            id="settings-button"
+          
+        <div class="header-button-link">  
+          <span class="header-button-icon material-icons-outlined" id="settings-button"
             >settings</span
           >
           <span class="header-button-label">Settings</span>
+            
         </div>
-
+          
         {% endblock %}
-      </div>
-      <!--  Setting Modal -->
-      <div id="settingsmodal" class="settings-modal">
-        <div class="settings-modal-content">
-          <span class="close-settings">&times;</span>
-          <p>Select Settings</p>
 
-          <!-- Show Clock Slider -->
-          <div class="settings-item">
-            <div class="settings-description">SHOW CLOCK</div>
-            <div class="settings-slider">
-              <label class="switch">
-                <input type="checkbox" id="settings-clock" checked />
-                <span class="slider round"></span>
-                <span class="slider-label on">On</span>
-                <span class="slider-label off">Off</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Mistake Counter Slider -->
-          <div class="settings-item">
-            <div class="settings-description">MISTAKES COUNTER</div>
-            <div class="settings-slider">
-              <label class="switch">
-                <input type="checkbox" id="settings-mistakes" />
-                <span class="slider round"></span>
-                <span class="slider-label on">On</span>
-                <span class="slider-label off">Off</span>
-              </label>
-            </div>
-          </div>
-        </div>
       </div>
+      <!--  Setting Modal --> 
+        <div id="settingsmodal" class="settings-modal">
+            <div class="settings-modal-content">
+                <span class="close-settings">&times;</span>
+                <p class="select-slider">
+                    Select Difficulty
+                </p>
+                <!-- Show Clock Slider --> 
+                
+                <div class="settings-item">
+                  <div class="settings-description">
+                    <p>SHOW CLOCK</p>
+                  </div>
+                  <div class="settings-slider">
+                    <label class="switch">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                      <span class="slider-label on">On</span>
+                      <span class="slider-label off">Off</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <!-- Mistake Counter Slider --> 
+                <div class="settings-item">
+                  <div class="settings-description">
+                    <p>MISTAKES COUNTER</p>
+                  </div>
+                  <div class="settings-slider">
+                    <label class="switch">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                      <span class="slider-label on">On</span>
+                      <span class="slider-label off">Off</span>
+                    </label>
+                  </div>
+                </div>
+
+            </div>
+        </div> 
     </div>
     <!-- Main content container -->
     <div id="content">

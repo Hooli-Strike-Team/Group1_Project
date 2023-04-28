@@ -120,38 +120,20 @@ class Sudoku {
         }
         this.board[row][col] = value;
         
-        var game_state = get_string();
-        var game_json = [{'Username':'Test_User','Game_ID':'1234','Current_Time':'1234','Game':game_state,'Difficulty':'Expert'}]
+        // create string from current board
+        let str = '';
+        for ( let row = 0; row <= 8; row++ ) {
+            for ( let col = 0; col <= 8; col++ ) {
+                str += this.board[row][col];
+            }
+        }
+        
+        // send board string to database
+        // TODO need current username, gameid, time still
+        var game_state = str;
+        var game_json = [{'Username':'Test_User','Game_ID':'1235','Current_Time':'1235','Game':game_state,'Difficulty':'Expert'}]
         http_post('game_state',game_json)
-        // send to database
-        /*
-        Columns of Games_In_Progress
-		 (0, 'Username', 'VARCHAR(32)', 0, None, 0)
-		 (1, 'Game_ID', 'INT', 0, None, 1)
-		 (2, 'Current_Time', 'TEXT', 0, None, 0)
-		 (3, 'Game', 'BLOB', 0, None, 0)
-		 (4, 'Difficulty', 'VARCHAR(6)', 0, None, 0)
-         */
-        /*
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/game_state");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        const body = JSON.stringify({
-          User_Account: username,
-          Game_ID: gameid,
-          Current_Time: current_time,
-          Game: game_state,
-          Difficulty: current_difficultyf
-        });
-        xhr.onload = () => {
-          if (xhr.readyState == 4 && xhr.status == 201) {
-            console.log(JSON.parse(xhr.responseText));
-          } else {
-            console.log(`Error: ${xhr.status}`);
-          }
-        };
-        xhr.send(body);
-        */
+
 
     }
 
@@ -978,19 +960,33 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
     
     /* Code for Settings Modal */ 
-    const settings_clock = document.getElementById('settings-clock');
-    const settings_mistakes = document.getElementById('settings-mistakes');
-    const timer_wrapper = document.querySelector('.timer');
-    const mistakes_count = document.getElementById('mistakes-count');
     
-    settings_clock.addEventListener('change', function(e) {
-      timer_wrapper.style.visibility = e.target.checked ? "visible" : "hidden"; 
-    });
-  
-    settings_mistakes.addEventListener('change', function(e) {
-      mistakes_count.style.visibility = e.target.checked ? "visible" : "hidden"; 
-    });
-  
+    const modalsettings = document.getElementById('settingsmodal');
+    const settings_closeButton = document.querySelector('.close-settings');
+    const settings_button = document.getElementById('settings-button'); 
+    const settings_mistakes = document.getElementById('settings-button'); 
+    const settings_timer = document.getElementById('settings-button'); 
+    
+    // Opens settings modal window
+    function settings_openModal() {
+        console.log("Openmodal clicked") 
+        modalsettings.style.display = 'block';
+    }
+
+    // Closes settings modal window
+    function settings_closeModal() {
+        modalsettings.style.display = 'none';
+    }
+
+    // Add event listener to open settings modal window on click
+    settings_button.addEventListener('click', settings_openModal);
+                           
+                                     
+    // Add event listener to close settings modal window
+    settings_closeButton.addEventListener('click', settings_closeModal);
+    
+    
+
     /* Full functinoality below:
 
     // Sudoku Cell Listener
