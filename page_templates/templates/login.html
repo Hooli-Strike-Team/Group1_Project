@@ -1,6 +1,9 @@
 <!-- Inherits from base.html -->
 {% extends "base.html" %}
 
+<!-- Block for JavaScript source and script content -->
+{% block js_source %}{% endblock %}
+
 <!-- Sets page title as "Sign In" -->
 {% block title %}Sign In{% endblock %}
 
@@ -29,13 +32,13 @@
         <!-- Username field -->
         <label for="Username"><h2><b>Username</b></h2></label>
         <div class="input-wrapper">
-          <input type="text" placeholder="Username" name="uname" required />
+          <input type="text" placeholder="Username" name="uname_si" required />
         </div>
 
         <!-- Password field -->
         <label for="Password"><h2><b>Password</b></h2></label>
         <div class="input-wrapper">
-            <input type="password" placeholder="Password" name="psw" required />
+            <input type="password" placeholder="Password" name="psw_si" required />
         </div>
 
         <!-- 'Forgot Password' and 'Create Account' links -->

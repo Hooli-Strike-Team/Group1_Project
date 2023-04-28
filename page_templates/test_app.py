@@ -88,6 +88,42 @@ def get_game_state():
         return 'nothing'
     app.logger.info('not post')
     return "Not POST" 
+  
+@app.route('/game_settings/<string:username>', methods=['GET', 'POST'])
+def game_settings(username):
+    if request.method == 'GET':
+        db = sqlite3.connect(db_path)
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM Game_Settings WHERE Username = ?", (username,))
+        results = cursor.fetchall()
+        db.close()
+        return jsonify(results)
+
+    if request.method == 'POST':
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+
+        # Check if record already exists with the given username
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM Game_Settings WHERE Username = ?", (username,))
+        result = cursor.fetchone()
+
+        if result is None:
+            # Record doesn't exist, so insert a new row
+            db.execute("INSERT INTO Game_Settings (Username, Show_Clock, Show_Mistakes_Counter) VALUES (?, ?, ?)",
+                        (username, data['Show_Clock'], data['Show_Mistakes_Counter']))
+            db.commit()
+            db.close()
+            app.logger.info(data)
+            return 'Record inserted successfully'
+        else:
+            # Record already exists, so update the existing row
+            db.execute("UPDATE Game_Settings SET Show_Clock = ?, Show_Mistakes_Counter = ? WHERE Username = ?",
+                        (data['Show_Clock'], data['Show_Mistakes_Counter'], username))
+            db.commit()
+            db.close()
+            app.logger.info(data)
+            return 'Record updated successfully'
     
 @app.route('/test_receive', methods=['POST', 'GET'])
 def receive():
@@ -153,11 +189,10 @@ def home():
 #    AREA BELOW IS UNDER CONSTRUCTION - Micah
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
     
+# = = = = = = = = CREATE ACCOUNT = = = = = = = = = = #
 @app.route('/create-account', methods = ['POST', 'GET'])
 def create_account():
     if request.method == 'POST':
-        # addrec()
-        # return render_template('create-account.html')
         try:
             username = str(request.form['uname'])
             password = str(request.form['psw'])
@@ -177,40 +212,41 @@ def create_account():
         except:
             con.rollback()
             con.close()
-            msg = "error in insert operation"
+            msg = "Error in insert operation"
             return render_template('create-account.html', msg=msg)
     else:
         return render_template('create-account.html')
-    
 
+    
+# = = = = = = = = LOGIN = = = = = = = = = = #
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
-    # return render_template('login.html')
     if request.method == 'POST':
-        # addrec()
-        # return render_template('create-account.html')
         try:
-            username = str(request.form['uname'])
-            password = str(request.form['psw'])
+            username = str(request.form['uname_si'])
+            password = str(request.form['psw_si'])
             with sqlite3.connect(DATABASE) as con:  # db connection object
-                cur = con.cursor()
-                # NEED NEW QUERY
-                # cur.execute("""
-                # INSERT INTO User_Account
-                # (Username,Password,First_Name,Last_Name,Email) 
-                # VALUES (?,?,?,?,?);
-                # """, (username, password, firstname, lastname, email))
-                con.commit()
-                msg = "Record successfully added"
-                # return render_template("login.html")
+                cur = con.cursor()    
+                query = cur.execute("""
+                SELECT COUNT(*)
+                FROM User_Account
+                WHERE Username = ? AND Password = ?;
+                """, (username, password))
+                user_exists = query.fetchone()
+                app.logger.info(user_exists)
+                app.logger.info(username)
+                app.logger.info(password)
+                if (user_exists):  # doesn't match
+                    con.commit()
+                    msg = "Record successfully added"
+                    return redirect('main')
+                else:
+                    return render_template('login.html')
         except:
             con.rollback()
             con.close()
-            msg = "error in insert operation"
-            return render_template('create-account.html', msg=msg)
-        finally:
-            return redirect('login')
-            con.close()
+            msg = "Error in insert operation"
+            return render_template('login.html', msg=msg)
     else:
         return render_template('login.html')
 
