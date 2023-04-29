@@ -59,7 +59,7 @@ def create(db_filename):
             CREATE TABLE IF NOT EXISTS Games_In_Progress(
                 Username VARCHAR(32),
                 Game_ID INT,
-                Current_Time TEXT,
+                Current_Time INT,
                 Game VARCHAR(100),
                 Difficulty VARCHAR(6),
                 PRIMARY KEY(Game_ID), 

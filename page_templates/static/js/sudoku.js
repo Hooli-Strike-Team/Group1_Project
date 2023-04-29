@@ -583,37 +583,33 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             completedmodal();
                             console.log("timer ended"); 
                             timer.stop(); //ends timer at game completion
-                            end = timer.format() 
+                            end = timer.end() // Send to Current_Time SQL 
                             console.log("Timer Ended At:", end) 
                             // *************************** TODO  ***************************
                             // run update query for game completion at difficulty
                                 // POST to route, run update query
                             // run update query for time completion at difficulty
                             
-                            
+                            if (difficulty_check == "Hard") { // Finish a Game on Expert - Send info to database 
                              
                             
-                            const xhr = new XMLHttpRequest();
-                            xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/record");
-                            xhr.setRequestHeader("Content-Type", "application/json");
-                            const body = JSON.stringify({
-                              Username: "RandyBoBandy-71",
-                              EasyGamesCompleted: 0,
-                              MedGamesCompleted: 0,
-                              HardGamesCompleted: 0,
-                              Best_Time_Easy: 0,
-                              Best_Time_Med: 0, 
-                              Best_Time_Hard: 0, 
-                              AccountLevel: 0, 
-                            });
-                            xhr.onload = () => {
-                              if (xhr.readyState == 4 && xhr.status == 201) {
-                                console.log(JSON.parse(xhr.responseText));
-                              } else {
-                                console.log(`Error: ${xhr.status}`);
-                              }
-                            };
-                            xhr.send(body);
+                                const xhr = new XMLHttpRequest();
+                                xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/record");
+                                xhr.setRequestHeader("Content-Type", "application/json");
+                                const body = JSON.stringify({
+                                  Username: "RandyBoBandy-71",
+                                  Current_Time: end,
+                                  Difficulty: "Hard" 
+                                });
+                                xhr.onload = () => {
+                                  if (xhr.readyState == 4 && xhr.status == 201) {
+                                    console.log(JSON.parse(xhr.responseText));
+                                  } else {
+                                    console.log(`Error: ${xhr.status}`);
+                                  }
+                                };
+                                xhr.send(body);
+                            } 
      
                         }
                         
@@ -858,8 +854,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
       openModal();
     
     /* HardCode Easy Sudoku Games */
-    const easy_game_1 = "735164928426978315198532674249381756387256149561749832852617493914823567673495280";
-          // "000004028406000005100030600000301000087000140000709000002010003900000507670400000";
+    const easy_game_1 = "000004028406000005100030600000301000087000140000709000002010003900000507670400000";
             // Solution: 735164928426978315198532674249381756387256149561749832852617493914823567673495281  
     
     const easy_game_2 = "690000140700080000002070060400703000001000300000901004050010600000040002073000058";
@@ -887,7 +882,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
             // Solution: 851967423947235816623814759514398672798526341362741598135672984289453167476189235
     
     /* HardCode expert Sudoku Games */ 
-    const expert_game_1 = "000704005020010070000080002090006250600070008053200010400090000030060090200407000";
+    const expert_game_1 = "981724365324615879765983142197836254642571938853249716476398521538162497219457680";
+    
+            // Start:      000704005020010070000080002090006250600070008053200010400090000030060090200407000
             // Solution:   981724365324615879765983142197836254642571938853249716476398521538162497219457683
     
     const expert_game_2 = "204060000030509020000300000400200007069070810700006004000002000090105070000080205";
@@ -1193,6 +1190,11 @@ class Timer {
             seconds = '0' + seconds;
         
         return hours + ':' + minutes + ':' + seconds;
+    }
+    
+    end() {
+        
+        return this.time   
     }
 
     countDown() {

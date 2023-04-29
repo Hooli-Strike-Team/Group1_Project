@@ -319,21 +319,22 @@ def record_stats():
         db = sqlite3.connect(db_path)
         with db:
     
-            #db.execute("INSERT INTO Achievement_Stats VALUES (:Username, :EasyGamesCompleted, :MedGamesCompleted, :HardGamesCompleted, :Best_Time_Easy, :Best_Time_Med, :Best_Time_Hard, :AccountLevel);",data)
+            #db.execute("INSERT INTO Achievement_Stats VALUES (:Username, 0, 0, 0, 0, 0, 0, 0);",data)
+        
+            #db.execute("INSERT INTO Games_In_Progress VALUES (:Username, 0, 0, 'null', 'null');",data)
             
           
-#             db.execute('''UPDATE Achievement_Stats SET 
-#                         'Username' = :Username,
-#                         'EasyGamesCompleted' = :EasyGamesCompleted,
-#                         'MedGamesCompleted' = :MedGamesCompleted,
-#                         'HardGamesCompleted' = :HardGamesCompleted,
-#                         'Best_Time_Easy' = :Best_Time_Easy,
-#                         'Best_Time_Med' = :Best_Time_Med,
-#                         'Best_Time_Hard' = :Best_Time_Hard,
-#                         'AccountLevel' = :AccountLevel 
+            db.execute('''UPDATE Games_In_Progress SET 
+                        'Username' = :Username,
+                        'Current_Time' = :Current_Time,
+                        'Difficulty' = :Difficulty
                         
-#                         ''', data)
+                        ''', data)
             
+            for result in db.execute("SELECT * FROM Games_In_Progress;"):
+                    print("Time", result[2])
+                    print("Difficulty", result[4])
+    
             db.execute('''
                     UPDATE Achievement_Stats SET HardGamesCompleted = HardGamesCompleted + 1 
                     ''') 
