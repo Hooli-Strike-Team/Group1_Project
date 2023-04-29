@@ -493,6 +493,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
     // Flag to check the difficulty 
     let difficulty_check = "none" 
+    
+    // Check for users best time on hard
+    let best_time_hard = 0;
 
     // Store all the Sudoku square <input type="text"> elements in variables for 
     // quick access
@@ -591,26 +594,66 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             // run update query for time completion at difficulty
                             
                             if (difficulty_check == "Hard") { // Finish a Game on Expert - Send info to database 
-                             
+                                   const xhr = new XMLHttpRequest();
+                                    xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/record");
+                                    xhr.setRequestHeader("Content-Type", "application/json");
+                                    const body = JSON.stringify({
+                                      Username: "RandyBoBandy-71",
+                                      Current_Time: end,
+                                      Difficulty: "Hard", 
+                                    });
+                                    xhr.onload = () => {
+                                      if (xhr.readyState == 4 && xhr.status == 201) {
+                                        console.log(JSON.parse(xhr.responseText));
+                                      } else {
+                                        console.log(`Error: ${xhr.status}`);
+                                      }
+                                    };
+                                    xhr.send(body);
+                            }
                             
-                                const xhr = new XMLHttpRequest();
-                                xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/record");
-                                xhr.setRequestHeader("Content-Type", "application/json");
-                                const body = JSON.stringify({
-                                  Username: "RandyBoBandy-71",
-                                  Current_Time: end,
-                                  Difficulty: "Hard" 
-                                });
-                                xhr.onload = () => {
-                                  if (xhr.readyState == 4 && xhr.status == 201) {
-                                    console.log(JSON.parse(xhr.responseText));
-                                  } else {
-                                    console.log(`Error: ${xhr.status}`);
-                                  }
-                                };
-                                xhr.send(body);
-                            } 
-     
+                            else if (difficulty_check == "Medium") {
+                                
+                                   const xhr = new XMLHttpRequest();
+                                    xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/record");
+                                    xhr.setRequestHeader("Content-Type", "application/json");
+                                    const body = JSON.stringify({
+                                      Username: "RandyBoBandy-71",
+                                      Current_Time: end,
+                                      Difficulty: "Medium", 
+                                    });
+                                    xhr.onload = () => {
+                                      if (xhr.readyState == 4 && xhr.status == 201) {
+                                        console.log(JSON.parse(xhr.responseText));
+                                      } else {
+                                        console.log(`Error: ${xhr.status}`);
+                                      }
+                                    };
+                                    xhr.send(body);
+                                
+                            }
+                            
+                            else if(difficulty_check == "Easy") {
+                                
+                                   const xhr = new XMLHttpRequest();
+                                    xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/record");
+                                    xhr.setRequestHeader("Content-Type", "application/json");
+                                    const body = JSON.stringify({
+                                      Username: "RandyBoBandy-71",
+                                      Current_Time: end,
+                                      Difficulty: "Easy", 
+                                    });
+                                    xhr.onload = () => {
+                                      if (xhr.readyState == 4 && xhr.status == 201) {
+                                        console.log(JSON.parse(xhr.responseText));
+                                      } else {
+                                        console.log(`Error: ${xhr.status}`);
+                                      }
+                                    };
+                                    xhr.send(body);
+                                
+                            }
+                                
                         }
                         
                     }
@@ -741,66 +784,66 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
     /* Code for mistakes limit modal window */
 
-      // Mistakes button shows users all invalid squares 
-     mistakes_button.addEventListener('click', function (e) {
-        invalid_tag = "invalid" 
-        e.target.classList.add('active');
-        game1.board_state(sudoku_squares, invalid_tag)
-        mistakes_mode = !mistakes_mode;
+//       // Mistakes button shows users all invalid squares 
+//      mistakes_button.addEventListener('click', function (e) {
+//         invalid_tag = "invalid" 
+//         e.target.classList.add('active');
+//         game1.board_state(sudoku_squares, invalid_tag)
+//         mistakes_mode = !mistakes_mode;
 
-        setTimeout(function () {
-            e.target.classList.remove('active');
-            mistakes_mode = !mistakes_mode;
+//         setTimeout(function () {
+//             e.target.classList.remove('active');
+//             mistakes_mode = !mistakes_mode;
 
-        }, 100);
-    });
+//         }, 100);
+//     });
 
-    var m = 0;
+//     var m = 0;
 
-    // Increment m by 1 each time the "Mistakes" button is clicked
-    mistakes_button.addEventListener('click', function (e) {
-        m = m + 1
+//     // Increment m by 1 each time the "Mistakes" button is clicked
+//     mistakes_button.addEventListener('click', function (e) {
+//         m = m + 1
 
-        if ( m < 10 ) {
-            document.getElementById('strike-counter').innerHTML = m + " / 10";
-        }
-        else if ( m == 10 ) {
-            document.getElementById('strike-counter').innerHTML = m + " / 10";
+//         if ( m < 10 ) {
+//             document.getElementById('strike-counter').innerHTML = m + " / 10";
+//         }
+//         else if ( m == 10 ) {
+//             document.getElementById('strike-counter').innerHTML = m + " / 10";
 
-            rendermodal()
-        }
-    })
+//             rendermodal()
+//         }
+//     })
 
-    // Render modal window for the mistakes counter warning     
-    function rendermodal(event) {
-        // Show modal window when page loads
-        var modal_mistakes = document.getElementById('mistake-limit-model');
-        modal_mistakes.style.display = 'block';
+//     // Render modal window for the mistakes counter warning     
+//     function rendermodal(event) {
+//         // Show modal window when page loads
+//         var modal_mistakes = document.getElementById('mistake-limit-model');
+//         modal_mistakes.style.display = 'block';
 
-        modal_mistakes.addEventListener('click', hidemistakes)
-    }
+//         modal_mistakes.addEventListener('click', hidemistakes)
+//     }
 
-    // Code for clicking out of mistakes modal window
-    function hidemistakes(event) {
-        // Get modal window element by ID
-        var modal_mistakes = document.getElementById('mistake-limit-model');
-        // Get content of modal window
-        var content_mistakes = document.querySelector('.modal-mistakes-content');
+//     // Code for clicking out of mistakes modal window
+//     function hidemistakes(event) {
+//         // Get modal window element by ID
+//         var modal_mistakes = document.getElementById('mistake-limit-model');
+//         // Get content of modal window
+//         var content_mistakes = document.querySelector('.modal-mistakes-content');
 
-        // Check if element that is clicked on is either modal window background 
-        // or not a child of content
-        if ( event.target == modal_mistakes || !content_mistakes.contains(event.target) ) {
-            // Hide modal window
-            modal_mistakes.style.display = 'none';
-            m = 0
+//         // Check if element that is clicked on is either modal window background 
+//         // or not a child of content
+//         if ( event.target == modal_mistakes || !content_mistakes.contains(event.target) ) {
+//             // Hide modal window
+//             modal_mistakes.style.display = 'none';
+//             m = 0
 
-            // Reset mistakes counter
-            document.getElementById('strike-counter').innerHTML = " 0 / 10";
-            // Taker users back to New Game Difficulty Menu
-            openModal() 
+//             // Reset mistakes counter
+//             document.getElementById('strike-counter').innerHTML = " 0 / 10";
+//             // Taker users back to New Game Difficulty Menu
+//             openModal() 
 
-        }
-    }
+//         }
+//     }
     /* Code for End of Game Notification Modal Window */
     
     // Render modal window for completed game
@@ -854,7 +897,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
       openModal();
     
     /* HardCode Easy Sudoku Games */
-    const easy_game_1 = "000004028406000005100030600000301000087000140000709000002010003900000507670400000";
+    const easy_game_1 = "735164928426978315198532674249381756387256149561749832852617493914823567673495280";
+            // Start:    000004028406000005100030600000301000087000140000709000002010003900000507670400000
             // Solution: 735164928426978315198532674249381756387256149561749832852617493914823567673495281  
     
     const easy_game_2 = "690000140700080000002070060400703000001000300000901004050010600000040002073000058";
@@ -869,7 +913,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
     
     /* HardCode Hard Sudoku Games */ 
-    const hard_game_1 = "309000400200709000087000000750060230600904008028050041000000590000106007006000104"; 
+    const hard_game_1 = "369218475215749863487635912754861239631924758928357641173482596542196387896573120"; 
+            // Start:    309000400200709000087000000750060230600904008028050041000000590000106007006000104
             // Solution: 369218475215749863487635912754861239631924758928357641173482596542196387896573124
     
     const hard_game_2 = "401000600700601000095000000140050820800409006032060057000000780000907002004000903";
