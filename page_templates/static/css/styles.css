@@ -1826,7 +1826,7 @@ input:checked ~ .slider-label.off {
  *  Sign In  *
  *************/
 
-input[type=text], input[type=password] {
+input[type=text], input[type=email], input[type=password] {
   width: 100%;
   /* top, bottom: 0.75rem; right, left: 1.25rem */
   padding: 0.75rem 1.25rem;
