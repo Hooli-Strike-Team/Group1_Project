@@ -62,6 +62,7 @@ def create(db_filename):
                 Current_Time INT,
                 Game VARCHAR(100),
                 Difficulty VARCHAR(6),
+                Mistakes_Checked INT,  
                 PRIMARY KEY(Game_ID), 
                 FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
 

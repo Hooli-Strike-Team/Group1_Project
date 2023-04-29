@@ -282,7 +282,6 @@ def show_difficulty():
 def show_rules():
     return render_template('rules.html')
 
-lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
 puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
 inquisitor = False # if the user has met the requirements for the Inquisitor badge
 
@@ -292,11 +291,14 @@ def show_achievements():
     ## Select Query
     risk_taker = False
     speed_runner = False # if the user has met the requirements for the Speed Runner badge
-    conqueror = False # if the user has met the requirements for the Conqueror badge 
+    conqueror = False # if the user has met the requirements for the Conqueror badge
+    lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
+
 
     hard = 0
     med = 0 
     easy = 0
+    no_mistakes = 0
     speed = 0 
 
     if request.method == 'GET':
@@ -332,7 +334,13 @@ def show_achievements():
                 conqueror = True 
                 print("Conqueror", conqueror) 
            
+        
+        for result in db.execute("SELECT * FROM Games_In_Progress;"):
+            no_mistakes = result[5]
             
+            if (no_mistakes < 1):
+                lone_wolf = True 
+                
             
                     
         db.close()
@@ -353,19 +361,21 @@ def record_stats():
     
             #db.execute("INSERT INTO Achievement_Stats VALUES (:Username, 0, 0, 0, 0, 0, 10000, 0);",data)
         
-            #db.execute("INSERT INTO Games_In_Progress VALUES (:Username, 0, 0, 'null', 'null');",data)
+            #db.execute("INSERT INTO Games_In_Progress VALUES (:Username, 0, 0, 'null', 'null', 0);",data)
             
           
             db.execute('''UPDATE Games_In_Progress SET 
                         'Username' = :Username,
                         'Current_Time' = :Current_Time,
-                        'Difficulty' = :Difficulty
+                        'Difficulty' = :Difficulty,
+                        'Mistakes_Checked' = :Mistakes_Checked 
                         
                         ''', data)
             
             for result in db.execute("SELECT * FROM Games_In_Progress;"):
                     print("Difficulty", result[4])
                     print("Timer", result[2])
+                    print("Mistakes Made", result[5]) 
                     
                     difficulty = result[4]
                     timer = result[2] 

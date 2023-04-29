@@ -494,8 +494,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // Flag to check the difficulty 
     let difficulty_check = "none" 
     
-    // Check for users best time on hard
-    let best_time_hard = 0;
+    // counts the number of times mistakes button is clicked 
+    let mistakes_count = 0 
 
     // Store all the Sudoku square <input type="text"> elements in variables for 
     // quick access
@@ -552,6 +552,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         
                         // Check if Mistakes Toggle is off
                         if (is_mistakes_counter_on) {
+                          
+                            
                             // If the mistakes toggle is on, highlight invalid cells 
                             if (!state.is_legal && mistakes_mode == true)  {
                                 let state = game1.board_state(sudoku_squares, "invalid");
@@ -600,7 +602,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                     const body = JSON.stringify({
                                       Username: "RandyBoBandy-71",
                                       Current_Time: end,
-                                      Difficulty: "Hard", 
+                                      Difficulty: "Hard",
+                                      Mistakes_Checked: mistakes_count, 
                                     });
                                     xhr.onload = () => {
                                       if (xhr.readyState == 4 && xhr.status == 201) {
@@ -621,6 +624,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                       Username: "RandyBoBandy-71",
                                       Current_Time: end,
                                       Difficulty: "Medium", 
+                                      Mistakes_Checked: mistakes_count,
                                     });
                                     xhr.onload = () => {
                                       if (xhr.readyState == 4 && xhr.status == 201) {
@@ -642,6 +646,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                       Username: "RandyBoBandy-71",
                                       Current_Time: end,
                                       Difficulty: "Easy", 
+                                      Mistakes_Checked: mistakes_count,
                                     });
                                     xhr.onload = () => {
                                       if (xhr.readyState == 4 && xhr.status == 201) {
@@ -771,6 +776,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
            e.target.classList.toggle('active');
            mistakes_mode = !mistakes_mode;
            console.log("mistakes_mode", mistakes_mode);
+           
+           /* Code for Lone Wolf Achievement */
+          
+           mistakes_count = mistakes_count + 1;  // Interates the number of mistakes used 
+           console.log("Mistakes_count", mistakes_count)
 
            if (mistakes_mode == false) {
                 game1.clear_mistakes(sudoku_squares, "invalid");
