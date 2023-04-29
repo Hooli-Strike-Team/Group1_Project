@@ -3,9 +3,9 @@ import os
 import sqlite3
 import logging
 
-from flask import Flask, url_for, render_template, redirect, session, g, request, jsonify
+from flask import Flask, url_for, render_template, redirect, session, g, request, jsonify, render_template_string
 # from flask_sqlalchemy import SQLAlchemy
-DATABASE="controller_db"
+DATABASE="./SQL/controller_db"
 
 # Create app to use in Flask application
 app = Flask(__name__)
@@ -195,10 +195,15 @@ def create_account():
     if request.method == 'POST':
         try:
             username = str(request.form['uname'])
+            session['username'] = request.form['uname']
             password = str(request.form['psw'])
+            session['password'] = request.form['psw']
             firstname = str(request.form['fname'])
+            session['firstname'] = request.form['fname']
             lastname = str(request.form['lname'])
+            session['lastname'] = request.form['lname']
             email = str(request.form['email']) 
+            session['email'] = request.form['email']
             with sqlite3.connect(DATABASE) as con:  # db connection object
                 cur = con.cursor()
                 cur.execute("""
