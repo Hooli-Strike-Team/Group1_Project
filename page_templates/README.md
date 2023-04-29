@@ -129,33 +129,37 @@ project/
 
 
 # Starting the Application
-Follow these steps to set up flask in your local terminal and run Sudoku Sage in a python virtual environment. 
+The following documentation assumes you have a basic knowledge of linux bash terminal commands and have a basic familiarity with python. Follow these steps to set up flask and run Sudoku Sage using a python virtual environment. 
 
 ### Creating a Python Virtualenv
-Create a virtual environment if you don't have one using this command:
+Navigate to an ancestor of the desired venv location and generate a virtual environment with the following bash command.
 
     $python -m venv /path/to/new/virtual/environment
 
-You can install flask by 
 
-    $pip install -U Flask-SQLAlchemy
 
+Navigate to the virtual environment folder you just created and enter these commands. 
 Step 1:
 
-    Navigate to your virtual environment folder and enter the following terminal commands.
     $source venv/bin/activate
+    
+Step 2: ...This is a good time to have pip install flask:
 
-Step 2:
+    $pip install -U Flask-SQLAlchemy
+    
+Step 3:  (best option if you are working within the csel.io developer environment.)
     
     $. ./setup.cmds
 
-Step 3:
+Step 4:
 
     $flask --app test_app.py run
 
-Step 4:
+Step 5:
 
-    Finally, go to https://coding.csel.io/user/<username>/proxy/3308/
+Finally, 
+
+If you are in the csel.io developer environment, copy/paste https://coding.csel.io/user/<username>/proxy/3308/ into your browser visit to see the landing page.
     
     
 ### Server Supported Routes:
