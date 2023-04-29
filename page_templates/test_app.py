@@ -289,6 +289,7 @@ def show_achievements():
     ## Select Query
     risk_taker = False
     test = 0 
+
     if request.method == 'GET':
         db = sqlite3.connect(db_path)
                 
@@ -318,10 +319,32 @@ def record_stats():
         db = sqlite3.connect(db_path)
         with db:
     
-            db.execute("INSERT INTO Achievement_Stats VALUES (:Username, :EasyGamesCompleted, :MedGamesCompleted, :HardGamesCompleted, :Best_Time_Easy, :Best_Time_Med, :Best_Time_Hard, :AccountLevel);",data)
+            #db.execute("INSERT INTO Achievement_Stats VALUES (:Username, :EasyGamesCompleted, :MedGamesCompleted, :HardGamesCompleted, :Best_Time_Easy, :Best_Time_Med, :Best_Time_Hard, :AccountLevel);",data)
             
-            db.execute('''UPDATE Games_In_Progress SET 'Current_Time' = :Current_Time, 'Game' = :Game WHERE 'Game_ID' = :Game_ID ''', data)
+          
+#             db.execute('''UPDATE Achievement_Stats SET 
+#                         'Username' = :Username,
+#                         'EasyGamesCompleted' = :EasyGamesCompleted,
+#                         'MedGamesCompleted' = :MedGamesCompleted,
+#                         'HardGamesCompleted' = :HardGamesCompleted,
+#                         'Best_Time_Easy' = :Best_Time_Easy,
+#                         'Best_Time_Med' = :Best_Time_Med,
+#                         'Best_Time_Hard' = :Best_Time_Hard,
+#                         'AccountLevel' = :AccountLevel 
+                        
+#                         ''', data)
             
+            db.execute('''
+                    UPDATE Achievement_Stats SET HardGamesCompleted = HardGamesCompleted + 1 
+                    ''') 
+            
+            db.commit() 
+            
+            
+            for result in db.execute("SELECT * FROM Achievement_Stats;"):
+                    print("Hard Games Completed", result[3]) 
+            
+        db.commit()    
         db.close() 
         
     return "Achievement Stats Updated" 

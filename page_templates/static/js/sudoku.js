@@ -461,6 +461,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
     // Flag for turning mistakes mode on and off
     let mistakes_mode = false;
+    
+    // Flag to check the difficulty 
+    let difficulty_check = "none" 
 
     // Store all the Sudoku square <input type="text"> elements in variables for 
     // quick access
@@ -528,7 +531,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         }
                         
                          
-
                         console.log("Legal", state.is_legal);
                         console.log("Complete", state.is_finished);
                         // Check to see if game is completed correctly
@@ -538,11 +540,15 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             completedmodal();
                             console.log("timer ended"); 
                             timer.stop(); //ends timer at game completion
-                            
+                            end = timer.format() 
+                            console.log("Timer Ended At:", end) 
                             // *************************** TODO  ***************************
                             // run update query for game completion at difficulty
                                 // POST to route, run update query
                             // run update query for time completion at difficulty
+                            
+                            
+                             
                             
                             const xhr = new XMLHttpRequest();
                             xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/record");
@@ -551,7 +557,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                               Username: "RandyBoBandy-71",
                               EasyGamesCompleted: 0,
                               MedGamesCompleted: 0,
-                              HardGamesCompleted: 3,
+                              HardGamesCompleted: 0,
                               Best_Time_Easy: 0,
                               Best_Time_Med: 0, 
                               Best_Time_Hard: 0, 
@@ -884,6 +890,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
         m = 0;
 
         timer.set(0, 'timer1', callback);
+        
+        // Record Difficulty 
+        difficulty_check = "Easy" 
     });
     // Add event listener to "Hard" Button
     let hard = 0
@@ -904,6 +913,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
         m = 0;
       
         timer.set(0, 'timer1', callback);
+        
+        // Record Difficulty 
+        difficulty_check = "Medium" 
     });
 
     // Add event listener to "Expert" button
@@ -925,6 +937,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
         m = 0;
       
         timer.set(0, 'timer1', callback);
+        
+        difficulty_check = "Hard" 
+        
+    
     });
     
     /* Code for Restart Button */ 
