@@ -284,34 +284,58 @@ def show_rules():
 
 lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
 puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
-speed_runner = False # if the user has met the requirements for the Speed Runner badge
 inquisitor = False # if the user has met the requirements for the Inquisitor badge
-conqueror = False # if the user has met the requirements for the Conqueror badge 
 
 @app.route('/achievements', methods=['POST', 'GET'])
 def show_achievements():
     ## Pull from database to set flags
     ## Select Query
     risk_taker = False
-    test = 0 
+    speed_runner = False # if the user has met the requirements for the Speed Runner badge
+    conqueror = False # if the user has met the requirements for the Conqueror badge 
+
+    hard = 0
+    med = 0 
+    easy = 0
+    speed = 0 
 
     if request.method == 'GET':
         db = sqlite3.connect(db_path)
                 
         for result in db.execute("SELECT * FROM Achievement_Stats;"):
-                 
-            app.logger.info("HardGamesCompleted", result[3])
-            test = result[3]
-                    
-            if (test >= 3): 
+            print("EasyGamesCompleted", result[1]) 
+            print("MedGamesCompleted", result[2])     
+            print("HardGamesCompleted", result[3])
+            easy = result[1]
+            med = result[2]
+            hard = result[3]
+             
+            # # If Users completed at least three hard games, unlock Risk Taker Badge # #      
+            if (hard >= 3): 
                 risk_taker = True 
                 print("Risk_Taker",type(risk_taker))
-                print("Result_1",test)
+                print("Result_1",hard)
+                
+            # # If User beats a hard game under 10 minutes Speed_Runner is unlocked 
+            
+            print("Best_Time_Hard", result[6]) 
+            speed = result[6]
+            
+            if (hard >= 1 and speed <= 600):
+                speed_runner = True 
+                print('Speed_Runner', speed_runner) 
+                
+                
+            # # If user completes one puzzle on each difficulty # # 
+            
+            if (1 <= hard and 1 <= med and 1 <= hard):
+                conqueror = True 
+                print("Conqueror", conqueror) 
+           
+            
+            
                     
         db.close()
-
-    print("Result_2",test)
-    print("Risk_Taker",risk_taker)
     
     return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, 
                            speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
@@ -319,12 +343,15 @@ def show_achievements():
 
 @app.route('/record', methods=['POST', 'GET'])    
 def record_stats():
+    difficulty = ""
+    timer = 0 
+    best_time_hard = 0
     if request.method == 'POST':
         data = request.get_json()
         db = sqlite3.connect(db_path)
         with db:
     
-            #db.execute("INSERT INTO Achievement_Stats VALUES (:Username, 0, 0, 0, 0, 0, 0, 0);",data)
+            #db.execute("INSERT INTO Achievement_Stats VALUES (:Username, 0, 0, 0, 0, 0, 10000, 0);",data)
         
             #db.execute("INSERT INTO Games_In_Progress VALUES (:Username, 0, 0, 'null', 'null');",data)
             
@@ -337,19 +364,62 @@ def record_stats():
                         ''', data)
             
             for result in db.execute("SELECT * FROM Games_In_Progress;"):
-                    print("Time", result[2])
                     print("Difficulty", result[4])
+                    print("Timer", result[2])
+                    
+                    difficulty = result[4]
+                    timer = result[2] 
+            
+            
+           # # Update Games completed on Hard # #
+            if difficulty == "Hard":  
+                db.execute('''
+                        UPDATE Achievement_Stats SET HardGamesCompleted = HardGamesCompleted + 1 
+                        ''') 
+
+
+
+                for result in db.execute("SELECT * FROM Achievement_Stats;"):
+                        print("Hard Games Completed", result[3]) 
+                        best_time_hard = result[6]
     
-            db.execute('''
-                    UPDATE Achievement_Stats SET HardGamesCompleted = HardGamesCompleted + 1 
-                    ''') 
+        
+            # # Update Best_Time_Hard # #
             
-            db.commit() 
-            
-            
-            for result in db.execute("SELECT * FROM Achievement_Stats;"):
-                    print("Hard Games Completed", result[3]) 
-            
+                if (best_time_hard > timer):
+
+                    db.execute('''
+                            UPDATE Achievement_Stats SET Best_Time_Hard = :Current_Time; 
+                            ''', data)
+
+                    for result in db.execute("SELECT * FROM Achievement_Stats;"):
+                            print("Best_Time_Hard_Updated", result[6])
+
+
+                elif ( best_time_hard < timer):
+                    print("Current time is not better than best time on hard")
+                    for result in db.execute("SELECT * FROM Achievement_Stats;"):
+                            print("Best_Time_Hard", result[6])
+           # Update Games completed on medium      
+            elif difficulty == "Medium":
+                db.execute('''
+                        UPDATE Achievement_Stats SET MedGamesCompleted = MedGamesCompleted + 1 
+                        ''') 
+        
+                for result in db.execute("SELECT * FROM Achievement_Stats;"):
+                        print("Medium Games Completed", result[2]) 
+                    
+           # Update Games completed on Easy          
+            elif difficulty == "Easy":
+                db.execute('''
+                        UPDATE Achievement_Stats SET EasyGamesCompleted = EasyGamesCompleted + 1 
+                        ''') 
+        
+                for result in db.execute("SELECT * FROM Achievement_Stats;"):
+                        print("Easy Games Completed", result[1]) 
+                                    
+        
+        
         db.commit()    
         db.close() 
         
