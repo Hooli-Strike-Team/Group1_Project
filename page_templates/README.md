@@ -1,3 +1,4 @@
+    
 # Customizing Content
 
 To modify the content of a page that extends from the base template, you place 
@@ -124,3 +125,55 @@ project/
 | &nbsp;&ensp;README.md                      |              | Current markdown file                                    |
 | &nbsp;&ensp;setup.cmds                     |              | Commands to set up the shell to run a Flask app          |
 | &nbsp;&ensp;test_app.py                    |              | Start the Flask development web server                   |
+
+
+
+# Starting the Application
+Follow these steps to set up flask in your local terminal and run Sudoku Sage in a python virtual environment. 
+
+### Creating a Python Virtualenv
+Create a virtual environment if you don't have one using this command:
+
+    $python -m venv /path/to/new/virtual/environment
+
+You can install flask by 
+
+    $pip install -U Flask-SQLAlchemy
+
+Step 1:
+
+    Navigate to your virtual environment folder and enter the following terminal commands.
+    $source venv/bin/activate
+
+Step 2:
+    
+    $. ./setup.cmds
+
+Step 3:
+
+    $flask --app test_app.py run
+
+Step 4:
+
+    Finally, go to https://coding.csel.io/user/<username>/proxy/3308/
+    
+    
+### Server Supported Routes:
+
+-Main Landing Page:
+    https://coding.csel.io/user/<username>/proxy/3308/
+    
+-Login Page:
+    https://coding.csel.io/user/<username>/proxy/3308/login
+    
+-Rules Page:
+    https://coding.csel.io/user/<username>/proxy/3308/rules
+    
+-Achievements Page:
+    https://coding.csel.io/user/<username>/proxy/3308/achievements
+    
+-Settings Page:
+    https://coding.csel.io/user/<username>/proxy/3308/settings
+    
+-Create Account Page:
+    https://coding.csel.io/user/<username>/proxy/3308/create-account
