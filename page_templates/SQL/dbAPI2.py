@@ -17,10 +17,10 @@ def create(db_filename):
                 Password VARCHAR(16),
                 First_Name VARCHAR(50),
                 Last_Name VARCHAR(50),
-                Email VARCHAR(320), 
+                Email VARCHAR(320) UNIQUE, 
                 PRIMARY KEY(Username))""")
     
-    #Create User_Achievements Table
+    #Create User_Achievements Puzzle_Master Table
     c.execute("""
     
             CREATE TABLE IF NOT EXISTS Puzzle_Master(
@@ -113,6 +113,7 @@ def delete_tables(db_filename):
         c.execute("DROP TABLE IF EXISTS User_Account;")
         c.execute("DROP TABLE IF EXISTS User_Achievements;")
         c.execute("DROP TABLE IF EXISTS Achievement_Stats;")
+        c.execute("DROP TABLE IF EXISTS Puzzle_Master;")
         c.execute("DROP TABLE IF EXISTS Games_In_Progress;")
         c.execute("DROP TABLE IF EXISTS Game_Settings;")
         conn.commit()
