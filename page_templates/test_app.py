@@ -463,8 +463,7 @@ def record_stats():
         db.close() 
         
     return "Achievement Stats Updated" 
-<<<<<<< HEAD
-=======
+
 
 @app.route('/Master' , methods=['POST', 'GET'])
 def Puzzle_Master_Badge():
@@ -502,7 +501,7 @@ def Puzzle_Master_Badge():
 @app.route('/settings')
 def show_settings():
     return render_template('settings.html')
->>>>>>> PaulMain
+
   
 @app.route('/tutorial')
 def show_tutorial():
