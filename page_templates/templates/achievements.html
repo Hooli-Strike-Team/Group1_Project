@@ -116,16 +116,16 @@
         {% endif %}
 
         <!-- If user has earned Inquisitor badge, show badge -->
-        {% if inquisitor == True %}
+        {% if strategist == True %}
         <div class="badge-wrapper">
           <div class="badge inquisitor">
             <div class="circle">
-              <i class="fa fa-question"></i>
+              <i class="fa-solid fa-chess-knight"></i>
             </div>
-            <div class="ribbon">Inquisitor</div>
+            <div class="ribbon">Strategist</div>
           </div>
           <div class="badge-desc">
-            Request a Hint Five Times for the Same Puzzle
+            Complete One Puzzle Using the Notes Feature Three Times  
           </div>
         </div>
         {% else %}
@@ -135,10 +135,10 @@
             <div class="circle">
               <i class="fa fa-lock"></i>
             </div>
-            <div class="ribbon">Inquisitor</div>
+            <div class="ribbon">Strategist</div>
           </div>
           <div class="badge-desc">
-            Request a Hint Five Times for the Same Puzzle
+            Complete One Puzzle Using the Notes Feature Three Times  
           </div>
         </div>
         {% endif %}

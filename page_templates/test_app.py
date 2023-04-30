@@ -268,10 +268,12 @@ def login():
 
 
 
+
 @app.route('/logout')
 def logout():
     session.pop('username', None)
     return redirect(url_for('home'))
+
 
 
 
@@ -287,8 +289,7 @@ def main():
 def show_rules():
     return render_template('rules.html')
 
-puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
-inquisitor = False # if the user has met the requirements for the Inquisitor badge
+
 
 @app.route('/achievements', methods=['POST', 'GET'])
 def show_achievements():
@@ -298,6 +299,8 @@ def show_achievements():
     speed_runner = False # if the user has met the requirements for the Speed Runner badge
     conqueror = False # if the user has met the requirements for the Conqueror badge
     lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
+    strategist = False # if the user has met the requirements for the Inquisitor badge
+    puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
 
 
     hard = 0
@@ -305,6 +308,8 @@ def show_achievements():
     easy = 0
     no_mistakes = 0
     speed = 0 
+    notes = 0
+    
 
     if request.method == 'GET':
         db = sqlite3.connect(db_path)
@@ -328,6 +333,7 @@ def show_achievements():
             print("Best_Time_Hard", result[6]) 
             speed = result[6]
             
+            ## 600 seconds is the same as 10 minutes 
             if (hard >= 1 and speed <= 600):
                 speed_runner = True 
                 print('Speed_Runner', speed_runner) 
@@ -342,16 +348,32 @@ def show_achievements():
         
         for result in db.execute("SELECT * FROM Games_In_Progress;"):
             no_mistakes = result[5]
-            
+            notes = result[6] 
+            # Even though the feature is a toggle, were looking for zero click or toggles 
             if (no_mistakes < 1):
                 lone_wolf = True 
+            
+            # 6 clicks about for the fact that the feature is a toggle
+            # 6 clicks is the same as 3 full toggles 
+            if (notes >= 6):
+                strategist = True
+                
+                
+#         i = 1 
+#         for master in db.execute("SELECT * FROM Puzzle_Master;"):
+            
+#             while (i != 13) 
+            
+#                 if ( master[i] == 0): 
+#                     i = 15
+                
                 
             
                     
         db.close()
     
     return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, 
-                           speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
+                           speed_runner=speed_runner, strategist=strategist, conqueror=conqueror)
    
 
 @app.route('/record', methods=['POST', 'GET'])    
@@ -373,7 +395,8 @@ def record_stats():
                         'Username' = :Username,
                         'Current_Time' = :Current_Time,
                         'Difficulty' = :Difficulty,
-                        'Mistakes_Checked' = :Mistakes_Checked 
+                        'Mistakes_Checked' = :Mistakes_Checked,
+                        'Notes_Checked' = :Notes_Checked
                         
                         ''', data)
             
@@ -381,6 +404,7 @@ def record_stats():
                     print("Difficulty", result[4])
                     print("Timer", result[2])
                     print("Mistakes Made", result[5]) 
+                    print("Notes_Checked", result[6]) 
                     
                     difficulty = result[4]
                     timer = result[2] 
@@ -439,6 +463,46 @@ def record_stats():
         db.close() 
         
     return "Achievement Stats Updated" 
+<<<<<<< HEAD
+=======
+
+@app.route('/Master' , methods=['POST', 'GET'])
+def Puzzle_Master_Badge():
+    
+    if request.method == 'POST':
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+        with db:
+    
+            db.execute('''UPDATE Puzzle_Master SET 
+                        'Username' = :Username,
+                        'Game1_Easy' = :Game1_Easy,
+                        'Game2_Easy' = :Game2_Easy,
+                        'Game3_Easy' = :Game3_Easy,
+                        'Game4_Easy' = :Game4_Easy,
+                        'Game1_Med' = :Game1_Med,
+                        'Game2_Med' = :Game2_Med,
+                        'Game3_Med' = :Game3_Med,
+                        'Game4_Med' = :Game4_Med, 
+                        'Game1_Hard' = :Game1_Hard,
+                        'Game2_Hard' = :Game2_Hard, 
+                        'Game3_Hard' = :Game3_Hard, 
+                        'Game4_Hard' = :Game4_Hard
+                        ''', data)
+            for result in db.execute("SELECT * FROM Puzzle_Master;"):
+                        print(result) 
+            
+        db.commit()
+        db.close()
+    
+    return "Puzzle Master Achievement Updated" 
+
+
+
+@app.route('/settings')
+def show_settings():
+    return render_template('settings.html')
+>>>>>>> PaulMain
   
 @app.route('/tutorial')
 def show_tutorial():

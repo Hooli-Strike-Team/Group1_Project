@@ -497,7 +497,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // counts the number of times mistakes button is clicked 
     let mistakes_count = 0 
     
-    // checks if slider is on 
+
+    // counts the number of times the notes button is toggled 
+    let notes_count = 0 
+    
+    
 
     // Store all the Sudoku square <input type="text"> elements in variables for 
     // quick access
@@ -585,6 +589,14 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         console.log("Complete", state.is_finished);
                         // Check to see if game is completed correctly
                         if ( state.is_legal && state.is_finished ) {
+                            
+                            just_finished = game1.get_string() 
+                            console.log(just_finished) 
+                            
+                            // Function to flag completed games for the Puzzle Master Badge 
+                            PuzzleMaster(just_finished); 
+                            
+                            
                             // Do game end actions
                             console.log("game complete");
                             completedmodal();
@@ -605,7 +617,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                       Username: "RandyBoBandy-71",
                                       Current_Time: end,
                                       Difficulty: "Hard",
-                                      Mistakes_Checked: mistakes_count, 
+                                      Mistakes_Checked: mistakes_count,
+                                      Notes_Checked: notes_count,
+                                      
                                     });
                                     xhr.onload = () => {
                                       if (xhr.readyState == 4 && xhr.status == 201) {
@@ -627,6 +641,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                       Current_Time: end,
                                       Difficulty: "Medium", 
                                       Mistakes_Checked: mistakes_count,
+                                      Notes_Checked: notes_count,
+
                                     });
                                     xhr.onload = () => {
                                       if (xhr.readyState == 4 && xhr.status == 201) {
@@ -649,6 +665,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                       Current_Time: end,
                                       Difficulty: "Easy", 
                                       Mistakes_Checked: mistakes_count,
+                                      Notes_Checked: notes_count,
+
                                     });
                                     xhr.onload = () => {
                                       if (xhr.readyState == 4 && xhr.status == 201) {
@@ -770,6 +788,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
     notes_button.addEventListener('click', function (e) {
         e.target.classList.toggle('active');
         notes_mode = !notes_mode;
+        
+        notes_count = notes_count + 1; // Interates the number of times the notes feature is used 
+        console.log("Notes Count", notes_count) 
+        
     });
     
    settings_mistakes.addEventListener('change', function(e) {
@@ -848,6 +870,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                 // Get content of modal window
                 var content_mistakes = document.querySelector('.modal-mistakes-content');
 
+
                 // Check if element that is clicked on is either modal window background 
                 // or not a child of content
                 if ( event.target == modal_mistakes || !content_mistakes.contains(event.target) ) {
@@ -864,6 +887,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             }
        }
    })
+
     /* Code for End of Game Notification Modal Window */
     
     // Render modal window for completed game
@@ -921,44 +945,53 @@ window.addEventListener('DOMContentLoaded', (e) => {
             // Start:    000004028406000005100030600000301000087000140000709000002010003900000507670400000
             // Solution: 735164928426978315198532674249381756387256149561749832852617493914823567673495281  
     
-    const easy_game_2 = "690000140700080000002070060400703000001000300000901004050010600000040002073000058";
+    const easy_game_2 = "698532047715684923342179865486723591921458376537961284254817639869345712173296458";
+            // Start:    690000140700080000002070060400703000001000300000901004050010600000040002073000058
             // Solution: 698532147715684923342179865486723591921458376537961284254817639869345712173296458
     
-    const easy_game_3 = "000004076705000009300010200000907000041000780000103000006030001500000604820400000";
+    const easy_game_3 = "082594376765328419394716258238947165941652783657183942476235891513879624829461537";
+            // Start:    000004076705000009300010200000907000041000780000103000006030001500000604820400000
             // Solution: 182594376765328419394716258238947165941652783657183942476235891513879624829461537
     
-    const easy_game_4 = "850000370200040000006010050400109000003000100000307004060070200000080007041000096";
+    const easy_game_4 = "854692371217543968936718452482169735673854129195327684568971243329486517740235896";
+            // Start:    850000370200040000006010050400109000003000100000307004060070200000080007041000096
             // Solution: 854692371217543968936718452482169735673854129195327684568971243329486517741235896
 
     
     
     /* HardCode Hard Sudoku Games */ 
-    const hard_game_1 = "369218475215749863487635912754861239631924758928357641173482596542196387896573120"; 
+    const hard_game_1 = "369218475215749863487635912754861239631924758928357641173482596542196387896573024"; 
             // Start:    309000400200709000087000000750060230600904008028050041000000590000106007006000104
             // Solution: 369218475215749863487635912754861239631924758928357641173482596542196387896573124
     
-    const hard_game_2 = "401000600700601000095000000140050820800409006032060057000000780000907002004000903";
+    const hard_game_2 = "421375698783691245695284371146753829857429136932168457219536784368947512574802963";
+            // Start:    401000600700601000095000000140050820800409006032060057000000780000907002004000903
             // Solution: 421375698783691245695284371146753829857429136932168457219536784368947512574812963
     
-    const hard_game_3 = "000081074000304900400200501090040060000605000070090010907008006008502000320760000";
+    const hard_game_3 = "532981674761354982489276531895147263143625897276893415957418326618532749324769058";
+            // Start:    000081074000304900400200501090040060000605000070090010907008006008502000320760000
             // Solution: 532981674761354982489276531895147263143625897276893415957418326618532749324769158
           
-    const hard_game_4 = "000067023000205800600800709010090070000506000060040090105002004009403000470180000";
+    const hard_game_4 = "851967423947235816623814759514398672798526341362741598135672984289453167476089235";
+            // Start:    000067023000205800600800709010090070000506000060040090105002004009403000470180000
             // Solution: 851967423947235816623814759514398672798526341362741598135672984289453167476189235
     
     /* HardCode expert Sudoku Games */ 
-    const expert_game_1 = "981724365324615879765983142197836254642571938853249716476398521538162497219457680";
+    const expert_game_1 = "981724365324615879765983142197836254642571938853249716476398521538162497209457683";
     
             // Start:      000704005020010070000080002090006250600070008053200010400090000030060090200407000
             // Solution:   981724365324615879765983142197836254642571938853249716476398521538162497219457683
     
-    const expert_game_2 = "204060000030509020000300000400200007069070810700006004000002000090105070000080205";
+    const expert_game_2 = "254861739137549628986327541413258967569473812728916354645792183892135476370684295";
+            // Start:      204060000030509020000300000400200007069070810700006004000002000090105070000080205
             // Solution:   254861739137549628986327541413258967569473812728916354645792183892135476371684295
     
-    const expert_game_3 = "000704002090060030000090004010002350800070006052600090200080000070010020500407000";
+    const expert_game_3 = "386754912794261835125893674617942358839175246452638791241389567978516423563427089";
+            // Start:      000704002090060030000090004010002350800070006052600090200080000070010020500407000
             // Solution:   386754912794261835125893674617942358839175246452638791241389567978516423563427189
     
-    const expert_game_4 = "502080000070501090000200000400600007018070960700002004000003000020905030000060402";
+    const expert_game_4 = "592486173674531298381297546453619827218374965769852314145723689826945731937068452";
+            // Start:      502080000070501090000200000400600007018070960700002004000003000020905030000060402
             // Solution:   592486173674531298381297546453619827218374965769852314145723689826945731937168452
           
     // Opens difficulty modal window
@@ -1049,6 +1082,109 @@ window.addEventListener('DOMContentLoaded', (e) => {
         
     
     });
+    
+    /* Puzzle Solutions for Puzzle Master Badge */ 
+    let easy1_sol = "735164928426978315198532674249381756387256149561749832852617493914823567673495281"
+    let easy2_sol = "698532147715684923342179865486723591921458376537961284254817639869345712173296458"
+    let easy3_sol = "182594376765328419394716258238947165941652783657183942476235891513879624829461537"
+    let easy4_sol = "854692371217543968936718452482169735673854129195327684568971243329486517741235896"
+    
+    let med1_sol = "369218475215749863487635912754861239631924758928357641173482596542196387896573124"
+    let med2_sol = "421375698783691245695284371146753829857429136932168457219536784368947512574812963"
+    let med3_sol = "532981674761354982489276531895147263143625897276893415957418326618532749324769158"
+    let med4_sol = "851967423947235816623814759514398672798526341362741598135672984289453167476189235"
+    
+    let hard1_sol = "981724365324615879765983142197836254642571938853249716476398521538162497219457683"
+    let hard2_sol = "254861739137549628986327541413258967569473812728916354645792183892135476371684295"
+    let hard3_sol = "386754912794261835125893674617942358839175246452638791241389567978516423563427189"
+    let hard4_sol = "592486173674531298381297546453619827218374965769852314145723689826945731937168452"
+    
+    let Game1_Easy = false 
+    let Game2_Easy = false
+    let Game3_Easy = false 
+    let Game4_Easy = false 
+    
+    let Game1_Med = false 
+    let Game2_Med = false 
+    let Game3_Med = false 
+    let Game4_Med = false 
+    
+    let Game1_Hard = false 
+    let Game2_Hard = false 
+    let Game3_Hard = false 
+    let Game4_Hard = false 
+    
+
+    function PuzzleMaster(completed_game) {
+        if (completed_game == easy1_sol) {
+            Game1_Easy = true; 
+        }
+        else if (completed_game == easy2_sol) {
+            Game2_Easy = true;
+        }
+        else if (completed_game == easy3_sol) {
+            Game3_Easy = true;
+        }
+        else if (completed_game == easy4_sol) {
+            Game4_Easy = true;
+        }
+        else if (completed_game == med1_sol) {
+            Game1_Med = true; 
+        }
+        else if (completed_game == med2_sol) {
+            Game2_Med = true; 
+        }
+        else if (completed_game == med3_sol) {
+            Game3_Med = true;
+        }
+        else if (completed_game == med4_sol) {
+            Game4_Med = true; 
+        }
+        else if (completed_game == hard1_sol) {
+            Game1_Hard = true; 
+        }
+        else if (completed_game == hard2_sol) {
+            Game2_Hard = true;
+        }
+        else if (completed_game == hard3_sol) {
+            Game3_Hard = true;
+        }
+        else if (completed_game == hard4_sol) {
+            Game4_Hard = true;    
+        }
+        
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/Master");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        const body = JSON.stringify({
+            Username: "RandyBoBandy-71",
+            Game1_Easy: Game1_Easy,
+            Game2_Easy: Game2_Easy, 
+            Game3_Easy: Game3_Easy, 
+            Game4_Easy: Game4_Easy,
+            Game1_Med: Game1_Med,
+            Game2_Med: Game2_Med,
+            Game3_Med: Game3_Med, 
+            Game4_Med: Game4_Med,
+            Game1_Hard: Game1_Hard,
+            Game2_Hard: Game2_Hard,
+            Game3_Hard: Game3_Hard,
+            Game4_Hard: Game4_Hard,
+
+        });
+        xhr.onload = () => {
+            if (xhr.readyState == 4 && xhr.status == 201) {
+                console.log(JSON.parse(xhr.responseText));
+            } else {
+                console.log(`Error: ${xhr.status}`);
+            }
+        };
+        xhr.send(body);
+        
+
+    
+    }
+    
     
     /* Code for Restart Button */ 
     restart_button.addEventListener('click', function(e) {
