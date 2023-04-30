@@ -277,7 +277,7 @@ def show_difficulty():
 def show_rules():
     return render_template('rules.html')
 
-puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
+
 
 @app.route('/achievements', methods=['POST', 'GET'])
 def show_achievements():
@@ -288,6 +288,7 @@ def show_achievements():
     conqueror = False # if the user has met the requirements for the Conqueror badge
     lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
     strategist = False # if the user has met the requirements for the Inquisitor badge
+    puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
 
 
     hard = 0
@@ -296,6 +297,7 @@ def show_achievements():
     no_mistakes = 0
     speed = 0 
     notes = 0
+    
 
     if request.method == 'GET':
         db = sqlite3.connect(db_path)
@@ -343,6 +345,16 @@ def show_achievements():
             # 6 clicks is the same as 3 full toggles 
             if (notes >= 6):
                 strategist = True
+                
+                
+#         i = 1 
+#         for master in db.execute("SELECT * FROM Puzzle_Master;"):
+            
+#             while (i != 13) 
+            
+#                 if ( master[i] == 0): 
+#                     i = 15
+                
                 
             
                     
@@ -439,6 +451,37 @@ def record_stats():
         db.close() 
         
     return "Achievement Stats Updated" 
+
+@app.route('/Master' , methods=['POST', 'GET'])
+def Puzzle_Master_Badge():
+    
+    if request.method == 'POST':
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+        with db:
+    
+            db.execute('''UPDATE Puzzle_Master SET 
+                        'Username' = :Username,
+                        'Game1_Easy' = :Game1_Easy,
+                        'Game2_Easy' = :Game2_Easy,
+                        'Game3_Easy' = :Game3_Easy,
+                        'Game4_Easy' = :Game4_Easy,
+                        'Game1_Med' = :Game1_Med,
+                        'Game2_Med' = :Game2_Med,
+                        'Game3_Med' = :Game3_Med,
+                        'Game4_Med' = :Game4_Med, 
+                        'Game1_Hard' = :Game1_Hard,
+                        'Game2_Hard' = :Game2_Hard, 
+                        'Game3_Hard' = :Game3_Hard, 
+                        'Game4_Hard' = :Game4_Hard
+                        ''', data)
+            for result in db.execute("SELECT * FROM Puzzle_Master;"):
+                        print(result) 
+            
+        db.commit()
+        db.close()
+    
+    return "Puzzle Master Achievement Updated" 
 
 
 

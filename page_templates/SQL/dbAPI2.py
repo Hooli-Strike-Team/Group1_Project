@@ -23,14 +23,20 @@ def create(db_filename):
     #Create User_Achievements Table
     c.execute("""
     
-            CREATE TABLE IF NOT EXISTS User_Achievements(
+            CREATE TABLE IF NOT EXISTS Puzzle_Master(
                 Username VARCHAR(32),
-                Inquisitor BOOLEAN,
-                LoneWolf BOOLEAN,
-                PuzzleMaster BOOLEAN,
-                RiskTaker BOOLEAN,
-                SpeedRunner BOOLEAN,
-                Conqueror BOOLEAN,
+                Game1_Easy BOOLEAN,
+                Game2_Easy BOOLEAN,
+                Game3_Easy BOOLEAN,
+                Game4_Easy BOOLEAN,
+                Game1_Med BOOLEAN, 
+                Game2_Med BOOLEAN,
+                Game3_Med BOOLEAN,
+                Game4_Med BOOLEAN,
+                Game1_Hard BOOLEAN,
+                Game2_Hard BOOLEAN,
+                Game3_Hard BOOLEAN,
+                Game4_Hard BOOLEAN,
                 PRIMARY KEY(Username), 
                 FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
                 
@@ -47,7 +53,6 @@ def create(db_filename):
                 Best_Time_Easy FLOAT,
                 Best_Time_Med FLOAT,
                 Best_Time_Hard FLOAT,
-                Games_Finished FLOAT,
                 PRIMARY KEY(Username),
                 FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
                 

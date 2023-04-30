@@ -591,11 +591,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             just_finished = game1.get_string() 
                             console.log(just_finished) 
                             
-                            let puzzles_completed = PuzzleMaster(just_finished); 
+                            // Function to flag completed games for the Puzzle Master Badge 
+                            PuzzleMaster(just_finished); 
                             
-                            if (just_finished == easy1_solution) { 
-                                console.log("Easy Game 1 Solution True"); 
-                            }
                             
                             // Do game end actions
                             console.log("game complete");
@@ -1089,22 +1087,90 @@ window.addEventListener('DOMContentLoaded', (e) => {
     let hard3_sol = "386754912794261835125893674617942358839175246452638791241389567978516423563427189"
     let hard4_sol = "592486173674531298381297546453619827218374965769852314145723689826945731937168452"
     
-    let fin_puz = 0; 
+    let Game1_Easy = false 
+    let Game2_Easy = false
+    let Game3_Easy = false 
+    let Game4_Easy = false 
     
+    let Game1_Med = false 
+    let Game2_Med = false 
+    let Game3_Med = false 
+    let Game4_Med = false 
+    
+    let Game1_Hard = false 
+    let Game2_Hard = false 
+    let Game3_Hard = false 
+    let Game4_Hard = false 
+    
+
     function PuzzleMaster(completed_game) {
+        if (completed_game == easy1_sol) {
+            Game1_Easy = true; 
+        }
+        else if (completed_game == easy2_sol) {
+            Game2_Easy = true;
+        }
+        else if (completed_game == easy3_sol) {
+            Game3_Easy = true;
+        }
+        else if (completed_game == easy4_sol) {
+            Game4_Easy = true;
+        }
+        else if (completed_game == med1_sol) {
+            Game1_Med = true; 
+        }
+        else if (completed_game == med2_sol) {
+            Game2_Med = true; 
+        }
+        else if (completed_game == med3_sol) {
+            Game3_Med = true;
+        }
+        else if (completed_game == med4_sol) {
+            Game4_Med = true; 
+        }
+        else if (completed_game == hard1_sol) {
+            Game1_Hard = true; 
+        }
+        else if (completed_game == hard2_sol) {
+            Game2_Hard = true;
+        }
+        else if (completed_game == hard3_sol) {
+            Game3_Hard = true;
+        }
+        else if (completed_game == hard4_sol) {
+            Game4_Hard = true;    
+        }
         
-        var puzzles_ar = [easy1_sol, easy2_sol, easy3_sol, easy3_sol, easy4_sol, med1_sol, med2_sol,
-                          med3_sol, med4_sol, hard1_sol, hard2_sol, hard3_sol, hard4_sol] 
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/Master");
+        xhr.setRequestHeader("Content-Type", "application/json");
+        const body = JSON.stringify({
+            Username: "RandyBoBandy-71",
+            Game1_Easy: Game1_Easy,
+            Game2_Easy: Game2_Easy, 
+            Game3_Easy: Game3_Easy, 
+            Game4_Easy: Game4_Easy,
+            Game1_Med: Game1_Med,
+            Game2_Med: Game2_Med,
+            Game3_Med: Game3_Med, 
+            Game4_Med: Game4_Med,
+            Game1_Hard: Game1_Hard,
+            Game2_Hard: Game2_Hard,
+            Game3_Hard: Game3_Hard,
+            Game4_Hard: Game4_Hard,
+
+        });
+        xhr.onload = () => {
+            if (xhr.readyState == 4 && xhr.status == 201) {
+                console.log(JSON.parse(xhr.responseText));
+            } else {
+                console.log(`Error: ${xhr.status}`);
+            }
+        };
+        xhr.send(body);
         
-        for (var i = 0; i <= length.puzzles_ar; i++) {
-              if (puzzles_ar[i] == completed_game) {
-                    
-              }
-            
-        } 
-       
-            
-        
+
+    
     }
     
     
