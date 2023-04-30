@@ -22,12 +22,13 @@
 
 <!-- Main content of page -->
 {% block content %} 
-<!-- If user is logged in, show modal -->
+<!-- If user is logged in, show modal window -->
 {% if show_logged_in_content %}
 <div id="loggedInModal" class="modal" onclick="hideModal(event)">
   <div class="modal-content">
     <p id="hello_user">
-        Hello, <b>FavoriteUser</b>
+        <!-- Show username of logged in user -->
+        Hello, <b>{{ session['username'] }}</b>
       <span class="material-icons-outlined">waving_hand</span>.
     </p>
     <p id="welcome_back">Welcome back!</p>
@@ -38,10 +39,12 @@
     >
       New Game
     </button>
+    {% if show_resume_game %}
     <!-- "Resume Game" button -->
     <button onclick="location.href='{{ url_for('main') }}'" class="btn">
       Resume Game
     </button>
+    {% endif %}
   </div>
 </div>
 {% endif %}
@@ -151,6 +154,9 @@
 
 {% block extra_js %} 
 {% if show_logged_in_content %}
-<script src="{{ url_for('static', filename='js/home_modal.js') }}"></script>
+<script>
+  var show_logged_in_content = {{ show_logged_in_content|tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/home-modal.js') }}"></script>
 {% endif %}
 {% endblock %}

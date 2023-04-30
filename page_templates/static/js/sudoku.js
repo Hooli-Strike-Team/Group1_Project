@@ -4,9 +4,9 @@
 
 // generalized post
 function http_post(route,json_body) {
-    const url = "https://coding.csel.io/user/matu8568/proxy/3308/"
+    //const url = "https://coding.csel.io/user/matu8568/proxy/3308/"
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", url + route);
+    xhr.open("POST", route);
     xhr.setRequestHeader("Content-Type", "application/json");
     const body = JSON.stringify(json_body);
     xhr.onload = () => {
@@ -22,9 +22,9 @@ function http_post(route,json_body) {
 
 // generalized get
 function http_get(route) {
-    const url = "https://coding.csel.io/user/matu8568/proxy/3308/"
+    //const url = "https://coding.csel.io/user/matu8568/proxy/3308/"
     const XHR = new XMLHttpRequest();
-    XHR.open("GET",  url + route);
+    XHR.open("GET",  route);
     XHR.send();
     XHR.responseType = "json";
     XHR.onload = () => {
@@ -599,7 +599,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             
                             if (difficulty_check == "Hard") { // Finish a Game on Expert - Send info to database 
                                    const xhr = new XMLHttpRequest();
-                                    xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/record");
+                                    xhr.open("POST", "record");
                                     xhr.setRequestHeader("Content-Type", "application/json");
                                     const body = JSON.stringify({
                                       Username: "RandyBoBandy-71",
@@ -620,7 +620,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             else if (difficulty_check == "Medium") {
                                 
                                    const xhr = new XMLHttpRequest();
-                                    xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/record");
+                                    xhr.open("POST", "record");
                                     xhr.setRequestHeader("Content-Type", "application/json");
                                     const body = JSON.stringify({
                                       Username: "RandyBoBandy-71",
@@ -642,7 +642,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             else if(difficulty_check == "Easy") {
                                 
                                    const xhr = new XMLHttpRequest();
-                                    xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/record");
+                                    xhr.open("POST", "record");
                                     xhr.setRequestHeader("Content-Type", "application/json");
                                     const body = JSON.stringify({
                                       Username: "RandyBoBandy-71",

@@ -47,19 +47,19 @@
     <div class="header-buttons">
       <!-- Block for extending template to display alternate buttons -->
       {% block buttons %}
-      <!-- Rules button -->
+      <!-- "Rules" button -->
       <a href="{{ url_for('show_rules') }}" class="header-button-link">
         <span class="header-button-icon material-icons-outlined">receipt_long</span>
         <span class="header-button-label">Rules</span>
       </a>
 
-      <!-- Achievements button -->
+      <!-- "Achievements" button -->
       <a href="{{ url_for('show_achievements') }}" class="header-button-link">
         <span class="header-button-icon material-icons-outlined">emoji_events</span>
         <span class="header-button-label">Achievements</span>
       </a>
 
-      <!-- Settings button -->
+      <!-- "Settings" button -->
       <div class="header-button-link">
         <span class="header-button-icon material-icons-outlined" id="settings-button">settings</span>
         <span class="header-button-label">Settings</span>
