@@ -6,26 +6,14 @@ import logging
 from flask import Flask, url_for, render_template, redirect, session, g, request, jsonify, render_template_string
 # from flask_sqlalchemy import SQLAlchemy
 DATABASE="./SQL/controller_db"
+db_path = './SQL/settings_test_db'
 
 # Create app to use in Flask application
 app = Flask(__name__)
-# Secret key for session object
+
+# Secret key for session object (testing purposes)
+# Note: this is a really bad secret key!
 app.secret_key = 'Hooli-Strike-Team'
-g
-################################################################################
-## Global flag that simulates a logged in state for testing the modal window
-## for the home page.
-##
-##   1. Set logged_in to either True or False
-##   2. Navigate to home page:
-##     a. When logged_in is set to True, the modal window is displayed
-##     b. When logged_in is set to False, no modal window is displayed
-##
-## Note: to ensure that the correct page content is displayed, re-run
-##       test_app.py whenever the value of logged_in is changed
-##
-logged_in = True
-db_path = './SQL/settings_test_db'
 
 ########## SQLAlchemy Version ####################
 # # create the extension
@@ -75,6 +63,14 @@ def post_achievements():
 @app.route('/game_state', methods=['POST', 'GET'])
 def get_game_state():
     error = None
+    if request.method == 'GET':
+        db = sqlite3.connect(db_path)
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM Games_In_Progress WHERE Username = :Username", data)
+        results = cursor.fetchall()
+        db.close()
+        return jsonify(results)
+    
     if request.method == 'POST':
         data = request.get_json()
         db = sqlite3.connect(db_path)
@@ -177,9 +173,19 @@ def prefix_url():
 
 @app.route('/')
 def home():
-    # If login has been simulated, display modal window
-    if logged_in:
-        return render_template('home.html', show_logged_in_content=True)
+    # If 'username' is in the session, display the modal window
+    if 'username' in session:
+        username = session['username']
+        db = sqlite3.connect(db_path)
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM Games_In_Progress WHERE Username = ?", (username,))
+        results = cursor.fetchall()
+        db.close()
+      
+        if results:
+          return render_template('home.html', show_logged_in_content=True, show_resume_game=True)
+        else:
+          return render_template('home.html', show_logged_in_content=True, show_resume_game=False)
     else:
         return render_template('home.html', show_logged_in_content=False)
 
@@ -241,10 +247,10 @@ def login():
                 app.logger.info(user_exists)
                 app.logger.info(username)
                 app.logger.info(password)
-                if (int(user_exists)):  # 
+                if user_exists:  # 
                     con.commit()
                     msg = "Record successfully added"
-                    return redirect('main')
+                    return redirect(url_for('main'))
                 else:
                     return render_template('login.html')
         except:
@@ -262,7 +268,10 @@ def login():
 
 
 
-
+@app.route('/logout')
+def logout():
+    session.pop('username', None)
+    return redirect(url_for('home'))
 
 
 
@@ -273,10 +282,6 @@ mistakes_counter = False
 @app.route('/main')
 def main():
     return render_template('main.html', mistakes_counter=mistakes_counter)
-
-@app.route('/difficulty')
-def show_difficulty():
-    return render_template('difficulty.html')
 
 @app.route('/rules')
 def show_rules():
@@ -434,12 +439,6 @@ def record_stats():
         db.close() 
         
     return "Achievement Stats Updated" 
-
-
-
-@app.route('/settings')
-def show_settings():
-    return render_template('settings.html')
   
 @app.route('/tutorial')
 def show_tutorial():

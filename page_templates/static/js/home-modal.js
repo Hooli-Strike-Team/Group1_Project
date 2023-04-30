@@ -1,7 +1,5 @@
-// Show modal window when page loads if user is logged in
-if (show_logged_in_content) {
-  document.getElementById('loggedInModal').style.display = 'block';
-}
+// Show modal window when page loads
+document.getElementById('loggedInModal').style.display = 'block';
 
 // Hides modal window
 function hideModal(event) {

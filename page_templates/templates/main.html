@@ -83,8 +83,9 @@
       <div class="user-info-box">
         <div id="username-wrapper">
           <i class="fa-solid fa-circle-user user-icon"></i>
-          <span class="username">Username</span>
+          <span class="username">{{ session['username'] }}</span>
         </div>
+        <a href="{{ url_for('logout') }}">Logout</a>
       </div>
 
       <!-- Right container buttons -->
