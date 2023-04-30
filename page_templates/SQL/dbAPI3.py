@@ -35,7 +35,24 @@ def create(db_filename):
 
                 """)
     
-    #Create User_Achievements Puzzle_Master Table
+    #Create User_Achievements Table
+    c.execute("""
+    
+            CREATE TABLE IF NOT EXISTS User_Achievements(
+                Username VARCHAR(32),
+                Inquisitor BOOLEAN,
+                LoneWolf BOOLEAN,
+                PuzzleMaster BOOLEAN,
+                RiskTaker BOOLEAN,
+                SpeedRunner BOOLEAN,
+                Conqueror BOOLEAN,
+                PRIMARY KEY(Username), 
+                FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
+                
+            """)
+    
+    
+    #Create Puzzle_Master Table
     c.execute("""
     
             CREATE TABLE IF NOT EXISTS Puzzle_Master(
