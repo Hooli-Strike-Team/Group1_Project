@@ -359,13 +359,21 @@ def show_achievements():
                 strategist = True
                 
                 
-#         i = 1 
-#         for master in db.execute("SELECT * FROM Puzzle_Master;"):
+        i = 1 
+        for master in db.execute("SELECT * FROM Puzzle_Master;"):
             
-#             while (i != 13) 
+            while (i != 13): 
             
-#                 if ( master[i] == 0): 
-#                     i = 15
+                if ( master[i] == 0): 
+                    puzzle_master = False
+                    print("One or More games not completed, ending loop") 
+                    i = 13
+                    
+                elif (master[i] == 1):
+                    puzzle_master = True 
+                    i = i + 1
+                    
+                
                 
                 
             
@@ -385,10 +393,8 @@ def record_stats():
         data = request.get_json()
         db = sqlite3.connect(db_path)
         with db:
-    
-            #db.execute("INSERT INTO Achievement_Stats VALUES (:Username, 0, 0, 0, 0, 0, 10000, 0);",data)
         
-            #db.execute("INSERT INTO Games_In_Progress VALUES (:Username, 0, 0, 'null', 'null', 0);",data)
+            db.execute("INSERT INTO Games_In_Progress VALUES (:Username, 0, 0, 'null', 'null', 0, 0);",data)
             
           
             db.execute('''UPDATE Games_In_Progress SET 
