@@ -283,7 +283,7 @@ def show_rules():
     return render_template('rules.html')
 
 puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
-inquisitor = False # if the user has met the requirements for the Inquisitor badge
+strategist = False # if the user has met the requirements for the Inquisitor badge
 
 @app.route('/achievements', methods=['POST', 'GET'])
 def show_achievements():
@@ -300,6 +300,7 @@ def show_achievements():
     easy = 0
     no_mistakes = 0
     speed = 0 
+    notes = 0
 
     if request.method == 'GET':
         db = sqlite3.connect(db_path)
@@ -323,6 +324,7 @@ def show_achievements():
             print("Best_Time_Hard", result[6]) 
             speed = result[6]
             
+            ## 600 seconds is the same as 10 minutes 
             if (hard >= 1 and speed <= 600):
                 speed_runner = True 
                 print('Speed_Runner', speed_runner) 
@@ -337,16 +339,22 @@ def show_achievements():
         
         for result in db.execute("SELECT * FROM Games_In_Progress;"):
             no_mistakes = result[5]
-            
+            notes = result[6] 
+            # Even though the feature is a toggle, were looking for zero click or toggles 
             if (no_mistakes < 1):
                 lone_wolf = True 
+            
+            # 6 clicks about for the fact that the feature is a toggle
+            # 6 clicks is the same as 3 full toggles 
+            if (notes >= 6):
+                strategist = True
                 
             
                     
         db.close()
     
     return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, 
-                           speed_runner=speed_runner, inquisitor=inquisitor, conqueror=conqueror)
+                           speed_runner=speed_runner, strategist=strategist, conqueror=conqueror)
    
 
 @app.route('/record', methods=['POST', 'GET'])    
@@ -368,7 +376,8 @@ def record_stats():
                         'Username' = :Username,
                         'Current_Time' = :Current_Time,
                         'Difficulty' = :Difficulty,
-                        'Mistakes_Checked' = :Mistakes_Checked 
+                        'Mistakes_Checked' = :Mistakes_Checked,
+                        'Notes_Checked' = :Notes_Checked
                         
                         ''', data)
             
@@ -376,6 +385,7 @@ def record_stats():
                     print("Difficulty", result[4])
                     print("Timer", result[2])
                     print("Mistakes Made", result[5]) 
+                    print("Notes_Checked", result[6]) 
                     
                     difficulty = result[4]
                     timer = result[2] 

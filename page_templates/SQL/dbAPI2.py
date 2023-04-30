@@ -47,7 +47,7 @@ def create(db_filename):
                 Best_Time_Easy FLOAT,
                 Best_Time_Med FLOAT,
                 Best_Time_Hard FLOAT,
-                AccountLevel FLOAT,
+                Games_Finished FLOAT,
                 PRIMARY KEY(Username),
                 FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
                 
@@ -62,7 +62,8 @@ def create(db_filename):
                 Current_Time INT,
                 Game VARCHAR(100),
                 Difficulty VARCHAR(6),
-                Mistakes_Checked INT,  
+                Mistakes_Checked INT,
+                Notes_Checked INT,
                 PRIMARY KEY(Game_ID), 
                 FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
 
