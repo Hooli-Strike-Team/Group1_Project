@@ -818,66 +818,66 @@ window.addEventListener('DOMContentLoaded', (e) => {
     
     /* Code for mistakes limit modal window */
 
-//       // Mistakes button shows users all invalid squares 
-//      mistakes_button.addEventListener('click', function (e) {
-//         invalid_tag = "invalid" 
-//         e.target.classList.add('active');
-//         game1.board_state(sudoku_squares, invalid_tag)
-//         mistakes_mode = !mistakes_mode;
+      // Mistakes button shows users all invalid squares 
+     mistakes_button.addEventListener('click', function (e) {
+        invalid_tag = "invalid" 
+        e.target.classList.add('active');
+        game1.board_state(sudoku_squares, invalid_tag)
+        mistakes_mode = !mistakes_mode;
 
-//         setTimeout(function () {
-//             e.target.classList.remove('active');
-//             mistakes_mode = !mistakes_mode;
+        setTimeout(function () {
+            e.target.classList.remove('active');
+            mistakes_mode = !mistakes_mode;
 
-//         }, 100);
-//     });
+        }, 100);
+    });
 
-//     var m = 0;
+    var m = 0;
 
-//     // Increment m by 1 each time the "Mistakes" button is clicked
-//     mistakes_button.addEventListener('click', function (e) {
-//         m = m + 1
+    // Increment m by 1 each time the "Mistakes" button is clicked
+    mistakes_button.addEventListener('click', function (e) {
+        m = m + 1
 
-//         if ( m < 10 ) {
-//             document.getElementById('strike-counter').innerHTML = m + " / 10";
-//         }
-//         else if ( m == 10 ) {
-//             document.getElementById('strike-counter').innerHTML = m + " / 10";
+        if ( m < 10 ) {
+            document.getElementById('strike-counter').innerHTML = m + " / 10";
+        }
+        else if ( m == 10 ) {
+            document.getElementById('strike-counter').innerHTML = m + " / 10";
 
-//             rendermodal()
-//         }
-//     })
+            rendermodal()
+        }
+    })
 
-//     // Render modal window for the mistakes counter warning     
-//     function rendermodal(event) {
-//         // Show modal window when page loads
-//         var modal_mistakes = document.getElementById('mistake-limit-model');
-//         modal_mistakes.style.display = 'block';
+    // Render modal window for the mistakes counter warning     
+    function rendermodal(event) {
+        // Show modal window when page loads
+        var modal_mistakes = document.getElementById('mistake-limit-model');
+        modal_mistakes.style.display = 'block';
 
-//         modal_mistakes.addEventListener('click', hidemistakes)
-//     }
+        modal_mistakes.addEventListener('click', hidemistakes)
+    }
 
-//     // Code for clicking out of mistakes modal window
-//     function hidemistakes(event) {
-//         // Get modal window element by ID
-//         var modal_mistakes = document.getElementById('mistake-limit-model');
-//         // Get content of modal window
-//         var content_mistakes = document.querySelector('.modal-mistakes-content');
+    // Code for clicking out of mistakes modal window
+    function hidemistakes(event) {
+        // Get modal window element by ID
+        var modal_mistakes = document.getElementById('mistake-limit-model');
+        // Get content of modal window
+        var content_mistakes = document.querySelector('.modal-mistakes-content');
 
-//         // Check if element that is clicked on is either modal window background 
-//         // or not a child of content
-//         if ( event.target == modal_mistakes || !content_mistakes.contains(event.target) ) {
-//             // Hide modal window
-//             modal_mistakes.style.display = 'none';
-//             m = 0
+        // Check if element that is clicked on is either modal window background 
+        // or not a child of content
+        if ( event.target == modal_mistakes || !content_mistakes.contains(event.target) ) {
+            // Hide modal window
+            modal_mistakes.style.display = 'none';
+            m = 0
 
-//             // Reset mistakes counter
-//             document.getElementById('strike-counter').innerHTML = " 0 / 10";
-//             // Taker users back to New Game Difficulty Menu
-//             openModal() 
+            // Reset mistakes counter
+            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            // Taker users back to New Game Difficulty Menu
+            openModal() 
 
-//         }
-//     }
+        }
+    }
     /* Code for End of Game Notification Modal Window */
     
     // Render modal window for completed game

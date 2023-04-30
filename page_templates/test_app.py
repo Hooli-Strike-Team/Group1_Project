@@ -261,11 +261,6 @@ def login():
 ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 
 
-
-
-
-
-
 #testing for the Mistakes counter slider in settings 
 mistakes_counter = False 
 
@@ -283,7 +278,6 @@ def show_rules():
     return render_template('rules.html')
 
 puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
-strategist = False # if the user has met the requirements for the Inquisitor badge
 
 @app.route('/achievements', methods=['POST', 'GET'])
 def show_achievements():
@@ -293,6 +287,7 @@ def show_achievements():
     speed_runner = False # if the user has met the requirements for the Speed Runner badge
     conqueror = False # if the user has met the requirements for the Conqueror badge
     lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
+    strategist = False # if the user has met the requirements for the Inquisitor badge
 
 
     hard = 0
