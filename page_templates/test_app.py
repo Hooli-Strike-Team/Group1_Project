@@ -210,7 +210,7 @@ def create_account():
             session['lastname'] = request.form['lname']
             email = str(request.form['email']) 
             session['email'] = request.form['email']
-            with sqlite3.connect(DATABASE) as con:  # db connection object
+            with sqlite3.connect(db_path) as con:  # db connection object
                 cur = con.cursor()
                 cur.execute("""
                 INSERT INTO User_Account
@@ -236,7 +236,7 @@ def login():
         try:
             username = str(request.form['uname_si'])
             password = str(request.form['psw_si'])
-            with sqlite3.connect(DATABASE) as con:  # db connection object
+            with sqlite3.connect(db_path) as con:  # db connection object
                 cur = con.cursor()    
                 query = cur.execute("""
                 SELECT COUNT(*)
