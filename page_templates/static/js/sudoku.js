@@ -452,10 +452,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const settings_mistakes = document.getElementById('settings-mistakes');
     
     // *************************** FIX *************************** 
-    // Pull Data from Database 
-    /*
-    
-    */
+    // Pull Session Data
+    console.log("sesssion data", sessionUsername)
     // *************************** FIX ***************************
     
     const mistakes_button = document.getElementById('mistakes-button');

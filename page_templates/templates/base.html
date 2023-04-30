@@ -22,7 +22,10 @@
 
   <!-- Material Icons stylesheet (icons) -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" />
-
+    
+  <!-- Load settings-modal.js for Main page -->
+  <script>const sessionUsername = "{{ session['username'] }}";</script>
+    
   <!-- Script tag with block for JavaScript source and script content -->
   <script {% block js_source %}src="{{ url_for('static', filename='js/settings-modal.js') }}" {% endblock %}></script>
 
