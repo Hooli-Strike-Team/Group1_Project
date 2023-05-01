@@ -212,6 +212,8 @@ def create_account():
             session['email'] = request.form['email']
             with sqlite3.connect(db_path) as con:  # db connection object
                 cur = con.cursor()
+                ####  NEEDS TO BE TURNED ON FOR EVERY CONNECTION INVOLVING INSERT/DELETE ####
+                cur.execute("PRAGMA foreign_keys = ON;") 
                 cur.execute("""
                 INSERT INTO User_Account
                 (Username,Password,First_Name,Last_Name,Email) 
