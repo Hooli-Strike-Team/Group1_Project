@@ -4,6 +4,7 @@ import sqlite3
 import logging
 
 from flask import Flask, url_for, render_template, redirect, session, g, request, jsonify, render_template_string
+from functools import wraps
 # from flask_sqlalchemy import SQLAlchemy
 DATABASE="./SQL/controller_db"
 db_path = './SQL/settings_test_db'
@@ -45,6 +46,15 @@ handler = logging.FileHandler("test.log")  # Create the file logger
 app.logger.addHandler(handler)             # Add it to the built-in logger
 app.logger.setLevel(logging.DEBUG)         # Set the log level to debug
     
+# Custom decorator to restrict access to specific routes
+def login_required(f):
+    @wraps(f)
+    def require_login(*args, **kwargs):
+        if 'username' not in session:
+            return redirect(url_for('login'))
+        return f(*args, **kwargs)
+    return require_login
+  
 @app.route('/post_achievements', methods=['POST', 'GET'])
 def post_achievements():
     error = None
@@ -284,6 +294,7 @@ mistakes_counter = False
 
 
 @app.route('/main')
+@login_required
 def main():
     return render_template('main.html', mistakes_counter=mistakes_counter)
 
@@ -294,6 +305,7 @@ def show_rules():
 
 
 @app.route('/achievements', methods=['POST', 'GET'])
+@login_required
 def show_achievements():
     ## Pull from database to set flags
     ## Select Query
