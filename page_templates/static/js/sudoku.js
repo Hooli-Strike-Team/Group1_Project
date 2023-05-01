@@ -613,7 +613,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                     xhr.open("POST", "record");
                                     xhr.setRequestHeader("Content-Type", "application/json");
                                     const body = JSON.stringify({
-                                      Username: "RandyBoBandy-71",
+                                      Username: session['username'],
                                       Current_Time: end,
                                       Difficulty: "Hard",
                                       Mistakes_Checked: mistakes_count,
@@ -636,7 +636,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                     xhr.open("POST", "record");
                                     xhr.setRequestHeader("Content-Type", "application/json");
                                     const body = JSON.stringify({
-                                      Username: "RandyBoBandy-71",
+                                      Username: session['username'],
                                       Current_Time: end,
                                       Difficulty: "Medium", 
                                       Mistakes_Checked: mistakes_count,
@@ -660,7 +660,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                     xhr.open("POST", "record");
                                     xhr.setRequestHeader("Content-Type", "application/json");
                                     const body = JSON.stringify({
-                                      Username: "RandyBoBandy-71",
+                                      Username: session['username'],
                                       Current_Time: end,
                                       Difficulty: "Easy", 
                                       Mistakes_Checked: mistakes_count,
@@ -1167,7 +1167,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         xhr.open("POST", "Master");
         xhr.setRequestHeader("Content-Type", "application/json");
         const body = JSON.stringify({
-            Username: "RandyBoBandy-71",
+            Username: session['username'],
             Game1_Easy: json_data[0][1],
             Game2_Easy: json_data[0][2], 
             Game3_Easy: json_data[0][3], 
