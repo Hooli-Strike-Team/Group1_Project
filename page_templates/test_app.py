@@ -249,7 +249,7 @@ def login():
                 app.logger.info(user_exists)
                 app.logger.info(username)
                 app.logger.info(password)
-                if user_exists:  # 
+                if (int(user_exists)):  # 
                     con.commit()
                     msg = "Record successfully added"
                     return redirect(url_for('main'))
