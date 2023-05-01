@@ -6,7 +6,7 @@ import logging
 from flask import Flask, url_for, render_template, redirect, session, g, request, jsonify, render_template_string
 # from flask_sqlalchemy import SQLAlchemy
 DATABASE="./SQL/controller_db"
-db_path = './SQL/setting_test_db'
+db_path = './SQL/settings_test_db'
 
 # Create app to use in Flask application
 app = Flask(__name__)
@@ -245,7 +245,7 @@ def login():
                 FROM User_Account
                 WHERE Username = ? AND Password = ?;
                 """, (username, password))
-                user_exists = query.fetchone()
+                user_exists = query.fetchone()[0]
                 app.logger.info(user_exists)
                 app.logger.info(username)
                 app.logger.info(password)
