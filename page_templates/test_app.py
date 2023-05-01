@@ -262,6 +262,7 @@ def login():
                 if (int(user_exists)):  # 
                     con.commit()
                     msg = "Record successfully added"
+                    session['username'] = request.form['uname_si']
                     return redirect(url_for('main'))
                 else:
                     return render_template('login.html')
