@@ -19,6 +19,7 @@ def create(db_filename):
                 Last_Name VARCHAR(50),
                 Email VARCHAR(320) UNIQUE, 
                 PRIMARY KEY(Username))""")
+
     
     
     #Create User_Achievements Table
