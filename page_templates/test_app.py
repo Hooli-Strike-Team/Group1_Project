@@ -6,7 +6,7 @@ import logging
 from flask import Flask, url_for, render_template, redirect, session, g, request, jsonify, render_template_string
 # from flask_sqlalchemy import SQLAlchemy
 DATABASE="./SQL/controller_db"
-db_path = './SQL/settings_test_db'
+db_path = './SQL/setting_test_db'
 
 # Create app to use in Flask application
 app = Flask(__name__)
@@ -303,84 +303,49 @@ def show_achievements():
     lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
     strategist = False # if the user has met the requirements for the Inquisitor badge
     puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
-
-
-    hard = 0
-    med = 0 
-    easy = 0
-    no_mistakes = 0
-    speed = 0 
-    notes = 0
     
+    risk_flag = 0
+    speed_flag = 0 
+    wolf_flag = 0
+    strat_flag = 0 
+    master_flag = 0
+    conqueror_flag = 0
+    
+    error = None
 
     if request.method == 'GET':
         db = sqlite3.connect(db_path)
+        with db:
+            for result in db.execute("SELECT * FROM User_Achievements;"):
+                strat_flag = result[1] 
+                wolf_flag = result[2] 
+                master_flag = result[3] 
+                risk_flag = result[4] 
+                speed_flag = result[5] 
+                conqueror_flag = result[6] 
+                print(result) 
                 
-        for result in db.execute("SELECT * FROM Achievement_Stats;"):
-            print("EasyGamesCompleted", result[1]) 
-            print("MedGamesCompleted", result[2])     
-            print("HardGamesCompleted", result[3])
-            easy = result[1]
-            med = result[2]
-            hard = result[3]
-             
-            # # If Users completed at least three hard games, unlock Risk Taker Badge # #      
-            if (hard >= 3): 
-                risk_taker = True 
-                print("Risk_Taker",type(risk_taker))
-                print("Result_1",hard)
-                
-            # # If User beats a hard game under 10 minutes Speed_Runner is unlocked 
-            
-            print("Best_Time_Hard", result[6]) 
-            speed = result[6]
-            
-            ## 600 seconds is the same as 10 minutes 
-            if (hard >= 1 and speed <= 600):
-                speed_runner = True 
-                print('Speed_Runner', speed_runner) 
-                
-                
-            # # If user completes one puzzle on each difficulty # # 
-            
-            if (1 <= hard and 1 <= med and 1 <= hard):
-                conqueror = True 
-                print("Conqueror", conqueror) 
-           
-        
-        for result in db.execute("SELECT * FROM Games_In_Progress;"):
-            no_mistakes = result[5]
-            notes = result[6] 
-            # Even though the feature is a toggle, were looking for zero click or toggles 
-            if (no_mistakes < 1):
-                lone_wolf = True 
-            
-            # 6 clicks about for the fact that the feature is a toggle
-            # 6 clicks is the same as 3 full toggles 
-            if (notes >= 6):
+            if (strat_flag == 1):
                 strategist = True
+                print("strategist", strategist) 
+            if (speed_flag == 1):
+                speed_runner = True
+                print("Speed_Runner", speed_runner) 
+            if (wolf_flag == 1):
+                lone_wolf = True
+                print("Lone_Wolf", lone_wolf) 
+            if(master_flag == 1): 
+                puzzle_master = True
+                print("Puzzle_Master", puzzle_master) 
+            if(risk_flag == 1):
+                risk_taker = True 
+                print("Risk_Taker", risk_taker) 
+            if(conqueror_flag == 1):
+                conqueror = True
+                print("Conqueror", conqueror) 
+        db.close() 
                 
-                
-        i = 1 
-        for master in db.execute("SELECT * FROM Puzzle_Master;"):
-            
-            while (i != 13): 
-            
-                if ( master[i] == 0): 
-                    puzzle_master = False
-                    print("One or More games not completed, ending loop") 
-                    i = 13
-                    
-                elif (master[i] == 1):
-                    puzzle_master = True 
-                    i = i + 1
-                    
-                
-                
-                
-            
-                    
-        db.close()
+    
     
     return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, 
                            speed_runner=speed_runner, strategist=strategist, conqueror=conqueror)
@@ -390,13 +355,20 @@ def show_achievements():
 def record_stats():
     difficulty = ""
     timer = 0 
-    best_time_hard = 0
+    best_time_hard = 50000 # TODO: CHANGE VALUE
+    
+    hard = 0
+    med = 0 
+    easy = 0
+    no_mistakes = 0
+    speed = 0 
+    notes = 0
+    
     if request.method == 'POST':
         data = request.get_json()
         db = sqlite3.connect(db_path)
         with db:
-        
-            db.execute("INSERT INTO Games_In_Progress VALUES (:Username, 0, 0, 'null', 'null', 0, 0);",data)
+    
             
           
             db.execute('''UPDATE Games_In_Progress SET 
@@ -425,23 +397,19 @@ def record_stats():
                         ''') 
 
 
-
                 for result in db.execute("SELECT * FROM Achievement_Stats;"):
                         print("Hard Games Completed", result[3]) 
-                        best_time_hard = result[6]
+
     
         
             # # Update Best_Time_Hard # #
-            
+            ## TODO: if None insert, else if newtime < oldtime insert ## 
+            ## Matt is going to initialize "Best_Time" to none. 
                 if (best_time_hard > timer):
 
                     db.execute('''
                             UPDATE Achievement_Stats SET Best_Time_Hard = :Current_Time; 
                             ''', data)
-
-                    for result in db.execute("SELECT * FROM Achievement_Stats;"):
-                            print("Best_Time_Hard_Updated", result[6])
-
 
                 elif ( best_time_hard < timer):
                     print("Current time is not better than best time on hard")
@@ -453,8 +421,7 @@ def record_stats():
                         UPDATE Achievement_Stats SET MedGamesCompleted = MedGamesCompleted + 1 
                         ''') 
         
-                for result in db.execute("SELECT * FROM Achievement_Stats;"):
-                        print("Medium Games Completed", result[2]) 
+                
                     
            # Update Games completed on Easy          
             elif difficulty == "Easy":
@@ -462,10 +429,77 @@ def record_stats():
                         UPDATE Achievement_Stats SET EasyGamesCompleted = EasyGamesCompleted + 1 
                         ''') 
         
-                for result in db.execute("SELECT * FROM Achievement_Stats;"):
-                        print("Easy Games Completed", result[1]) 
+                
                                     
-        
+
+          ####### LOGIC #######              
+                        
+            for result in db.execute("SELECT * FROM Achievement_Stats;"):
+                print("EasyGamesCompleted", result[1]) 
+                print("MedGamesCompleted", result[2])     
+                print("HardGamesCompleted", result[3])
+                easy = result[1]
+                med = result[2]
+                hard = result[3]
+
+                # # If Users completed at least three hard games, unlock Risk Taker Badge # #      
+                if (hard >= 3): 
+                    db.execute('''
+                        UPDATE User_Achievements SET RiskTaker = 1 
+                        ''') 
+                    
+                    for result in db.execute("SELECT * FROM User_Achievements;"):
+                        print("Risk_Taker", result[4]) 
+                        
+
+                # # If User beats a hard game under 10 minutes Speed_Runner is unlocked 
+
+                print("Best_Time_Hard", result[6]) 
+                speed = result[6]
+
+                ## 600 seconds is the same as 10 minutes 
+                if (hard >= 1 and speed <= 600):
+                    db.execute('''
+                        UPDATE User_Achievements SET SpeedRunner = 1 
+                        ''') 
+                    for result in db.execute("SELECT * FROM User_Achievements;"):
+                        print("Speed Runner", result[5]) 
+                    
+
+                # # If user completes one puzzle on each difficulty # # 
+
+                if (1 <= hard and 1 <= med and 1 <= hard):
+                    db.execute('''
+                        UPDATE User_Achievements SET Conqueror = 1 
+                        ''') 
+                    for result in db.execute("SELECT * FROM User_Achievements;"):
+                        print("Conqueror", result[6]) 
+                    
+
+
+            for result in db.execute("SELECT * FROM Games_In_Progress;"):
+                no_mistakes = result[5]
+                notes = result[6] 
+                # Even though the feature is a toggle, were looking for zero click or toggles 
+                if (no_mistakes < 1):
+                    db.execute('''
+                        UPDATE User_Achievements SET LoneWolf = 1 
+                        ''') 
+                    for result in db.execute("SELECT * FROM User_Achievements;"):
+                        print("LoneWolf", result[2]) 
+                    
+
+                # 6 clicks about for the fact that the feature is a toggle
+                # 6 clicks is the same as 3 full toggles 
+                if (notes >= 6):
+                    db.execute('''
+                        UPDATE User_Achievements SET Inquisitor = 1 
+                        ''') 
+                    for result in db.execute("SELECT * FROM User_Achievements;"):
+                        print("strategist", result[1]) 
+                    
+
+           
         
         db.commit()    
         db.close() 
@@ -473,8 +507,23 @@ def record_stats():
     return "Achievement Stats Updated" 
 
 
-@app.route('/Master' , methods=['POST', 'GET'])
+@app.route('/Master', methods=['POST', 'GET'])
 def Puzzle_Master_Badge():
+    error = None
+    puzzle_master = 0
+
+    if request.method == 'GET':
+        db = sqlite3.connect(db_path)
+        results = []
+        with db: 
+            for result in db.execute("SELECT * FROM Puzzle_Master;"):
+                results.append(result) 
+                print("result of Puzzle Master", results) 
+            
+            
+            
+        db.close() 
+        return jsonify(results)
     
     if request.method == 'POST':
         data = request.get_json()
@@ -496,13 +545,30 @@ def Puzzle_Master_Badge():
                         'Game3_Hard' = :Game3_Hard, 
                         'Game4_Hard' = :Game4_Hard
                         ''', data)
-            for result in db.execute("SELECT * FROM Puzzle_Master;"):
-                        print(result) 
+        
+            i = 1 
+            for master in db.execute("SELECT * FROM Puzzle_Master;"):
+                 print(master) 
+                 while (i < 13):
+                    if(master[i] == 1): 
+                        puzzle_master = puzzle_master + 1 
+                    
+                    i = i + 1 
+                   
+                
+                 if (puzzle_master == 12): 
+                    db.execute('''
+                        UPDATE User_Achievements SET PuzzleMaster = 1 
+                        ''') 
+                    for result in db.execute("SELECT * FROM User_Achievements;"):
+                        print("strategist", result[3]) 
             
         db.commit()
         db.close()
     
-    return "Puzzle Master Achievement Updated" 
+        return "Puzzle Master Achievement Updated" 
+    
+    return "Nothing"
 
 
 
