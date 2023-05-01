@@ -20,20 +20,6 @@ def create(db_filename):
                 Email VARCHAR(320) UNIQUE, 
                 PRIMARY KEY(Username))""")
     
-        
-    c.execute("""
-            DROP TRIGGER IF EXISTS Create_User_Data;
-            CREATE TRIGGER Create_User_Data
-            AFTER INSERT ON User_Account
-            FOR EACH ROW
-            BEGIN
-                INSERT INTO Puzzle_Master VALUES (NEW.Username, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,);
-                                            
-                INSERT INTO Achievement_Stats VALUES (NEW.Username, 0, 0, 0, 0, 0, 0);
-                                                
-                INSERT INTO Games_In_Progress VALUES (NEW.Username, 1, 0, 0, 0, 0, 0);
-
-                """)
     
     #Create User_Achievements Table
     c.execute("""
@@ -47,8 +33,10 @@ def create(db_filename):
                 SpeedRunner BOOLEAN,
                 Conqueror BOOLEAN,
                 PRIMARY KEY(Username), 
-                FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
-                
+                CONSTRAINT fk_user_achievements 
+                    FOREIGN KEY(Username) REFERENCES User_Account(Username)
+                    ON DELETE CASCADE)
+                    
             """)
     
     
@@ -70,13 +58,15 @@ def create(db_filename):
                 Game3_Hard BOOLEAN,
                 Game4_Hard BOOLEAN,
                 PRIMARY KEY(Username), 
-                FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
-                
+                CONSTRAINT fk_puzzle_master
+                    FOREIGN KEY(Username) REFERENCES User_Account(Username)
+                    ON DELETE CASCADE)
+                    
             """)
     
     #Create Achievement_Stats Table 
     c.execute("""
-            
+    
             CREATE TABLE IF NOT EXISTS Achievement_Stats(
                 Username VARCHAR(32),
                 EasyGamesCompleted INT,
@@ -86,8 +76,10 @@ def create(db_filename):
                 Best_Time_Med FLOAT,
                 Best_Time_Hard FLOAT,
                 PRIMARY KEY(Username),
-                FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
-                
+                CONSTRAINT fk_achievement_stats
+                    FOREIGN KEY(Username) REFERENCES User_Account(Username)
+                    ON DELETE CASCADE)
+                    
             """)
     
     #Create Games_In_Progress Table
@@ -101,8 +93,10 @@ def create(db_filename):
                 Difficulty VARCHAR(6),
                 Mistakes_Checked INT,
                 Notes_Checked INT,
-                PRIMARY KEY(Game_ID), 
-                FOREIGN KEY(Username) REFERENCES User_Account(Username)) 
+                PRIMARY KEY(Username), 
+                CONSTRAINT fk_games_in_progress
+                    FOREIGN KEY(Username) REFERENCES User_Account(Username)
+                    ON DELETE CASCADE)
 
             """)
     
@@ -114,7 +108,9 @@ def create(db_filename):
                 Show_Clock BOOLEAN,
                 Show_Mistakes_Counter BOOLEAN,
                 PRIMARY KEY(Username), 
-                FOREIGN KEY(Username) REFERENCES Games_In_Progress(Username)) 
+                CONSTRAINT fk_game_settings
+                    FOREIGN KEY(Username) REFERENCES User_Account(Username)
+                    ON DELETE CASCADE)
             
             """)
     
