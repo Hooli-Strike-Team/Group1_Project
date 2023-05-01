@@ -75,9 +75,9 @@ def create(db_filename):
                 EasyGamesCompleted INT,
                 MedGamesCompleted INT,
                 HardGamesCompleted INT,
-                Best_Time_Easy FLOAT,
-                Best_Time_Med FLOAT,
-                Best_Time_Hard FLOAT,
+                Best_Time_Easy INT,
+                Best_Time_Med INT,
+                Best_Time_Hard INT,
                 PRIMARY KEY(Username),
                 CONSTRAINT fk_achievement_stats
                     FOREIGN KEY(Username) REFERENCES User_Account(Username)
@@ -128,7 +128,7 @@ def create(db_filename):
         BEGIN
             INSERT INTO User_Achievements VALUES (NEW.Username, 0, 0, 0, 0, 0, 0);
             INSERT INTO Puzzle_Master VALUES(NEW.Username, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-            INSERT INTO Achievement_Stats VALUES (NEW.Username, 0, 0, 0, 0, 0, 0);
+            INSERT INTO Achievement_Stats VALUES (NEW.Username, 0, 0, 0, NULL, NULL, NULL);
             INSERT INTO Games_In_Progress VALUES (NEW.Username, 1, 0, 0, 0, 0, 0, 0);
             INSERT INTO Game_Settings VALUES (NEW.Username, 1, 0);
         END;
@@ -186,3 +186,5 @@ def delete_tables(db_filename):
         c.execute("DROP TABLE IF EXISTS Game_Settings;")
         conn.commit()
         
+def test_func2():
+    return
