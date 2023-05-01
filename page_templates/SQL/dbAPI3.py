@@ -21,19 +21,19 @@ def create(db_filename):
                 PRIMARY KEY(Username))""")
     
         
-    c.execute("""
-            DROP TRIGGER IF EXISTS Create_User_Data;
-            CREATE TRIGGER Create_User_Data
-            AFTER INSERT ON User_Account
-            FOR EACH ROW
-            BEGIN
-                INSERT INTO Puzzle_Master VALUES (NEW.Username, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,);
+#     c.execute("""
+#             DROP TRIGGER IF EXISTS Create_User_Data;
+#             CREATE TRIGGER Create_User_Data
+#             AFTER INSERT ON User_Account
+#             FOR EACH ROW
+#             BEGIN
+#                 INSERT INTO Puzzle_Master VALUES (NEW.Username, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,);
                                             
-                INSERT INTO Achievement_Stats VALUES (NEW.Username, 0, 0, 0, 0, 0, 0);
+#                 INSERT INTO Achievement_Stats VALUES (NEW.Username, 0, 0, 0, 0, 0, 0);
                                                 
-                INSERT INTO Games_In_Progress VALUES (NEW.Username, 1, 0, 0, 0, 0, 0);
+#                 INSERT INTO Games_In_Progress VALUES (NEW.Username, 1, 0, 0, 0, 0, 0);
 
-                """)
+#                 """)
     
     #Create User_Achievements Table
     c.execute("""
