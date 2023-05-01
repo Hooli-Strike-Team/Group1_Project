@@ -602,7 +602,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             timer.stop(); //ends timer at game completion
                             end = timer.end() // Send to Current_Time SQL 
                             console.log("Timer Ended At:", end) 
-                            console.log("The difficulty was", difficulty_check) 
                             // *************************** TODO  ***************************
                             // run update query for game completion at difficulty
                                 // POST to route, run update query
@@ -1098,88 +1097,77 @@ window.addEventListener('DOMContentLoaded', (e) => {
     let hard3_sol = "386754912794261835125893674617942358839175246452638791241389567978516423563427189"
     let hard4_sol = "592486173674531298381297546453619827218374965769852314145723689826945731937168452"
     
+    let Game1_Easy = false 
+    let Game2_Easy = false
+    let Game3_Easy = false 
+    let Game4_Easy = false 
     
-    async function http_get_master(route) {
-        
-
-        try {
-            const response = await fetch(route, {
-                method: 'GET',
-            });
-            const data = await response.json();
-            console.log(data) 
-            return data;
-        } catch (error) {
-            console.error(error);
-        }
-    }
+    let Game1_Med = false 
+    let Game2_Med = false 
+    let Game3_Med = false 
+    let Game4_Med = false 
+    
+    let Game1_Hard = false 
+    let Game2_Hard = false 
+    let Game3_Hard = false 
+    let Game4_Hard = false 
     
 
-
-    async function PuzzleMaster(completed_game) {
-        
-        const json_data = await http_get_master("Master");
-        console.log("Data in other function", json_data) 
-        
-            
+    function PuzzleMaster(completed_game) {
         if (completed_game == easy1_sol) {
-            json_data[0][1] = 1; 
+            Game1_Easy = true; 
         }
         else if (completed_game == easy2_sol) {
-            json_data[0][2] = 1;
+            Game2_Easy = true;
         }
         else if (completed_game == easy3_sol) {
-            json_data[0][3] = 1;
+            Game3_Easy = true;
         }
         else if (completed_game == easy4_sol) {
-            json_data[0][4] = 1;
+            Game4_Easy = true;
         }
         else if (completed_game == med1_sol) {
-            json_data[0][5] = 1; 
+            Game1_Med = true; 
         }
         else if (completed_game == med2_sol) {
-            json_data[0][6] = 1; 
+            Game2_Med = true; 
         }
         else if (completed_game == med3_sol) {
-            json_data[0][7] = 1;
+            Game3_Med = true;
         }
         else if (completed_game == med4_sol) {
-            json_data[0][8] = 1; 
+            Game4_Med = true; 
         }
         else if (completed_game == hard1_sol) {
-            json_data[0][9] = 1; 
-            console.log("Hard Puzzle one", json_data[0][9])
+            Game1_Hard = true; 
         }
         else if (completed_game == hard2_sol) {
-            json_data[0][10] = 1;
+            Game2_Hard = true;
         }
         else if (completed_game == hard3_sol) {
-            json_data[0][11] = 1;
+            Game3_Hard = true;
         }
         else if (completed_game == hard4_sol) {
-            json_data[0][12] = 1;    
+            Game4_Hard = true;    
         }
-       
-
-        
         
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", "Master");
+        xhr.open("POST", "https://coding.csel.io/user/pasc9915/proxy/3308/Master");
         xhr.setRequestHeader("Content-Type", "application/json");
         const body = JSON.stringify({
             Username: "RandyBoBandy-71",
-            Game1_Easy: json_data[0][1],
-            Game2_Easy: json_data[0][2], 
-            Game3_Easy: json_data[0][3], 
-            Game4_Easy: json_data[0][4],
-            Game1_Med: json_data[0][5],
-            Game2_Med: json_data[0][6],
-            Game3_Med: json_data[0][7], 
-            Game4_Med: json_data[0][8],
-            Game1_Hard: json_data[0][9],
-            Game2_Hard: json_data[0][10],
-            Game3_Hard: json_data[0][11],
-            Game4_Hard: json_data[0][12],
+            Game1_Easy: Game1_Easy,
+            Game2_Easy: Game2_Easy, 
+            Game3_Easy: Game3_Easy, 
+            Game4_Easy: Game4_Easy,
+            Game1_Med: Game1_Med,
+            Game2_Med: Game2_Med,
+            Game3_Med: Game3_Med, 
+            Game4_Med: Game4_Med,
+            Game1_Hard: Game1_Hard,
+            Game2_Hard: Game2_Hard,
+            Game3_Hard: Game3_Hard,
+            Game4_Hard: Game4_Hard,
 
         });
         xhr.onload = () => {

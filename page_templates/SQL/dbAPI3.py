@@ -21,7 +21,6 @@ def create(db_filename):
                 PRIMARY KEY(Username))""")
 
     
-    
     #Create User_Achievements Table
     c.execute("""
     
