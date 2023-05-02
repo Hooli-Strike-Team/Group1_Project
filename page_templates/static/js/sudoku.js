@@ -58,6 +58,27 @@ function get_settings_values(username) {
     // does there need to be a return if error?
 }
 
+async function http_get_saved(route) {
+
+
+    try {
+        const response = await fetch(route, {
+            method: 'GET',
+        });
+        const data = await response.json();
+        console.log(data) 
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+async function loadGameData(username) {
+    const game_json_data = await http_get_saved('game_state/'+username)
+    console.log('inside loadGame', game_json_data)
+    return game_json_data
+}
+
 // ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 // #    Sudoku Board Functions                              ##
 // ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
@@ -114,6 +135,29 @@ class Sudoku {
         }
         */
     }
+    
+    set_original_board_from_string(board_string) {
+        if ( ! board_string ) {
+            return false;
+        }
+
+        if ( ! board_string.match(/^[0-9*_.]{81}$/m) ) {
+            return false;
+        }
+
+        // TODO: foreach getBoardSquares
+        for ( let row = 0; row <= 8; row++ ) {
+            for ( let column = 0; column <= 8; column++ ) {
+                let char = board_string.charAt(row * 9 + column);
+                if ( char == '*' || char == '_' || char == '.' ) {
+                    char = 0;
+                }
+                this.original_board[row][column] = parseInt(char);
+            }
+        }
+
+        return true;
+    }
 
     get_board() {
         return this.board;
@@ -152,7 +196,7 @@ class Sudoku {
         this.board = Helper.clone(this.original_board);
     }
 
-    make_move(row, col, value) {
+    make_move(row, col, value, timer, difficulty) {
         if ( value === '' ) {
             value = 0;
         }
@@ -160,40 +204,12 @@ class Sudoku {
         
         var game_state = this.get_string();
         var original_board = this.get_original_board_string();
-        console.log(game_state, original_board)
+        // doesn't actually stop timer, just retrieves time
+        var current_time = timer.end()
         
-        var game_json = [{'Username':sessionUsername,'Game_ID':'1234','Current_Time':'1234','Game':game_state, 'Original_Game':original_board,'Difficulty':'Expert'}]
-        http_post('game_state/'+sessionUsername,game_json)
         // send to database
-        /*
-        Columns of Games_In_Progress
-		 (0, 'Username', 'VARCHAR(32)', 0, None, 0)
-		 (1, 'Game_ID', 'INT', 0, None, 1)
-		 (2, 'Current_Time', 'TEXT', 0, None, 0)
-		 (3, 'Game', 'BLOB', 0, None, 0)
-		 (4, 'Difficulty', 'VARCHAR(6)', 0, None, 0)
-         */
-        /*
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "https://coding.csel.io/user/matu8568/proxy/3308/game_state");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        const body = JSON.stringify({
-          User_Account: username,
-          Game_ID: gameid,
-          Current_Time: current_time,
-          Game: game_state,
-          Difficulty: current_difficultyf
-        });
-        xhr.onload = () => {
-          if (xhr.readyState == 4 && xhr.status == 201) {
-            console.log(JSON.parse(xhr.responseText));
-          } else {
-            console.log(`Error: ${xhr.status}`);
-          }
-        };
-        xhr.send(body);
-        */
-
+        var game_json = [{'Update_Type':'Current Game','Username':sessionUsername,'Game_ID':1,'Current_Time':current_time,'Game':game_state, 'Original_Game':original_board,'Difficulty':difficulty}]
+        http_post('game_state/'+sessionUsername,game_json)
     }
 
     add_note(inputEl, newDigit) {
@@ -392,6 +408,7 @@ class SudokuDOM {
         change_square_color = true
     ) {
         const board = sudoku_object.get_board();
+        console.log(board)
         this.clear_board(sudoku_squares, change_square_color);
         for ( let row = 0; row <= 8; row++ ) {
             for ( let col = 0; col <= 8; col++ ) {
@@ -409,8 +426,37 @@ class SudokuDOM {
                 }
             }
         }
-        //SudokuDOM.display_string(sudoku_object, string_box, sudoku_wiki_link);
     }
+    
+    static display_in_progress_board(
+    sudoku_object,
+    sudoku_squares,
+    change_square_color = true,
+    ) {
+        const board = sudoku_object.get_board();
+        const original_board = sudoku_object.get_original_board();
+        console.log(board)
+        console.log(original_board)
+        this.clear_board(sudoku_squares, change_square_color);
+        for ( let row = 0; row <= 8; row++ ) {
+            for ( let col = 0; col <= 8; col++ ) {
+                const input = sudoku_squares[row][col];
+                input.classList.remove('hint');
+                input.classList.remove('invalid');
+                input.disabled = false;
+
+                if ( board[row][col] != 0 ) {
+                    input.value = board[row][col];
+                    if ( change_square_color && original_board[row][col] != 0) {
+                        input.classList.add('imported-square');
+                        input.disabled = true;
+                    }
+                }
+            }
+        }
+    }
+        //SudokuDOM.display_string(sudoku_object, string_box, sudoku_wiki_link);
+    
 
     // static display_string(sudoku_object, string_box, sudoku_wiki_link) {
     //     string_box.value = sudoku_object.get_string();
@@ -463,6 +509,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // const legal_moves_button = document.getElementById('legal-moves');
     const xbutton = document.querySelector(".x-button");
     const settings_mistakes = document.getElementById('settings-mistakes');
+    const difficulty_span = document.getElementById('difficulty-span');
     
     // *************************** FIX *************************** 
     // Pull Session Data
@@ -514,17 +561,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
     let mistakes_count = 0 
     
 
-    // counts the number of times the notes button is toggled 
+    // counts the number of times the notes button is toggled loadGame
     let notes_count = 0 
-    
-    // Set board with stored game if not new
-    console.log("newgame flag", newGame)
-    if (!newGame) {
-        loadGame(sessionUsername)
-        // console.log(game_json_data)
-        //game1.set_board(easy_arr[easy]);
-        //SudokuDOM.display_board(game1, sudoku_squares, true);
-    }
+
 
     // Store all the Sudoku square <input type="text"> elements in variables for 
     // quick access
@@ -540,813 +579,899 @@ window.addEventListener('DOMContentLoaded', (e) => {
         keypad[i - 1] = document.getElementById('digit-' + i)
     }
 
-    // Sudoku Cell Listener adds input to board
-    for ( let row = 0; row < PUZZLE_SIZE; row++ ) {
-        for ( let col = 0; col < PUZZLE_SIZE; col++ ) {
-            sudoku_squares[row][col].addEventListener('input', function (e) {
-                // Clear highlights when you select cell
-                e.target.classList.remove(invalid_tag);
-                e.target.classList.remove(hint_tag);
+    // Set board with stored game if not new
+    var saved_game_promise = loadGameData(sessionUsername)
+    // Entire rest of logic has to be inside promise
+    saved_game_promise.then((saved_game_json_data) =>{ 
+        console.log("newgame flag", newGame)
+        if (!newGame) {
+            var game_string = saved_game_json_data[0][3]
+            var original_game_string = saved_game_json_data[0][4]
+            var saved_time = saved_game_json_data[0][2]
+            var saved_difficulty = 
+            console.log('in newgame', game_string, original_game_string)
+            
+            // Reset board based on values in database
+            game1.set_board(game_string);
+            game1.set_original_board_from_string(original_game_string)
+            console.log('original board:', game1.orginal_board)
+            SudokuDOM.display_in_progress_board(game1, sudoku_squares, true);
+            
+            // Reset time based on time of last move in database
+            timer.set(saved_time, 'timer1', callback);
+            timer.setTimeLimit(43200); 
+            timer.start('COUNT_UP');
+            
+            // Change Difficulty label based on game difficulty in database
+            difficulty_span.textContent= saved_game_json_data[0][5]
+        }
+    
+        // Sudoku Cell Listener adds input to board
+        for ( let row = 0; row < PUZZLE_SIZE; row++ ) {
+            for ( let col = 0; col < PUZZLE_SIZE; col++ ) {
+                sudoku_squares[row][col].addEventListener('input', function (e) {
+                    // Clear highlights when you select cell
+                    e.target.classList.remove(invalid_tag);
+                    e.target.classList.remove(hint_tag);
 
 
-                // target.value tracks all inputs since page load unless cleared
-                let str_input = e.target.value.toString()
-                if ( str_input.length > 1 ) {
-                    e.target.value = str_input[1]
-                }
+                    // target.value tracks all inputs since page load unless cleared
+                    let str_input = e.target.value.toString()
+                    if ( str_input.length > 1 ) {
+                        e.target.value = str_input[1]
+                    }
 
-                var input = e.target.value
-                console.log('input', input)
-                
+                    var input = e.target.value
+                    console.log('input', input)
 
-                // Check whether input is valid number and check entire 
-                // board state
-                if ( game1.is_valid_input(input) ) {
+
+                    // Check whether input is valid number and check entire 
+                    // board state
+                    if ( game1.is_valid_input(input) ) {
+
+                        if ( notes_mode ) {
+                            game1.add_note(e.target, input);
+                        }
+                        // ##  ##  ##  ## ## ## ## MAKE MOVE FROM KEYBOARD ##  ##  ##  ## ## ## ##
+                        else {
+                            console.log("timer",timer.end())
+                            game1.clear_notes(e.target);
+                            game1.make_move(row, col, input, timer,difficulty_check);
+                            console.log(game1.board);
+                            var state = game1.board_state(sudoku_squares, invalid_tag)
+                            var is_mistakes_counter_on = settings_mistakes.checked
+                            console.log("on move, mistakes counter is:", is_mistakes_counter_on)
+                            console.log("on move, mistakes mode is:", mistakes_mode)
+
+                            // clear all highlighted mistakes 
+                            game1.clear_mistakes(sudoku_squares, invalid_tag)
+
+                            // Check if Mistakes Toggle is off
+                            if (!is_mistakes_counter_on) {
+
+
+                                // If the mistakes toggle is on, highlight invalid cells 
+                                if (!state.is_legal && mistakes_mode == true)  {
+                                    let state = game1.board_state(sudoku_squares, "invalid");
+                                    //console.log("Default Mistakes Mode On"); 
+                                }
+                                else if (state.is_legal && mistakes_mode == true) {
+
+                                    game1.clear_mistakes(sudoku_squares, "invalid")
+                                    //console.log("Clear All mistakes");
+
+                                }
+
+                                // If the mistakes toggle is off, clear all highlights   
+                                if (mistakes_mode == false) {
+                                    game1.clear_mistakes(sudoku_squares, "invalid");
+                                    //console.log("Default Mistakes Mode Off"); 
+                                }
+                            }
+                            // Mistakes Toggle is On
+                            else {
+                                // Remove Highlight as soon as move is made
+                                game1.clear_mistakes(sudoku_squares, "invalid");
+                            }
+
+
+                            console.log("Legal", state.is_legal);
+                            console.log("Complete", state.is_finished);
+                            // Check to see if game is completed correctly
+                            if ( state.is_legal && state.is_finished ) {
+
+                                just_finished = game1.get_string() 
+                                console.log(just_finished) 
+
+                                // Function to flag completed games for the Puzzle Master Badge 
+                                PuzzleMaster(just_finished); 
+
+
+                                // Do game end actions
+                                console.log("game complete");
+                                completedmodal();
+                                console.log("timer ended"); 
+                                timer.stop(); //ends timer at game completion
+                                end = timer.end() // Send to Current_Time SQL 
+                                console.log("Timer Ended At:", end) 
+                                console.log("The difficulty was", difficulty_check) 
+                                // *************************** TODO  ***************************
+                                // run update query for game completion at difficulty
+                                    // POST to route, run update query
+                                // run update query for time completion at difficulty
+
+                                if (difficulty_check == "Hard") { // Finish a Game on Expert - Send info to database 
+                                       const xhr = new XMLHttpRequest();
+                                        xhr.open("POST", "record");
+                                        xhr.setRequestHeader("Content-Type", "application/json");
+                                        const body = JSON.stringify({
+                                          Username: sessionUsername,
+                                          Current_Time: end,
+                                          Difficulty: "Hard",
+                                          Mistakes_Checked: mistakes_count,
+                                          Notes_Checked: notes_count,
+
+                                        });
+                                        xhr.onload = () => {
+                                          if (xhr.readyState == 4 && xhr.status == 201) {
+                                            console.log(JSON.parse(xhr.responseText));
+                                          } else {
+                                            console.log(`Error: ${xhr.status}`);
+                                          }
+                                        };
+                                        xhr.send(body);
+                                }
+
+                                else if (difficulty_check == "Medium") {
+
+                                       const xhr = new XMLHttpRequest();
+                                        xhr.open("POST", "record");
+                                        xhr.setRequestHeader("Content-Type", "application/json");
+                                        const body = JSON.stringify({
+                                          Username: sessionUsername,
+                                          Current_Time: end,
+                                          Difficulty: "Medium", 
+                                          Mistakes_Checked: mistakes_count,
+                                          Notes_Checked: notes_count,
+
+                                        });
+                                        xhr.onload = () => {
+                                          if (xhr.readyState == 4 && xhr.status == 201) {
+                                            console.log(JSON.parse(xhr.responseText));
+                                          } else {
+                                            console.log(`Error: ${xhr.status}`);
+                                          }
+                                        };
+                                        xhr.send(body);
+
+                                }
+
+                                else if(difficulty_check == "Easy") {
+
+                                       const xhr = new XMLHttpRequest();
+                                        xhr.open("POST", "record");
+                                        xhr.setRequestHeader("Content-Type", "application/json");
+                                        const body = JSON.stringify({
+                                          Username: sessionUsername,
+                                          Current_Time: end,
+                                          Difficulty: "Easy", 
+                                          Mistakes_Checked: mistakes_count,
+                                          Notes_Checked: notes_count,
+
+                                        });
+                                        xhr.onload = () => {
+                                          if (xhr.readyState == 4 && xhr.status == 201) {
+                                            console.log(JSON.parse(xhr.responseText));
+                                          } else {
+                                            console.log(`Error: ${xhr.status}`);
+                                          }
+                                        };
+                                        xhr.send(body);
+
+                                }
+
+                            }
+
+                        }
+                    }
+                    else {
+                        // clear input and update board state with non-entry
+                        e.target.value = "";
+                        game1.make_move(row, col, 0, timer,difficulty_check);
+                        console.log(game1.board);
+                        game1.board_state(sudoku_squares, invalid_tag)
+                    }
+
+                    // if ( ! game1.is_legal_move(row, col, input) && e.target.value != "" ) {
+                    //     e.target.value = "";
+                    //     SudokuDOM.highlight_illegal_move(e.target);
+                    //     } 
+                    // else {
+                    //         game1.make_move(row, col, input);
+                    //         console.log(game1.board);
+                    // }
+                })
+
+                sudoku_squares[row][col].addEventListener("mousedown", function (e) {
+                    // Search for old highlited cell and remove it if it exists
+                    let element = document.querySelector(".selected-square");
+                    if ( element ) {
+                        element.classList.remove("selected-square");
+                    }
+                    // Add highlight css for clicked cell
+                    sudoku_squares[row][col].classList.add('selected-square');
+
+                });
+
+                // Check whether key pressed is backspace, and if in notes mode, 
+                // delete notes
+                sudoku_squares[row][col].addEventListener('keydown', function (e) {
+                    let element = document.querySelector(".selected-square");
+
+                    if ( element ) {
+                        const key = e.keyCode || e.charCode;
+
+                        if ( (key == 8 || key == 46) && notes_mode ) {
+                            game1.clear_notes(element);
+                        }
+                    }
+                });
+            }
+        }
+
+        // Create listener for each keypad button and input value in display and array 
+        // Note: index off by 1 relative to value
+        for ( let i = 1; i < 10; i++ ) {
+            keypad[i - 1].addEventListener('click', function (e) {
+                let key_num = this.getAttribute('data-digit')
+                let element = document.querySelector('.selected-square');
+                if ( element ) {
+                    element.value = key_num
+                    let cell_name = element.id
+                    let cell_num = cell_name.split('-')[1]
+                    let row = Math.floor(cell_num / PUZZLE_SIZE)
+                    let col = cell_num % PUZZLE_SIZE
 
                     if ( notes_mode ) {
-                        game1.add_note(e.target, input);
-                    }
-                    // ##  ##  ##  ## ## ## ## MAKE MOVE FROM KEYBOARD ##  ##  ##  ## ## ## ##
+                        game1.add_note(element, key_num);
+                    } 
+                    // ##  ##  ##  ## ## ## ## MAKE MOVE FROM KEYPAD ##  ##  ##  ## ## ## ##
                     else {
-                        game1.clear_notes(e.target);
-                        game1.make_move(row, col, input);
-                        console.log(game1.board);
-                        var state = game1.board_state(sudoku_squares, invalid_tag)
-                        var is_mistakes_counter_on = settings_mistakes.checked
-                        console.log("on move, mistakes counter is:", is_mistakes_counter_on)
-                        console.log("on move, mistakes mode is:", mistakes_mode)
-                        
-                        // clear all highlighted mistakes 
-                        game1.clear_mistakes(sudoku_squares, invalid_tag)
-                        
-                        // Check if Mistakes Toggle is off
-                        if (!is_mistakes_counter_on) {
-                          
-                            
-                            // If the mistakes toggle is on, highlight invalid cells 
-                            if (!state.is_legal && mistakes_mode == true)  {
-                                let state = game1.board_state(sudoku_squares, "invalid");
-                                //console.log("Default Mistakes Mode On"); 
-                            }
-                            else if (state.is_legal && mistakes_mode == true) {
-
-                                game1.clear_mistakes(sudoku_squares, "invalid")
-                                //console.log("Clear All mistakes");
-
-                            }
-
-                            // If the mistakes toggle is off, clear all highlights   
-                            if (mistakes_mode == false) {
-                                game1.clear_mistakes(sudoku_squares, "invalid");
-                                //console.log("Default Mistakes Mode Off"); 
-                            }
-                        }
-                        // Mistakes Toggle is On
-                        else {
-                            // Remove Highlight as soon as move is made
-                            game1.clear_mistakes(sudoku_squares, "invalid");
-                        }
-                        
-                         
-                        console.log("Legal", state.is_legal);
-                        console.log("Complete", state.is_finished);
-                        // Check to see if game is completed correctly
-                        if ( state.is_legal && state.is_finished ) {
-                            
-                            just_finished = game1.get_string() 
-                            console.log(just_finished) 
-                            
-                            // Function to flag completed games for the Puzzle Master Badge 
-                            PuzzleMaster(just_finished); 
-                            
-                            
-                            // Do game end actions
-                            console.log("game complete");
-                            completedmodal();
-                            console.log("timer ended"); 
-                            timer.stop(); //ends timer at game completion
-                            end = timer.end() // Send to Current_Time SQL 
-                            console.log("Timer Ended At:", end) 
-                            console.log("The difficulty was", difficulty_check) 
-                            // *************************** TODO  ***************************
-                            // run update query for game completion at difficulty
-                                // POST to route, run update query
-                            // run update query for time completion at difficulty
-                            
-                            if (difficulty_check == "Hard") { // Finish a Game on Expert - Send info to database 
-                                   const xhr = new XMLHttpRequest();
-                                    xhr.open("POST", "record");
-                                    xhr.setRequestHeader("Content-Type", "application/json");
-                                    const body = JSON.stringify({
-                                      Username: sessionUsername,
-                                      Current_Time: end,
-                                      Difficulty: "Hard",
-                                      Mistakes_Checked: mistakes_count,
-                                      Notes_Checked: notes_count,
-                                      
-                                    });
-                                    xhr.onload = () => {
-                                      if (xhr.readyState == 4 && xhr.status == 201) {
-                                        console.log(JSON.parse(xhr.responseText));
-                                      } else {
-                                        console.log(`Error: ${xhr.status}`);
-                                      }
-                                    };
-                                    xhr.send(body);
-                            }
-                            
-                            else if (difficulty_check == "Medium") {
-                                
-                                   const xhr = new XMLHttpRequest();
-                                    xhr.open("POST", "record");
-                                    xhr.setRequestHeader("Content-Type", "application/json");
-                                    const body = JSON.stringify({
-                                      Username: sessionUsername,
-                                      Current_Time: end,
-                                      Difficulty: "Medium", 
-                                      Mistakes_Checked: mistakes_count,
-                                      Notes_Checked: notes_count,
-
-                                    });
-                                    xhr.onload = () => {
-                                      if (xhr.readyState == 4 && xhr.status == 201) {
-                                        console.log(JSON.parse(xhr.responseText));
-                                      } else {
-                                        console.log(`Error: ${xhr.status}`);
-                                      }
-                                    };
-                                    xhr.send(body);
-                                
-                            }
-                            
-                            else if(difficulty_check == "Easy") {
-                                
-                                   const xhr = new XMLHttpRequest();
-                                    xhr.open("POST", "record");
-                                    xhr.setRequestHeader("Content-Type", "application/json");
-                                    const body = JSON.stringify({
-                                      Username: sessionUsername,
-                                      Current_Time: end,
-                                      Difficulty: "Easy", 
-                                      Mistakes_Checked: mistakes_count,
-                                      Notes_Checked: notes_count,
-
-                                    });
-                                    xhr.onload = () => {
-                                      if (xhr.readyState == 4 && xhr.status == 201) {
-                                        console.log(JSON.parse(xhr.responseText));
-                                      } else {
-                                        console.log(`Error: ${xhr.status}`);
-                                      }
-                                    };
-                                    xhr.send(body);
-                                
-                            }
-                                
-                        }
-                        
-                    }
-                }
-                else {
-                    // clear input and update board state with non-entry
-                    e.target.value = "";
-                    game1.make_move(row, col, 0)
-                    console.log(game1.board);
-                    game1.board_state(sudoku_squares, invalid_tag)
-                }
-
-                // if ( ! game1.is_legal_move(row, col, input) && e.target.value != "" ) {
-                //     e.target.value = "";
-                //     SudokuDOM.highlight_illegal_move(e.target);
-                //     } 
-                // else {
-                //         game1.make_move(row, col, input);
-                //         console.log(game1.board);
-                // }
-            })
-
-            sudoku_squares[row][col].addEventListener("mousedown", function (e) {
-                // Search for old highlited cell and remove it if it exists
-                let element = document.querySelector(".selected-square");
-                if ( element ) {
-                    element.classList.remove("selected-square");
-                }
-                // Add highlight css for clicked cell
-                sudoku_squares[row][col].classList.add('selected-square');
-
-            });
-
-            // Check whether key pressed is backspace, and if in notes mode, 
-            // delete notes
-            sudoku_squares[row][col].addEventListener('keydown', function (e) {
-                let element = document.querySelector(".selected-square");
-
-                if ( element ) {
-                    const key = e.keyCode || e.charCode;
-
-                    if ( (key == 8 || key == 46) && notes_mode ) {
+                        game1.make_move(row, col, this.getAttribute('data-digit'),timer,difficulty_check);
                         game1.clear_notes(element);
+                        console.log(game1.board)
                     }
                 }
-            });
+            })
         }
-    }
 
-    // Create listener for each keypad button and input value in display and array 
-    // Note: index off by 1 relative to value
-    for ( let i = 1; i < 10; i++ ) {
-        keypad[i - 1].addEventListener('click', function (e) {
-            let key_num = this.getAttribute('data-digit')
+        // Keypad Backspace
+        xbutton.addEventListener('click', function (e) {
             let element = document.querySelector('.selected-square');
             if ( element ) {
-                element.value = key_num
+                element.value = ""
                 let cell_name = element.id
                 let cell_num = cell_name.split('-')[1]
                 let row = Math.floor(cell_num / PUZZLE_SIZE)
                 let col = cell_num % PUZZLE_SIZE
 
                 if ( notes_mode ) {
-                    game1.add_note(element, key_num);
-                } 
-                // ##  ##  ##  ## ## ## ## MAKE MOVE FROM KEYPAD ##  ##  ##  ## ## ## ##
-                else {
-                    game1.make_move(row, col, this.getAttribute('data-digit'));
                     game1.clear_notes(element);
-                    console.log(game1.board)
+                } else {
+                    game1.make_move(row, col, 0, timer,difficulty_check);
                 }
             }
         })
-    }
 
-    // Keypad Backspace
-    xbutton.addEventListener('click', function (e) {
-        let element = document.querySelector('.selected-square');
-        if ( element ) {
-            element.value = ""
-            let cell_name = element.id
-            let cell_num = cell_name.split('-')[1]
-            let row = Math.floor(cell_num / PUZZLE_SIZE)
-            let col = cell_num % PUZZLE_SIZE
+        /*
+         // Create New Game (temporarily read from string)
+         new_button.addEventListener('click', function(e) {
+             beginner = "080100007000070960026900130000290304960000082502047000013009840097020000600003070"
+             game1.set_board(beginner);
+             SudokuDOM.display_board(game1, sudoku_squares, true);
+             // Reset mistakes counter
+             document.getElementById('strike-counter').innerHTML = " 0 / 10";
+             m = 0
+         })
+         */
 
-            if ( notes_mode ) {
-                game1.clear_notes(element);
-            } else {
-                game1.make_move(row, col, 0);
-            }
-        }
-    })
+        // Toggle notes mode when notes button is clicked
+        notes_button.addEventListener('click', function (e) {
+            e.target.classList.toggle('active');
+            notes_mode = !notes_mode;
 
-    /*
-     // Create New Game (temporarily read from string)
-     new_button.addEventListener('click', function(e) {
-         beginner = "080100007000070960026900130000290304960000082502047000013009840097020000600003070"
-         game1.set_board(beginner);
-         SudokuDOM.display_board(game1, sudoku_squares, true);
-         // Reset mistakes counter
-         document.getElementById('strike-counter').innerHTML = " 0 / 10";
-         m = 0
-     })
-     */
-
-    // Toggle notes mode when notes button is clicked
-    notes_button.addEventListener('click', function (e) {
-        e.target.classList.toggle('active');
-        notes_mode = !notes_mode;
-        
-        notes_count = notes_count + 1; // Interates the number of times the notes feature is used 
-        console.log("Notes Count", notes_count) 
-        
-    });
-    
-   settings_mistakes.addEventListener('change', function(e) {
-       var is_mistakes_counter_on = settings_mistakes.checked
-
-    
-       if ( is_mistakes_counter_on == false) {
-            /* Code for default mistakes feature */ 
-            mistakes_button.addEventListener('click', function (e) {
-                   e.target.classList.toggle('active');
-                   mistakes_mode = !mistakes_mode;
-                   console.log("mistakes_mode", mistakes_mode);
-
-                   /* Code for Lone Wolf Achievement */
-
-                   mistakes_count = mistakes_count + 1;  // Interates the number of mistakes used 
-                   console.log("Mistakes_count", mistakes_count)
-
-                   if (mistakes_mode == false) {
-                        game1.clear_mistakes(sudoku_squares, "invalid");
-                    }
-
-                   if (mistakes_mode == true) {
-                      game1.board_state(sudoku_squares, "invalid");
-                  }
-            });
-       }
-
-       else if (is_mistakes_counter_on == true) {
-            /* Code for mistakes limit modal window */
-
-              // Mistakes button shows users all invalid squares 
-             mistakes_button.addEventListener('click', function (e) {
-                invalid_tag = "invalid" 
-                e.target.classList.add('active');
-                console.log("Button Active"); 
-                game1.board_state(sudoku_squares, invalid_tag)
-                mistakes_mode = !mistakes_mode;
-
-                setTimeout(function () {
-                    e.target.classList.remove('active');
-                    mistakes_mode = !mistakes_mode;
-
-                }, 100);
-            });
-
-            var m = 0;
-
-            // Increment m by 1 each time the "Mistakes" button is clicked
-            mistakes_button.addEventListener('click', function (e) {
-                m = m + 1
-
-                if ( m < 10 ) {
-                    document.getElementById('strike-counter').innerHTML = m + " / 10";
-                }
-                else if ( m == 10 ) {
-                    document.getElementById('strike-counter').innerHTML = m + " / 10";
-
-                    rendermodal()
-                }
-            })
-
-            // Render modal window for the mistakes counter warning     
-            function rendermodal(event) {
-                // Show modal window when page loads
-                var modal_mistakes = document.getElementById('mistake-limit-model');
-                modal_mistakes.style.display = 'block';
-
-                modal_mistakes.addEventListener('click', hidemistakes)
-            }
-
-            // Code for clicking out of mistakes modal window
-            function hidemistakes(event) {
-                // Get modal window element by ID
-                var modal_mistakes = document.getElementById('mistake-limit-model');
-                // Get content of modal window
-                var content_mistakes = document.querySelector('.modal-mistakes-content');
-
-
-                // Check if element that is clicked on is either modal window background 
-                // or not a child of content
-                if ( event.target == modal_mistakes || !content_mistakes.contains(event.target) ) {
-                    // Hide modal window
-                    modal_mistakes.style.display = 'none';
-                    m = 0
-
-                    // Reset mistakes counter
-                    document.getElementById('strike-counter').innerHTML = " 0 / 10";
-                    // Taker users back to New Game Difficulty Menu
-                    openModal() 
-
-                }
-            }
-       }
-   })
-
-    /* Code for End of Game Notification Modal Window */
-    
-    // Render modal window for completed game
-    function completedmodal(event) {
-        // Show modal window when page loads
-       
-        var modal = document.getElementById('completed-game-model');
-        
-        modal.style.display = 'block';
-        modal.addEventListener('click', hidecompleted)
-    }
-    // Code for clicking out of the Completed game modal
-    function hidecompleted(event) {
-        // Get modal window element by ID
-        var modal = document.getElementById('completed-game-model');
-        // Get content of modal window
-        var content = document.querySelector('.modal-completed-content');
-
-        // Check if element that is clicked on is either modal window background 
-        // or not a child of content
-        if ( event.target == modal || !content.contains(event.target) ) {
-            // Hide modal window
-            modal.style.display = 'none';
-            
-            // Reset mistakes counter
-            m = 0
-            document.getElementById('strike-counter').innerHTML = " 0 / 10";
-            
-            // Takes users back to New Game
-            openModal() 
-        
-        }
-        
-    }
-    
-    /* Code for difficulty modal window */
-
-    // Get difficulty modal window and its elements
-    const modal = document.getElementById('difficultyModal');
-    const closeButton = document.querySelector('.close');
-    const expertButton = document.getElementById('expert');
-    const easyButton = document.getElementById('easy'); 
-    const hardButton = document.getElementById('hard'); 
-    
-    // Get any parameters from the URL
-        //Moved to start of listener
-    // const queryString = window.location.search;
-    // const urlParams = new URLSearchParams(queryString);
-    // const newGame = urlParams.get('new'); 
-  
-    if (newGame)
-      openModal();
-    
-    /* HardCode Easy Sudoku Games */
-    const easy_game_1 = "735164928426978315198532674249381756387256149561749832852617493914823567673495280";
-            // Start:    000004028406000005100030600000301000087000140000709000002010003900000507670400000
-            // Solution: 735164928426978315198532674249381756387256149561749832852617493914823567673495281  
-    
-    const easy_game_2 = "690000140700080000002070060400703000001000300000901004050010600000040002073000058";
-            // Start:    690000140700080000002070060400703000001000300000901004050010600000040002073000058
-            // Solution: 698532147715684923342179865486723591921458376537961284254817639869345712173296458
-    
-    const easy_game_3 = "000004076705000009300010200000907000041000780000103000006030001500000604820400000";
-            // Start:    000004076705000009300010200000907000041000780000103000006030001500000604820400000
-            // Solution: 182594376765328419394716258238947165941652783657183942476235891513879624829461537
-    
-    const easy_game_4 = "850000370200040000006010050400109000003000100000307004060070200000080007041000096";
-            // Start:    850000370200040000006010050400109000003000100000307004060070200000080007041000096
-            // Solution: 854692371217543968936718452482169735673854129195327684568971243329486517741235896
-
-    
-    
-    /* HardCode Hard Sudoku Games */ 
-    const hard_game_1 = "309000400200709000087000000750060230600904008028050041000000590000106007006000104"; 
-            // Start:    309000400200709000087000000750060230600904008028050041000000590000106007006000104
-            // Solution: 369218475215749863487635912754861239631924758928357641173482596542196387896573124
-    
-    const hard_game_2 = "401000600700601000095000000140050820800409006032060057000000780000907002004000903";
-            // Start:    401000600700601000095000000140050820800409006032060057000000780000907002004000903
-            // Solution: 421375698783691245695284371146753829857429136932168457219536784368947512574812963
-    
-    const hard_game_3 = "000081074000304900400200501090040060000605000070090010907008006008502000320760000";
-            // Start:    000081074000304900400200501090040060000605000070090010907008006008502000320760000
-            // Solution: 532981674761354982489276531895147263143625897276893415957418326618532749324769158
-          
-    const hard_game_4 = "000067023000205800600800709010090070000506000060040090105002004009403000470180000";
-            // Start:    000067023000205800600800709010090070000506000060040090105002004009403000470180000
-            // Solution: 851967423947235816623814759514398672798526341362741598135672984289453167476189235
-    
-    /* HardCode expert Sudoku Games */ 
-    const expert_game_1 = "000704005020010070000080002090006250600070008053200010400090000030060090200407000";
-    
-            // Start:      000704005020010070000080002090006250600070008053200010400090000030060090200407000
-            // Solution:   981724365324615879765983142197836254642571938853249716476398521538162497219457683
-    
-    const expert_game_2 = "204060000030509020000300000400200007069070810700006004000002000090105070000080205";
-            // Start:      204060000030509020000300000400200007069070810700006004000002000090105070000080205
-            // Solution:   254861739137549628986327541413258967569473812728916354645792183892135476371684295
-    
-    const expert_game_3 = "000704002090060030000090004010002350800070006052600090200080000070010020500407000";
-            // Start:      000704002090060030000090004010002350800070006052600090200080000070010020500407000
-            // Solution:   386754912794261835125893674617942358839175246452638791241389567978516423563427189
-    
-    const expert_game_4 = "502080000070501090000200000400600007018070960700002004000003000020905030000060402";
-            // Start:      502080000070501090000200000400600007018070960700002004000003000020905030000060402
-            // Solution:   592486173674531298381297546453619827218374965769852314145723689826945731937168452
-          
-    // Opens difficulty modal window
-    function openModal() {
-        modal.style.display = 'block';
-    }
-
-    // Closes difficulty modal window
-    function closeModal() {
-        modal.style.display = 'none';
-    }
-
-    // Add event listener to open difficulty modal window on click
-    new_button.addEventListener('click', openModal);
-
-    // Add event listener to close difficulty modal window
-    closeButton.addEventListener('click', closeModal);
-    
-    // Add event listener to "Easy" Button 
-    let easy = 0 
-    easyButton.addEventListener('click', function (e) {
-        closeModal();
-        var easy_arr = [easy_game_1, easy_game_2, easy_game_3, easy_game_4];
-        game1.set_board(easy_arr[easy]);
-        SudokuDOM.display_board(game1, sudoku_squares, true);
-        
-        if (easy < 3) {
-        easy = easy + 1;
-        }
-        else {
-            easy = 0;
-        }
-
-        // Reset mistakes counter
-        document.getElementById('strike-counter').innerHTML = " 0 / 10";
-        m = 0;
-
-        timer.set(0, 'timer1', callback);
-        
-        // Record Difficulty 
-        difficulty_check = "Easy" 
-    });
-    // Add event listener to "Hard" Button
-    let hard = 0
-    hardButton.addEventListener('click', function (e) {
-        closeModal();
-        var hard_arr = [hard_game_1, hard_game_2, hard_game_3, hard_game_4] 
-        game1.set_board(hard_arr[hard]);
-        SudokuDOM.display_board(game1, sudoku_squares, true);
-        if (hard < 3) {
-            hard = hard + 1;
-        }
-        else {
-            hard = 0;
-        }
-
-        // Reset mistakes counter
-        document.getElementById('strike-counter').innerHTML = " 0 / 10";
-        m = 0;
-      
-        timer.set(0, 'timer1', callback);
-        
-        // Record Difficulty 
-        difficulty_check = "Medium" 
-    });
-
-    // Add event listener to "Expert" button
-    let expert = 0
-    expertButton.addEventListener('click', function (e) {
-        closeModal();
-        var expert_arr = [expert_game_1, expert_game_2, expert_game_3, expert_game_4]
-        game1.set_board(expert_arr[expert]);
-        SudokuDOM.display_board(game1, sudoku_squares, true);
-        if (expert < 3) {
-            expert = expert + 1; 
-        }
-        else {
-            expert = 0;
-        }
-      
-        // Reset mistakes counter
-        document.getElementById('strike-counter').innerHTML = " 0 / 10";
-        m = 0;
-      
-        timer.set(0, 'timer1', callback);
-        
-        difficulty_check = "Hard" 
-        
-    
-    });
-    
-    /* Puzzle Solutions for Puzzle Master Badge */ 
-    let easy1_sol = "735164928426978315198532674249381756387256149561749832852617493914823567673495281"
-    let easy2_sol = "698532147715684923342179865486723591921458376537961284254817639869345712173296458"
-    let easy3_sol = "182594376765328419394716258238947165941652783657183942476235891513879624829461537"
-    let easy4_sol = "854692371217543968936718452482169735673854129195327684568971243329486517741235896"
-    
-    let med1_sol = "369218475215749863487635912754861239631924758928357641173482596542196387896573124"
-    let med2_sol = "421375698783691245695284371146753829857429136932168457219536784368947512574812963"
-    let med3_sol = "532981674761354982489276531895147263143625897276893415957418326618532749324769158"
-    let med4_sol = "851967423947235816623814759514398672798526341362741598135672984289453167476189235"
-    
-    let hard1_sol = "981724365324615879765983142197836254642571938853249716476398521538162497219457683"
-    let hard2_sol = "254861739137549628986327541413258967569473812728916354645792183892135476371684295"
-    let hard3_sol = "386754912794261835125893674617942358839175246452638791241389567978516423563427189"
-    let hard4_sol = "592486173674531298381297546453619827218374965769852314145723689826945731937168452"
-    
-    
-    async function http_get_master(route) {
-        
-
-        try {
-            const response = await fetch(route, {
-                method: 'GET',
-            });
-            const data = await response.json();
-            console.log(data) 
-            return data;
-        } catch (error) {
-            console.error(error);
-        }
-    }
-    
-    async function loadGame(username) {
-        const game_json_data = await http_get_master('game_state/'+username)
-        console.log(game_json_data)
-        return
-    }
-    
-
-
-    async function PuzzleMaster(completed_game) {
-        
-        const json_data = await http_get_master("Master");
-        console.log("Data in other function", json_data) 
-        
-            
-        if (completed_game == easy1_sol) {
-            json_data[0][1] = 1; 
-        }
-        else if (completed_game == easy2_sol) {
-            json_data[0][2] = 1;
-        }
-        else if (completed_game == easy3_sol) {
-            json_data[0][3] = 1;
-        }
-        else if (completed_game == easy4_sol) {
-            json_data[0][4] = 1;
-        }
-        else if (completed_game == med1_sol) {
-            json_data[0][5] = 1; 
-        }
-        else if (completed_game == med2_sol) {
-            json_data[0][6] = 1; 
-        }
-        else if (completed_game == med3_sol) {
-            json_data[0][7] = 1;
-        }
-        else if (completed_game == med4_sol) {
-            json_data[0][8] = 1; 
-        }
-        else if (completed_game == hard1_sol) {
-            json_data[0][9] = 1; 
-            console.log("Hard Puzzle one", json_data[0][9])
-        }
-        else if (completed_game == hard2_sol) {
-            json_data[0][10] = 1;
-        }
-        else if (completed_game == hard3_sol) {
-            json_data[0][11] = 1;
-        }
-        else if (completed_game == hard4_sol) {
-            json_data[0][12] = 1;    
-        }
-       
-
-        
-        
-        const xhr = new XMLHttpRequest();
-        xhr.open("POST", "Master");
-        xhr.setRequestHeader("Content-Type", "application/json");
-        const body = JSON.stringify({
-            Username: sessionUsername,
-            Game1_Easy: json_data[0][1],
-            Game2_Easy: json_data[0][2], 
-            Game3_Easy: json_data[0][3], 
-            Game4_Easy: json_data[0][4],
-            Game1_Med: json_data[0][5],
-            Game2_Med: json_data[0][6],
-            Game3_Med: json_data[0][7], 
-            Game4_Med: json_data[0][8],
-            Game1_Hard: json_data[0][9],
-            Game2_Hard: json_data[0][10],
-            Game3_Hard: json_data[0][11],
-            Game4_Hard: json_data[0][12],
+            notes_count = notes_count + 1; // Interates the number of times the notes feature is used 
+            console.log("Notes Count", notes_count) 
 
         });
-        xhr.onload = () => {
-            if (xhr.readyState == 4 && xhr.status == 201) {
-                console.log(JSON.parse(xhr.responseText));
-            } else {
-                console.log(`Error: ${xhr.status}`);
-            }
-        };
-        xhr.send(body);
-        
 
-    
-    }
-    
-    
-    /* Code for Restart Button */ 
-    restart_button.addEventListener('click', function(e) {
-        game1.restart_puzzle();
-        SudokuDOM.display_board(game1, sudoku_squares, true);
+       settings_mistakes.addEventListener('change', function(e) {
+           var is_mistakes_counter_on = settings_mistakes.checked
 
-        // Reset mistakes counter
-        document.getElementById('strike-counter').innerHTML = " 0 / 10";
-        m = 0;
-      
-        timer.set(0, 'timer1', callback);
-        
-    });
-  
-    /* Full functinoality below:
 
-    // Sudoku Cell Listener
-    for ( let row = 0; row <= 8; row++ ) {
-        for ( let col = 0; col <= 8; col++ ) {
-            sudoku_squares[row][col].addEventListener('input', function(e) {
-               e.target.classList.remove("invalid");
-               e.target.classList.remove("hint");
+           if ( is_mistakes_counter_on == false) {
+                /* Code for default mistakes feature */ 
+                mistakes_button.addEventListener('click', function (e) {
+                       e.target.classList.toggle('active');
+                       mistakes_mode = !mistakes_mode;
+                       console.log("mistakes_mode", mistakes_mode);
 
-               // Listen for illegal moves; if illegal, delete input and 
-               // turn square red for 2 seconds
-               if ( ! game1.is_legal_move(row, col, e.target.value) && e.target.value != "" ) {
-                   e.target.value = "";
-                   SudokuDOM.highlight_illegal_move(e.target);
-               } else {
-                   game1.make_move(row, col, e.target.value);
+                       /* Code for Lone Wolf Achievement */
+
+                       mistakes_count = mistakes_count + 1;  // Interates the number of mistakes used 
+                       console.log("Mistakes_count", mistakes_count)
+
+                       if (mistakes_mode == false) {
+                            game1.clear_mistakes(sudoku_squares, "invalid");
+                        }
+
+                       if (mistakes_mode == true) {
+                          game1.board_state(sudoku_squares, "invalid");
+                      }
+                });
+           }
+
+           else if (is_mistakes_counter_on == true) {
+                /* Code for mistakes limit modal window */
+
+                  // Mistakes button shows users all invalid squares 
+                 mistakes_button.addEventListener('click', function (e) {
+                    invalid_tag = "invalid" 
+                    e.target.classList.add('active');
+                    console.log("Button Active"); 
+                    game1.board_state(sudoku_squares, invalid_tag)
+                    mistakes_mode = !mistakes_mode;
+
+                    setTimeout(function () {
+                        e.target.classList.remove('active');
+                        mistakes_mode = !mistakes_mode;
+
+                    }, 100);
+                });
+
+                // any use of async value has to be inside promise
+                var m = 0;
+                var game_data_promise = loadGameData(sessionUsername)
+                game_data_promise.then((game_json_data) =>{ 
+                    m = game_json_data[0][8]
+                    console.log('m= ', m)
+                    if (m <= 10) {                                       
+                    document.getElementById('strike-counter').innerHTML = m +" / 10";
+                    }
+                    else {
+                    document.getElementById('strike-counter').innerHTML = "10 / 10";
+                    }
+
+
+                    // Increment m by 1 each time the "Mistakes" button is clicked
+                    mistakes_button.addEventListener('click', function (e) {
+                        var game_data_promise2 = loadGameData(sessionUsername)
+                        game_data_promise2.then((game_json_data) =>{ 
+                            m = game_json_data[0][8]
+                            m = m + 1
+                            var mistakes_json = [{'Update_Type':'Mistake','Username':sessionUsername,'Mistakes_Count':m}]
+                            http_post('game_state/'+sessionUsername,mistakes_json)
+
+                            if ( m < 10 ) {
+                                document.getElementById('strike-counter').innerHTML = m + " / 10";
+                            }
+                            else if ( m == 10 ) {
+                                document.getElementById('strike-counter').innerHTML = m + " / 10";
+
+                                rendermodal()
+                            }
+                        }) // promise brackets
+                    })
+
+                    // Render modal window for the mistakes counter warning     
+                    function rendermodal(event) {
+                        // Show modal window when page loads
+                        var modal_mistakes = document.getElementById('mistake-limit-model');
+                        modal_mistakes.style.display = 'block';
+
+                        modal_mistakes.addEventListener('click', hidemistakes)
+                    }
+
+                    // Code for clicking out of mistakes modal window
+                    function hidemistakes(event) {
+                        // Get modal window element by ID
+                        var modal_mistakes = document.getElementById('mistake-limit-model');
+                        // Get content of modal window
+                        var content_mistakes = document.querySelector('.modal-mistakes-content');
+
+
+                        // Check if element that is clicked on is either modal window background 
+                        // or not a child of content
+                        if ( event.target == modal_mistakes || !content_mistakes.contains(event.target) ) {
+                            // Hide modal window
+                            modal_mistakes.style.display = 'none';
+                            m = 0
+                            var mistakes_json = [{'Update_Type':'Mistake','Username':sessionUsername,'Mistakes_Count':m}]
+                            http_post('game_state/'+sessionUsername,mistakes_json)
+
+                            // Reset mistakes counter
+                            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+                            // Taker users back to New Game Difficulty Menu
+                            openModal() 
+
+                        }
+                    }
+                  });
                }
+            }
+        )
 
-               // SudokuDOM.display_string(game1, string_box, sudoku_wiki_link);
-            });
+
+        /* Code for End of Game Notification Modal Window */
+
+        // Render modal window for completed game
+        function completedmodal(event) {
+            // Show modal window when page loads
+
+            var modal = document.getElementById('completed-game-model');
+
+            modal.style.display = 'block';
+            modal.addEventListener('click', hidecompleted)
         }
-    }
-    */
+        // Code for clicking out of the Completed game modal
+        function hidecompleted(event) {
+            // Get modal window element by ID
+            var modal = document.getElementById('completed-game-model');
+            // Get content of modal window
+            var content = document.querySelector('.modal-completed-content');
 
-    //     solve_button.addEventListener('click', function(e) {
-    //         const t1 = performance.now();
-    //         game1.solve_puzzle();
-    //         const t2 = performance.now();
-    //         document.querySelector('#algorithm span').innerHTML = (t2 - t1).toFixed(1);
-    //         SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link, false);
-    //         algorithm.style.display = 'block';
-    //     });
+            // Check if element that is clicked on is either modal window background 
+            // or not a child of content
+            if ( event.target == modal || !content.contains(event.target) ) {
+                // Hide modal window
+                modal.style.display = 'none';
 
-    //     /*
-    //     set_button.addEventListener('click', function(e) {
-    //         game1.set_as_start_point();
-    //         puzzle_picker.selectedIndex = CUSTOM_PUZZLE_SELECTEDINDEX;
-    //         SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link, true);
-    //     });
-    //     */
+                // Reset mistakes counter
+                m = 0
+                document.getElementById('strike-counter').innerHTML = " 0 / 10";
 
-    //     validate_button.addEventListener('click', function(e) {
-    //         const t1 = performance.now();
-    //         const numberOfSolutions = game1.getNumberOfSolutions();
-    //         const t2 = performance.now();
-    //         document.querySelector('#algorithm span').innerHTML = (t2 - t1).toFixed(1);
-    //         algorithm.style.display = 'block';
-    //         if ( numberOfSolutions === 1 ) {
-    //             window.alert('PASS - Puzzle is valid');
-    //         } else {
-    //             window.alert('FAIL - Puzzle is invalid');
-    //         }
-    //     });
+                // Takes users back to New Game
+                openModal() 
 
-    //     legal_moves_button.addEventListener('click', function(e) {
-    //         // TODO
-    //         const t1 = performance.now();
-    //         const numberOfSolutions = game1.getNumberOfSolutions();
-    //         const t2 = performance.now();
-    //         document.querySelector('#algorithm span').innerHTML = (t2 - t1).toFixed(1);
-    //         algorithm.style.display = 'block';
-    //         if ( numberOfSolutions === 1 ) {
-    //             window.alert('PASS - Puzzle is valid');
-    //         } else {
-    //             window.alert('FAIL - Puzzle is invalid');
-    //         }
-    //     });
+            }
 
-    //     restart_button.addEventListener('click', function(e) {
-    //         game1.restart_puzzle();
-    //         SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link);
-    //     });
+        }
 
-    //     hint_button.addEventListener('click', function(e) {
-    //         const hint = game1.get_hint();
-    //         if ( hint ) {
-    //             const row = hint.getRow();
-    //             const col = hint.getCol();
-    //             SudokuDOM.highlight_hint(sudoku_squares[row][col]);
-    //         }
-    //     });
+        /* Code for difficulty modal window */
 
-    //     import_button.addEventListener('click', function(e) {
-    //         const board = window.prompt('Please enter a sequence of 81 numbers, with 0 representing an empty square.');
-    //         const board_changed = game1.set_board(board);
-    //         if ( board_changed ) {
-    //             puzzle_picker.selectedIndex = CUSTOM_PUZZLE_SELECTEDINDEX;
-    //         }
-    //         SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link);
-    //     });
+        // Get difficulty modal window and its elements
+        const modal = document.getElementById('difficultyModal');
+        const closeButton = document.querySelector('.close');
+        const expertButton = document.getElementById('expert');
+        const easyButton = document.getElementById('easy'); 
+        const hardButton = document.getElementById('hard'); 
 
-    //     puzzle_picker.addEventListener('change', function(e) {
-    //         if ( puzzle_picker.value == 'import' ) {
-    //             import_button.click();
-    //         } else if ( puzzle_picker.value == 'random' ) {
-    //             new_button.click();
-    //         } else {
-    //             game1.set_board(puzzle_picker.value);
-    //             SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link);
-    //         }
-    //     });
+        // Get any parameters from the URL
+            //Moved to start of listener
+        // const queryString = window.location.search;
+        // const urlParams = new URLSearchParams(queryString);
+        // const newGame = urlParams.get('new'); 
 
-    //     // Pick the default puzzle. Trigger the <select>.change listener so the puzzle gets loaded.
-    //     // selectedIndex starts from 0
-    //     puzzle_picker.selectedIndex = DEFAULT_PUZZLE_SELECTEDINDEX;
-    //     puzzle_picker.dispatchEvent(new Event('change'));
+        if (newGame)
+          openModal();
+
+        /* HardCode Easy Sudoku Games */
+        const easy_game_1 = "735164928426978315198532674249381756387256149561749832852617493914823567673495280";
+                // Start:    000004028406000005100030600000301000087000140000709000002010003900000507670400000
+                // Solution: 735164928426978315198532674249381756387256149561749832852617493914823567673495281  
+
+        const easy_game_2 = "690000140700080000002070060400703000001000300000901004050010600000040002073000058";
+                // Start:    690000140700080000002070060400703000001000300000901004050010600000040002073000058
+                // Solution: 698532147715684923342179865486723591921458376537961284254817639869345712173296458
+
+        const easy_game_3 = "000004076705000009300010200000907000041000780000103000006030001500000604820400000";
+                // Start:    000004076705000009300010200000907000041000780000103000006030001500000604820400000
+                // Solution: 182594376765328419394716258238947165941652783657183942476235891513879624829461537
+
+        const easy_game_4 = "850000370200040000006010050400109000003000100000307004060070200000080007041000096";
+                // Start:    850000370200040000006010050400109000003000100000307004060070200000080007041000096
+                // Solution: 854692371217543968936718452482169735673854129195327684568971243329486517741235896
+
+
+
+        /* HardCode Hard Sudoku Games */ 
+        const hard_game_1 = "309000400200709000087000000750060230600904008028050041000000590000106007006000104"; 
+                // Start:    309000400200709000087000000750060230600904008028050041000000590000106007006000104
+                // Solution: 369218475215749863487635912754861239631924758928357641173482596542196387896573124
+
+        const hard_game_2 = "401000600700601000095000000140050820800409006032060057000000780000907002004000903";
+                // Start:    401000600700601000095000000140050820800409006032060057000000780000907002004000903
+                // Solution: 421375698783691245695284371146753829857429136932168457219536784368947512574812963
+
+        const hard_game_3 = "000081074000304900400200501090040060000605000070090010907008006008502000320760000";
+                // Start:    000081074000304900400200501090040060000605000070090010907008006008502000320760000
+                // Solution: 532981674761354982489276531895147263143625897276893415957418326618532749324769158
+
+        const hard_game_4 = "000067023000205800600800709010090070000506000060040090105002004009403000470180000";
+                // Start:    000067023000205800600800709010090070000506000060040090105002004009403000470180000
+                // Solution: 851967423947235816623814759514398672798526341362741598135672984289453167476189235
+
+        /* HardCode expert Sudoku Games */ 
+        const expert_game_1 = "000704005020010070000080002090006250600070008053200010400090000030060090200407000";
+
+                // Start:      000704005020010070000080002090006250600070008053200010400090000030060090200407000
+                // Solution:   981724365324615879765983142197836254642571938853249716476398521538162497219457683
+
+        const expert_game_2 = "204060000030509020000300000400200007069070810700006004000002000090105070000080205";
+                // Start:      204060000030509020000300000400200007069070810700006004000002000090105070000080205
+                // Solution:   254861739137549628986327541413258967569473812728916354645792183892135476371684295
+
+        const expert_game_3 = "000704002090060030000090004010002350800070006052600090200080000070010020500407000";
+                // Start:      000704002090060030000090004010002350800070006052600090200080000070010020500407000
+                // Solution:   386754912794261835125893674617942358839175246452638791241389567978516423563427189
+
+        const expert_game_4 = "502080000070501090000200000400600007018070960700002004000003000020905030000060402";
+                // Start:      502080000070501090000200000400600007018070960700002004000003000020905030000060402
+                // Solution:   592486173674531298381297546453619827218374965769852314145723689826945731937168452
+
+        // Opens difficulty modal window
+        function openModal() {
+            modal.style.display = 'block';
+        }
+
+        // Closes difficulty modal window
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        // Add event listener to open difficulty modal window on click
+        new_button.addEventListener('click', openModal);
+
+        // Add event listener to close difficulty modal window
+        closeButton.addEventListener('click', closeModal);
+
+        // Add event listener to "Easy" Button 
+        let easy = 0 
+        easyButton.addEventListener('click', function (e) {
+            closeModal();
+            var easy_arr = [easy_game_1, easy_game_2, easy_game_3, easy_game_4];
+            game1.set_board(easy_arr[easy]);
+            SudokuDOM.display_board(game1, sudoku_squares, true);
+
+            // Record Difficulty 
+            difficulty_check = "Easy" 
+            difficulty_span.textContent=difficulty_check
+
+            // Save Game State
+            var easy_game_json = [{'Update_Type':'New Game','Username':sessionUsername,'Game_ID':1,'Current_Time':0,'Game':easy_arr[easy], 'Original_Game':easy_arr[easy],'Difficulty':difficulty_check,'Mistakes_Count':0}]
+            http_post('game_state/'+sessionUsername,easy_game_json)
+
+            if (easy < 3) {
+            easy = easy + 1;
+            }
+            else {
+                easy = 0;
+            }
+
+            // Reset mistakes counter
+            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            m = 0;
+
+            timer.set(0, 'timer1', callback);
+
+
+
+
+        });
+        // Add event listener to "Hard" Button
+        let hard = 0
+        hardButton.addEventListener('click', function (e) {
+            closeModal();
+            var hard_arr = [hard_game_1, hard_game_2, hard_game_3, hard_game_4] 
+            game1.set_board(hard_arr[hard]);
+            SudokuDOM.display_board(game1, sudoku_squares, true);
+
+            // Record Difficulty 
+            difficulty_check = "Medium" 
+            difficulty_span.textContent="Hard" //This is very confusing
+
+            // Save Game State
+            var hard_game_json = [{'Update_Type':'New Game','Username':sessionUsername,'Game_ID':1,'Current_Time':0,'Game':hard_arr[hard], 'Original_Game':hard_arr[hard],'Difficulty':difficulty_check,'Mistakes_Count':0}]
+            http_post('game_state/'+sessionUsername,hard_game_json)
+
+            if (hard < 3) {
+                hard = hard + 1;
+            }
+            else {
+                hard = 0;
+            }
+
+            // Reset mistakes counter
+            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            m = 0;
+
+            timer.set(0, 'timer1', callback);
+
+        });
+
+        // Add event listener to "Expert" button
+        let expert = 0
+        expertButton.addEventListener('click', function (e) {
+            closeModal();
+            var expert_arr = [expert_game_1, expert_game_2, expert_game_3, expert_game_4]
+            game1.set_board(expert_arr[expert]);
+            SudokuDOM.display_board(game1, sudoku_squares, true);
+
+            difficulty_check = "Hard" 
+            difficulty_span.textContent="Expert" //This is very confusing
+
+            // Save Game State
+            var expert_game_json = [{'Update_Type':'New Game','Username':sessionUsername,'Game_ID':1,'Current_Time':0,'Game':expert_arr[expert], 'Original_Game':expert_arr[expert],'Difficulty':difficulty_check,'Mistakes_Count':0}]
+            http_post('game_state/'+sessionUsername,expert_game_json)
+
+
+            if (expert < 3) {
+                expert = expert + 1; 
+            }
+            else {
+                expert = 0;
+            }
+
+            // Reset mistakes counter
+            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            m = 0;
+
+            timer.set(0, 'timer1', callback);
+
+
+
+        });
+
+        /* Puzzle Solutions for Puzzle Master Badge */ 
+        let easy1_sol = "735164928426978315198532674249381756387256149561749832852617493914823567673495281"
+        let easy2_sol = "698532147715684923342179865486723591921458376537961284254817639869345712173296458"
+        let easy3_sol = "182594376765328419394716258238947165941652783657183942476235891513879624829461537"
+        let easy4_sol = "854692371217543968936718452482169735673854129195327684568971243329486517741235896"
+
+        let med1_sol = "369218475215749863487635912754861239631924758928357641173482596542196387896573124"
+        let med2_sol = "421375698783691245695284371146753829857429136932168457219536784368947512574812963"
+        let med3_sol = "532981674761354982489276531895147263143625897276893415957418326618532749324769158"
+        let med4_sol = "851967423947235816623814759514398672798526341362741598135672984289453167476189235"
+
+        let hard1_sol = "981724365324615879765983142197836254642571938853249716476398521538162497219457683"
+        let hard2_sol = "254861739137549628986327541413258967569473812728916354645792183892135476371684295"
+        let hard3_sol = "386754912794261835125893674617942358839175246452638791241389567978516423563427189"
+        let hard4_sol = "592486173674531298381297546453619827218374965769852314145723689826945731937168452"
+
+
+        async function http_get_master(route) {
+
+
+            try {
+                const response = await fetch(route, {
+                    method: 'GET',
+                });
+                const data = await response.json();
+                console.log(data) 
+                return data;
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        async function loadGameData(username) {
+            const game_json_data = await http_get_master('game_state/'+username)
+            console.log('inside loadGame', game_json_data)
+            return game_json_data
+        }
+
+        async function loadSavedGame(username, game, sudoku_squares) {
+            const game_json_data = await http_get_master('game_state/'+username)
+            console.log('inside loadSavedGame', game_json_data)
+            const game_string = game_json_data[3]
+
+            game1.set_board(game_string);
+            SudokuDOM.display_board(game1, sudoku_squares, true);
+
+            return game_json_data
+        }
+
+
+        async function PuzzleMaster(completed_game) {
+
+            const json_data = await http_get_master("Master");
+            console.log("Data in other function", json_data) 
+
+
+            if (completed_game == easy1_sol) {
+                json_data[0][1] = 1; 
+            }
+            else if (completed_game == easy2_sol) {
+                json_data[0][2] = 1;
+            }
+            else if (completed_game == easy3_sol) {
+                json_data[0][3] = 1;
+            }
+            else if (completed_game == easy4_sol) {
+                json_data[0][4] = 1;
+            }
+            else if (completed_game == med1_sol) {
+                json_data[0][5] = 1; 
+            }
+            else if (completed_game == med2_sol) {
+                json_data[0][6] = 1; 
+            }
+            else if (completed_game == med3_sol) {
+                json_data[0][7] = 1;
+            }
+            else if (completed_game == med4_sol) {
+                json_data[0][8] = 1; 
+            }
+            else if (completed_game == hard1_sol) {
+                json_data[0][9] = 1; 
+                console.log("Hard Puzzle one", json_data[0][9])
+            }
+            else if (completed_game == hard2_sol) {
+                json_data[0][10] = 1;
+            }
+            else if (completed_game == hard3_sol) {
+                json_data[0][11] = 1;
+            }
+            else if (completed_game == hard4_sol) {
+                json_data[0][12] = 1;    
+            }
+
+
+
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "Master");
+            xhr.setRequestHeader("Content-Type", "application/json");
+            const body = JSON.stringify({
+                Username: sessionUsername,
+                Game1_Easy: json_data[0][1],
+                Game2_Easy: json_data[0][2], 
+                Game3_Easy: json_data[0][3], 
+                Game4_Easy: json_data[0][4],
+                Game1_Med: json_data[0][5],
+                Game2_Med: json_data[0][6],
+                Game3_Med: json_data[0][7], 
+                Game4_Med: json_data[0][8],
+                Game1_Hard: json_data[0][9],
+                Game2_Hard: json_data[0][10],
+                Game3_Hard: json_data[0][11],
+                Game4_Hard: json_data[0][12],
+
+            });
+            xhr.onload = () => {
+                if (xhr.readyState == 4 && xhr.status == 201) {
+                    console.log(JSON.parse(xhr.responseText));
+                } else {
+                    console.log(`Error: ${xhr.status}`);
+                }
+            };
+            xhr.send(body);
+
+
+
+        }
+
+
+        /* Code for Restart Button */ 
+        restart_button.addEventListener('click', function(e) {
+            game1.restart_puzzle();
+            SudokuDOM.display_board(game1, sudoku_squares, true);
+
+            // Reset mistakes counter
+            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            m = 0;
+
+            timer.set(0, 'timer1', callback);
+
+        });
+
+        /* Full functinoality below:
+
+        // Sudoku Cell Listener
+        for ( let row = 0; row <= 8; row++ ) {
+            for ( let col = 0; col <= 8; col++ ) {
+                sudoku_squares[row][col].addEventListener('input', function(e) {
+                   e.target.classList.remove("invalid");
+                   e.target.classList.remove("hint");
+
+                   // Listen for illegal moves; if illegal, delete input and 
+                   // turn square red for 2 seconds
+                   if ( ! game1.is_legal_move(row, col, e.target.value) && e.target.value != "" ) {
+                       e.target.value = "";
+                       SudokuDOM.highlight_illegal_move(e.target);
+                   } else {
+                       game1.make_move(row, col, e.target.value);
+                   }
+
+                   // SudokuDOM.display_string(game1, string_box, sudoku_wiki_link);
+                });
+            }
+        }
+        */
+
+        //     solve_button.addEventListener('click', function(e) {
+        //         const t1 = performance.now();
+        //         game1.solve_puzzle();
+        //         const t2 = performance.now();
+        //         document.querySelector('#algorithm span').innerHTML = (t2 - t1).toFixed(1);
+        //         SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link, false);
+        //         algorithm.style.display = 'block';
+        //     });
+
+        //     /*
+        //     set_button.addEventListener('click', function(e) {
+        //         game1.set_as_start_point();
+        //         puzzle_picker.selectedIndex = CUSTOM_PUZZLE_SELECTEDINDEX;
+        //         SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link, true);
+        //     });
+        //     */
+
+        //     validate_button.addEventListener('click', function(e) {
+        //         const t1 = performance.now();
+        //         const numberOfSolutions = game1.getNumberOfSolutions();
+        //         const t2 = performance.now();
+        //         document.querySelector('#algorithm span').innerHTML = (t2 - t1).toFixed(1);
+        //         algorithm.style.display = 'block';
+        //         if ( numberOfSolutions === 1 ) {
+        //             window.alert('PASS - Puzzle is valid');
+        //         } else {
+        //             window.alert('FAIL - Puzzle is invalid');
+        //         }
+        //     });
+
+        //     legal_moves_button.addEventListener('click', function(e) {
+        //         // TODO
+        //         const t1 = performance.now();
+        //         const numberOfSolutions = game1.getNumberOfSolutions();
+        //         const t2 = performance.now();
+        //         document.querySelector('#algorithm span').innerHTML = (t2 - t1).toFixed(1);
+        //         algorithm.style.display = 'block';
+        //         if ( numberOfSolutions === 1 ) {
+        //             window.alert('PASS - Puzzle is valid');
+        //         } else {
+        //             window.alert('FAIL - Puzzle is invalid');
+        //         }
+        //     });
+
+        //     restart_button.addEventListener('click', function(e) {
+        //         game1.restart_puzzle();
+        //         SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link);
+        //     });
+
+        //     hint_button.addEventListener('click', function(e) {
+        //         const hint = game1.get_hint();
+        //         if ( hint ) {
+        //             const row = hint.getRow();
+        //             const col = hint.getCol();
+        //             SudokuDOM.highlight_hint(sudoku_squares[row][col]);
+        //         }
+        //     });
+
+        //     import_button.addEventListener('click', function(e) {
+        //         const board = window.prompt('Please enter a sequence of 81 numbers, with 0 representing an empty square.');
+        //         const board_changed = game1.set_board(board);
+        //         if ( board_changed ) {
+        //             puzzle_picker.selectedIndex = CUSTOM_PUZZLE_SELECTEDINDEX;
+        //         }
+        //         SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link);
+        //     });
+
+        //     puzzle_picker.addEventListener('change', function(e) {
+        //         if ( puzzle_picker.value == 'import' ) {
+        //             import_button.click();
+        //         } else if ( puzzle_picker.value == 'random' ) {
+        //             new_button.click();
+        //         } else {
+        //             game1.set_board(puzzle_picker.value);
+        //             SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link);
+        //         }
+        //     });
+
+        //     // Pick the default puzzle. Trigger the <select>.change listener so the puzzle gets loaded.
+        //     // selectedIndex starts from 0
+        //     puzzle_picker.selectedIndex = DEFAULT_PUZZLE_SELECTEDINDEX;
+        //     puzzle_picker.dispatchEvent(new Event('change'));
+    })
 });
 
 class Helper {

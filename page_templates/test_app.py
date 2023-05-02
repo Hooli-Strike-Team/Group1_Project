@@ -83,10 +83,24 @@ def game_state(username):
     
     if request.method == 'POST':
         data = request.get_json()[0]
-        app.logger.info(data['Game'])
         db = sqlite3.connect(db_path)
-        with db:
-                db.execute('''UPDATE Games_In_Progress SET 'Game' = :Game WHERE Username=:Username''', data)
+        if data['Update_Type'] == 'New Game':
+            with db:
+                db.execute('''UPDATE Games_In_Progress SET 'Original_Game' = :Original_Game, 'Game' = :Game, 'Current_Time' = :Current_Time, 'Difficulty' = :Difficulty, 'Mistakes_Count' = :Mistakes_Count WHERE Username=:Username''', data)
+                cursor = db.cursor()
+                cursor.execute("SELECT * FROM Games_In_Progress WHERE Username = ?", (username,))
+                results = cursor.fetchall()
+                app.logger.info(results)
+        elif data['Update_Type'] == 'Current Game':
+            with db:
+                db.execute('''UPDATE Games_In_Progress SET 'Game' = :Game, 'Current_Time' = :Current_Time WHERE Username=:Username''', data)
+                cursor = db.cursor()
+                cursor.execute("SELECT * FROM Games_In_Progress WHERE Username = ?", (username,))
+                results = cursor.fetchall()
+                app.logger.info(results)
+        elif data['Update_Type'] == 'Mistake':
+            with db:
+                db.execute('''UPDATE Games_In_Progress SET 'Mistakes_Count' = :Mistakes_Count WHERE Username=:Username''', data)
                 cursor = db.cursor()
                 cursor.execute("SELECT * FROM Games_In_Progress WHERE Username = ?", (username,))
                 results = cursor.fetchall()
