@@ -508,7 +508,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // const validate_button = document.getElementById('validate');
     // const legal_moves_button = document.getElementById('legal-moves');
     const xbutton = document.querySelector(".x-button");
-    const settings_mistakes = document.getElementById('settings-mistakes');
+    let settings_mistakes = document.getElementById('settings-mistakes');
     const difficulty_span = document.getElementById('difficulty-span');
     
     // *************************** FIX *************************** 
@@ -590,6 +590,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
             var saved_time = saved_game_json_data[0][2]
             var saved_difficulty = 
             console.log('in newgame', game_string, original_game_string)
+            
+            // set initial mistakes count from saved data
+            document.getElementById('strike-counter').innerHTML = saved_game_json_data[0][8];
             
             // Reset board based on values in database
             game1.set_board(game_string);
@@ -884,123 +887,107 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
         });
 
-       settings_mistakes.addEventListener('change', function(e) {
-           var is_mistakes_counter_on = settings_mistakes.checked
+        /* Mistakes Handling */
+      
+        mistakes_button.addEventListener('click', function(e) {
+          settings_mistakes = document.getElementById('settings-mistakes');
 
+          // Mistakes setting is ON
+          if (settings_mistakes.checked) {
+            invalid_tag = "invalid";
+            
+            // Add active class to mistakes button to "highlight" it
+            e.target.classList.add('active');
+            
+            // Show mistakes on board in red
+            let result = game1.board_state(sudoku_squares, invalid_tag);
 
-           if ( is_mistakes_counter_on == false) {
-                /* Code for default mistakes feature */ 
-                mistakes_button.addEventListener('click', function (e) {
-                       e.target.classList.toggle('active');
-                       mistakes_mode = !mistakes_mode;
-                       console.log("mistakes_mode", mistakes_mode);
+            // Remove active class from mistakes button click
+            setTimeout(function () {
+              e.target.classList.remove('active');
+            }, 100);
+            
+            // Get current game data
+            loadGameData(sessionUsername).then((game_json_data) => {
+                m = game_json_data[0][8]; // get mistake count
+                m = m + 1;
 
-                       /* Code for Lone Wolf Achievement */
+                // Update mistake count in database
+                var mistakes_json = [{'Update_Type':'Mistake', 'Username':sessionUsername, 'Mistakes_Count':m}];
+                http_post('game_state/'+sessionUsername, mistakes_json);
 
-                       mistakes_count = mistakes_count + 1;  // Interates the number of mistakes used 
-                       console.log("Mistakes_count", mistakes_count)
+                // Update counter
+                document.getElementById('strike-counter').innerHTML = m;
 
-                       if (mistakes_mode == false) {
-                            game1.clear_mistakes(sudoku_squares, "invalid");
-                        }
+                // If 10 mistakes has been reached, game is over
+                if ( m == 10 ) {
+                  rendermodal();
+                }
+            });
 
-                       if (mistakes_mode == true) {
-                          game1.board_state(sudoku_squares, "invalid");
-                      }
-                });
-           }
-
-           else if (is_mistakes_counter_on == true) {
-                /* Code for mistakes limit modal window */
-
-                  // Mistakes button shows users all invalid squares 
-                 mistakes_button.addEventListener('click', function (e) {
-                    invalid_tag = "invalid" 
-                    e.target.classList.add('active');
-                    console.log("Button Active"); 
-                    game1.board_state(sudoku_squares, invalid_tag)
-                    mistakes_mode = !mistakes_mode;
-
-                    setTimeout(function () {
-                        e.target.classList.remove('active');
-                        mistakes_mode = !mistakes_mode;
-
-                    }, 100);
-                });
-
-                // any use of async value has to be inside promise
-                var m = 0;
-                var game_data_promise = loadGameData(sessionUsername)
-                game_data_promise.then((game_json_data) =>{ 
-                    m = game_json_data[0][8]
-                    console.log('m= ', m)
-                    if (m <= 10) {                                       
-                    document.getElementById('strike-counter').innerHTML = m +" / 10";
-                    }
-                    else {
-                    document.getElementById('strike-counter').innerHTML = "10 / 10";
-                    }
-
-
-                    // Increment m by 1 each time the "Mistakes" button is clicked
-                    mistakes_button.addEventListener('click', function (e) {
-                        var game_data_promise2 = loadGameData(sessionUsername)
-                        game_data_promise2.then((game_json_data) =>{ 
-                            m = game_json_data[0][8]
-                            m = m + 1
-                            var mistakes_json = [{'Update_Type':'Mistake','Username':sessionUsername,'Mistakes_Count':m}]
-                            http_post('game_state/'+sessionUsername,mistakes_json)
-
-                            if ( m < 10 ) {
-                                document.getElementById('strike-counter').innerHTML = m + " / 10";
-                            }
-                            else if ( m == 10 ) {
-                                document.getElementById('strike-counter').innerHTML = m + " / 10";
-
-                                rendermodal()
-                            }
-                        }) // promise brackets
-                    })
-
-                    // Render modal window for the mistakes counter warning     
-                    function rendermodal(event) {
-                        // Show modal window when page loads
-                        var modal_mistakes = document.getElementById('mistake-limit-model');
-                        modal_mistakes.style.display = 'block';
-
-                        modal_mistakes.addEventListener('click', hidemistakes)
-                    }
-
-                    // Code for clicking out of mistakes modal window
-                    function hidemistakes(event) {
-                        // Get modal window element by ID
-                        var modal_mistakes = document.getElementById('mistake-limit-model');
-                        // Get content of modal window
-                        var content_mistakes = document.querySelector('.modal-mistakes-content');
-
-
-                        // Check if element that is clicked on is either modal window background 
-                        // or not a child of content
-                        if ( event.target == modal_mistakes || !content_mistakes.contains(event.target) ) {
-                            // Hide modal window
-                            modal_mistakes.style.display = 'none';
-                            m = 0
-                            var mistakes_json = [{'Update_Type':'Mistake','Username':sessionUsername,'Mistakes_Count':m}]
-                            http_post('game_state/'+sessionUsername,mistakes_json)
-
-                            // Reset mistakes counter
-                            document.getElementById('strike-counter').innerHTML = " 0 / 10";
-                            // Taker users back to New Game Difficulty Menu
-                            openModal() 
-
-                        }
-                    }
-                  });
-               }
+          } else {
+            e.target.classList.toggle('active');
+            mistakes_mode = !mistakes_mode;
+            
+            // Only increment mistakes count if toggling button ON
+            if (e.target.classList.contains('active')) {
+              mistakes_count = mistakes_count + 1;
             }
-        )
+            
+            if (mistakes_mode) {
+              game1.board_state(sudoku_squares, "invalid");
+            } else {
+              game1.clear_mistakes(sudoku_squares, "invalid");
+            }
+            
+          }
+        });
+      
+        // If mistakes settings change while playing game, reset 
+        // mistake features
+        settings_mistakes.addEventListener('change', function() {
+          mistakes_button.classList.remove('active');
+          mistakes_mode = false;
+          game1.clear_mistakes(sudoku_squares, "invalid");
+        });
 
+        // Render modal window for the mistakes counter warning     
+        function rendermodal(event) {
+            // Show modal window when page loads
+            var modal_mistakes = document.getElementById('mistake-limit-model');
+          
+            modal_mistakes.style.display = 'block';
+            modal_mistakes.addEventListener('click', hidemistakes)
+        }
 
+        // Code for clicking out of mistakes modal window
+        function hidemistakes(event) {
+            // Get modal window element by ID
+            var modal_mistakes = document.getElementById('mistake-limit-model');
+          
+            // Get content of modal window
+            var content_mistakes = document.querySelector('.modal-mistakes-content');
+
+            // Check if element that is clicked on is either modal window background 
+            // or not a child of content
+            if ( event.target == modal_mistakes || !content_mistakes.contains(event.target) ) {
+                // Hide modal window
+                modal_mistakes.style.display = 'none';
+              
+                m = 0;
+                var mistakes_json = [{'Update_Type':'Mistake','Username':sessionUsername,'Mistakes_Count':m}]
+                http_post('game_state/'+sessionUsername,mistakes_json);
+
+                // Reset mistakes counter
+                document.getElementById('strike-counter').innerHTML = "0";
+              
+                // Show user difficulty modal window
+                openModal() 
+
+            }
+        }
+      
+      
         /* Code for End of Game Notification Modal Window */
 
         // Render modal window for completed game
@@ -1012,7 +999,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             modal.style.display = 'block';
             modal.addEventListener('click', hidecompleted)
         }
-        // Code for clicking out of the Completed game modal
+        // Code for clicking out of completed game modal
         function hidecompleted(event) {
             // Get modal window element by ID
             var modal = document.getElementById('completed-game-model');
@@ -1027,9 +1014,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
                 // Reset mistakes counter
                 m = 0
-                document.getElementById('strike-counter').innerHTML = " 0 / 10";
+                document.getElementById('strike-counter').innerHTML = "0";
 
-                // Takes users back to New Game
+                // Show user back to difficulty modal window
                 openModal() 
 
             }
@@ -1045,8 +1032,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
         const easyButton = document.getElementById('easy'); 
         const hardButton = document.getElementById('hard'); 
 
-        // Get any parameters from the URL
-            //Moved to start of listener
+        // Get any parameters from URL
+            // Moved to start of listener
         // const queryString = window.location.search;
         // const urlParams = new URLSearchParams(queryString);
         // const newGame = urlParams.get('new'); 
@@ -1151,7 +1138,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             }
 
             // Reset mistakes counter
-            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            document.getElementById('strike-counter').innerHTML = "0";
             m = 0;
 
             timer.set(0, 'timer1', callback);
@@ -1184,7 +1171,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             }
 
             // Reset mistakes counter
-            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            document.getElementById('strike-counter').innerHTML = "0";
             m = 0;
 
             timer.set(0, 'timer1', callback);
@@ -1215,7 +1202,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             }
 
             // Reset mistakes counter
-            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            document.getElementById('strike-counter').innerHTML = "0";
             m = 0;
 
             timer.set(0, 'timer1', callback);
@@ -1360,7 +1347,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             SudokuDOM.display_board(game1, sudoku_squares, true);
 
             // Reset mistakes counter
-            document.getElementById('strike-counter').innerHTML = " 0 / 10";
+            document.getElementById('strike-counter').innerHTML = "0";
             m = 0;
 
             timer.set(0, 'timer1', callback);
