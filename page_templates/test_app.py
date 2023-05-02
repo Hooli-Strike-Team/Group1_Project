@@ -82,15 +82,16 @@ def game_state(username):
         return jsonify(results)
     
     if request.method == 'POST':
-        data = request.get_json()
+        data = request.get_json()[0]
+        app.logger.info(data['Game'])
         db = sqlite3.connect(db_path)
         with db:
-                db.execute('''UPDATE Games_In_Progress SET 'Current_Time' = :Current_Time, 'Game' = :Game WHERE 'Game_ID' = :Game_ID''', data)
-                for result in db.execute("SELECT * FROM User_Account;"):
-                    results.append(result) 
-
+                db.execute('''UPDATE Games_In_Progress SET 'Game' = :Game WHERE Username=:Username''', data)
+                cursor = db.cursor()
+                cursor.execute("SELECT * FROM Games_In_Progress WHERE Username = ?", (username,))
+                results = cursor.fetchall()
+                app.logger.info(results)
         db.close()
-        app.logger.info(data)
         return 'nothing'
 
   

@@ -161,8 +161,9 @@ class Sudoku {
         var game_state = this.get_string();
         var original_board = this.get_original_board_string();
         console.log(game_state, original_board)
-        //var game_json = [{'Username':sessionUsername,'Game_ID':'1234','Current_Time':'1234','Game':game_state,'Difficulty':'Expert'}]
-        // http_post('game_state',game_json)
+        
+        var game_json = [{'Username':sessionUsername,'Game_ID':'1234','Current_Time':'1234','Game':game_state, 'Original_Game':original_board,'Difficulty':'Expert'}]
+        http_post('game_state/'+sessionUsername,game_json)
         // send to database
         /*
         Columns of Games_In_Progress
