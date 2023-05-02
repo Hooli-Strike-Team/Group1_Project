@@ -599,8 +599,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             
             // Reset time based on time of last move in database
             timer.set(saved_time, 'timer1', callback);
-            timer.setTimeLimit(43200); 
-            timer.start('COUNT_UP');
+//         
             
             // Change Difficulty label based on game difficulty in database
             difficulty_span.textContent= saved_game_json_data[0][5]
