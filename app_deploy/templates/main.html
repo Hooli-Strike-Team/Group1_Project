@@ -1,0 +1,188 @@
+<!-- Inherits from base.html -->
+{% extends "base.html" %}
+
+<!-- Block for JavaScript source and script content -->
+{% block js_source %}src="{{ url_for('static', filename='js/sudoku.js') }}"{% endblock %}
+
+<!-- Sets page title as "Main" -->
+{% block title %}Main{% endblock %}
+
+<!-- Main content of page -->
+{% block content %}
+
+{% if mistakes_counter %}
+<!-- Mistakes Modal --> 
+
+<div id="mistake-limit-model" class="modal-mistakes">
+    <div class="modal-mistakes-content">
+        <div id="game-over">
+            <p><b>Mistake Limit Reached</b></p>
+            <i class="fa-regular fa-face-sad-tear fa-2xl" style="color: #578172;"></i> 
+            <p>Game Over!</p>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+
+<!--Completed Game Modal --> 
+
+<div id="completed-game-model" class="modal-completed">
+    <div class="modal-completed-content">
+        <div id="win">
+            <p><b>Puzzle Solved!</b></p>
+            <img src="static/images/Main/well-done.gif" alt="Well Done" style="width:300px;height:300px;"> 
+        </div>
+    </div>
+</div>
+
+<div class="wrapper-container">
+  <div class="game-container">
+    <!-- Left container -->
+    <div class="left-container">
+      <!-- Information container -->
+      <div id="info-container">
+        <!-- Difficulty setting -->
+        <div id="difficulty-setting">
+          <span class="material-icons-outlined"> stars </span>
+          <span>EXPERT</span>
+        </div>
+
+        <!-- Timer -->
+        <div class="timer"> 
+            <div id="timer1"></div>
+        </div>
+  
+        <!-- Mistakes count -->
+        <div id="mistakes-count" style="visibility:hidden">
+          <span class="material-icons-outlined"> close </span>
+          <span id="strike-counter">0 / 10</span>
+        </div>
+      </div>
+
+      <!-- Sudoku board -->
+      <div id="sudoku-board">
+        {% for row in range(9) %}
+        {% for col in range(9) %}
+        <div
+          class="cell {% if row % 3 == 0 and row != 0 %}subgrid-top{% endif %} {% if col % 3 == 0 and col != 0 %}subgrid-left{% endif %}">
+          <input type='text' pattern='\\d*' novalidate id='input-{{ col + row * 9 }}' data-notes="">
+          
+          <!-- Notes <div> (appears when user is in notes mode) -->
+          <div class="notes"></div>
+        </div>
+        {% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Right container -->
+    <div id="right-box">
+      <!-- User information box -->
+      <div class="user-info-box">
+        <div id="username-wrapper">
+          <i class="fa-solid fa-circle-user user-icon"></i>
+          <span class="username">{{ session['username'] }}</span>
+        </div>
+        <a href="{{ url_for('logout') }}">Sign Out</a>
+      </div>
+
+      <!-- Right container buttons -->
+      <div id="right-box-buttons-container">
+        <button class="right-box-button bottom-buttons" id="mistakes-button">
+          <span class="material-icons-outlined">error_outline</span>
+          Mistakes
+        </button>
+        <button class="right-box-button bottom-buttons" id="notes-button">
+          <span class="material-icons-outlined">create</span>
+          Notes
+        </button>
+      </div>
+
+      <!-- Placeholder box -->
+      <div class="placeholder-box">
+        {% for digit in range(1, 10) %}
+        <button class="digit-button placeholder-digit-button" id="digit-{{digit}}" data-digit="{{digit}}">{{digit}}</button>
+        {% endfor %}
+        <button class="x-button">
+          <span class="material-icons-outlined">
+            backspace
+          </span>
+        </button>
+      </div>
+
+      <!-- Buttons container -->
+      <div class="buttons-container">
+        <!-- Top buttons container -->
+        <div class="top-buttons">
+          <!-- "Tutorial" button -->
+          <a class="right-box-button bottom-buttons"
+                  id="tutorial-button"
+                  href="{{ url_for('show_tutorial') }}"
+                  target="_blank"
+          >
+            <span class="material-icons-outlined">school</span>
+            Tutorial
+          </a>
+
+          <!-- "Restart" button -->
+          <button
+            class="right-box-button bottom-buttons"
+            id="restart-button"
+          >
+            <span class="material-icons-outlined">repeat</span>
+            Restart
+          </button>
+        </div>
+
+        <!-- "New Game" button container -->
+        <div class="new-game-button-container">
+          <!-- "New Game" button -->
+          <button class="right-box-button new-game-button" id="new-game-button">
+            New Game
+          </button>
+        </div>
+      </div>
+      
+      <!-- Difficulty modal window -->
+      <div id="difficultyModal" class="difficulty-modal">
+        <div class="difficulty-modal-content">
+          <span class="close">&times;</span>
+          <p id="select_difficulty">
+            Select Difficulty
+          </p>
+          
+          <!-- "Easy" button -->
+          <button id="easy">
+            EASY
+            <div class="modal-stars">
+              <span class="material-icons-outlined">star</span>
+            </div>
+          </button>
+          
+          <!-- "Hard" button -->
+          <button id="hard">
+            HARD
+            <div class="modal-stars">
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+            </div>
+          </button>
+          
+          <!-- "Expert" button -->
+          <button id="expert">
+            EXPERT
+            <div class="modal-stars">
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+              <span class="material-icons-outlined">star</span>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

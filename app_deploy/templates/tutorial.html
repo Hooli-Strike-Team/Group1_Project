@@ -1,0 +1,422 @@
+<!-- Inherits from base.html -->
+{% extends "base.html" %}
+
+<!-- Block for JavaScript source and script content -->
+{% block js_source %}{% endblock %}
+
+<!-- Sets page title as "Tutorial" -->
+{% block title %}Tutorial{% endblock %}
+
+<!-- Main content of page -->
+{% block content %}
+<div class="rules-wrapper">
+  <div class="rules tutorial">
+    <h1>Tutorial</h1>
+
+    <!-- Hidden Pair section -->
+    <h3>Hidden Pair</h3>
+    <div class="rules-row tutorial">
+      <!-- Hidden Pair Images -->
+      <div class="rules-image tutorial">
+        <!-- Image #1 -->
+        <img
+          src="static/images/tutorial/hidden_pairs1.png"
+          alt="Hidden Pairs Image 1"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p>
+          The 5 and 6 cannot occupy any of the highlighted cells. Therefore,
+          they must be placed in the remaining two uncolored cells.
+        </p>
+
+        <!-- Image #2 -->
+        <img
+          src="static/images/tutorial/hidden_pairs2.png"
+          alt="Hidden Pairs Image 2"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p>
+          One of the two possible placements for 5 and 6. A later clue will
+          reveal which of the outcomes is part of the solution.
+        </p>
+      </div>
+
+      <!-- Hidden Pair description -->
+      <div class="rules-description tutorial">
+        <p>
+          The <span><b>Hidden Pair</b></span> technique is a Sudoku strategy
+          that helps to identify pairs of numbers that must be placed in specific
+          cells. The method extends the Hidden Single technique, which focuses on
+          finding a single number that can only be placed in one cell.
+        </p>
+        <p>
+          Here is how the Hidden Pair technique works:
+        </p>
+        <ol>
+          <li>
+            Identify a region (row, column, or 3x3 block of cells) with only a
+            few empty cells.
+          </li>
+          <li>
+            Look for two numbers that must be placed in two specific cells within
+            the selected region, but their exact positions are unknown.
+          </li>
+          <li>
+            Eliminate all other candidates from those two cells, leaving only
+            the hidden pair.
+          </li>
+        </ol>
+        <p>
+          For example, if you find that 5 and 6 can only be placed in two
+          specific cells within a block, and their exact positions are unknown,
+          you have discovered a hidden pair. You can then eliminate all other
+          candidates from those two cells, leaving only 5 and 6.
+        </p>
+        <p>
+          To spot hidden pairs effectively, prioritize the regions that have few
+          empty cells and those for which many cells can be ruled out at once.
+          Combining the search for hidden singles, hidden pairs, and even larger
+          hidden groups can help you to spot these patterns more easily.
+        </p>
+        <p>
+          Remember that for the technique to work, there must be only two cells
+          where the two candidates may go. If you find three cells for two
+          numbers, this is not a hidden pair.
+        </p>
+        <p>
+          The strength of finding a hidden pair lies not only in knowing that
+          the numbers are in those cells, but also in the fact that all other
+          numbers cannot be there, which helps further narrow down the
+          possibilities in the puzzle.
+        </p>
+      </div>
+    </div>
+
+    <!-- Locked Candidate section -->
+    <h3>Locked Candidate</h3>
+    <div class="rules-row tutorial">
+      <!-- Locked Candidate images -->
+      <div class="rules-image tutorial">
+        <!-- Image #1 -->
+        <img
+          src="static/images/tutorial/locked_candidate_ltbr.png"
+          alt="Locked Candidate Image 1"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p>
+          <i>Line-to-Block Reduction</i> :&ensp;The 2 in the lower-middle block
+          limits the placement of a 2 to two specific cells within the
+          upper-right block.
+        </p>
+
+        <!-- Image #2 -->
+        <img
+          src="static/images/tutorial/locked_candidate_btlr.png"
+          alt="Locked Candidate Image 2"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p>
+          <i>Block-to-Line Reduction</i> :&ensp;The 5 in the lower-right block
+          limits the placement of a 5 to two specific cells within the
+          upper-middle block.
+        </p>
+      </div>
+
+      <!-- Locked Candidate description -->
+      <div class="rules-description tutorial">
+        <p>
+          The <span><b>Locked Candidate</b></span> technique is a Sudoku solving
+          strategy that focuses on candidates that are restricted within an
+          intersecting region between a 3x3 block of cells and a row or column.
+          It helps to eliminate candidates from other cells in the same block,
+          row, or column. There are two types of Locked Candidate techniques:
+          Line-to-Block Reduction and Block-to-Line Reduction.
+        </p>
+        <p>
+          <i>Line-to-Block Reduction</i> :&ensp;In this technique, a specific
+          number is restricted to the intersection of a block and a line
+          (row or column). Consequently, the number cannot appear elsewhere in
+          the block. To apply this technique, do the following:
+        </p>
+        <ol>
+          <li>
+            Identify a number that is restricted within the intersection of a
+            block and a line.
+          </li>
+          <li>
+            Eliminate the number as a candidate from the other cells within
+            the block.
+          </li>
+        </ol>
+        <p>
+          <i>Block-to-Line Reduction</i> :&ensp;Also known as Pointing Pairs or
+           Pointing Triples, this technique involves restricting a specific
+           number within the intersection of a block and a line so that the
+           number cannot appear elsewhere in the line. To apply this technique,
+           do the following:
+        </p>
+        <ol>
+          <li>
+            Identify a number that is restricted within the intersection of a
+            block and a line.
+          </li>
+          <li>
+            Eliminate the number as a candidate from the other cells within
+            the line.
+          </li>
+        </ol>
+        <p>
+          To find Locked Candidates effectively, start looking for them when
+          there are no singles or groups left to find. Look for regions where
+          many cells can be affected at once, so that a number is squeezed into
+          a block, row, or column.
+        </p>
+      </div>
+    </div>
+
+   <!-- X-Wing section -->
+   <h3>X-Wing</h3>    
+   <div class="rules-row tutorial">
+      <!-- X-Wing images -->
+      <div class="rules-image tutorial">
+        <!-- Image #1 -->
+        <img
+          src="static/images/tutorial/x-wing.png"
+          alt="X-Wing Image 1"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p>
+          The cells that are highlighted in green make up the X-Wing. The
+          candidates that are highlighted in red can be eliminated.
+        </p>
+
+        <!-- Image #2 -->
+        <img
+          src="static/images/tutorial/x-wing_non_ex.png"
+          alt="X-Wing Image 2"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p class="tutorial-image-description">
+          An X-Wing that is completely contained within a single block is not
+          possible because there would be a repeated number in that block.
+        </p>
+      </div>
+
+      <!-- X-Wing description -->
+      <div class="rules-description tutorial">
+        <p>
+          The <span><b>X-Wing</b></span> technique is a strategy that is used to
+          eliminate candidates in Sudoku.
+        </p>
+        <p>
+          An X-Wing occurs when a specific number appears as a candidate in
+          exactly two cells within two different rows, and these cells are also
+          aligned in the same columns. The name X-Wing comes from the X-shaped
+          pattern formed by the cells when they are connected.
+        </p>
+        <p>
+          The essential idea behind the X-Wing technique is that since the number
+          can only appear in one of the two cells in each row, it must also appear
+          in one of the two cells in the corresponding columns. Thus, the number
+          cannot appear in any other cells within those columns.
+        </p>
+        <p>To apply the X-Wing technique, do the following:</p>
+        <ol>
+          <li>
+            Identify two rows where a specific number appears as a candidate in
+            exactly two cells, and the cells are aligned in the same columns.
+          </li>
+          <li>
+            Recognize that the number will eventually be placed in one of the
+            two cells in each row, and also in one of the two cells in each
+            column.
+          </li>
+          <li>
+            Eliminate the number as a candidate from any other cells within
+            the columns.
+          </li>
+        </ol>
+        <p>
+          The X-Wing technique can also be applied in the opposite direction,
+          where the restriction is given by columns, and the candidates can be
+          eliminated from rows.
+        </p>
+        <p>
+          If a number is restricted within columns, an X-Wing allows you to
+          eliminate from rows; if a number is restricted within rows, an X-Wing
+          allows you to eliminate from columns.
+        </p>
+      </div>
+    </div>
+
+   <!-- Swordfish section -->
+   <h3>Swordfish</h3> 
+   <div class="rules-row tutorial">
+      <!-- Swordfish images -->
+      <div class="rules-image tutorial">
+        <!-- Image #1 -->
+        <img
+          src="static/images/tutorial/swordfish1.png"
+          alt="Swordfish Image 1"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p>
+          The only distinction between the Swordfish technique and the X-Wing
+          technique is that the configuration of a Swordfish is slightly more 
+          difficult to identify because it is composed of nine cells rather 
+          than four cells.
+        </p>
+
+        <!-- Image #2 -->
+        <img
+          src="static/images/tutorial/swordfish2.png"
+          alt="Swordfish Image 2"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p class="tutorial-image-description">
+          The cells that are highlighted in green and yellow make up the
+          Swordfish. The candidates that are highlighted in red can be eliminated.
+        </p>
+      </div>
+
+      <!-- Swordfish description -->
+      <div class="rules-description tutorial">
+        <p>
+          The <span><b>Swordfish</b></span> technique is is an advanced Sudoku
+          solving strategy that builds on the X-Wing technique. Whereas an X-Wing
+          consists of a 2x2 matrix of cells, the Swordfish technique works with a
+          3x3 matrix of cells. A Swordfish is also called a 3x3 Fish.
+        </p>
+        <p>
+          The Swordfish technique works by identifying a specific number that
+          appears in exactly three cells in each of the three rows or columns,
+          forming a 3x3 matrix of cells. The configuration allows you to eliminate
+          the number as a candidate from the other cells in the intersecting rows
+          or columns.
+        </p>
+        <p>To apply the Swordfish technique, do the following:</p>
+        <ol>
+          <li>
+            Identify a number that appears in exactly three cells in each of the
+            three rows or columns that form a 3x3 matrix of cells.
+          </li>
+          <li>
+            Visualize or mark the 3x3 matrix, making note of the instersecting
+            rows and columns.
+          </li>
+          <li>
+            Eliminate the identified number as a candidate from the other cells
+            within the intersecting rows or columns.
+          </li>
+        </ol>
+        <p>
+          The Swordfish technique still works even if some of the candidates have
+          been eliminated from the 3x3 matrix, which makes it an incomplete
+          Swordfish. As long as the remaining configuration still follows the
+          rules of the Swordfish technique, you can eliminate the candidate from
+          the intersecting rows or columns.
+        </p>
+        <p>
+          Essentially, the Swordfish technique helps you to rule out candidates
+          by identifying a specific number that is restricted within a 3x3 matrix
+          of rows or columns. The technique can be more challenging to use when
+          compared to the X-Wing, but it is nevertheless a powerful tool for
+          solving advanced Sudoku puzzles.
+        </p>
+      </div>
+    </div>
+
+   <!-- Jellyfish section -->
+   <h3>Jellyfish</h3>
+   <div class="rules-row tutorial">
+      <!-- Jellyfish images -->
+      <div class="rules-image tutorial">
+        <!-- Image #1 -->
+        <img
+          src="static/images/tutorial/jellyfish1.png"
+          alt="Jellfish Image 1"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p>
+          The Jellyfish technique functions similarly to both the X-Wing and
+          Swordfish techniques.
+        </p>
+
+        <!-- Image #2 -->
+        <img
+          src="static/images/tutorial/jellyfish2.png"
+          alt="Jellfish Image 1"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+        <p class="tutorial-image-description">
+          The cells that are highlighted in blue make up the complementary
+          Column-to-Row Jellyfish.
+        </p>
+      </div>
+
+      <!-- Jellyfish description -->
+      <div class="rules-description tutorial">
+        <p>
+          The <span><b>Jellyfish</b></span> technique is is an advanced Sudoku
+          solving strategy and a 4x4 variant of the X-Wing technique. Similar to
+          the X-Wing and Swordfish techniques, the Jellyfish technique helps
+          you to eliminate candidates in rows or columns, depending on the
+          particular configuration.
+        </p>
+        <p>
+          In a Jellyfish, four candidates appear in exactly four rows
+          (or columns) and are aligned in such a way that they also occupy only
+          four columns (or rows). The technique is based on the principle that
+          each of the four candidates must be placed in one of the four
+          intersecting cells in their respective rows or columns.
+        </p>
+        <p>To apply the Jellyfish technique, do the following:</p>
+        <ol>
+          <li>
+            Look for a candidate that is confined to four columns in four
+            selected rows.
+          </li>
+          <li>
+            If you find a Jellyfish configuration, you can eliminate the candidate
+            from any other cells in the involved columns (or rows) outside of
+            the Jellyfish.
+          </li>
+        </ol>
+        <p>
+          In standard 9x9 Sudoku puzzles, you only need to look for X-Wings (2x2),
+          Swordfish (3x3), and Jellyfish (4x4). For every fish that is 5x5 or
+          larger, there would always be a complementary fish that is smaller in
+          size, so you do not need to look for the bigger one.
+        </p>
+        <p>
+          Interestingly, Jellyfish often appear to have complementary Jellyfish,
+          where a Row-to-Column Jellyfish is accompanied by a Column-to-Row
+          Jellyfish. The pattern is quite common in Sudoku puzzles featuring
+          Jellyfish configurations.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Citation wrapper -->
+<div class="citation-wrapper tutorial">
+  <h1>Works Cited</h1>
+  <!-- Source #1 -->
+  <p>
+    Feldmann, Jan. “Sudoku Coach - Learn Rules and Techniques.” Sudoku Coach -
+    Play, Learn, and More..., 2020, https://sudoku.coach/en/learn.
+  </p>
+</div>
+{% endblock %}

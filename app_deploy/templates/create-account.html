@@ -1,0 +1,76 @@
+<!-- Inherits from base.html -->
+{% extends "base.html" %} 
+
+<!-- Block for JavaScript source and script content -->
+{% block js_source %}{% endblock %}
+
+<!-- Sets page title as "Create Account" -->
+{% block title %}Create Account{% endblock %} 
+
+<!-- Main content of page -->
+{% block content %}
+<!-- Main content wrapper -->
+<div class="rules-wrapper">
+  <!-- Create account container -->
+  <div class="rules create-account">
+    <h1>Create Account</h1>
+    <!-- Form fields container -->
+    <div class="ca-fields">
+      <!-- Define form action as 'POST'. -->
+      <form action="" method="post">
+          
+        <!-- Username field -->
+        <label for="Username"><h3>Username</h3></label>
+        <div class="ca-input-wrapper">
+          <input type="text" placeholder="Username" name="uname" required />
+        </div>
+
+        <!-- Password field -->
+        <label for="Password"><h3>Password</h3></label>
+        <div class="ca-input-wrapper">
+          <input type="password" placeholder="Password" name="psw" required />
+        </div>
+
+        <!-- First name field -->
+        <label for="First Name"><h3>First Name</h3></label>
+        <div class="ca-input-wrapper">
+          <input type="text" placeholder="First Name" name="fname" required />
+        </div>
+
+        <!-- Last name field -->
+        <label for="Last Name"><h3>Last Name</h3></label>
+        <div class="ca-input-wrapper">
+          <input type="text" placeholder="Last Name" name="lname" required />
+        </div>
+
+        <!-- E-mail address field -->
+        <label for="E-mail Address"><h3>E-mail Address</h3></label>
+        <div class="ca-input-wrapper">
+          <input type="email" placeholder="Email Address" name="email" required />
+        </div>
+
+        <!-- "Create Account" and "Sign In" buttons container -->
+        <div class="create-sign-in-wrapper create-account">
+          
+          <!-- Create account button -->
+          <button type="submit" value="VALUE1" name="action1" class="ca-login-button">Create Account</button>
+          
+          <!-- Sign in link container -->
+          <div class="ca-has-account">
+            <div>Already have an account?</div>
+            <!-- Sign in link -->
+            <a class="sign-in-link" href="{{ url_for('login') }}">Sign In</a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %} 
+
+{% block extra_js %}
+{% if show_logged_in_content %}
+<!-- If user is logged in, load modal.js -->
+<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+{% endif %}
+{% endblock %}

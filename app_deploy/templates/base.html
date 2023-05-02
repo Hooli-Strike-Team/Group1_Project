@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Basic meta tags -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Stylesheet imports -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}" />
+
+  <!-- Preconnects for optimal performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+  <!-- FontAwesome stylesheet (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Google Fonts stylesheet (custom fonts) -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css?family=Montserrat:400,700|Open+Sans:400,700&display=swap" />
+
+  <!-- Material Icons stylesheet (icons) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" />
+    
+  <!-- Load settings-modal.js for Main page -->
+  <script>const sessionUsername = "{{ session['username'] }}";</script>
+    
+  <!-- Script tag with block for JavaScript source and script content -->
+  <script {% block js_source %}src="{{ url_for('static', filename='js/settings-modal.js') }}" {% endblock %}></script>
+
+  <!-- Load settings-modal.js for Main page -->
+  <script src="{{ url_for('static', filename='js/settings-modal.js') }}"></script>
+
+  <!-- Block for page title -->
+  <title>Sudoku Sage - {% block title %}{% endblock %}</title>
+</head>
+
+<body>
+  <!-- Container for navigation bar -->
+  <div id="navbar">
+    <!-- Sudoku Sage logo and link to Home page -->
+    <a href="{{ url_for('home') }}" class="logo">
+      <img src="{{ url_for('static', filename='images/logo_weights/logo_16px_green_dash.png') }}" alt="Logo" />
+    </a>
+    <!-- Website name -->
+    <span class="name">Sudoku Sage</span>
+
+    <!-- Container for header buttons -->
+    <div class="header-buttons">
+      <!-- Block for extending template to display alternate buttons -->
+      {% block buttons %}
+      <!-- "Rules" button -->
+      <a href="{{ url_for('show_rules') }}" class="header-button-link">
+        <span class="header-button-icon material-icons-outlined">receipt_long</span>
+        <span class="header-button-label">Rules</span>
+      </a>
+
+      <!-- "Achievements" button -->
+      <a href="{{ url_for('show_achievements') }}"
+         target="_blank"
+         class="header-button-link"
+      >
+        <span class="header-button-icon material-icons-outlined">emoji_events</span>
+        <span class="header-button-label">Achievements</span>
+      </a>
+
+      <!-- "Settings" button -->
+      <div class="header-button-link">
+        <span class="header-button-icon material-icons-outlined" id="settings-button">settings</span>
+        <span class="header-button-label">Settings</span>
+      </div>
+
+      {% endblock %}
+    </div>
+    <!--  Settings modal window -->
+    <div id="settingsmodal" class="settings-modal">
+      <div class="settings-modal-content">
+        <span class="close-settings">&times;</span>
+        <p>Select Settings</p>
+
+        <!-- Show clock slider -->
+        <div class="settings-item">
+          <div class="settings-description">SHOW CLOCK</div>
+          <div class="settings-slider">
+            <label class="switch">
+              <input type="checkbox" id="settings-clock" checked />
+              <span class="slider round"></span>
+              <span class="slider-label on">On</span>
+              <span class="slider-label off">Off</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Mistake counter slider -->
+        <div class="settings-item">
+          <div class="settings-description">MISTAKES COUNTER</div>
+          <div class="settings-slider">
+            <label class="switch">
+              <input type="checkbox" id="settings-mistakes" />
+              <span class="slider round"></span>
+              <span class="slider-label on">On</span>
+              <span class="slider-label off">Off</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Main content container -->
+  <div id="content">
+    <!-- Block for main content of page -->
+    {% block content %}{% endblock %}
+  </div>
+
+  <!-- Footer container -->
+  <div id="footer-rectangle">
+    <div class="footer-content">
+      <!-- Contact section -->
+      <div class="footer-contact">
+        <h3>Contact Us:</h3>
+        <ul>
+          <li>
+            <a href="mailto:webapp@example.com">SudokuSage@example.com</a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Social media section -->
+      <div class="footer-social">
+        <div class="social-wrapper">
+          <h3>Follow Us:</h3>
+          <ul>
+            <!-- Facebook link -->
+            <li>
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </li>
+            <!-- Twitter link -->
+            <li>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+            </li>
+            <!-- Instagram link -->
+            <li>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Block for extra JavaScript files to be loaded after main content -->
+  {% block extra_js %}{% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,167 @@
+<!-- Inherits from base.html -->
+{% extends "base.html" %}
+
+<!-- Block for JavaScript source and script content -->
+{% block js_source %}{% endblock %}
+
+<!-- Sets page title as "Rules" -->
+{% block title %}Rules{% endblock %}
+
+<!-- Main content of page -->
+{% block content %}
+<div class="rules-wrapper">
+  <div class="rules">
+    <h1>Rules</h1>
+
+    <!-- The Basics section -->
+    <h3>The Basics</h3>
+    
+    <!-- Rules row #1 -->
+    <div class="rules-row">
+      <div class="rules-image">
+        <img
+          src="static/images/rules/Sudoku_17d_animation.gif"
+          alt="Sudoku Gif"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+      </div>
+      <div class="rules-description">
+        <p>This is an example of a Sudoku game in progress.</p>
+        <p>
+          A standard Sudoku game is played on a 9x9 grid, which is divided into
+          nine 3x3 blocks of cells.
+        </p>
+        <p>The numbers used in the game range from 1 to 9 (0 is not included).</p>
+      </div>
+    </div>
+
+    <!-- Rules row #2 -->
+    <div class="rules-row">
+      <div class="rules-image">
+        <img
+          src="static/images/rules/Sudoku_Solved.png"
+          alt="Sudoku Solved"
+          class="image-size"
+        />
+        <h6>(Feldman)</h6>
+      </div>
+      <div class="rules-description">
+        <p>This is an example of a solved Sudoku game.</p>
+        <p>
+          The <span class="black-text">black</span> numbers were provided at the
+          beginning of the game, and the player filled in the
+          <span class="blue-text">blue</span> numbers to solve the puzzle.
+        </p>
+        <p>
+          <b>Note:</b>
+        </p>
+        <p class="rules-note">
+          In a valid Sudoku solution, no number is repeated in any <b>column</b>,
+          <b>row</b>, or <b>3x3 block</b>!
+        </p>
+      </div>
+    </div>
+
+    <!-- Mistakes section -->
+    <h3>Mistakes</h3>
+
+    <!-- Rules row #3 -->
+    <div class="rules-row">
+      <div class="rules-image">
+        <img
+          src="static/images/rules/mistake_1.png"
+          alt="Mistake 1"
+          class="image-size"
+        />
+        <h6>(Greenspan and Lee)</h6>
+      </div>
+      <div class="rules-description">
+        <p>The <span class="blue-text">5</span> is in the wrong spot!</p>
+        <p>
+          There is already a <span class="black-text">5</span> (highlighted in
+          red) in the same column.
+        </p>
+      </div>
+    </div>
+
+    <!-- Rules row #4 -->
+    <div class="rules-row">
+      <div class="rules-image">
+        <img
+          src="static/images/rules/mistake_2.png"
+          alt="Mistake 2"
+          class="image-size"
+        />
+        <h6>(Greenspan and Lee)</h6>
+      </div>
+      <div class="rules-description">
+        <p>The <span class="blue-text">9</span> is in the wrong spot!</p>
+        <p>
+          There is already a <span class="black-text">9</span> (highlighted in
+          red) in the same row.
+        </p>
+      </div>
+    </div>
+
+    <!-- Rules row #5 -->
+    <div class="rules-row">
+      <div class="rules-image">
+        <img
+          src="static/images/rules/mistake_3.png"
+          alt="Mistake 3"
+          class="image-size"
+        />
+        <h6>(Greenspan and Lee)</h6>
+      </div>
+      <div class="rules-description">
+        <p>The <span class="blue-text">1</span> is in the wrong spot!</p>
+        <p>
+          There is already a <span class="black-text">1</span> (highlighted in
+          red) in the same 3x3 block.
+        </p>
+      </div>
+    </div>
+
+    <!-- Rules row #6 -->
+    <div class="rules-row">
+      <div class="rules-image">
+        <img
+          src="static/images/rules/mistake_4.png"
+          alt="Mistake 4"
+          class="image-size"
+        />
+        <h6>(Greenspan and Lee)</h6>
+      </div>
+      <div class="rules-description">
+        <p class="rules-triple">Triple Trouble</p>
+        <p>
+          The <span class="blue-text">9</span> is in the wrong spot!
+        </p>
+        <p>
+          There is already a <span class="black-text">9</span> in the same
+          column, row, and 3x3 block (all instances are highlighted in red).
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Citation wrapper -->
+<div class="citation-wrapper">
+  <h1>Works Cited</h1>
+  
+  <!-- Source #1 -->
+  <p>
+    Feldmann, Jan. “Sudoku Coach - Learn Rules and Techniques.” Sudoku Coach -
+    Play, Learn, and More..., 2020, https://sudoku.coach/en/learn.
+  </p>
+  
+  <!-- Source #2 -->
+  <p>
+    Greenspan, Gideon, and Rachel Lee. “Web Sudoku - Billions of Free Sudoku
+    Puzzles to Play Online." Web Sudoku - Billions of Free Sudoku Puzzles to
+    Play Online, 2005, https://websudoku.com/.
+  </p>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+<!-- Inherits from base.html -->
+{% extends "base.html" %}
+
+<!-- Block for JavaScript source and script content -->
+{% block js_source %}{% endblock %}
+
+<!-- Sets page title as "Sign In" -->
+{% block title %}Sign In{% endblock %}
+
+{% block content %}
+<!-- Main content container -->
+<div class="main-content">
+  <!-- Left container for text -->
+  <div class="text-box">
+    <h2 id="content-header">Welcome to Sudoku Sage!</h2>
+    <p>
+      Welcome to Sudoku Sage, where we empower you to improve your problem-solving
+      and deductive reasoning skills through guided learning experiences. Our web
+      application blends in-game assistance with progress tracking features to ensure
+      that you remain supported and engaged throughout your Sudoku journey.
+    </p>
+  </div>
+
+  <!-- Right container for form elements -->
+  <div class="flex-child magenta">
+      
+    <!-- Login form start -->
+    <form action="" method="post"> 
+      <div class="container">
+        <!-- Page title -->
+        <h1>Sign In</h1>
+        <!-- Username field -->
+        <label for="Username"><h2><b>Username</b></h2></label>
+        <div class="input-wrapper">
+          <input type="text" placeholder="Username" name="uname_si" required />
+        </div>
+
+        <!-- Password field -->
+        <label for="Password"><h2><b>Password</b></h2></label>
+        <div class="input-wrapper">
+            <input type="password" placeholder="Password" name="psw_si" required />
+        </div>
+
+        <!-- 'Forgot Password' and 'Create Account' links -->
+        <div class="links-wrapper">
+          <!-- TODO: implement JS pop-up window telling user to check their email. -->
+          <a href="#" class="forgot-password">Forgot password?</a>
+          <a href="{{ url_for('create_account') }}" class="create-account">Create Account</a>
+        </div>
+
+        <!-- 'Sign In' button sends a POST request to the server.-->
+        <button type="submit" value="VALUE2" class="login-button" name="action2">Sign In</button>
+
+      </div>
+    <!-- Sign-in form end -->
+    </form>
+  </div> 
+</div>
+{% endblock %}
+
+{% block extra_js %}
+{% if show_logged_in_content %}
+<script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+{% endif %}
+{% endblock %}
