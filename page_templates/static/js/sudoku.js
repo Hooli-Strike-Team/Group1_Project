@@ -1362,6 +1362,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
             m = 0;
 
             timer.set(0, 'timer1', callback);
+            
+            var reset_game_json = [{'Update_Type':'New Game','Username':sessionUsername,'Game_ID':1,'Current_Time':0,'Game':game1.get_string(), 'Original_Game':game1.get_string(),'Difficulty':difficulty_check,'Mistakes_Count':0}]
+            http_post('game_state/'+sessionUsername,reset_game_json)
 
         });
 
