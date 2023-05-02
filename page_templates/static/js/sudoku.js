@@ -613,7 +613,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                     xhr.open("POST", "record");
                                     xhr.setRequestHeader("Content-Type", "application/json");
                                     const body = JSON.stringify({
-                                      Username: session['username'],
+                                      Username: sessionUsername,
                                       Current_Time: end,
                                       Difficulty: "Hard",
                                       Mistakes_Checked: mistakes_count,
@@ -636,7 +636,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                     xhr.open("POST", "record");
                                     xhr.setRequestHeader("Content-Type", "application/json");
                                     const body = JSON.stringify({
-                                      Username: session['username'],
+                                      Username: sessionUsername,
                                       Current_Time: end,
                                       Difficulty: "Medium", 
                                       Mistakes_Checked: mistakes_count,
@@ -660,7 +660,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                     xhr.open("POST", "record");
                                     xhr.setRequestHeader("Content-Type", "application/json");
                                     const body = JSON.stringify({
-                                      Username: session['username'],
+                                      Username: sessionUsername,
                                       Current_Time: end,
                                       Difficulty: "Easy", 
                                       Mistakes_Checked: mistakes_count,
@@ -940,7 +940,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
       openModal();
     
     /* HardCode Easy Sudoku Games */
-    const easy_game_1 = "000004028406000005100030600000301000087000140000709000002010003900000507670400000";
+    const easy_game_1 = "735164928426978315198532674249381756387256149561749832852617493914823567673495280";
             // Start:    000004028406000005100030600000301000087000140000709000002010003900000507670400000
             // Solution: 735164928426978315198532674249381756387256149561749832852617493914823567673495281  
     
@@ -1167,7 +1167,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         xhr.open("POST", "Master");
         xhr.setRequestHeader("Content-Type", "application/json");
         const body = JSON.stringify({
-            Username: session['username'],
+            Username: sessionUsername,
             Game1_Easy: json_data[0][1],
             Game2_Easy: json_data[0][2], 
             Game3_Easy: json_data[0][3], 
