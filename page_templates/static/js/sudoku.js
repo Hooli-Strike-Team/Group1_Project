@@ -602,8 +602,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             
             // Reset time based on time of last move in database
             timer.set(saved_time, 'timer1', callback);
-            timer.setTimeLimit(43200); 
-            timer.start('COUNT_UP');
+//         
             
             // Change Difficulty label based on game difficulty in database
             difficulty_span.textContent= saved_game_json_data[0][5]
@@ -1041,9 +1040,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
         if (newGame)
           openModal();
+        
+        // PUZZLES TAKEN FROM 
+            // Staurt , Andrew. “Sudoku Solver.” Sudoku Solver by Andrew Stuart, 28 May 2005, https://www.sudokuwiki.org/sudoku.htm. 
 
         /* HardCode Easy Sudoku Games */
-        const easy_game_1 = "735164928426978315198532674249381756387256149561749832852617493914823567673495280";
+        const easy_game_1 = "000004028406000005100030600000301000087000140000709000002010003900000507670400000";
                 // Start:    000004028406000005100030600000301000087000140000709000002010003900000507670400000
                 // Solution: 735164928426978315198532674249381756387256149561749832852617493914823567673495281  
 
