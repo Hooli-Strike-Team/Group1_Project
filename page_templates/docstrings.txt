@@ -16,6 +16,14 @@ def <your_function>(<parameter1>,<parameter2>)
 	-------
 	<return>
 		<description>
+        
+    Usage examples:  #this is the autotest portion
+    >>> <your function>(<parameter1>, <parameter2>) #test1
+    <expected result>
+    >>> <your function>(<parameter1>, <parameter2>) #test2
+    <expected result>
+    >>> <your function>(<parameter1>, <parameter2>) #test3
+    <expected result>
 	'''
 
 ***Class Template***
@@ -36,4 +44,6 @@ class <your_class>:
 	Methods
 	-------
 	<Method1>
+    
+    '''
 		
