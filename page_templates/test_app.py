@@ -409,12 +409,12 @@ def record_stats():
                         ''', data)
             
             for result in db.execute("SELECT * FROM Games_In_Progress;"):
-                    print("Difficulty", result[4])
+                    print("Difficulty", result[5])
                     print("Timer", result[2])
-                    print("Mistakes Made", result[5]) 
-                    print("Notes_Checked", result[6]) 
+                    print("Mistakes Made", result[8]) 
+                    print("Notes_Checked", result[7]) 
                     
-                    difficulty = result[4]
+                    difficulty = result[5]
                     timer = result[2] 
             
             
@@ -506,8 +506,8 @@ def record_stats():
 
 
             for result in db.execute("SELECT * FROM Games_In_Progress;"):
-                no_mistakes = result[5]
-                notes = result[6] 
+                no_mistakes = result[8]
+                notes = result[7] 
                 # Even though the feature is a toggle, were looking for zero click or toggles 
                 if (no_mistakes < 1):
                     db.execute('''
