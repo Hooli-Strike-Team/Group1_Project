@@ -841,6 +841,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
                     else {
                         game1.make_move(row, col, this.getAttribute('data-digit'),timer,difficulty_check);
                         game1.clear_notes(element);
+                        
+                        // clear all highlighted mistakes 
+                        game1.clear_mistakes(sudoku_squares, invalid_tag)
                         console.log(game1.board)
                     }
                 }
