@@ -69,14 +69,14 @@ def post_achievements():
         return 'nothing'
     app.logger.info('not post')
     return "Not POST" 
-    
-@app.route('/game_state', methods=['POST', 'GET'])
-def get_game_state():
-    error = None
+
+        
+@app.route('/game_state/<string:username>', methods=['POST', 'GET'])
+def game_state(username):
     if request.method == 'GET':
         db = sqlite3.connect(db_path)
         cursor = db.cursor()
-        cursor.execute("SELECT * FROM Games_In_Progress WHERE Username = :Username", data)
+        cursor.execute("SELECT * FROM Games_In_Progress WHERE Username = ?", (username,))
         results = cursor.fetchall()
         db.close()
         return jsonify(results)
@@ -92,8 +92,7 @@ def get_game_state():
         db.close()
         app.logger.info(data)
         return 'nothing'
-    app.logger.info('not post')
-    return "Not POST" 
+
   
 @app.route('/game_settings/<string:username>', methods=['GET', 'POST'])
 def game_settings(username):
@@ -291,7 +290,8 @@ def logout():
 
 
 #testing for the Mistakes counter slider in settings 
-mistakes_counter = False 
+mistakes_counter = False
+resume_game = False
 
 
 @app.route('/main')

@@ -122,6 +122,16 @@ class Sudoku {
     get_original_board() {
         return this.original_board;
     }
+    
+    get_original_board_string() {
+        let str = '';
+        for ( let row = 0; row <= 8; row++ ) {
+            for ( let col = 0; col <= 8; col++ ) {
+                str += this.original_board[row][col];
+            }
+        }
+        return str;
+    }
 
     get_string() {
         let str = '';
@@ -148,8 +158,10 @@ class Sudoku {
         }
         this.board[row][col] = value;
         
-        // var game_state = get_string();
-        // var game_json = [{'Username':'Test_User','Game_ID':'1234','Current_Time':'1234','Game':game_state,'Difficulty':'Expert'}]
+        var game_state = this.get_string();
+        var original_board = this.get_original_board_string();
+        console.log(game_state, original_board)
+        //var game_json = [{'Username':sessionUsername,'Game_ID':'1234','Current_Time':'1234','Game':game_state,'Difficulty':'Expert'}]
         // http_post('game_state',game_json)
         // send to database
         /*
@@ -454,11 +466,16 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // *************************** FIX *************************** 
     // Pull Session Data
     console.log("sesssion data", sessionUsername)
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const newGame = urlParams.get('new');
     // *************************** FIX ***************************
+    
+    // Call Sudoku constructor 
+    const game1 = new Sudoku();
     
     const mistakes_button = document.getElementById('mistakes-button');
     const notes_button = document.getElementById('notes-button');
-    const game1 = new Sudoku();
     const sudoku_squares = Helper.createArray(9, 9);
     const keypad = Helper.createArray(9);
     // Real constants (MACRO_CASE)
@@ -499,7 +516,14 @@ window.addEventListener('DOMContentLoaded', (e) => {
     // counts the number of times the notes button is toggled 
     let notes_count = 0 
     
-    
+    // Set board with stored game if not new
+    console.log("newgame flag", newGame)
+    if (!newGame) {
+        loadGame(sessionUsername)
+        // console.log(game_json_data)
+        //game1.set_board(easy_arr[easy]);
+        //SudokuDOM.display_board(game1, sudoku_squares, true);
+    }
 
     // Store all the Sudoku square <input type="text"> elements in variables for 
     // quick access
@@ -932,9 +956,10 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const hardButton = document.getElementById('hard'); 
     
     // Get any parameters from the URL
-    const queryString = window.location.search;
-    const urlParams = new URLSearchParams(queryString);
-    const newGame = urlParams.get('new');
+        //Moved to start of listener
+    // const queryString = window.location.search;
+    // const urlParams = new URLSearchParams(queryString);
+    // const newGame = urlParams.get('new'); 
   
     if (newGame)
       openModal();
@@ -1112,6 +1137,12 @@ window.addEventListener('DOMContentLoaded', (e) => {
         } catch (error) {
             console.error(error);
         }
+    }
+    
+    async function loadGame(username) {
+        const game_json_data = await http_get_master('game_state/'+username)
+        console.log(game_json_data)
+        return
     }
     
 

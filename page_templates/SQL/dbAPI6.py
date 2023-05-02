@@ -93,6 +93,7 @@ def create(db_filename):
                 Game_ID INT,
                 Current_Time INT,
                 Game VARCHAR(100),
+                Original_Game VARCHAR(100),
                 Difficulty VARCHAR(6),
                 Mistakes_Checked INT,
                 Notes_Checked INT,
@@ -129,7 +130,7 @@ def create(db_filename):
             INSERT INTO User_Achievements VALUES (NEW.Username, 0, 0, 0, 0, 0, 0);
             INSERT INTO Puzzle_Master VALUES(NEW.Username, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
             INSERT INTO Achievement_Stats VALUES (NEW.Username, 0, 0, 0, NULL, NULL, NULL);
-            INSERT INTO Games_In_Progress VALUES (NEW.Username, 1, 0, 0, 0, 0, 0, 0);
+            INSERT INTO Games_In_Progress VALUES (NEW.Username, 1, 0, '', '', 0, 0, 0, 0);
             INSERT INTO Game_Settings VALUES (NEW.Username, 1, 0);
         END;
             """)

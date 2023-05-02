@@ -31,7 +31,9 @@
 
   <!-- Load settings-modal.js for Main page -->
   <script src="{{ url_for('static', filename='js/settings-modal.js') }}"></script>
-
+    
+  <!-- Block for any header scripts -->  
+  {% block head %}{% endblock %}
   <!-- Block for page title -->
   <title>Sudoku Sage - {% block title %}{% endblock %}</title>
 </head>
