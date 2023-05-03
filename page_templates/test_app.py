@@ -372,8 +372,40 @@ def show_achievements():
                 conqueror = True
                 print("Conqueror", conqueror) 
         db.close() 
-                
-    
+        
+        # Added session check
+        if 'username' in session:
+            username = session['username']
+            db = sqlite3.connect(db_path)
+            with db:
+                for result in db.execute("SELECT * FROM User_Achievements WHERE Username = ?", (username,)):
+                    strat_flag = result[1] 
+                    wolf_flag = result[2] 
+                    master_flag = result[3] 
+                    risk_flag = result[4] 
+                    speed_flag = result[5] 
+                    conqueror_flag = result[6] 
+                    print(result) 
+
+                if (strat_flag == 1):
+                    strategist = True
+                    print("strategist", strategist) 
+                if (speed_flag == 1):
+                    speed_runner = True
+                    print("Speed_Runner", speed_runner) 
+                if (wolf_flag == 1):
+                    lone_wolf = True
+                    print("Lone_Wolf", lone_wolf) 
+                if(master_flag == 1): 
+                    puzzle_master = True
+                    print("Puzzle_Master", puzzle_master) 
+                if(risk_flag == 1):
+                    risk_taker = True 
+                    print("Risk_Taker", risk_taker) 
+                if(conqueror_flag == 1):
+                    conqueror = True
+                    print("Conqueror", conqueror) 
+            db.close() 
     
     return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, 
                            speed_runner=speed_runner, strategist=strategist, conqueror=conqueror)
