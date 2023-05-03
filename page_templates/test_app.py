@@ -395,144 +395,140 @@ def record_stats():
     notes = 0
     
     if request.method == 'POST':
-        data = request.get_json()
-        db = sqlite3.connect(db_path)
-        with db:
-    
-            
-          
-            db.execute('''UPDATE Games_In_Progress SET 
-                        'Username' = :Username,
-                        'Current_Time' = :Current_Time,
-                        'Difficulty' = :Difficulty,
-                        'Mistakes_Checked' = :Mistakes_Checked,
-                        'Notes_Checked' = :Notes_Checked
+         if 'username' in session:
+            username = session['username']
+            data = request.get_json()
+            db = sqlite3.connect(db_path)
+            with db:
+
+
+
+                db.execute('''UPDATE Games_In_Progress SET 
+                            'Current_Time' = :Current_Time,
+                            'Difficulty' = :Difficulty,
+                            'Mistakes_Checked' = :Mistakes_Checked,
+                            'Notes_Checked' = :Notes_Checked
+                             WHERE Username=:Username''', data)
+
+                for result in db.execute("SELECT * FROM Games_In_Progress WHERE Username = ?", (username,)):
+                        print("Difficulty", result[5])
+                        print("Timer", result[2])
+                        print("Mistakes Made", result[8]) 
+                        print("Notes_Checked", result[7]) 
+
+                        difficulty = result[5]
+                        timer = result[2] 
+
+
+               # # Update Games completed on Hard # #
+                if difficulty == "Hard":  
+                    db.execute('''
+                            UPDATE Achievement_Stats SET HardGamesCompleted = HardGamesCompleted + 1 WHERE Username=:Username''', data)
+
+
+                    for result in db.execute("SELECT * FROM Achievement_Stats WHERE Username = ?", (username,)):
+                            print("Hard Games Completed", result[3]) 
+
+
+
+                # # Update Best_Time_Hard # #
+                ## TODO: if None insert, else if newtime < oldtime insert ## 
+                ## Matt is going to initialize "Best_Time" to none. 
+                    if (best_time_hard > timer):
+
+                        db.execute('''
+                                UPDATE Achievement_Stats SET Best_Time_Hard = :Current_Time WHERE Username=:Username''', data)
+
+                    elif ( best_time_hard < timer):
+                        print("Current time is not better than best time on hard")
+                        for result in db.execute("SELECT * FROM Achievement_Stats WHERE Username = ?", (username,)):
+                                print("Best_Time_Hard", result[6])
+               # Update Games completed on medium      
+                elif difficulty == "Medium":
+                    db.execute('''
+                            UPDATE Achievement_Stats SET MedGamesCompleted = MedGamesCompleted + 1 WHERE Username=:Username''', data)
+
+
+               # Update Games completed on Easy          
+                elif difficulty == "Easy":
+                    db.execute('''
+                            UPDATE Achievement_Stats SET EasyGamesCompleted = EasyGamesCompleted + 1 WHERE Username=:Username''', data)
+
+
+
+
+              ####### LOGIC #######              
+
+                for result in db.execute("SELECT * FROM Achievement_Stats WHERE Username = ?", (username,)):
+                    print("EasyGamesCompleted", result[1]) 
+                    print("MedGamesCompleted", result[2])     
+                    print("HardGamesCompleted", result[3])
+                    easy = result[1]
+                    med = result[2]
+                    hard = result[3]
+
+                    # # If Users completed at least three hard games, unlock Risk Taker Badge # #      
+                    if (hard >= 3): 
+                        db.execute('''
+                            UPDATE User_Achievements SET RiskTaker = 1 WHERE Username=:Username''', data)
+                            
+
+                        for result in db.execute("SELECT * FROM User_Achievements WHERE Username = ?", (username,)):
+                            print("Risk_Taker", result[4]) 
+
+
+                    # # If User beats a hard game under 10 minutes Speed_Runner is unlocked 
+
+                    print("Best_Time_Hard", result[6]) 
+                    speed = result[6]
+
+                    ## 600 seconds is the same as 10 minutes 
+                    if (hard >= 1 and speed <= 600):
+                        db.execute('''
+                            UPDATE User_Achievements SET SpeedRunner = 1 WHERE Username=:Username''', data)
+                         
+                        for result in db.execute("SELECT * FROM User_Achievements WHERE Username = ?", (username,)):
+                            print("Speed Runner", result[5]) 
+
+
+                    # # If user completes one puzzle on each difficulty # # 
+
+                    if (1 <= hard and 1 <= med and 1 <= hard):
+                        db.execute('''
+                            UPDATE User_Achievements SET Conqueror = 1 
+                            WHERE Username=:Username''', data) 
                         
-                        ''', data)
-            
-            for result in db.execute("SELECT * FROM Games_In_Progress;"):
-                    print("Difficulty", result[5])
-                    print("Timer", result[2])
-                    print("Mistakes Made", result[8]) 
-                    print("Notes_Checked", result[7]) 
-                    
-                    difficulty = result[5]
-                    timer = result[2] 
-            
-            
-           # # Update Games completed on Hard # #
-            if difficulty == "Hard":  
-                db.execute('''
-                        UPDATE Achievement_Stats SET HardGamesCompleted = HardGamesCompleted + 1 
-                        ''') 
+                        for result in db.execute("SELECT * FROM User_Achievements WHERE Username = ?", (username,)):
+                            print("Conqueror", result[6]) 
 
 
-                for result in db.execute("SELECT * FROM Achievement_Stats;"):
-                        print("Hard Games Completed", result[3]) 
 
-    
-        
-            # # Update Best_Time_Hard # #
-            ## TODO: if None insert, else if newtime < oldtime insert ## 
-            ## Matt is going to initialize "Best_Time" to none. 
-                if (best_time_hard > timer):
-
-                    db.execute('''
-                            UPDATE Achievement_Stats SET Best_Time_Hard = :Current_Time; 
-                            ''', data)
-
-                elif ( best_time_hard < timer):
-                    print("Current time is not better than best time on hard")
-                    for result in db.execute("SELECT * FROM Achievement_Stats;"):
-                            print("Best_Time_Hard", result[6])
-           # Update Games completed on medium      
-            elif difficulty == "Medium":
-                db.execute('''
-                        UPDATE Achievement_Stats SET MedGamesCompleted = MedGamesCompleted + 1 
-                        ''') 
-        
-                
-                    
-           # Update Games completed on Easy          
-            elif difficulty == "Easy":
-                db.execute('''
-                        UPDATE Achievement_Stats SET EasyGamesCompleted = EasyGamesCompleted + 1 
-                        ''') 
-        
-                
-                                    
-
-          ####### LOGIC #######              
-                        
-            for result in db.execute("SELECT * FROM Achievement_Stats;"):
-                print("EasyGamesCompleted", result[1]) 
-                print("MedGamesCompleted", result[2])     
-                print("HardGamesCompleted", result[3])
-                easy = result[1]
-                med = result[2]
-                hard = result[3]
-
-                # # If Users completed at least three hard games, unlock Risk Taker Badge # #      
-                if (hard >= 3): 
-                    db.execute('''
-                        UPDATE User_Achievements SET RiskTaker = 1 
-                        ''') 
-                    
-                    for result in db.execute("SELECT * FROM User_Achievements;"):
-                        print("Risk_Taker", result[4]) 
-                        
-
-                # # If User beats a hard game under 10 minutes Speed_Runner is unlocked 
-
-                print("Best_Time_Hard", result[6]) 
-                speed = result[6]
-
-                ## 600 seconds is the same as 10 minutes 
-                if (hard >= 1 and speed <= 600):
-                    db.execute('''
-                        UPDATE User_Achievements SET SpeedRunner = 1 
-                        ''') 
-                    for result in db.execute("SELECT * FROM User_Achievements;"):
-                        print("Speed Runner", result[5]) 
-                    
-
-                # # If user completes one puzzle on each difficulty # # 
-
-                if (1 <= hard and 1 <= med and 1 <= hard):
-                    db.execute('''
-                        UPDATE User_Achievements SET Conqueror = 1 
-                        ''') 
-                    for result in db.execute("SELECT * FROM User_Achievements;"):
-                        print("Conqueror", result[6]) 
-                    
+                for result in db.execute("SELECT * FROM Games_In_Progress WHERE Username = ?", (username,)):
+                    no_mistakes = result[8]
+                    notes = result[7] 
+                    # Even though the feature is a toggle, were looking for zero click or toggles 
+                    if (no_mistakes < 1):
+                        db.execute('''
+                            UPDATE User_Achievements SET LoneWolf = 1 WHERE Username=:Username''', data)
+                            
+                        for result in db.execute("SELECT * FROM User_Achievements WHERE Username = ?", (username,)):
+                            print("LoneWolf", result[2]) 
 
 
-            for result in db.execute("SELECT * FROM Games_In_Progress;"):
-                no_mistakes = result[8]
-                notes = result[7] 
-                # Even though the feature is a toggle, were looking for zero click or toggles 
-                if (no_mistakes < 1):
-                    db.execute('''
-                        UPDATE User_Achievements SET LoneWolf = 1 
-                        ''') 
-                    for result in db.execute("SELECT * FROM User_Achievements;"):
-                        print("LoneWolf", result[2]) 
-                    
+                    # 6 clicks about for the fact that the feature is a toggle
+                    # 6 clicks is the same as 3 full toggles 
+                    if (notes >= 6):
+                        db.execute('''
+                            UPDATE User_Achievements SET Inquisitor = 1 WHERE Username=:Username''', data)
+                             
+                        for result in db.execute("SELECT * FROM User_Achievements WHERE Username = ?", (username,)):
+                            print("strategist", result[1]) 
 
-                # 6 clicks about for the fact that the feature is a toggle
-                # 6 clicks is the same as 3 full toggles 
-                if (notes >= 6):
-                    db.execute('''
-                        UPDATE User_Achievements SET Inquisitor = 1 
-                        ''') 
-                    for result in db.execute("SELECT * FROM User_Achievements;"):
-                        print("strategist", result[1]) 
-                    
 
-           
-        
-        db.commit()    
-        db.close() 
+
+
+            db.commit()    
+            db.close() 
         
     return "Achievement Stats Updated" 
 
@@ -543,62 +539,66 @@ def Puzzle_Master_Badge():
     puzzle_master = 0
 
     if request.method == 'GET':
-        db = sqlite3.connect(db_path)
-        results = []
-        with db: 
-            for result in db.execute("SELECT * FROM Puzzle_Master;"):
-                results.append(result) 
-                print("result of Puzzle Master", results) 
-            
-            
-            
-        db.close() 
-        return jsonify(results)
+        if 'username' in session:
+            username = session['username']
+            db = sqlite3.connect(db_path)
+            results = []
+            with db: 
+                for result in db.execute("SELECT * FROM Puzzle_Master WHERE Username = ?", (username,)):
+                    results.append(result) 
+                    print("result of Puzzle Master", results) 
+
+
+
+            db.close() 
+            return jsonify(results)
     
     if request.method == 'POST':
-        data = request.get_json()
-        db = sqlite3.connect(db_path)
-        with db:
-    
-            db.execute('''UPDATE Puzzle_Master SET 
-                        'Username' = :Username,
-                        'Game1_Easy' = :Game1_Easy,
-                        'Game2_Easy' = :Game2_Easy,
-                        'Game3_Easy' = :Game3_Easy,
-                        'Game4_Easy' = :Game4_Easy,
-                        'Game1_Med' = :Game1_Med,
-                        'Game2_Med' = :Game2_Med,
-                        'Game3_Med' = :Game3_Med,
-                        'Game4_Med' = :Game4_Med, 
-                        'Game1_Hard' = :Game1_Hard,
-                        'Game2_Hard' = :Game2_Hard, 
-                        'Game3_Hard' = :Game3_Hard, 
-                        'Game4_Hard' = :Game4_Hard
-                        ''', data)
-        
-            i = 1 
-            for master in db.execute("SELECT * FROM Puzzle_Master;"):
-                 print(master) 
-                 while (i < 13):
-                    if(master[i] == 1): 
-                        puzzle_master = puzzle_master + 1 
-                    
-                    i = i + 1 
-                   
-                
-                 if (puzzle_master == 12): 
-                    db.execute('''
-                        UPDATE User_Achievements SET PuzzleMaster = 1 
-                        ''') 
-                    for result in db.execute("SELECT * FROM User_Achievements;"):
-                        print("strategist", result[3]) 
-            
-        db.commit()
-        db.close()
-    
-        return "Puzzle Master Achievement Updated" 
-    
-    return "Nothing"
+        if 'username' in session:
+            username = session['username']
+            data = request.get_json()
+            db = sqlite3.connect(db_path)
+            with db:
+
+                db.execute('''UPDATE Puzzle_Master SET 
+                            'Game1_Easy' = :Game1_Easy,
+                            'Game2_Easy' = :Game2_Easy,
+                            'Game3_Easy' = :Game3_Easy,
+                            'Game4_Easy' = :Game4_Easy,
+                            'Game1_Med' = :Game1_Med,
+                            'Game2_Med' = :Game2_Med,
+                            'Game3_Med' = :Game3_Med,
+                            'Game4_Med' = :Game4_Med, 
+                            'Game1_Hard' = :Game1_Hard,
+                            'Game2_Hard' = :Game2_Hard, 
+                            'Game3_Hard' = :Game3_Hard, 
+                            'Game4_Hard' = :Game4_Hard
+                             WHERE Username=:Username''', data)
+
+                i = 1 
+                for master in db.execute("SELECT * FROM Puzzle_Master WHERE Username = ?", (username,)):
+                    print(master) 
+                    while (i < 13):
+                        if(master[i] == 1): 
+                            puzzle_master = puzzle_master + 1 
+
+                        i = i + 1 
+
+
+                    if (puzzle_master == 12): 
+                        db.execute('''
+                            UPDATE User_Achievements SET PuzzleMaster = 1 
+                            WHERE Username = ? 
+                            ''', (username,))
+                        for result in db.execute("SELECT * FROM User_Achievements WHERE Username = ?", (username,)):
+                            print("strategist", result[3]) 
+
+            db.commit()
+            db.close()
+
+            return "Puzzle Master Achievement Updated" 
+
+        return "Nothing"
 
 
 
