@@ -1,4 +1,11 @@
 Flask
-Gunicorn
-psycopg2-binary==2.9.5
-psycopg2-binary==2.9.5
+export FLASK_APP=prefix.py
+export FLASK_RUN_PORT=3308
+export FLASK_ENV=development
+
+export PYTHONPATH='.'
+
+export FLASK_DEBUG=1
+export FLASK_ENV=development
+
+echo "completed setup"
