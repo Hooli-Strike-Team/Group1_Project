@@ -323,9 +323,8 @@ def show_rules():
 @app.route('/achievements', methods=['POST', 'GET'])
 @login_required
 def show_achievements():
-    ## Pull from database to set flags
-    ## Select Query
-    risk_taker = False
+    # Initalize bool values to false so that all badges begin as locked 
+    risk_taker = False # if the user has met the requirements for the Risk_Taker Badge
     speed_runner = False # if the user has met the requirements for the Speed Runner badge
     conqueror = False # if the user has met the requirements for the Conqueror badge
     lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
@@ -344,6 +343,7 @@ def show_achievements():
     if request.method == 'GET':
         
         # Added session check
+        # Select bool statements from the User_Achievements table and reassign values from above if selected value is true. 
         if 'username' in session:
             username = session['username']
             db = sqlite3.connect(db_path)
@@ -376,16 +376,17 @@ def show_achievements():
                     conqueror = True
                     print("Conqueror", conqueror) 
             db.close() 
-    
+            ## Pass updated bool values into the render_template for the achievements page
     return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, 
                            speed_runner=speed_runner, strategist=strategist, conqueror=conqueror)
    
-
+# Record URL is uses the 'POST' menthod to abtain data from user activities and write it to the database 
+# Includes the logic behind how achievements are unlocked 
 @app.route('/record', methods=['POST', 'GET'])    
 def record_stats():
     difficulty = ""
     timer = 0 
-    best_time_hard = 50000 # TODO: CHANGE VALUE
+    best_time_hard = 50000 # Needs to be set to a high number so that the first time recorded can beat it
     
     hard = 0
     med = 0 
@@ -395,14 +396,14 @@ def record_stats():
     notes = 0
     
     if request.method == 'POST':
-         if 'username' in session:
+         if 'username' in session: # Add session check so that multiple users can easn achievements 
             username = session['username']
             data = request.get_json()
             db = sqlite3.connect(db_path)
             with db:
 
-
-
+                
+                # When a user completes a puzzle, these values are updated 
                 db.execute('''UPDATE Games_In_Progress SET 
                             'Current_Time' = :Current_Time,
                             'Difficulty' = :Difficulty,
@@ -420,7 +421,7 @@ def record_stats():
                         timer = result[2] 
 
 
-               # # Update Games completed on Hard # #
+               # # Updates stats table to reflect that a user completed a puzzle on expert  # #
                 if difficulty == "Hard":  
                     db.execute('''
                             UPDATE Achievement_Stats SET HardGamesCompleted = HardGamesCompleted + 1 WHERE Username=:Username''', data)
@@ -431,18 +432,19 @@ def record_stats():
 
 
 
-                # # Update Best_Time_Hard # #
-                ## TODO: if None insert, else if newtime < oldtime insert ## 
-                ## Matt is going to initialize "Best_Time" to none. 
+                # Accounting for the fact that the game was completed on Expert
+                    # Check if the users time to completion was less then the current record 
                     if (best_time_hard > timer):
-
+                        # Update stats with new best time 
                         db.execute('''
                                 UPDATE Achievement_Stats SET Best_Time_Hard = :Current_Time WHERE Username=:Username''', data)
-
+                    # Check is the users time to completion was more than the current record
+                    # If so do basically nothing 
                     elif ( best_time_hard < timer):
                         print("Current time is not better than best time on hard")
                         for result in db.execute("SELECT * FROM Achievement_Stats WHERE Username = ?", (username,)):
                                 print("Best_Time_Hard", result[6])
+                                
                # Update Games completed on medium      
                 elif difficulty == "Medium":
                     db.execute('''
@@ -467,7 +469,7 @@ def record_stats():
                     med = result[2]
                     hard = result[3]
 
-                    # # If Users completed at least three hard games, unlock Risk Taker Badge # #      
+                    # # If Users completed at least three games on expert, unlock Risk Taker Badge # #      
                     if (hard >= 3): 
                         db.execute('''
                             UPDATE User_Achievements SET RiskTaker = 1 WHERE Username=:Username''', data)
@@ -477,7 +479,7 @@ def record_stats():
                             print("Risk_Taker", result[4]) 
 
 
-                    # # If User beats a hard game under 10 minutes Speed_Runner is unlocked 
+                    # # If User beats an expert game in under 10 minutes Speed_Runner is unlocked 
 
                     print("Best_Time_Hard", result[6]) 
                     speed = result[6]
@@ -491,7 +493,7 @@ def record_stats():
                             print("Speed Runner", result[5]) 
 
 
-                    # # If user completes one puzzle on each difficulty # # 
+                    # # If user completes one puzzle on each difficulty, conqueror is unlocked # # 
 
                     if (1 <= hard and 1 <= med and 1 <= hard):
                         db.execute('''
@@ -507,6 +509,7 @@ def record_stats():
                     no_mistakes = result[8]
                     notes = result[7] 
                     # Even though the feature is a toggle, were looking for zero click or toggles 
+                    # If the user does not touch the mistakes button at all, and completes a game at any difficulty, the lonewolf badge is unlocked 
                     if (no_mistakes < 1):
                         db.execute('''
                             UPDATE User_Achievements SET LoneWolf = 1 WHERE Username=:Username''', data)
@@ -515,8 +518,9 @@ def record_stats():
                             print("LoneWolf", result[2]) 
 
 
-                    # 6 clicks about for the fact that the feature is a toggle
+                    # 6 clicks account for the fact that the feature is a toggle
                     # 6 clicks is the same as 3 full toggles 
+                    # if a user uses the notes feature three times, the inquisitor badge is unlocked 
                     if (notes >= 6):
                         db.execute('''
                             UPDATE User_Achievements SET Inquisitor = 1 WHERE Username=:Username''', data)
