@@ -2,11 +2,11 @@
 
 ### Make By:
 
-Tory Swenson 
-Ben Allen 
-Micah Simmerman 
-Matthew Tuttle
-Paul Schneider
+* Tory Swenson 
+* Ben Allen 
+* Micah Simmerman 
+* Matthew Tuttle
+* Paul Schneider
 
 ### Progress Tracker Link 
     Trello: https://trello.com/w/3308projectteam1
