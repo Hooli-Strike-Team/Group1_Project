@@ -516,7 +516,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     console.log("sesssion data", sessionUsername)
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const newGame = urlParams.get('new');
+    let newGame = urlParams.get('new');
     // *************************** FIX ***************************
     
     // Call Sudoku constructor 
@@ -580,14 +580,21 @@ window.addEventListener('DOMContentLoaded', (e) => {
     }
 
     // Set board with stored game if not new
-    var saved_game_promise = loadGameData(sessionUsername)
+    var saved_game_promise = loadGameData(sessionUsername);
     // Entire rest of logic has to be inside promise
-    saved_game_promise.then((saved_game_json_data) =>{ 
-        console.log("newgame flag", newGame)
+    saved_game_promise.then((saved_game_json_data) => { 
+      
+        // no game data found, set newGame flag to true
+        if (saved_game_json_data.length == 0) {
+          newGame = true;
+        }
+      
+        console.log("newgame flag", newGame);
+      
         if (!newGame) {
-            var game_string = saved_game_json_data[0][3]
-            var original_game_string = saved_game_json_data[0][4]
-            var saved_time = saved_game_json_data[0][2]
+            var game_string = saved_game_json_data[0][3];
+            var original_game_string = saved_game_json_data[0][4];
+            var saved_time = saved_game_json_data[0][2];
             var saved_difficulty = 
             console.log('in newgame', game_string, original_game_string)
             
@@ -602,7 +609,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
             
             // Reset time based on time of last move in database
             timer.set(saved_time, 'timer1', callback);
-//         
             
             // Change Difficulty label based on game difficulty in database
             difficulty_span.textContent= saved_game_json_data[0][5]
@@ -1002,6 +1008,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             modal.style.display = 'block';
             modal.addEventListener('click', hidecompleted)
         }
+      
         // Code for clicking out of completed game modal
         function hidecompleted(event) {
             // Get modal window element by ID

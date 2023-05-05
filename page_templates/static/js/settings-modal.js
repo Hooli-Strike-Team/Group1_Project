@@ -32,11 +32,13 @@ window.addEventListener('DOMContentLoaded', (e) => {
         fetch('game_settings/' + username)
             .then(response => response.json())
             .then(data => {
-                // Update UI with fetched settings
-                settings_clock.checked = data[0][1];
-                settings_mistakes.checked = data[0][2];
-                if (timer_wrapper) timer_wrapper.style.visibility = settings_clock.checked ? "visible" : "hidden";
-                if (mistakes_count) mistakes_count.style.visibility = settings_mistakes.checked ? "visible" : "hidden";
+                if(data.length > 0) {
+                  // Update UI with fetched settings
+                  settings_clock.checked = data[0][1];
+                  settings_mistakes.checked = data[0][2];
+                  if (timer_wrapper) timer_wrapper.style.visibility = settings_clock.checked ? "visible" : "hidden";
+                  if (mistakes_count) mistakes_count.style.visibility = settings_mistakes.checked ? "visible" : "hidden";
+                }
             })
             .catch(error => console.error(error));
     }
