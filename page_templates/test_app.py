@@ -319,7 +319,7 @@ def show_rules():
     return render_template('rules.html')
 
 
-
+# Uses render_template to update the achievements page with badge bools 
 @app.route('/achievements', methods=['POST', 'GET'])
 @login_required
 def show_achievements():
@@ -377,6 +377,7 @@ def show_achievements():
                     print("Conqueror", conqueror) 
             db.close() 
             ## Pass updated bool values into the render_template for the achievements page
+            ## If value is True then the achievements will be unlocked on the page 
     return render_template('achievements.html', risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, 
                            speed_runner=speed_runner, strategist=strategist, conqueror=conqueror)
    
@@ -479,12 +480,14 @@ def record_stats():
                             print("Risk_Taker", result[4]) 
 
 
-                    # # If User beats an expert game in under 10 minutes Speed_Runner is unlocked 
+                   
 
                     print("Best_Time_Hard", result[6]) 
                     speed = result[6]
-
-                    ## 600 seconds is the same as 10 minutes 
+                    
+                    ## If User beats an expert game in under 10 minutes, Speed_Runner is unlocked 
+                        
+                        ## 600 seconds is the same as 10 minutes 
                     if (hard >= 1 and speed <= 600):
                         db.execute('''
                             UPDATE User_Achievements SET SpeedRunner = 1 WHERE Username=:Username''', data)
@@ -537,11 +540,13 @@ def record_stats():
     return "Achievement Stats Updated" 
 
 
+# route is used to update and track Puzzle_Master badge progress 
+# This requires keeping track of every completed game 
 @app.route('/Master', methods=['POST', 'GET'])
 def Puzzle_Master_Badge():
     error = None
     puzzle_master = 0
-
+    # Sends the current status on the number of games completed to the requester 
     if request.method == 'GET':
         if 'username' in session:
             username = session['username']
@@ -556,7 +561,7 @@ def Puzzle_Master_Badge():
 
             db.close() 
             return jsonify(results)
-    
+    # Receives updates marking which games have been completed 
     if request.method == 'POST':
         if 'username' in session:
             username = session['username']
@@ -582,13 +587,15 @@ def Puzzle_Master_Badge():
                 i = 1 
                 for master in db.execute("SELECT * FROM Puzzle_Master WHERE Username = ?", (username,)):
                     print(master) 
+                    # In the range of 12 playable games 
                     while (i < 13):
+                        # If a new game is completed, add 1 to the running total 
                         if(master[i] == 1): 
                             puzzle_master = puzzle_master + 1 
 
                         i = i + 1 
 
-
+                    # If twelve seperate games have been completed than the puzzle master badge is earned 
                     if (puzzle_master == 12): 
                         db.execute('''
                             UPDATE User_Achievements SET PuzzleMaster = 1 

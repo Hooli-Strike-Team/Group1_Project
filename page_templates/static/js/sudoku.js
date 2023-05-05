@@ -681,7 +681,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             console.log("Complete", state.is_finished);
                             // Check to see if game is completed correctly
                             if ( state.is_legal && state.is_finished ) {
-
+                                // Get string of the most recently completed game 
                                 just_finished = game1.get_string() 
                                 console.log(just_finished) 
 
@@ -724,7 +724,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                                         xhr.send(body);
                                 }
 
-                                else if (difficulty_check == "Medium") {
+                                else if (difficulty_check == "Medium") { // Finish a Game on Hard - Send info to database
 
                                        const xhr = new XMLHttpRequest();
                                         xhr.open("POST", "record");
@@ -748,7 +748,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
                                 }
 
-                                else if(difficulty_check == "Easy") {
+                                else if(difficulty_check == "Easy") { // Finish a Game on Easy - Send info to database 
 
                                        const xhr = new XMLHttpRequest();
                                         xhr.open("POST", "record");
@@ -1229,8 +1229,9 @@ window.addEventListener('DOMContentLoaded', (e) => {
         let hard2_sol = "254861739137549628986327541413258967569473812728916354645792183892135476371684295"
         let hard3_sol = "386754912794261835125893674617942358839175246452638791241389567978516423563427189"
         let hard4_sol = "592486173674531298381297546453619827218374965769852314145723689826945731937168452"
-
-
+        
+        
+        // Request information from the server using the 'GET' method
         async function http_get_master(route) {
 
 
@@ -1262,10 +1263,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
             return game_json_data
         }
-
-
+        
+        // Takes in the string of a recently completed_game to compare with known solutions
+        // Used to update the Puzzle_Master table with recent completions 
         async function PuzzleMaster(completed_game) {
-
+            // Requests the current stats on the Puzzle Master table 
             const json_data = await http_get_master("Master");
             console.log("Data in other function", json_data) 
 
@@ -1310,7 +1312,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
 
 
-
+            // Send updated Puzzle_Master stats back to the database 
             const xhr = new XMLHttpRequest();
             xhr.open("POST", "Master");
             xhr.setRequestHeader("Content-Type", "application/json");
