@@ -1,6 +1,5 @@
-# Group1_Project
 
-3308 Project Group 1
+# 3308 Project Group 1
 
 
 Project Title: 
@@ -9,12 +8,12 @@ Project Title:
 
 Team Number: 
 
-    Team #1; "Hooli-Strike Team"
+    Team #1; 
 
 Team/Product: 
     
-    Logic Tutor 
-
+    "Hooli-Strike Team"
+    
 Team members (list the name, git username, and email for each member): 
 
     Paul  PaulMSchneider  Paul.Schneider-1@colorado.edu 
@@ -23,13 +22,13 @@ Team members (list the name, git username, and email for each member):
     Matthew Tuttle  Mst263  matt.tutt@gmail.com
     Micah Simmerman  Micah614  jasi9001@colorado.edu
 
-Day/Time/TimeZone for the scheduled team weekly meeting (30 minutes via Zoom)
-    
-    Weekly Team Meetings are on Mondays at 3:00 pm MST
 
-Vision statement: what would you tell potential customers?
+Vision statement: 
     
-    Logic Tutor is a computer-assisted training app to improve logic and critical thinking skills, tutoring the user on advanced strategies in classic logic games like chess and sudoku. The app presents real-time strategic hints from the computer to advance the user's game strategy, and tracks learning progress using real-time automated tools.
+    Sudoku Sage features a variety of Sudoku puzzles with varying degrees of difficulty, accessible tutorials, and practical tools such as error checking, notes, a timer, and the ability to return to in-progress games. We also implemented an achievements system to encourage and reward users for their progress.
+
+    The goal of Sudoku Sage is to create a supportive and user-friendly web-based Sudoku platform that would enhance the enjoyment and understanding of the classic puzzle experience for players of all levels.
+
 
   
 Motivation: 
@@ -39,16 +38,8 @@ Motivation:
        
     2.) Logic games such as Sudoku and Chess are difficult to master on one’s own. Computer-assisted
         learning technologies help users to improve their problem-solving abilities and use specialized
-        tools to provide them with instant feedback, progress tracking, and achievement features.
+        tools to provide them with instant mistake idenfication, note taking capabilities, and achievement features.
         
-
-Project Tracking Software link (Trello is most common) [Make sure to add access for the instructor(s)]
-        
-    https://trello.com/w/3308projectteam1
-
-
-
-- Pseudo-Classes: [CSS Pseudo-Classes](https://www.w3schools.com/css/css_pseudo_classes.asp)
 
 # Folder Tree
 ```
