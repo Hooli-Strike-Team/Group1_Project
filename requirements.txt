@@ -1,4 +1,1 @@
 Flask
-Gunicorn
-PATH=$PATH:/opt/render/.local/bin
-export $PATH
