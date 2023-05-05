@@ -37,7 +37,6 @@
         - Start a New Game  
         - Diplay of Current Game Difficulty 
         - Option to Display Timer 
-        - Resume Game Capablities 
         
     Features Implemented on the Achievements Page:
     
@@ -86,12 +85,27 @@
     
 ### What we were in the middle of implementing ### 
 
+    - Resume Game Functionality 
+    - Notifications that alert users of valid/nonvalid entries when creating account/logging in 
+    - Save Button 
 
 
 ### Our plans for the future ### 
 
-
+    - Hint Button that highlights potential next moves 
+    - Additional badges to be earned 
+    - Add in more Sudoku Puzzles at each difficulty level 
+    - Add a progress meter to the Main Page
+    - Allow users to see there stats on the achievements page
+    
+    
 ### Any Known Bugs ### 
+
+    - Keypad input does not show default mistakes mode
+    - Notes on board are not automatically erased with new/restart game
+    - Able to bipass Login/Create Account page (Breaks Database) 
+    - Timer Glitches 
+    - Resume Functionality changes difficulty display 
 
 
 ## Public Hosting Website Link 
