@@ -1,8 +1,8 @@
 # Sudoku Sage  --- Hooli-Strike-Team --- # 
 
-### Make By:
+### Team Members:
 
-* Tory Swenson 
+* Tory Swensen 
 * Ben Allen 
 * Micah Simmerman 
 * Matthew Tuttle
@@ -23,7 +23,7 @@
 ## Final Status Report
 
 
-### What we've completed ###
+### What We Completed ###
 
     Features Implemented on the Main Page:
     
@@ -49,10 +49,11 @@
         
     Features Implemented on the Home Page:
     
-        - Link to Login 
-        - Link to Create an Account
-        - (If Logged In) Link to resume game
-        - (If Logged In) Link to start new game 
+        - Link to Login Page
+        - Link to Create an Account Page
+        - Conditional Display of Modal for Logged In Users
+        - (If Logged In) Link to Resume Game
+        - (If Logged In) Link to Start New Game 
         
     Features Implemented on the Create Account Page:
         
@@ -60,52 +61,52 @@
         - Space for Password
         - Space for First Name 
         - Space for Last Name 
-        - Space for Email Adress
-        - Directs Users to Login Page
+        - Space for E-mail Address
+        - Redirect to Login Page
         
     Features Implemented on the Login Page: 
         
         - Space for Username 
         - Space for Password 
-        - Directs Users to Main Page
+        - Redirect to Main Page
         
-    Features Implemented on the Setting Modal:
+    Features Implemented in the Settings Modal:
         
-        - Slider to Turn On and Off the Timer Display on the Main Page
-        - Slider to Turn On and Off the Mistakes Counter Feature on the Main Page
+        - Slider to Turn the Timer Display "On" and "Off" on the Main Page
+        - Slider to Turn the Mistakes Counter Feature "On" and "Off" on the Main Page
         
     Features Implemented on the Rules Page: 
         
-        - Extensive Walkthrough on how to Play the Game 
+        - Extensive Walkthrough on How to Play the Game 
         
     Features Implemented on the Tutorial Page:
         
         - Extensive Walkthrough on Stategies for the Game
         
     
-### What we were in the middle of implementing ### 
+### What We Were in the Middle of Implementing ### 
 
     - Resume Game Functionality 
-    - Notifications that alert users of valid/nonvalid entries when creating account/logging in 
+    - Notifications that Alert Users of Valid/Invalid Entries when Creating an Account/Logging In 
     - Save Button 
 
 
-### Our plans for the future ### 
+### Our Plans for the Future ### 
 
-    - Hint Button that highlights potential next moves 
-    - Additional badges to be earned 
-    - Add in more Sudoku Puzzles at each difficulty level 
-    - Add a progress meter to the Main Page
-    - Allow users to see there stats on the achievements page
+    - Hint Button that Highlights Potential Next Moves 
+    - Additional Badges to Be Earned 
+    - Add In More Sudoku Puzzles at Each Difficulty Level 
+    - Add a Progress Meter to the Main Page
+    - Allow Users to See their Statistics on the Achievements Page
+    - Implement a Responsive Design to Ensure That the Website is Optimized for Various Screen Sizes and Devices
     
     
 ### Any Known Bugs ### 
 
-    - Keypad input does not show default mistakes mode
-    - Notes on board are not automatically erased with new/restart game
-    - Able to bipass Login/Create Account page (Breaks Database) 
+    - Keypad Input Does Not Show Default Mistakes Mode
+    - Notes on Board are Not Automatically Erased when the "New Game" or "Restart" Buttons Are Pressed
     - Timer Glitches 
-    - Resume Functionality changes difficulty display 
+    - Resume Functionality Changes Difficulty Display 
 
 
 ## Public Hosting Website Link 
