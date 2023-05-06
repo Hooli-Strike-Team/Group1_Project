@@ -88,7 +88,7 @@
 
     - Resume Game Functionality 
     - Notifications that Alert Users of Valid/Invalid Entries when Creating an Account/Logging In 
-    - Save Button 
+    - "Save" Button 
 
 
 ### Our Plans for the Future ### 
