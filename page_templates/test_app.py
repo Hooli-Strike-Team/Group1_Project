@@ -1,4 +1,4 @@
-import prefix
+#import prefix
 import os
 import sqlite3
 import logging
@@ -187,13 +187,13 @@ def test_get():
     return results
     
     
-# Insert wrapper for handling PROXY when using csel.io virtual machine
-prefix.use_PrefixMiddleware(app)   
+# # Insert wrapper for handling PROXY when using csel.io virtual machine
+# prefix.use_PrefixMiddleware(app)   
 
-# Test route to show prefix settings
-@app.route('/prefix_url')  
-def prefix_url():
-    return 'The URL for this page is {}'.format(url_for('prefix_url'))
+# # Test route to show prefix settings
+# @app.route('/prefix_url')  
+# def prefix_url():
+#     return 'The URL for this page is {}'.format(url_for('prefix_url'))
 
 @app.route('/')
 def home():
