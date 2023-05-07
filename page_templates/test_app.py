@@ -46,8 +46,22 @@ handler = logging.FileHandler("test.log")  # Create the file logger
 app.logger.addHandler(handler)             # Add it to the built-in logger
 app.logger.setLevel(logging.DEBUG)         # Set the log level to debug
     
-# Custom decorator to restrict access to specific routes
+
 def login_required(f):
+    '''
+    Custom decorator to restrict access to specific route, if no username redirects to login \n
+    
+    Parameters 
+    ----------
+    
+	args: varying number of positional arguments	 
+	kwargs: varying named arguments 
+		
+	Returns
+	-------
+	Redirect URL for Login
+		If a username is not present in session, ask to login
+    '''
     @wraps(f)
     def require_login(*args, **kwargs):
         if 'username' not in session:
@@ -57,6 +71,17 @@ def login_required(f):
   
 @app.route('/post_achievements', methods=['POST', 'GET'])
 def post_achievements():
+    '''
+    Updates database by sending new achievement data
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+		
+	Returns
+	-------
+	Nothing
+    '''
     error = None
     if request.method == 'POST':
         data = request.get_json()
@@ -73,6 +98,17 @@ def post_achievements():
         
 @app.route('/game_state/<string:username>', methods=['POST', 'GET'])
 def game_state(username):
+    '''
+    Updates a specific game with mistakes/board state/timer 
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+		
+	Returns
+	-------
+	Nothing
+    '''
     if request.method == 'GET':
         db = sqlite3.connect(db_path)
         cursor = db.cursor()
@@ -111,6 +147,17 @@ def game_state(username):
   
 @app.route('/game_settings/<string:username>', methods=['GET', 'POST'])
 def game_settings(username):
+    '''
+    Updates a specific game's settings (showclock, show mistakes)
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+		
+	Returns
+	-------
+	Nothing
+    '''
     if request.method == 'GET':
         db = sqlite3.connect(db_path)
         cursor = db.cursor()
@@ -147,6 +194,17 @@ def game_settings(username):
     
 @app.route('/test_receive', methods=['POST', 'GET'])
 def receive():
+    '''
+    Receives new user account data into database
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+		
+	Returns
+	-------
+	Nothing
+    '''
     error = None
     if request.method == 'POST':
         data = request.get_json()
@@ -163,6 +221,17 @@ def receive():
     
 @app.route('/test_get', methods=['POST', 'GET'])
 def test_get():
+    '''
+    Retrieves new user account data from database
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+		
+	Returns
+	-------
+	UserData (Username,Password,First_name,Last_name,email)
+    '''
     error = None
     if request.method == 'GET':
         db = sqlite3.connect(db_path)
@@ -193,10 +262,32 @@ prefix.use_PrefixMiddleware(app)
 # Test route to show prefix settings
 @app.route('/prefix_url')  
 def prefix_url():
+    '''
+    Tests route to show prefix settings
+    
+    Parameters 
+    ----------
+    None 
+		
+	Returns
+	-------
+	URL for current page 
+    '''
     return 'The URL for this page is {}'.format(url_for('prefix_url'))
 
 @app.route('/')
 def home():
+    '''
+    Home Page
+    
+    Parameters 
+    ----------
+    None
+		
+	Returns
+	-------
+	Shows if user is logged in
+    '''
     # If 'username' is in the session, display the modal window
     if 'username' in session:
         username = session['username']
@@ -222,6 +313,17 @@ def home():
 # = = = = = = = = CREATE ACCOUNT = = = = = = = = = = #
 @app.route('/create-account', methods = ['POST', 'GET'])
 def create_account():
+    '''
+    Retrieves new user account data from database
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+		
+	Returns
+	-------
+	UserData (Username,Password,First_name,Last_name,email)
+    '''
     if request.method == 'POST':
         try:
             username = str(request.form['uname'])
@@ -258,6 +360,17 @@ def create_account():
 # = = = = = = = = LOGIN = = = = = = = = = = #
 @app.route('/login', methods = ['POST', 'GET'])
 def login():
+    '''
+    Login page for existing accounts
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+		
+	Returns
+	-------
+	Login page
+    '''
     if request.method == 'POST':
         try:
             username = str(request.form['uname_si'])
@@ -298,6 +411,17 @@ def login():
 
 @app.route('/logout')
 def logout():
+    '''
+    Ends user session, returns to homepage 
+    
+    Parameters 
+    ----------
+    None 
+		
+	Returns
+	-------
+	Home Page
+    '''
     session.pop('username', None)
     return redirect(url_for('home'))
 
@@ -312,10 +436,32 @@ resume_game = False
 @app.route('/main')
 @login_required
 def main():
+    '''
+    Main page 
+    
+    Parameters 
+    ----------
+    None
+		
+	Returns
+	-------
+	main page html
+    '''
     return render_template('main.html', mistakes_counter=mistakes_counter)
 
 @app.route('/rules')
 def show_rules():
+    '''
+    Rules page 
+    
+    Parameters 
+    ----------
+    None
+		
+	Returns
+	-------
+	rules page html
+    '''
     return render_template('rules.html')
 
 
@@ -323,6 +469,17 @@ def show_rules():
 @app.route('/achievements', methods=['POST', 'GET'])
 @login_required
 def show_achievements():
+    '''
+    Uses render_template to update the achievements page with badge bools
+    
+    Parameters 
+    ----------
+    GET/POST methods
+		
+	Returns
+	-------
+	achievements page html w/ individual user's achievements
+    '''
     # Initalize bool values to false so that all badges begin as locked 
     risk_taker = False # if the user has met the requirements for the Risk_Taker Badge
     speed_runner = False # if the user has met the requirements for the Speed Runner badge
@@ -385,6 +542,18 @@ def show_achievements():
 # Includes the logic behind how achievements are unlocked 
 @app.route('/record', methods=['POST', 'GET'])    
 def record_stats():
+    '''
+    Record URL is uses the 'POST' menthod to abtain data from user activities and write it to the database 
+    Includes the logic behind how achievements are unlocked
+    
+    Parameters 
+    ----------
+    GET/POST methods
+		
+	Returns
+	-------
+	None, updates achievement stats
+    '''
     difficulty = ""
     timer = 0 
     best_time_hard = 50000 # Needs to be set to a high number so that the first time recorded can beat it
@@ -544,6 +713,18 @@ def record_stats():
 # This requires keeping track of every completed game 
 @app.route('/Master', methods=['POST', 'GET'])
 def Puzzle_Master_Badge():
+    '''
+    Route is used to update and track Puzzle_Master badge progress 
+    This requires keeping track of every completed game 
+    
+    Parameters 
+    ----------
+    GET/POST methods
+		
+	Returns
+	-------
+	None, updates puzzle master achievement
+    '''
     error = None
     puzzle_master = 0
     # Sends the current status on the number of games completed to the requester 
@@ -615,11 +796,33 @@ def Puzzle_Master_Badge():
 
 @app.route('/settings')
 def show_settings():
+    '''
+    Settings page 
+    
+    Parameters 
+    ----------
+    None
+		
+	Returns
+	-------
+	settings page html
+    '''
     return render_template('settings.html')
 
   
 @app.route('/tutorial')
 def show_tutorial():
+    '''
+    Tutorial page 
+    
+    Parameters 
+    ----------
+    None
+		
+	Returns
+	-------
+	tutorial page html
+    '''
     return render_template('tutorial.html')
 
 ################################################################################

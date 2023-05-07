@@ -17,7 +17,7 @@ def <your_function>(<parameter1>,<parameter2>)
 	<return>
 		<description>
         
-    Usage examples:  #this is the autotest portion
+    Usage examples:  #this is the autotest portion FOR PYTHON ONLY
     >>> <your function>(<parameter1>, <parameter2>) #test1
     <expected result>
     >>> <your function>(<parameter1>, <parameter2>) #test2
