@@ -62,12 +62,14 @@
         - Space for First Name 
         - Space for Last Name 
         - Space for E-mail Address
+        - User records created in database
         - Redirect to Login Page
         
     Features Implemented on the Login Page: 
         
         - Space for Username 
         - Space for Password 
+        - Username and password verified in database login
         - Redirect to Main Page
         
     Features Implemented in the Settings Modal:
