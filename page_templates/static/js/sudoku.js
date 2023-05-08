@@ -499,7 +499,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
     const hint_button = document.getElementById('hints-button');
     const new_button = document.getElementById('new-game-button');
     const xbutton = document.querySelector(".x-button");
-    const settings_mistakes = document.getElementById('settings-mistakes');
+    let settings_mistakes = document.getElementById('settings-mistakes'); // Needs to be changed later
     const difficulty_span = document.getElementById('difficulty-span');
     
     // *************************** FIX *************************** 
