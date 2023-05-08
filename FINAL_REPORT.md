@@ -116,5 +116,25 @@
     https://sudoku-sage.onrender.com/
                       
     
+## Usage
+
+    The latest version of Sudoku Sage is available at https://sudoku-sage.onrender.com/. 
     
+    Step 1: Creating an Account
+    When you reach the landing page, click the Create Account button located at the top right corner of the page (also found under the introduction summary of the landing page). Provide a username, password, first name, last name, and email address. Note that the Username and email must be unique and cannot exist within the system (i.e., no duplicate accounts are permitted). If you have entered the account details correctly, you will be directed to the login page. 
     
+    Step 2: Signing In
+    Enter the username and password you created in step 1, and then click the sign-in button. If the username and password are entered incorrectly, the form will be redisplayed. Entering the correct username and password combination will direct you to the game page.
+    
+    Step 3: Select Game Difficulty
+    Upon reaching the game page, you will be presented with a set of difficulty options (i.e., EASY, HARD, or EXPERT). The game session starts after a difficulty setting has been selected.
+    
+    Step 4: Using the Controls
+    A new Sudoku board will be displayed based on the game difficulty you selected in step 3. Click a cell, then select a number from the keypad to populate the selected cell. If you wish to delete a value from the board, simply highlight the cell you wish to delete and click the backspace button located at the base of the keypad.
+    If you get stuck or need a hint, clicking the "Mistakes" button will highlight the areas of improvement in your current game. You may restart the current game by clicking the "Restart" button, or load a new game by clicking "New Game". Clicking the "Tutorial" button will open a new tab where strategies for completing a game of sudoku can be found
+    
+    Step 5: Rules, Settings, and Achievements
+    The rules of sudoku can be viewed by clicking the "Rules" icon in the top right corner. You can view your list of achievements at any time by clicking "Achievements" icon (also in the top right corner of the page). Requirements for earning achievement badges can be found in this video: https://drive.google.com/file/d/1nLWjcoDy0myOwdbQO-rEm0BkM0qFK8o8/view?usp=sharing. The gear icon in the upper righthand corner of the page can be used to display/hide the game clock and mistake counter on the game page.
+    
+    Step 6: Sigining Out
+    Sign out of the application by clicking the "Sign Out" hyperlink, located to the right of the username display (at the top of the keypad). Clicking this link will terminate the browser session and redirect you to the landing page. 
