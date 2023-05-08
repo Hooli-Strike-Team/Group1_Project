@@ -1,4 +1,32 @@
-// ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: sudoku.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: sudoku.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
 // #    Front End and Back End Functions                    ##
 // ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
 
@@ -15,7 +43,7 @@ function http_post(route,json_body) {
     xhr.setRequestHeader("Content-Type", "application/json");
     const body = JSON.stringify(json_body);
     xhr.onload = () => {
-      if (xhr.readyState == 4 && xhr.status == 201) {
+      if (xhr.readyState == 4 &amp;&amp; xhr.status == 201) {
         console.log(JSON.parse(xhr.responseText));
       } else {
         console.log(`Error: ${xhr.status}`);
@@ -38,7 +66,7 @@ function http_get(route) {
     XHR.send();
     XHR.responseType = "json";
     XHR.onload = () => {
-      if (XHR.readyState == 4 && XHR.status == 200) {
+      if (XHR.readyState == 4 &amp;&amp; XHR.status == 200) {
         const data = JSON.parse(XHR.response);
         console.log(data)
         return data
@@ -155,8 +183,8 @@ class Sudoku {
         }
 
         // TODO: foreach getBoardSquares
-        for ( let row = 0; row <= 8; row++ ) {
-            for ( let column = 0; column <= 8; column++ ) {
+        for ( let row = 0; row &lt;= 8; row++ ) {
+            for ( let column = 0; column &lt;= 8; column++ ) {
                 let char = board_string.charAt(row * 9 + column);
                 if ( char == '*' || char == '_' || char == '.' ) {
                     char = 0;
@@ -191,8 +219,8 @@ class Sudoku {
         }
 
         // TODO: foreach getBoardSquares
-        for ( let row = 0; row <= 8; row++ ) {
-            for ( let column = 0; column <= 8; column++ ) {
+        for ( let row = 0; row &lt;= 8; row++ ) {
+            for ( let column = 0; column &lt;= 8; column++ ) {
                 let char = board_string.charAt(row * 9 + column);
                 if ( char == '*' || char == '_' || char == '.' ) {
                     char = 0;
@@ -226,8 +254,8 @@ class Sudoku {
      */
     get_original_board_string() {
         let str = '';
-        for ( let row = 0; row <= 8; row++ ) {
-            for ( let col = 0; col <= 8; col++ ) {
+        for ( let row = 0; row &lt;= 8; row++ ) {
+            for ( let col = 0; col &lt;= 8; col++ ) {
                 str += this.original_board[row][col];
             }
         }
@@ -240,8 +268,8 @@ class Sudoku {
      */
     get_string() {
         let str = '';
-        for ( let row = 0; row <= 8; row++ ) {
-            for ( let col = 0; col <= 8; col++ ) {
+        for ( let row = 0; row &lt;= 8; row++ ) {
+            for ( let col = 0; col &lt;= 8; col++ ) {
                 str += this.board[row][col];
             }
         }
@@ -347,8 +375,8 @@ class Sudoku {
      * @return {} - None
      */
     clear_mistakes(sudoku_squares, invalid_tag) {
-        for ( let row = 0; row <= 8; row++ ) {
-            for ( let col = 0; col <= 8; col++ ) {
+        for ( let row = 0; row &lt;= 8; row++ ) {
+            for ( let col = 0; col &lt;= 8; col++ ) {
                 sudoku_squares[row][col].classList.remove(invalid_tag);
 
             }
@@ -386,7 +414,7 @@ class Sudoku {
 
         // Check row
         // TODO: foreach getRowSquares
-        for ( let i = 0; i <= 8; i++ ) {
+        for ( let i = 0; i &lt;= 8; i++ ) {
             if ( value == this.board[row][i] ) {
                 console.log("duplicate row")
                 return false;
@@ -395,7 +423,7 @@ class Sudoku {
 
         // Check column
         // TODO: foreach getColumnSquares
-        for ( let i = 0; i <= 8; i++ ) {
+        for ( let i = 0; i &lt;= 8; i++ ) {
             if ( value == this.board[i][col] ) {
                 console.log("duplicate col")
                 return false;
@@ -406,8 +434,8 @@ class Sudoku {
         // TODO: foreach getBoxSquares
         const row_offset = Math.floor(row / 3) * 3;
         const col_offset = Math.floor(col / 3) * 3;
-        for ( let i = 0 + row_offset; i <= 2 + row_offset; i++ ) {
-            for ( let j = 0 + col_offset; j <= 2 + col_offset; j++ ) {
+        for ( let i = 0 + row_offset; i &lt;= 2 + row_offset; i++ ) {
+            for ( let j = 0 + col_offset; j &lt;= 2 + col_offset; j++ ) {
                 if ( value == this.board[i][j] ) {
                     console.log("duplicate square")
                     return false;
@@ -430,8 +458,8 @@ class Sudoku {
         var is_finished = true;
 
         // Run check for every cell
-        for ( let row = 0; row <= 8; row++ ) {
-            for ( let col = 0; col <= 8; col++ ) {
+        for ( let row = 0; row &lt;= 8; row++ ) {
+            for ( let col = 0; col &lt;= 8; col++ ) {
 
                 // Check if any squares are blank
                 if ( this.board[row][col] == 0 ) {
@@ -444,8 +472,8 @@ class Sudoku {
                     sudoku_squares[row][col].classList.remove(invalid_tag);
 
                     // Check row
-                    for (let i = 0; i <= 8; i++) {
-                        if ( this.board[row][col] == this.board[row][i] && col != i ) {
+                    for (let i = 0; i &lt;= 8; i++) {
+                        if ( this.board[row][col] == this.board[row][i] &amp;&amp; col != i ) {
                             sudoku_squares[row][col].classList.add(invalid_tag);
                             is_legal = false;
                         }
@@ -453,8 +481,8 @@ class Sudoku {
 
                     // Check column
                     // TODO: foreach getColumnSquares
-                    for ( let i = 0; i <= 8; i++ ) {
-                        if ( this.board[row][col] == this.board[i][col] && row != i ) {
+                    for ( let i = 0; i &lt;= 8; i++ ) {
+                        if ( this.board[row][col] == this.board[i][col] &amp;&amp; row != i ) {
                             sudoku_squares[row][col].classList.add(invalid_tag);
                             is_legal = false;
                         }
@@ -464,9 +492,9 @@ class Sudoku {
                     // TODO: foreach getBoxSquares
                     const row_offset = Math.floor(row / 3) * 3;
                     const col_offset = Math.floor(col / 3) * 3;
-                    for ( let i = 0 + row_offset; i <= 2 + row_offset; i++ ) {
-                        for ( let j = 0 + col_offset; j <= 2 + col_offset; j++ ) {
-                            if ( this.board[row][col] == this.board[i][j] && !(row == i && col == j) ) {
+                    for ( let i = 0 + row_offset; i &lt;= 2 + row_offset; i++ ) {
+                        for ( let j = 0 + col_offset; j &lt;= 2 + col_offset; j++ ) {
+                            if ( this.board[row][col] == this.board[i][j] &amp;&amp; !(row == i &amp;&amp; col == j) ) {
                                 sudoku_squares[row][col].classList.add(invalid_tag);
                                 is_legal = false;
                             }
@@ -551,8 +579,8 @@ class SudokuDOM {
         const board = sudoku_object.get_board();
         console.log(board)
         this.clear_board(sudoku_squares, change_square_color);
-        for ( let row = 0; row <= 8; row++ ) {
-            for ( let col = 0; col <= 8; col++ ) {
+        for ( let row = 0; row &lt;= 8; row++ ) {
+            for ( let col = 0; col &lt;= 8; col++ ) {
                 const input = sudoku_squares[row][col];
                 input.classList.remove('hint');
                 input.classList.remove('invalid');
@@ -579,8 +607,8 @@ class SudokuDOM {
         console.log(board)
         console.log(original_board)
         this.clear_board(sudoku_squares, change_square_color);
-        for ( let row = 0; row <= 8; row++ ) {
-            for ( let col = 0; col <= 8; col++ ) {
+        for ( let row = 0; row &lt;= 8; row++ ) {
+            for ( let col = 0; col &lt;= 8; col++ ) {
                 const input = sudoku_squares[row][col];
                 input.classList.remove('hint');
                 input.classList.remove('invalid');
@@ -588,7 +616,7 @@ class SudokuDOM {
 
                 if ( board[row][col] != 0 ) {
                     input.value = board[row][col];
-                    if ( change_square_color && original_board[row][col] != 0) {
+                    if ( change_square_color &amp;&amp; original_board[row][col] != 0) {
                         input.classList.add('imported-square');
                         input.disabled = true;
                     }
@@ -605,8 +633,8 @@ class SudokuDOM {
     // }
 
     static clear_board(sudoku_squares, change_square_color = true) {
-        for ( let row = 0; row <= 8; row++ ) {
-            for ( let col = 0; col <= 8; col++ ) {
+        for ( let row = 0; row &lt;= 8; row++ ) {
+            for ( let col = 0; col &lt;= 8; col++ ) {
                 sudoku_squares[row][col].value = "";
                 if ( change_square_color ) {
                     sudoku_squares[row][col].classList.remove('imported-square');
@@ -706,17 +734,17 @@ window.addEventListener('DOMContentLoaded', (e) => {
     let notes_count = 0 
 
 
-    // Store all the Sudoku square <input type="text"> elements in variables for 
+    // Store all the Sudoku square &lt;input type="text"> elements in variables for 
     // quick access
-    for ( let row = 0; row < PUZZLE_SIZE; row++ ) {
-        for ( let col = 0; col < PUZZLE_SIZE; col++ ) {
+    for ( let row = 0; row &lt; PUZZLE_SIZE; row++ ) {
+        for ( let col = 0; col &lt; PUZZLE_SIZE; col++ ) {
             sudoku_squares[row][col] = sudoku_table.children[col + row * PUZZLE_SIZE].children[0];
         }
     }
 
     // Store all the keypad button elements in variables for quick access
     // Note: index off by 1 relative to value
-    for ( let i = 1; i < 10; i++ ) {
+    for ( let i = 1; i &lt; 10; i++ ) {
         keypad[i - 1] = document.getElementById('digit-' + i)
     }
 
@@ -756,8 +784,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
         }
     
         // Sudoku Cell Listener adds input to board
-        for ( let row = 0; row < PUZZLE_SIZE; row++ ) {
-            for ( let col = 0; col < PUZZLE_SIZE; col++ ) {
+        for ( let row = 0; row &lt; PUZZLE_SIZE; row++ ) {
+            for ( let col = 0; col &lt; PUZZLE_SIZE; col++ ) {
                 sudoku_squares[row][col].addEventListener('input', function (e) {
                     // Clear highlights when you select cell
                     e.target.classList.remove(invalid_tag);
@@ -800,11 +828,11 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
 
                                 // If the mistakes toggle is on, highlight invalid cells 
-                                if (!state.is_legal && mistakes_mode == true)  {
+                                if (!state.is_legal &amp;&amp; mistakes_mode == true)  {
                                     let state = game1.board_state(sudoku_squares, "invalid");
                                     //console.log("Default Mistakes Mode On"); 
                                 }
-                                else if (state.is_legal && mistakes_mode == true) {
+                                else if (state.is_legal &amp;&amp; mistakes_mode == true) {
 
                                     game1.clear_mistakes(sudoku_squares, "invalid")
                                     //console.log("Clear All mistakes");
@@ -827,7 +855,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                             console.log("Legal", state.is_legal);
                             console.log("Complete", state.is_finished);
                             // Check to see if game is completed correctly
-                            if ( state.is_legal && state.is_finished ) {
+                            if ( state.is_legal &amp;&amp; state.is_finished ) {
                                 // Get string of the most recently completed game 
                                 just_finished = game1.get_string() 
                                 console.log(just_finished) 
@@ -862,7 +890,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
                                         });
                                         xhr.onload = () => {
-                                          if (xhr.readyState == 4 && xhr.status == 201) {
+                                          if (xhr.readyState == 4 &amp;&amp; xhr.status == 201) {
                                             console.log(JSON.parse(xhr.responseText));
                                           } else {
                                             console.log(`Error: ${xhr.status}`);
@@ -885,7 +913,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
                                         });
                                         xhr.onload = () => {
-                                          if (xhr.readyState == 4 && xhr.status == 201) {
+                                          if (xhr.readyState == 4 &amp;&amp; xhr.status == 201) {
                                             console.log(JSON.parse(xhr.responseText));
                                           } else {
                                             console.log(`Error: ${xhr.status}`);
@@ -909,7 +937,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
                                         });
                                         xhr.onload = () => {
-                                          if (xhr.readyState == 4 && xhr.status == 201) {
+                                          if (xhr.readyState == 4 &amp;&amp; xhr.status == 201) {
                                             console.log(JSON.parse(xhr.responseText));
                                           } else {
                                             console.log(`Error: ${xhr.status}`);
@@ -931,7 +959,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         game1.board_state(sudoku_squares, invalid_tag)
                     }
 
-                    // if ( ! game1.is_legal_move(row, col, input) && e.target.value != "" ) {
+                    // if ( ! game1.is_legal_move(row, col, input) &amp;&amp; e.target.value != "" ) {
                     //     e.target.value = "";
                     //     SudokuDOM.highlight_illegal_move(e.target);
                     //     } 
@@ -960,7 +988,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
                     if ( element ) {
                         const key = e.keyCode || e.charCode;
 
-                        if ( (key == 8 || key == 46) && notes_mode ) {
+                        if ( (key == 8 || key == 46) &amp;&amp; notes_mode ) {
                             game1.clear_notes(element);
                         }
                     }
@@ -970,7 +998,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
         // Create listener for each keypad button and input value in display and array 
         // Note: index off by 1 relative to value
-        for ( let i = 1; i < 10; i++ ) {
+        for ( let i = 1; i &lt; 10; i++ ) {
             keypad[i - 1].addEventListener('click', function (e) {
                 let key_num = this.getAttribute('data-digit')
                 let element = document.querySelector('.selected-square');
@@ -1281,7 +1309,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             var easy_game_json = [{'Update_Type':'New Game','Username':sessionUsername,'Game_ID':1,'Current_Time':0,'Game':easy_arr[easy], 'Original_Game':easy_arr[easy],'Difficulty':difficulty_check,'Mistakes_Count':0}]
             http_post('game_state/'+sessionUsername,easy_game_json)
 
-            if (easy < 3) {
+            if (easy &lt; 3) {
             easy = easy + 1;
             }
             else {
@@ -1314,7 +1342,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             var hard_game_json = [{'Update_Type':'New Game','Username':sessionUsername,'Game_ID':1,'Current_Time':0,'Game':hard_arr[hard], 'Original_Game':hard_arr[hard],'Difficulty':difficulty_check,'Mistakes_Count':0}]
             http_post('game_state/'+sessionUsername,hard_game_json)
 
-            if (hard < 3) {
+            if (hard &lt; 3) {
                 hard = hard + 1;
             }
             else {
@@ -1345,7 +1373,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
             http_post('game_state/'+sessionUsername,expert_game_json)
 
 
-            if (expert < 3) {
+            if (expert &lt; 3) {
                 expert = expert + 1; 
             }
             else {
@@ -1481,7 +1509,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
             });
             xhr.onload = () => {
-                if (xhr.readyState == 4 && xhr.status == 201) {
+                if (xhr.readyState == 4 &amp;&amp; xhr.status == 201) {
                     console.log(JSON.parse(xhr.responseText));
                 } else {
                     console.log(`Error: ${xhr.status}`);
@@ -1513,15 +1541,15 @@ window.addEventListener('DOMContentLoaded', (e) => {
         /* Full functinoality below:
 
         // Sudoku Cell Listener
-        for ( let row = 0; row <= 8; row++ ) {
-            for ( let col = 0; col <= 8; col++ ) {
+        for ( let row = 0; row &lt;= 8; row++ ) {
+            for ( let col = 0; col &lt;= 8; col++ ) {
                 sudoku_squares[row][col].addEventListener('input', function(e) {
                    e.target.classList.remove("invalid");
                    e.target.classList.remove("hint");
 
                    // Listen for illegal moves; if illegal, delete input and 
                    // turn square red for 2 seconds
-                   if ( ! game1.is_legal_move(row, col, e.target.value) && e.target.value != "" ) {
+                   if ( ! game1.is_legal_move(row, col, e.target.value) &amp;&amp; e.target.value != "" ) {
                        e.target.value = "";
                        SudokuDOM.highlight_illegal_move(e.target);
                    } else {
@@ -1612,7 +1640,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
         //         }
         //     });
 
-        //     // Pick the default puzzle. Trigger the <select>.change listener so the puzzle gets loaded.
+        //     // Pick the default puzzle. Trigger the &lt;select>.change listener so the puzzle gets loaded.
         //     // selectedIndex starts from 0
         //     puzzle_picker.selectedIndex = DEFAULT_PUZZLE_SELECTEDINDEX;
         //     puzzle_picker.dispatchEvent(new Event('change'));
@@ -1771,11 +1799,11 @@ class Timer {
         timerblock.innerHTML = this.format();
         timerblock.style.display = 'block';
 
-        if (this.time <= 59) {
+        if (this.time &lt;= 59) {
             timerblock.style.color = 'red';
         }
     
-        if (this.time <= 0) {
+        if (this.time &lt;= 0) {
             timerblock.innerHTML = 'Time end!';
             this.callback();
             this.stop();
@@ -1819,4 +1847,26 @@ class Timer {
     stop() {
         this.control = false;
     }
-}
+}</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Helper.html">Helper</a></li><li><a href="Sudoku.html">Sudoku</a></li><li><a href="SudokuSquare.html">SudokuSquare</a></li><li><a href="Timer.html">Timer</a></li></ul><h3>Global</h3><ul><li><a href="global.html#get_settings_values">get_settings_values</a></li><li><a href="global.html#http_get">http_get</a></li><li><a href="global.html#http_get_saved">http_get_saved</a></li><li><a href="global.html#http_post">http_post</a></li><li><a href="global.html#loadGameData">loadGameData</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Mon May 08 2023 02:26:35 GMT+0000 (Coordinated Universal Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
