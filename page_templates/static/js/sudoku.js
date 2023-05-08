@@ -831,9 +831,40 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         game1.make_move(row, col, this.getAttribute('data-digit'),timer,difficulty_check);
                         game1.clear_notes(element);
                         
+                        var state = game1.board_state(sudoku_squares, invalid_tag)
+                        var is_mistakes_counter_on = settings_mistakes.checked
+                        
                         // clear all highlighted mistakes 
-                        // game1.clear_mistakes(sudoku_squares, invalid_tag)
-                        // console.log(game1.board)
+                        game1.clear_mistakes(sudoku_squares, invalid_tag)
+                        console.log(game1.board)
+                        
+                        // Check if Mistakes Toggle is off
+                        if (!is_mistakes_counter_on) {
+
+
+                            // If the mistakes toggle is on, highlight invalid cells 
+                            if (!state.is_legal && mistakes_mode == true)  {
+                                let state = game1.board_state(sudoku_squares, "invalid");
+                                //console.log("Default Mistakes Mode On"); 
+                            }
+                            else if (state.is_legal && mistakes_mode == true) {
+
+                                game1.clear_mistakes(sudoku_squares, "invalid")
+                                //console.log("Clear All mistakes");
+
+                            }
+
+                            // If the mistakes toggle is off, clear all highlights   
+                            if (mistakes_mode == false) {
+                                game1.clear_mistakes(sudoku_squares, "invalid");
+                                //console.log("Default Mistakes Mode Off"); 
+                            }
+                        }
+                        // Mistakes Toggle is On
+                        else {
+                            // Remove Highlight as soon as move is made
+                            game1.clear_mistakes(sudoku_squares, "invalid");
+                        }
                     }
                 }
             })
