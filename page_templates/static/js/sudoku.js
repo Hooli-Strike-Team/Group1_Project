@@ -832,8 +832,8 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         game1.clear_notes(element);
                         
                         // clear all highlighted mistakes 
-                        game1.clear_mistakes(sudoku_squares, invalid_tag)
-                        console.log(game1.board)
+                        // game1.clear_mistakes(sudoku_squares, invalid_tag)
+                        // console.log(game1.board)
                     }
                 }
             })
