@@ -1,0 +1,1938 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>test_app API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>test_app</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import prefix
+import os
+import sqlite3
+import logging
+
+from flask import Flask, url_for, render_template, redirect, session, g, request, jsonify, render_template_string
+from functools import wraps
+# from flask_sqlalchemy import SQLAlchemy
+DATABASE=&#34;./SQL/controller_db&#34;
+db_path = &#39;./SQL/settings_test_db&#39;
+
+# Create app to use in Flask application
+app = Flask(__name__)
+
+# Secret key for session object (testing purposes)
+# Note: this is a really bad secret key!
+app.secret_key = &#39;Hooli-Strike-Team&#39;
+
+########## SQLAlchemy Version ####################
+# # create the extension
+# db = SQLAlchemy()
+# # create the app
+# app = Flask(__name__)
+# # configure the SQLite database, relative to the app instance folder
+# app.config[&#34;SQLALCHEMY_DATABASE_URI&#34;] = &#34;sqlite:///&#34; + db_path
+# # initialize the app with the extension
+# db.init_app(app)
+
+############## Striaght SQLite Version ##############
+# Flask handler opens and closes connection on teardown
+
+# def get_db():
+#     if &#39;db&#39; not in g:
+#         g.db = sqlite3.connect(db_path)
+
+#     return g.db
+
+# @app.teardown_appcontext
+# def close_connection(exception):
+#     db = getattr(g, &#39;_database&#39;, None)
+#     if db is not None:
+#         db.close()
+
+########## Logging ###################
+handler = logging.FileHandler(&#34;test.log&#34;)  # Create the file logger
+app.logger.addHandler(handler)             # Add it to the built-in logger
+app.logger.setLevel(logging.DEBUG)         # Set the log level to debug
+    
+
+def login_required(f):
+    &#39;&#39;&#39;
+    Custom decorator to restrict access to specific route, if no username redirects to login \n
+    
+    Parameters 
+    ----------
+    
+        args: varying number of positional arguments     
+        kwargs: varying named arguments 
+                
+        Returns
+        -------
+        Redirect URL for Login
+                If a username is not present in session, ask to login
+    &#39;&#39;&#39;
+    @wraps(f)
+    def require_login(*args, **kwargs):
+        if &#39;username&#39; not in session:
+            return redirect(url_for(&#39;login&#39;))
+        return f(*args, **kwargs)
+    return require_login
+  
+@app.route(&#39;/post_achievements&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def post_achievements():
+    &#39;&#39;&#39;
+    Updates database by sending new achievement data
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        Nothing
+    &#39;&#39;&#39;
+    error = None
+    if request.method == &#39;POST&#39;:
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+        with db:
+                db.execute(&#34;UPDATE Achievement_Stats VALUES ();&#34;,data)
+
+        db.close()
+        app.logger.info(data)
+        return &#39;nothing&#39;
+    app.logger.info(&#39;not post&#39;)
+    return &#34;Not POST&#34; 
+
+        
+@app.route(&#39;/game_state/&lt;string:username&gt;&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def game_state(username):
+    &#39;&#39;&#39;
+    Updates a specific game with mistakes/board state/timer 
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        Nothing
+    &#39;&#39;&#39;
+    if request.method == &#39;GET&#39;:
+        db = sqlite3.connect(db_path)
+        cursor = db.cursor()
+        cursor.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,))
+        results = cursor.fetchall()
+        db.close()
+        return jsonify(results)
+    
+    if request.method == &#39;POST&#39;:
+        data = request.get_json()[0]
+        db = sqlite3.connect(db_path)
+        if data[&#39;Update_Type&#39;] == &#39;New Game&#39;:
+            with db:
+                db.execute(&#39;&#39;&#39;UPDATE Games_In_Progress SET &#39;Original_Game&#39; = :Original_Game, &#39;Game&#39; = :Game, &#39;Current_Time&#39; = :Current_Time, &#39;Difficulty&#39; = :Difficulty, &#39;Mistakes_Count&#39; = :Mistakes_Count WHERE Username=:Username&#39;&#39;&#39;, data)
+                cursor = db.cursor()
+                cursor.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,))
+                results = cursor.fetchall()
+                app.logger.info(results)
+        elif data[&#39;Update_Type&#39;] == &#39;Current Game&#39;:
+            with db:
+                db.execute(&#39;&#39;&#39;UPDATE Games_In_Progress SET &#39;Game&#39; = :Game, &#39;Current_Time&#39; = :Current_Time WHERE Username=:Username&#39;&#39;&#39;, data)
+                cursor = db.cursor()
+                cursor.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,))
+                results = cursor.fetchall()
+                app.logger.info(results)
+        elif data[&#39;Update_Type&#39;] == &#39;Mistake&#39;:
+            with db:
+                db.execute(&#39;&#39;&#39;UPDATE Games_In_Progress SET &#39;Mistakes_Count&#39; = :Mistakes_Count WHERE Username=:Username&#39;&#39;&#39;, data)
+                cursor = db.cursor()
+                cursor.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,))
+                results = cursor.fetchall()
+                app.logger.info(results)
+        db.close()
+        return &#39;nothing&#39;
+
+  
+@app.route(&#39;/game_settings/&lt;string:username&gt;&#39;, methods=[&#39;GET&#39;, &#39;POST&#39;])
+def game_settings(username):
+    &#39;&#39;&#39;
+    Updates a specific game&#39;s settings (showclock, show mistakes)
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        Nothing
+    &#39;&#39;&#39;
+    if request.method == &#39;GET&#39;:
+        db = sqlite3.connect(db_path)
+        cursor = db.cursor()
+        cursor.execute(&#34;SELECT * FROM Game_Settings WHERE Username = ?&#34;, (username,))
+        results = cursor.fetchall()
+        db.close()
+        return jsonify(results)
+
+    if request.method == &#39;POST&#39;:
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+
+        # Check if record already exists with the given username
+        cursor = db.cursor()
+        cursor.execute(&#34;SELECT * FROM Game_Settings WHERE Username = ?&#34;, (username,))
+        result = cursor.fetchone()
+
+        if result is None:
+            # Record doesn&#39;t exist, so insert a new row
+            db.execute(&#34;INSERT INTO Game_Settings (Username, Show_Clock, Show_Mistakes_Counter) VALUES (?, ?, ?)&#34;,
+                        (username, data[&#39;Show_Clock&#39;], data[&#39;Show_Mistakes_Counter&#39;]))
+            db.commit()
+            db.close()
+            app.logger.info(data)
+            return &#39;Record inserted successfully&#39;
+        else:
+            # Record already exists, so update the existing row
+            db.execute(&#34;UPDATE Game_Settings SET Show_Clock = ?, Show_Mistakes_Counter = ? WHERE Username = ?&#34;,
+                        (data[&#39;Show_Clock&#39;], data[&#39;Show_Mistakes_Counter&#39;], username))
+            db.commit()
+            db.close()
+            app.logger.info(data)
+            return &#39;Record updated successfully&#39;
+    
+@app.route(&#39;/test_receive&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def receive():
+    &#39;&#39;&#39;
+    Receives new user account data into database
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        Nothing
+    &#39;&#39;&#39;
+    error = None
+    if request.method == &#39;POST&#39;:
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+        with db:
+                db.execute(&#34;INSERT INTO User_Account VALUES (:User_Account, &#39;LarBear25&#39;,&#39;Paul&#39;,&#39;Schneider&#39;,&#39;dogluver@email.com&#39;);&#34;,data)
+
+        db.close()
+        app.logger.info(data)
+        return &#39;nothing&#39;
+    app.logger.info(&#39;not post&#39;)
+    return &#34;Not POST&#34; 
+
+    
+@app.route(&#39;/test_get&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def test_get():
+    &#39;&#39;&#39;
+    Retrieves new user account data from database
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        UserData (Username,Password,First_name,Last_name,email)
+    &#39;&#39;&#39;
+    error = None
+    if request.method == &#39;GET&#39;:
+        db = sqlite3.connect(db_path)
+        results = [] 
+        with db:
+             # for user in [{&#39;Username&#39;:&#39;RandyBoBandy-71&#39;},]:
+             #    db.execute(&#34;INSERT INTO User_Account VALUES (:Username, &#39;LarBear25&#39;,&#39;Paul&#39;,&#39;Schneider&#39;,&#39;dogluver@email.com&#39;);&#34;,user)
+                # c.execute(&#34;SELECT name FROM sqlite_master WHERE type=&#39;table&#39;;&#34;)
+                # for result in db.execute(&#34;SELECT * FROM User_Account;&#34;):
+                #     results.append(result) 
+                for result in db.execute(&#39;&#39;&#39;SELECT json_group_array( json_object(
+                                                    &#39;Username&#39;, Username,
+                                                    &#39;Password&#39;, Password,
+                                                    &#39;First_Name&#39;, First_Name,
+                                                    &#39;Last_Name&#39;, Last_Name,
+                                                    &#39;Email&#39;, Email))
+                                          FROM User_Account
+                                          &#39;&#39;&#39;):
+                    results.append(result)
+        db.close()
+
+    return results
+    
+    
+# Insert wrapper for handling PROXY when using csel.io virtual machine
+prefix.use_PrefixMiddleware(app)   
+
+# Test route to show prefix settings
+@app.route(&#39;/prefix_url&#39;)  
+def prefix_url():
+    &#39;&#39;&#39;
+    Tests route to show prefix settings
+    
+    Parameters 
+    ----------
+    None 
+                
+        Returns
+        -------
+        URL for current page 
+    &#39;&#39;&#39;
+    return &#39;The URL for this page is {}&#39;.format(url_for(&#39;prefix_url&#39;))
+
+@app.route(&#39;/&#39;)
+def home():
+    &#39;&#39;&#39;
+    Home Page
+    
+    Parameters 
+    ----------
+    None
+                
+        Returns
+        -------
+        Shows if user is logged in
+    &#39;&#39;&#39;
+    # If &#39;username&#39; is in the session, display the modal window
+    if &#39;username&#39; in session:
+        username = session[&#39;username&#39;]
+        db = sqlite3.connect(db_path)
+        cursor = db.cursor()
+        cursor.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,))
+        results = cursor.fetchall()
+        db.close()
+      
+        if results:
+          return render_template(&#39;home.html&#39;, show_logged_in_content=True, show_resume_game=True)
+        else:
+          return render_template(&#39;home.html&#39;, show_logged_in_content=True, show_resume_game=False)
+    else:
+        return render_template(&#39;home.html&#39;, show_logged_in_content=False)
+
+    
+    
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+#    AREA BELOW IS UNDER CONSTRUCTION - Micah
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+    
+# = = = = = = = = CREATE ACCOUNT = = = = = = = = = = #
+@app.route(&#39;/create-account&#39;, methods = [&#39;POST&#39;, &#39;GET&#39;])
+def create_account():
+    &#39;&#39;&#39;
+    Retrieves new user account data from database
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        UserData (Username,Password,First_name,Last_name,email)
+    &#39;&#39;&#39;
+    if request.method == &#39;POST&#39;:
+        try:
+            username = str(request.form[&#39;uname&#39;])
+            session[&#39;username&#39;] = request.form[&#39;uname&#39;]
+            password = str(request.form[&#39;psw&#39;])
+            session[&#39;password&#39;] = request.form[&#39;psw&#39;]
+            firstname = str(request.form[&#39;fname&#39;])
+            session[&#39;firstname&#39;] = request.form[&#39;fname&#39;]
+            lastname = str(request.form[&#39;lname&#39;])
+            session[&#39;lastname&#39;] = request.form[&#39;lname&#39;]
+            email = str(request.form[&#39;email&#39;]) 
+            session[&#39;email&#39;] = request.form[&#39;email&#39;]
+            with sqlite3.connect(db_path) as con:  # db connection object
+                cur = con.cursor()
+                ####  NEEDS TO BE TURNED ON FOR EVERY CONNECTION INVOLVING INSERT/DELETE ####
+                cur.execute(&#34;PRAGMA foreign_keys = ON;&#34;) 
+                cur.execute(&#34;&#34;&#34;
+                INSERT INTO User_Account
+                (Username,Password,First_Name,Last_Name,Email) 
+                VALUES (?,?,?,?,?);
+                &#34;&#34;&#34;, (username, password, firstname, lastname, email))
+                con.commit()
+                msg = &#34;Record successfully added&#34;
+                return redirect(&#39;login&#39;)
+        except:
+            con.rollback()
+            con.close()
+            msg = &#34;Error in insert operation&#34;
+            return render_template(&#39;create-account.html&#39;, msg=msg)
+    else:
+        return render_template(&#39;create-account.html&#39;)
+
+    
+# = = = = = = = = LOGIN = = = = = = = = = = #
+@app.route(&#39;/login&#39;, methods = [&#39;POST&#39;, &#39;GET&#39;])
+def login():
+    &#39;&#39;&#39;
+    Login page for existing accounts
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        Login page
+    &#39;&#39;&#39;
+    if request.method == &#39;POST&#39;:
+        try:
+            username = str(request.form[&#39;uname_si&#39;])
+            password = str(request.form[&#39;psw_si&#39;])
+            with sqlite3.connect(db_path) as con:  # db connection object
+                cur = con.cursor()    
+                query = cur.execute(&#34;&#34;&#34;
+                SELECT COUNT(*)
+                FROM User_Account
+                WHERE Username = ? AND Password = ?;
+                &#34;&#34;&#34;, (username, password))
+                user_exists = query.fetchone()[0]
+                app.logger.info(user_exists)
+                app.logger.info(username)
+                app.logger.info(password)
+                if (int(user_exists)):  # 
+                    con.commit()
+                    msg = &#34;Record successfully added&#34;
+                    session[&#39;username&#39;] = request.form[&#39;uname_si&#39;]
+                    return redirect(url_for(&#39;main&#39;))
+                else:
+                    return render_template(&#39;login.html&#39;)
+        except:
+            con.rollback()
+            con.close()
+            msg = &#34;Error in insert operation&#34;
+            return render_template(&#39;login.html&#39;, msg=msg)
+    else:
+        return render_template(&#39;login.html&#39;)
+
+
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+#    AREA ABOVE IS UNDER CONSTRUCTION - Micah
+## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## 
+
+
+
+
+@app.route(&#39;/logout&#39;)
+def logout():
+    &#39;&#39;&#39;
+    Ends user session, returns to homepage 
+    
+    Parameters 
+    ----------
+    None 
+                
+        Returns
+        -------
+        Home Page
+    &#39;&#39;&#39;
+    session.pop(&#39;username&#39;, None)
+    return redirect(url_for(&#39;home&#39;))
+
+
+
+
+#testing for the Mistakes counter slider in settings 
+mistakes_counter = False
+resume_game = False
+
+
+@app.route(&#39;/main&#39;)
+@login_required
+def main():
+    &#39;&#39;&#39;
+    Main page 
+    
+    Parameters 
+    ----------
+    None
+                
+        Returns
+        -------
+        main page html
+    &#39;&#39;&#39;
+    return render_template(&#39;main.html&#39;, mistakes_counter=mistakes_counter)
+
+@app.route(&#39;/rules&#39;)
+def show_rules():
+    &#39;&#39;&#39;
+    Rules page 
+    
+    Parameters 
+    ----------
+    None
+                
+        Returns
+        -------
+        rules page html
+    &#39;&#39;&#39;
+    return render_template(&#39;rules.html&#39;)
+
+
+# Uses render_template to update the achievements page with badge bools 
+@app.route(&#39;/achievements&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+@login_required
+def show_achievements():
+    &#39;&#39;&#39;
+    Uses render_template to update the achievements page with badge bools
+    
+    Parameters 
+    ----------
+    GET/POST methods
+                
+        Returns
+        -------
+        achievements page html w/ individual user&#39;s achievements
+    &#39;&#39;&#39;
+    # Initalize bool values to false so that all badges begin as locked 
+    risk_taker = False # if the user has met the requirements for the Risk_Taker Badge
+    speed_runner = False # if the user has met the requirements for the Speed Runner badge
+    conqueror = False # if the user has met the requirements for the Conqueror badge
+    lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
+    strategist = False # if the user has met the requirements for the Inquisitor badge
+    puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
+    
+    risk_flag = 0
+    speed_flag = 0 
+    wolf_flag = 0
+    strat_flag = 0 
+    master_flag = 0
+    conqueror_flag = 0
+    
+    error = None
+
+    if request.method == &#39;GET&#39;:
+        
+        # Added session check
+        # Select bool statements from the User_Achievements table and reassign values from above if selected value is true. 
+        if &#39;username&#39; in session:
+            username = session[&#39;username&#39;]
+            db = sqlite3.connect(db_path)
+            with db:
+                for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                    strat_flag = result[1] 
+                    wolf_flag = result[2] 
+                    master_flag = result[3] 
+                    risk_flag = result[4] 
+                    speed_flag = result[5] 
+                    conqueror_flag = result[6] 
+                    print(result) 
+
+                if (strat_flag == 1):
+                    strategist = True
+                    print(&#34;strategist&#34;, strategist) 
+                if (speed_flag == 1):
+                    speed_runner = True
+                    print(&#34;Speed_Runner&#34;, speed_runner) 
+                if (wolf_flag == 1):
+                    lone_wolf = True
+                    print(&#34;Lone_Wolf&#34;, lone_wolf) 
+                if(master_flag == 1): 
+                    puzzle_master = True
+                    print(&#34;Puzzle_Master&#34;, puzzle_master) 
+                if(risk_flag == 1):
+                    risk_taker = True 
+                    print(&#34;Risk_Taker&#34;, risk_taker) 
+                if(conqueror_flag == 1):
+                    conqueror = True
+                    print(&#34;Conqueror&#34;, conqueror) 
+            db.close() 
+            ## Pass updated bool values into the render_template for the achievements page
+            ## If value is True then the achievements will be unlocked on the page 
+    return render_template(&#39;achievements.html&#39;, risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, 
+                           speed_runner=speed_runner, strategist=strategist, conqueror=conqueror)
+   
+# Record URL is uses the &#39;POST&#39; menthod to abtain data from user activities and write it to the database 
+# Includes the logic behind how achievements are unlocked 
+@app.route(&#39;/record&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])    
+def record_stats():
+    &#39;&#39;&#39;
+    Record URL is uses the &#39;POST&#39; menthod to abtain data from user activities and write it to the database 
+    Includes the logic behind how achievements are unlocked
+    
+    Parameters 
+    ----------
+    GET/POST methods
+                
+        Returns
+        -------
+        None, updates achievement stats
+    &#39;&#39;&#39;
+    difficulty = &#34;&#34;
+    timer = 0 
+    best_time_hard = 50000 # Needs to be set to a high number so that the first time recorded can beat it
+    
+    hard = 0
+    med = 0 
+    easy = 0
+    no_mistakes = 0
+    speed = 0 
+    notes = 0
+    
+    if request.method == &#39;POST&#39;:
+         if &#39;username&#39; in session: # Add session check so that multiple users can easn achievements 
+            username = session[&#39;username&#39;]
+            data = request.get_json()
+            db = sqlite3.connect(db_path)
+            with db:
+
+                
+                # When a user completes a puzzle, these values are updated 
+                db.execute(&#39;&#39;&#39;UPDATE Games_In_Progress SET 
+                            &#39;Current_Time&#39; = :Current_Time,
+                            &#39;Difficulty&#39; = :Difficulty,
+                            &#39;Mistakes_Checked&#39; = :Mistakes_Checked,
+                            &#39;Notes_Checked&#39; = :Notes_Checked
+                             WHERE Username=:Username&#39;&#39;&#39;, data)
+
+                for result in db.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,)):
+                        print(&#34;Difficulty&#34;, result[5])
+                        print(&#34;Timer&#34;, result[2])
+                        print(&#34;Mistakes Made&#34;, result[8]) 
+                        print(&#34;Notes_Checked&#34;, result[7]) 
+
+                        difficulty = result[5]
+                        timer = result[2] 
+
+
+               # # Updates stats table to reflect that a user completed a puzzle on expert  # #
+                if difficulty == &#34;Hard&#34;:  
+                    db.execute(&#39;&#39;&#39;
+                            UPDATE Achievement_Stats SET HardGamesCompleted = HardGamesCompleted + 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+
+
+                    for result in db.execute(&#34;SELECT * FROM Achievement_Stats WHERE Username = ?&#34;, (username,)):
+                            print(&#34;Hard Games Completed&#34;, result[3]) 
+
+
+
+                # Accounting for the fact that the game was completed on Expert
+                    # Check if the users time to completion was less then the current record 
+                    if (best_time_hard &gt; timer):
+                        # Update stats with new best time 
+                        db.execute(&#39;&#39;&#39;
+                                UPDATE Achievement_Stats SET Best_Time_Hard = :Current_Time WHERE Username=:Username&#39;&#39;&#39;, data)
+                    # Check is the users time to completion was more than the current record
+                    # If so do basically nothing 
+                    elif ( best_time_hard &lt; timer):
+                        print(&#34;Current time is not better than best time on hard&#34;)
+                        for result in db.execute(&#34;SELECT * FROM Achievement_Stats WHERE Username = ?&#34;, (username,)):
+                                print(&#34;Best_Time_Hard&#34;, result[6])
+                                
+               # Update Games completed on medium      
+                elif difficulty == &#34;Medium&#34;:
+                    db.execute(&#39;&#39;&#39;
+                            UPDATE Achievement_Stats SET MedGamesCompleted = MedGamesCompleted + 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+
+
+               # Update Games completed on Easy          
+                elif difficulty == &#34;Easy&#34;:
+                    db.execute(&#39;&#39;&#39;
+                            UPDATE Achievement_Stats SET EasyGamesCompleted = EasyGamesCompleted + 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+
+
+
+
+              ####### LOGIC #######              
+
+                for result in db.execute(&#34;SELECT * FROM Achievement_Stats WHERE Username = ?&#34;, (username,)):
+                    print(&#34;EasyGamesCompleted&#34;, result[1]) 
+                    print(&#34;MedGamesCompleted&#34;, result[2])     
+                    print(&#34;HardGamesCompleted&#34;, result[3])
+                    easy = result[1]
+                    med = result[2]
+                    hard = result[3]
+
+                    # # If Users completed at least three games on expert, unlock Risk Taker Badge # #      
+                    if (hard &gt;= 3): 
+                        db.execute(&#39;&#39;&#39;
+                            UPDATE User_Achievements SET RiskTaker = 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+                            
+
+                        for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                            print(&#34;Risk_Taker&#34;, result[4]) 
+
+
+                   
+
+                    print(&#34;Best_Time_Hard&#34;, result[6]) 
+                    speed = result[6]
+                    
+                    ## If User beats an expert game in under 10 minutes, Speed_Runner is unlocked 
+                        
+                        ## 600 seconds is the same as 10 minutes 
+                    if (hard &gt;= 1 and speed &lt;= 600):
+                        db.execute(&#39;&#39;&#39;
+                            UPDATE User_Achievements SET SpeedRunner = 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+                         
+                        for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                            print(&#34;Speed Runner&#34;, result[5]) 
+
+
+                    # # If user completes one puzzle on each difficulty, conqueror is unlocked # # 
+
+                    if (1 &lt;= hard and 1 &lt;= med and 1 &lt;= hard):
+                        db.execute(&#39;&#39;&#39;
+                            UPDATE User_Achievements SET Conqueror = 1 
+                            WHERE Username=:Username&#39;&#39;&#39;, data) 
+                        
+                        for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                            print(&#34;Conqueror&#34;, result[6]) 
+
+
+
+                for result in db.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,)):
+                    no_mistakes = result[8]
+                    notes = result[7] 
+                    # Even though the feature is a toggle, were looking for zero click or toggles 
+                    # If the user does not touch the mistakes button at all, and completes a game at any difficulty, the lonewolf badge is unlocked 
+                    if (no_mistakes &lt; 1):
+                        db.execute(&#39;&#39;&#39;
+                            UPDATE User_Achievements SET LoneWolf = 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+                            
+                        for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                            print(&#34;LoneWolf&#34;, result[2]) 
+
+
+                    # 6 clicks account for the fact that the feature is a toggle
+                    # 6 clicks is the same as 3 full toggles 
+                    # if a user uses the notes feature three times, the inquisitor badge is unlocked 
+                    if (notes &gt;= 6):
+                        db.execute(&#39;&#39;&#39;
+                            UPDATE User_Achievements SET Inquisitor = 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+                             
+                        for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                            print(&#34;strategist&#34;, result[1]) 
+
+
+
+
+            db.commit()    
+            db.close() 
+        
+    return &#34;Achievement Stats Updated&#34; 
+
+
+# route is used to update and track Puzzle_Master badge progress 
+# This requires keeping track of every completed game 
+@app.route(&#39;/Master&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def Puzzle_Master_Badge():
+    &#39;&#39;&#39;
+    Route is used to update and track Puzzle_Master badge progress 
+    This requires keeping track of every completed game 
+    
+    Parameters 
+    ----------
+    GET/POST methods
+                
+        Returns
+        -------
+        None, updates puzzle master achievement
+    &#39;&#39;&#39;
+    error = None
+    puzzle_master = 0
+    # Sends the current status on the number of games completed to the requester 
+    if request.method == &#39;GET&#39;:
+        if &#39;username&#39; in session:
+            username = session[&#39;username&#39;]
+            db = sqlite3.connect(db_path)
+            results = []
+            with db: 
+                for result in db.execute(&#34;SELECT * FROM Puzzle_Master WHERE Username = ?&#34;, (username,)):
+                    results.append(result) 
+                    print(&#34;result of Puzzle Master&#34;, results) 
+
+
+
+            db.close() 
+            return jsonify(results)
+    # Receives updates marking which games have been completed 
+    if request.method == &#39;POST&#39;:
+        if &#39;username&#39; in session:
+            username = session[&#39;username&#39;]
+            data = request.get_json()
+            db = sqlite3.connect(db_path)
+            with db:
+
+                db.execute(&#39;&#39;&#39;UPDATE Puzzle_Master SET 
+                            &#39;Game1_Easy&#39; = :Game1_Easy,
+                            &#39;Game2_Easy&#39; = :Game2_Easy,
+                            &#39;Game3_Easy&#39; = :Game3_Easy,
+                            &#39;Game4_Easy&#39; = :Game4_Easy,
+                            &#39;Game1_Med&#39; = :Game1_Med,
+                            &#39;Game2_Med&#39; = :Game2_Med,
+                            &#39;Game3_Med&#39; = :Game3_Med,
+                            &#39;Game4_Med&#39; = :Game4_Med, 
+                            &#39;Game1_Hard&#39; = :Game1_Hard,
+                            &#39;Game2_Hard&#39; = :Game2_Hard, 
+                            &#39;Game3_Hard&#39; = :Game3_Hard, 
+                            &#39;Game4_Hard&#39; = :Game4_Hard
+                             WHERE Username=:Username&#39;&#39;&#39;, data)
+
+                i = 1 
+                for master in db.execute(&#34;SELECT * FROM Puzzle_Master WHERE Username = ?&#34;, (username,)):
+                    print(master) 
+                    # In the range of 12 playable games 
+                    while (i &lt; 13):
+                        # If a new game is completed, add 1 to the running total 
+                        if(master[i] == 1): 
+                            puzzle_master = puzzle_master + 1 
+
+                        i = i + 1 
+
+                    # If twelve seperate games have been completed than the puzzle master badge is earned 
+                    if (puzzle_master == 12): 
+                        db.execute(&#39;&#39;&#39;
+                            UPDATE User_Achievements SET PuzzleMaster = 1 
+                            WHERE Username = ? 
+                            &#39;&#39;&#39;, (username,))
+                        for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                            print(&#34;strategist&#34;, result[3]) 
+
+            db.commit()
+            db.close()
+
+            return &#34;Puzzle Master Achievement Updated&#34; 
+
+        return &#34;Nothing&#34;
+
+
+
+@app.route(&#39;/settings&#39;)
+def show_settings():
+    &#39;&#39;&#39;
+    Settings page 
+    
+    Parameters 
+    ----------
+    None
+                
+        Returns
+        -------
+        settings page html
+    &#39;&#39;&#39;
+    return render_template(&#39;settings.html&#39;)
+
+  
+@app.route(&#39;/tutorial&#39;)
+def show_tutorial():
+    &#39;&#39;&#39;
+    Tutorial page 
+    
+    Parameters 
+    ----------
+    None
+                
+        Returns
+        -------
+        tutorial page html
+    &#39;&#39;&#39;
+    return render_template(&#39;tutorial.html&#39;)
+
+################################################################################
+
+if __name__ == &#39;__main__&#39;:
+  # app.run(host=&#39;0.0.0.0&#39;, port=3308)
+    app.run(host=&#39;localhost&#39;, port=3308)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="test_app.Puzzle_Master_Badge"><code class="name flex">
+<span>def <span class="ident">Puzzle_Master_Badge</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Route is used to update and track Puzzle_Master badge progress
+This requires keeping track of every completed game </p>
+<h2 id="parameters">Parameters</h2>
+<p>GET/POST methods</p>
+<pre><code>Returns
+-------
+None, updates puzzle master achievement
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/Master&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def Puzzle_Master_Badge():
+    &#39;&#39;&#39;
+    Route is used to update and track Puzzle_Master badge progress 
+    This requires keeping track of every completed game 
+    
+    Parameters 
+    ----------
+    GET/POST methods
+                
+        Returns
+        -------
+        None, updates puzzle master achievement
+    &#39;&#39;&#39;
+    error = None
+    puzzle_master = 0
+    # Sends the current status on the number of games completed to the requester 
+    if request.method == &#39;GET&#39;:
+        if &#39;username&#39; in session:
+            username = session[&#39;username&#39;]
+            db = sqlite3.connect(db_path)
+            results = []
+            with db: 
+                for result in db.execute(&#34;SELECT * FROM Puzzle_Master WHERE Username = ?&#34;, (username,)):
+                    results.append(result) 
+                    print(&#34;result of Puzzle Master&#34;, results) 
+
+
+
+            db.close() 
+            return jsonify(results)
+    # Receives updates marking which games have been completed 
+    if request.method == &#39;POST&#39;:
+        if &#39;username&#39; in session:
+            username = session[&#39;username&#39;]
+            data = request.get_json()
+            db = sqlite3.connect(db_path)
+            with db:
+
+                db.execute(&#39;&#39;&#39;UPDATE Puzzle_Master SET 
+                            &#39;Game1_Easy&#39; = :Game1_Easy,
+                            &#39;Game2_Easy&#39; = :Game2_Easy,
+                            &#39;Game3_Easy&#39; = :Game3_Easy,
+                            &#39;Game4_Easy&#39; = :Game4_Easy,
+                            &#39;Game1_Med&#39; = :Game1_Med,
+                            &#39;Game2_Med&#39; = :Game2_Med,
+                            &#39;Game3_Med&#39; = :Game3_Med,
+                            &#39;Game4_Med&#39; = :Game4_Med, 
+                            &#39;Game1_Hard&#39; = :Game1_Hard,
+                            &#39;Game2_Hard&#39; = :Game2_Hard, 
+                            &#39;Game3_Hard&#39; = :Game3_Hard, 
+                            &#39;Game4_Hard&#39; = :Game4_Hard
+                             WHERE Username=:Username&#39;&#39;&#39;, data)
+
+                i = 1 
+                for master in db.execute(&#34;SELECT * FROM Puzzle_Master WHERE Username = ?&#34;, (username,)):
+                    print(master) 
+                    # In the range of 12 playable games 
+                    while (i &lt; 13):
+                        # If a new game is completed, add 1 to the running total 
+                        if(master[i] == 1): 
+                            puzzle_master = puzzle_master + 1 
+
+                        i = i + 1 
+
+                    # If twelve seperate games have been completed than the puzzle master badge is earned 
+                    if (puzzle_master == 12): 
+                        db.execute(&#39;&#39;&#39;
+                            UPDATE User_Achievements SET PuzzleMaster = 1 
+                            WHERE Username = ? 
+                            &#39;&#39;&#39;, (username,))
+                        for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                            print(&#34;strategist&#34;, result[3]) 
+
+            db.commit()
+            db.close()
+
+            return &#34;Puzzle Master Achievement Updated&#34; 
+
+        return &#34;Nothing&#34;</code></pre>
+</details>
+</dd>
+<dt id="test_app.create_account"><code class="name flex">
+<span>def <span class="ident">create_account</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves new user account data from database</p>
+<h2 id="parameters">Parameters</h2>
+<p>POST/GET methods </p>
+<pre><code>Returns
+-------
+UserData (Username,Password,First_name,Last_name,email)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/create-account&#39;, methods = [&#39;POST&#39;, &#39;GET&#39;])
+def create_account():
+    &#39;&#39;&#39;
+    Retrieves new user account data from database
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        UserData (Username,Password,First_name,Last_name,email)
+    &#39;&#39;&#39;
+    if request.method == &#39;POST&#39;:
+        try:
+            username = str(request.form[&#39;uname&#39;])
+            session[&#39;username&#39;] = request.form[&#39;uname&#39;]
+            password = str(request.form[&#39;psw&#39;])
+            session[&#39;password&#39;] = request.form[&#39;psw&#39;]
+            firstname = str(request.form[&#39;fname&#39;])
+            session[&#39;firstname&#39;] = request.form[&#39;fname&#39;]
+            lastname = str(request.form[&#39;lname&#39;])
+            session[&#39;lastname&#39;] = request.form[&#39;lname&#39;]
+            email = str(request.form[&#39;email&#39;]) 
+            session[&#39;email&#39;] = request.form[&#39;email&#39;]
+            with sqlite3.connect(db_path) as con:  # db connection object
+                cur = con.cursor()
+                ####  NEEDS TO BE TURNED ON FOR EVERY CONNECTION INVOLVING INSERT/DELETE ####
+                cur.execute(&#34;PRAGMA foreign_keys = ON;&#34;) 
+                cur.execute(&#34;&#34;&#34;
+                INSERT INTO User_Account
+                (Username,Password,First_Name,Last_Name,Email) 
+                VALUES (?,?,?,?,?);
+                &#34;&#34;&#34;, (username, password, firstname, lastname, email))
+                con.commit()
+                msg = &#34;Record successfully added&#34;
+                return redirect(&#39;login&#39;)
+        except:
+            con.rollback()
+            con.close()
+            msg = &#34;Error in insert operation&#34;
+            return render_template(&#39;create-account.html&#39;, msg=msg)
+    else:
+        return render_template(&#39;create-account.html&#39;)</code></pre>
+</details>
+</dd>
+<dt id="test_app.game_settings"><code class="name flex">
+<span>def <span class="ident">game_settings</span></span>(<span>username)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates a specific game's settings (showclock, show mistakes)</p>
+<h2 id="parameters">Parameters</h2>
+<p>POST/GET methods </p>
+<pre><code>Returns
+-------
+Nothing
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/game_settings/&lt;string:username&gt;&#39;, methods=[&#39;GET&#39;, &#39;POST&#39;])
+def game_settings(username):
+    &#39;&#39;&#39;
+    Updates a specific game&#39;s settings (showclock, show mistakes)
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        Nothing
+    &#39;&#39;&#39;
+    if request.method == &#39;GET&#39;:
+        db = sqlite3.connect(db_path)
+        cursor = db.cursor()
+        cursor.execute(&#34;SELECT * FROM Game_Settings WHERE Username = ?&#34;, (username,))
+        results = cursor.fetchall()
+        db.close()
+        return jsonify(results)
+
+    if request.method == &#39;POST&#39;:
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+
+        # Check if record already exists with the given username
+        cursor = db.cursor()
+        cursor.execute(&#34;SELECT * FROM Game_Settings WHERE Username = ?&#34;, (username,))
+        result = cursor.fetchone()
+
+        if result is None:
+            # Record doesn&#39;t exist, so insert a new row
+            db.execute(&#34;INSERT INTO Game_Settings (Username, Show_Clock, Show_Mistakes_Counter) VALUES (?, ?, ?)&#34;,
+                        (username, data[&#39;Show_Clock&#39;], data[&#39;Show_Mistakes_Counter&#39;]))
+            db.commit()
+            db.close()
+            app.logger.info(data)
+            return &#39;Record inserted successfully&#39;
+        else:
+            # Record already exists, so update the existing row
+            db.execute(&#34;UPDATE Game_Settings SET Show_Clock = ?, Show_Mistakes_Counter = ? WHERE Username = ?&#34;,
+                        (data[&#39;Show_Clock&#39;], data[&#39;Show_Mistakes_Counter&#39;], username))
+            db.commit()
+            db.close()
+            app.logger.info(data)
+            return &#39;Record updated successfully&#39;</code></pre>
+</details>
+</dd>
+<dt id="test_app.game_state"><code class="name flex">
+<span>def <span class="ident">game_state</span></span>(<span>username)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates a specific game with mistakes/board state/timer </p>
+<h2 id="parameters">Parameters</h2>
+<p>POST/GET methods </p>
+<pre><code>Returns
+-------
+Nothing
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/game_state/&lt;string:username&gt;&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def game_state(username):
+    &#39;&#39;&#39;
+    Updates a specific game with mistakes/board state/timer 
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        Nothing
+    &#39;&#39;&#39;
+    if request.method == &#39;GET&#39;:
+        db = sqlite3.connect(db_path)
+        cursor = db.cursor()
+        cursor.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,))
+        results = cursor.fetchall()
+        db.close()
+        return jsonify(results)
+    
+    if request.method == &#39;POST&#39;:
+        data = request.get_json()[0]
+        db = sqlite3.connect(db_path)
+        if data[&#39;Update_Type&#39;] == &#39;New Game&#39;:
+            with db:
+                db.execute(&#39;&#39;&#39;UPDATE Games_In_Progress SET &#39;Original_Game&#39; = :Original_Game, &#39;Game&#39; = :Game, &#39;Current_Time&#39; = :Current_Time, &#39;Difficulty&#39; = :Difficulty, &#39;Mistakes_Count&#39; = :Mistakes_Count WHERE Username=:Username&#39;&#39;&#39;, data)
+                cursor = db.cursor()
+                cursor.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,))
+                results = cursor.fetchall()
+                app.logger.info(results)
+        elif data[&#39;Update_Type&#39;] == &#39;Current Game&#39;:
+            with db:
+                db.execute(&#39;&#39;&#39;UPDATE Games_In_Progress SET &#39;Game&#39; = :Game, &#39;Current_Time&#39; = :Current_Time WHERE Username=:Username&#39;&#39;&#39;, data)
+                cursor = db.cursor()
+                cursor.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,))
+                results = cursor.fetchall()
+                app.logger.info(results)
+        elif data[&#39;Update_Type&#39;] == &#39;Mistake&#39;:
+            with db:
+                db.execute(&#39;&#39;&#39;UPDATE Games_In_Progress SET &#39;Mistakes_Count&#39; = :Mistakes_Count WHERE Username=:Username&#39;&#39;&#39;, data)
+                cursor = db.cursor()
+                cursor.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,))
+                results = cursor.fetchall()
+                app.logger.info(results)
+        db.close()
+        return &#39;nothing&#39;</code></pre>
+</details>
+</dd>
+<dt id="test_app.home"><code class="name flex">
+<span>def <span class="ident">home</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Home Page</p>
+<h2 id="parameters">Parameters</h2>
+<p>None</p>
+<pre><code>Returns
+-------
+Shows if user is logged in
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/&#39;)
+def home():
+    &#39;&#39;&#39;
+    Home Page
+    
+    Parameters 
+    ----------
+    None
+                
+        Returns
+        -------
+        Shows if user is logged in
+    &#39;&#39;&#39;
+    # If &#39;username&#39; is in the session, display the modal window
+    if &#39;username&#39; in session:
+        username = session[&#39;username&#39;]
+        db = sqlite3.connect(db_path)
+        cursor = db.cursor()
+        cursor.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,))
+        results = cursor.fetchall()
+        db.close()
+      
+        if results:
+          return render_template(&#39;home.html&#39;, show_logged_in_content=True, show_resume_game=True)
+        else:
+          return render_template(&#39;home.html&#39;, show_logged_in_content=True, show_resume_game=False)
+    else:
+        return render_template(&#39;home.html&#39;, show_logged_in_content=False)</code></pre>
+</details>
+</dd>
+<dt id="test_app.login"><code class="name flex">
+<span>def <span class="ident">login</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Login page for existing accounts</p>
+<h2 id="parameters">Parameters</h2>
+<p>POST/GET methods </p>
+<pre><code>Returns
+-------
+Login page
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/login&#39;, methods = [&#39;POST&#39;, &#39;GET&#39;])
+def login():
+    &#39;&#39;&#39;
+    Login page for existing accounts
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        Login page
+    &#39;&#39;&#39;
+    if request.method == &#39;POST&#39;:
+        try:
+            username = str(request.form[&#39;uname_si&#39;])
+            password = str(request.form[&#39;psw_si&#39;])
+            with sqlite3.connect(db_path) as con:  # db connection object
+                cur = con.cursor()    
+                query = cur.execute(&#34;&#34;&#34;
+                SELECT COUNT(*)
+                FROM User_Account
+                WHERE Username = ? AND Password = ?;
+                &#34;&#34;&#34;, (username, password))
+                user_exists = query.fetchone()[0]
+                app.logger.info(user_exists)
+                app.logger.info(username)
+                app.logger.info(password)
+                if (int(user_exists)):  # 
+                    con.commit()
+                    msg = &#34;Record successfully added&#34;
+                    session[&#39;username&#39;] = request.form[&#39;uname_si&#39;]
+                    return redirect(url_for(&#39;main&#39;))
+                else:
+                    return render_template(&#39;login.html&#39;)
+        except:
+            con.rollback()
+            con.close()
+            msg = &#34;Error in insert operation&#34;
+            return render_template(&#39;login.html&#39;, msg=msg)
+    else:
+        return render_template(&#39;login.html&#39;)</code></pre>
+</details>
+</dd>
+<dt id="test_app.login_required"><code class="name flex">
+<span>def <span class="ident">login_required</span></span>(<span>f)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Custom decorator to restrict access to specific route, if no username redirects to login </p>
+<h2 id="parameters">Parameters</h2>
+<pre><code>args: varying number of positional arguments     
+kwargs: varying named arguments
+
+Returns
+-------
+Redirect URL for Login
+        If a username is not present in session, ask to login
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def login_required(f):
+    &#39;&#39;&#39;
+    Custom decorator to restrict access to specific route, if no username redirects to login \n
+    
+    Parameters 
+    ----------
+    
+        args: varying number of positional arguments     
+        kwargs: varying named arguments 
+                
+        Returns
+        -------
+        Redirect URL for Login
+                If a username is not present in session, ask to login
+    &#39;&#39;&#39;
+    @wraps(f)
+    def require_login(*args, **kwargs):
+        if &#39;username&#39; not in session:
+            return redirect(url_for(&#39;login&#39;))
+        return f(*args, **kwargs)
+    return require_login</code></pre>
+</details>
+</dd>
+<dt id="test_app.logout"><code class="name flex">
+<span>def <span class="ident">logout</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Ends user session, returns to homepage </p>
+<h2 id="parameters">Parameters</h2>
+<p>None </p>
+<pre><code>Returns
+-------
+Home Page
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/logout&#39;)
+def logout():
+    &#39;&#39;&#39;
+    Ends user session, returns to homepage 
+    
+    Parameters 
+    ----------
+    None 
+                
+        Returns
+        -------
+        Home Page
+    &#39;&#39;&#39;
+    session.pop(&#39;username&#39;, None)
+    return redirect(url_for(&#39;home&#39;))</code></pre>
+</details>
+</dd>
+<dt id="test_app.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Main page </p>
+<h2 id="parameters">Parameters</h2>
+<p>None</p>
+<pre><code>Returns
+-------
+main page html
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/main&#39;)
+@login_required
+def main():
+    &#39;&#39;&#39;
+    Main page 
+    
+    Parameters 
+    ----------
+    None
+                
+        Returns
+        -------
+        main page html
+    &#39;&#39;&#39;
+    return render_template(&#39;main.html&#39;, mistakes_counter=mistakes_counter)</code></pre>
+</details>
+</dd>
+<dt id="test_app.post_achievements"><code class="name flex">
+<span>def <span class="ident">post_achievements</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Updates database by sending new achievement data</p>
+<h2 id="parameters">Parameters</h2>
+<p>POST/GET methods </p>
+<pre><code>Returns
+-------
+Nothing
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/post_achievements&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def post_achievements():
+    &#39;&#39;&#39;
+    Updates database by sending new achievement data
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        Nothing
+    &#39;&#39;&#39;
+    error = None
+    if request.method == &#39;POST&#39;:
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+        with db:
+                db.execute(&#34;UPDATE Achievement_Stats VALUES ();&#34;,data)
+
+        db.close()
+        app.logger.info(data)
+        return &#39;nothing&#39;
+    app.logger.info(&#39;not post&#39;)
+    return &#34;Not POST&#34; </code></pre>
+</details>
+</dd>
+<dt id="test_app.prefix_url"><code class="name flex">
+<span>def <span class="ident">prefix_url</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Tests route to show prefix settings</p>
+<h2 id="parameters">Parameters</h2>
+<p>None </p>
+<pre><code>Returns
+-------
+URL for current page
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/prefix_url&#39;)  
+def prefix_url():
+    &#39;&#39;&#39;
+    Tests route to show prefix settings
+    
+    Parameters 
+    ----------
+    None 
+                
+        Returns
+        -------
+        URL for current page 
+    &#39;&#39;&#39;
+    return &#39;The URL for this page is {}&#39;.format(url_for(&#39;prefix_url&#39;))</code></pre>
+</details>
+</dd>
+<dt id="test_app.receive"><code class="name flex">
+<span>def <span class="ident">receive</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Receives new user account data into database</p>
+<h2 id="parameters">Parameters</h2>
+<p>POST/GET methods </p>
+<pre><code>Returns
+-------
+Nothing
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/test_receive&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def receive():
+    &#39;&#39;&#39;
+    Receives new user account data into database
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        Nothing
+    &#39;&#39;&#39;
+    error = None
+    if request.method == &#39;POST&#39;:
+        data = request.get_json()
+        db = sqlite3.connect(db_path)
+        with db:
+                db.execute(&#34;INSERT INTO User_Account VALUES (:User_Account, &#39;LarBear25&#39;,&#39;Paul&#39;,&#39;Schneider&#39;,&#39;dogluver@email.com&#39;);&#34;,data)
+
+        db.close()
+        app.logger.info(data)
+        return &#39;nothing&#39;
+    app.logger.info(&#39;not post&#39;)
+    return &#34;Not POST&#34; </code></pre>
+</details>
+</dd>
+<dt id="test_app.record_stats"><code class="name flex">
+<span>def <span class="ident">record_stats</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Record URL is uses the 'POST' menthod to abtain data from user activities and write it to the database
+Includes the logic behind how achievements are unlocked</p>
+<h2 id="parameters">Parameters</h2>
+<p>GET/POST methods</p>
+<pre><code>Returns
+-------
+None, updates achievement stats
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/record&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])    
+def record_stats():
+    &#39;&#39;&#39;
+    Record URL is uses the &#39;POST&#39; menthod to abtain data from user activities and write it to the database 
+    Includes the logic behind how achievements are unlocked
+    
+    Parameters 
+    ----------
+    GET/POST methods
+                
+        Returns
+        -------
+        None, updates achievement stats
+    &#39;&#39;&#39;
+    difficulty = &#34;&#34;
+    timer = 0 
+    best_time_hard = 50000 # Needs to be set to a high number so that the first time recorded can beat it
+    
+    hard = 0
+    med = 0 
+    easy = 0
+    no_mistakes = 0
+    speed = 0 
+    notes = 0
+    
+    if request.method == &#39;POST&#39;:
+         if &#39;username&#39; in session: # Add session check so that multiple users can easn achievements 
+            username = session[&#39;username&#39;]
+            data = request.get_json()
+            db = sqlite3.connect(db_path)
+            with db:
+
+                
+                # When a user completes a puzzle, these values are updated 
+                db.execute(&#39;&#39;&#39;UPDATE Games_In_Progress SET 
+                            &#39;Current_Time&#39; = :Current_Time,
+                            &#39;Difficulty&#39; = :Difficulty,
+                            &#39;Mistakes_Checked&#39; = :Mistakes_Checked,
+                            &#39;Notes_Checked&#39; = :Notes_Checked
+                             WHERE Username=:Username&#39;&#39;&#39;, data)
+
+                for result in db.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,)):
+                        print(&#34;Difficulty&#34;, result[5])
+                        print(&#34;Timer&#34;, result[2])
+                        print(&#34;Mistakes Made&#34;, result[8]) 
+                        print(&#34;Notes_Checked&#34;, result[7]) 
+
+                        difficulty = result[5]
+                        timer = result[2] 
+
+
+               # # Updates stats table to reflect that a user completed a puzzle on expert  # #
+                if difficulty == &#34;Hard&#34;:  
+                    db.execute(&#39;&#39;&#39;
+                            UPDATE Achievement_Stats SET HardGamesCompleted = HardGamesCompleted + 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+
+
+                    for result in db.execute(&#34;SELECT * FROM Achievement_Stats WHERE Username = ?&#34;, (username,)):
+                            print(&#34;Hard Games Completed&#34;, result[3]) 
+
+
+
+                # Accounting for the fact that the game was completed on Expert
+                    # Check if the users time to completion was less then the current record 
+                    if (best_time_hard &gt; timer):
+                        # Update stats with new best time 
+                        db.execute(&#39;&#39;&#39;
+                                UPDATE Achievement_Stats SET Best_Time_Hard = :Current_Time WHERE Username=:Username&#39;&#39;&#39;, data)
+                    # Check is the users time to completion was more than the current record
+                    # If so do basically nothing 
+                    elif ( best_time_hard &lt; timer):
+                        print(&#34;Current time is not better than best time on hard&#34;)
+                        for result in db.execute(&#34;SELECT * FROM Achievement_Stats WHERE Username = ?&#34;, (username,)):
+                                print(&#34;Best_Time_Hard&#34;, result[6])
+                                
+               # Update Games completed on medium      
+                elif difficulty == &#34;Medium&#34;:
+                    db.execute(&#39;&#39;&#39;
+                            UPDATE Achievement_Stats SET MedGamesCompleted = MedGamesCompleted + 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+
+
+               # Update Games completed on Easy          
+                elif difficulty == &#34;Easy&#34;:
+                    db.execute(&#39;&#39;&#39;
+                            UPDATE Achievement_Stats SET EasyGamesCompleted = EasyGamesCompleted + 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+
+
+
+
+              ####### LOGIC #######              
+
+                for result in db.execute(&#34;SELECT * FROM Achievement_Stats WHERE Username = ?&#34;, (username,)):
+                    print(&#34;EasyGamesCompleted&#34;, result[1]) 
+                    print(&#34;MedGamesCompleted&#34;, result[2])     
+                    print(&#34;HardGamesCompleted&#34;, result[3])
+                    easy = result[1]
+                    med = result[2]
+                    hard = result[3]
+
+                    # # If Users completed at least three games on expert, unlock Risk Taker Badge # #      
+                    if (hard &gt;= 3): 
+                        db.execute(&#39;&#39;&#39;
+                            UPDATE User_Achievements SET RiskTaker = 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+                            
+
+                        for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                            print(&#34;Risk_Taker&#34;, result[4]) 
+
+
+                   
+
+                    print(&#34;Best_Time_Hard&#34;, result[6]) 
+                    speed = result[6]
+                    
+                    ## If User beats an expert game in under 10 minutes, Speed_Runner is unlocked 
+                        
+                        ## 600 seconds is the same as 10 minutes 
+                    if (hard &gt;= 1 and speed &lt;= 600):
+                        db.execute(&#39;&#39;&#39;
+                            UPDATE User_Achievements SET SpeedRunner = 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+                         
+                        for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                            print(&#34;Speed Runner&#34;, result[5]) 
+
+
+                    # # If user completes one puzzle on each difficulty, conqueror is unlocked # # 
+
+                    if (1 &lt;= hard and 1 &lt;= med and 1 &lt;= hard):
+                        db.execute(&#39;&#39;&#39;
+                            UPDATE User_Achievements SET Conqueror = 1 
+                            WHERE Username=:Username&#39;&#39;&#39;, data) 
+                        
+                        for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                            print(&#34;Conqueror&#34;, result[6]) 
+
+
+
+                for result in db.execute(&#34;SELECT * FROM Games_In_Progress WHERE Username = ?&#34;, (username,)):
+                    no_mistakes = result[8]
+                    notes = result[7] 
+                    # Even though the feature is a toggle, were looking for zero click or toggles 
+                    # If the user does not touch the mistakes button at all, and completes a game at any difficulty, the lonewolf badge is unlocked 
+                    if (no_mistakes &lt; 1):
+                        db.execute(&#39;&#39;&#39;
+                            UPDATE User_Achievements SET LoneWolf = 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+                            
+                        for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                            print(&#34;LoneWolf&#34;, result[2]) 
+
+
+                    # 6 clicks account for the fact that the feature is a toggle
+                    # 6 clicks is the same as 3 full toggles 
+                    # if a user uses the notes feature three times, the inquisitor badge is unlocked 
+                    if (notes &gt;= 6):
+                        db.execute(&#39;&#39;&#39;
+                            UPDATE User_Achievements SET Inquisitor = 1 WHERE Username=:Username&#39;&#39;&#39;, data)
+                             
+                        for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                            print(&#34;strategist&#34;, result[1]) 
+
+
+
+
+            db.commit()    
+            db.close() 
+        
+    return &#34;Achievement Stats Updated&#34; </code></pre>
+</details>
+</dd>
+<dt id="test_app.show_achievements"><code class="name flex">
+<span>def <span class="ident">show_achievements</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Uses render_template to update the achievements page with badge bools</p>
+<h2 id="parameters">Parameters</h2>
+<p>GET/POST methods</p>
+<pre><code>Returns
+-------
+achievements page html w/ individual user's achievements
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/achievements&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+@login_required
+def show_achievements():
+    &#39;&#39;&#39;
+    Uses render_template to update the achievements page with badge bools
+    
+    Parameters 
+    ----------
+    GET/POST methods
+                
+        Returns
+        -------
+        achievements page html w/ individual user&#39;s achievements
+    &#39;&#39;&#39;
+    # Initalize bool values to false so that all badges begin as locked 
+    risk_taker = False # if the user has met the requirements for the Risk_Taker Badge
+    speed_runner = False # if the user has met the requirements for the Speed Runner badge
+    conqueror = False # if the user has met the requirements for the Conqueror badge
+    lone_wolf = False # if the user has met the requirements for the Lone Wolf badge 
+    strategist = False # if the user has met the requirements for the Inquisitor badge
+    puzzle_master = False # if the user has met the requirements for the Puzzle Master badge
+    
+    risk_flag = 0
+    speed_flag = 0 
+    wolf_flag = 0
+    strat_flag = 0 
+    master_flag = 0
+    conqueror_flag = 0
+    
+    error = None
+
+    if request.method == &#39;GET&#39;:
+        
+        # Added session check
+        # Select bool statements from the User_Achievements table and reassign values from above if selected value is true. 
+        if &#39;username&#39; in session:
+            username = session[&#39;username&#39;]
+            db = sqlite3.connect(db_path)
+            with db:
+                for result in db.execute(&#34;SELECT * FROM User_Achievements WHERE Username = ?&#34;, (username,)):
+                    strat_flag = result[1] 
+                    wolf_flag = result[2] 
+                    master_flag = result[3] 
+                    risk_flag = result[4] 
+                    speed_flag = result[5] 
+                    conqueror_flag = result[6] 
+                    print(result) 
+
+                if (strat_flag == 1):
+                    strategist = True
+                    print(&#34;strategist&#34;, strategist) 
+                if (speed_flag == 1):
+                    speed_runner = True
+                    print(&#34;Speed_Runner&#34;, speed_runner) 
+                if (wolf_flag == 1):
+                    lone_wolf = True
+                    print(&#34;Lone_Wolf&#34;, lone_wolf) 
+                if(master_flag == 1): 
+                    puzzle_master = True
+                    print(&#34;Puzzle_Master&#34;, puzzle_master) 
+                if(risk_flag == 1):
+                    risk_taker = True 
+                    print(&#34;Risk_Taker&#34;, risk_taker) 
+                if(conqueror_flag == 1):
+                    conqueror = True
+                    print(&#34;Conqueror&#34;, conqueror) 
+            db.close() 
+            ## Pass updated bool values into the render_template for the achievements page
+            ## If value is True then the achievements will be unlocked on the page 
+    return render_template(&#39;achievements.html&#39;, risk_taker=risk_taker, lone_wolf=lone_wolf, puzzle_master=puzzle_master, 
+                           speed_runner=speed_runner, strategist=strategist, conqueror=conqueror)</code></pre>
+</details>
+</dd>
+<dt id="test_app.show_rules"><code class="name flex">
+<span>def <span class="ident">show_rules</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Rules page </p>
+<h2 id="parameters">Parameters</h2>
+<p>None</p>
+<pre><code>Returns
+-------
+rules page html
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/rules&#39;)
+def show_rules():
+    &#39;&#39;&#39;
+    Rules page 
+    
+    Parameters 
+    ----------
+    None
+                
+        Returns
+        -------
+        rules page html
+    &#39;&#39;&#39;
+    return render_template(&#39;rules.html&#39;)</code></pre>
+</details>
+</dd>
+<dt id="test_app.show_settings"><code class="name flex">
+<span>def <span class="ident">show_settings</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Settings page </p>
+<h2 id="parameters">Parameters</h2>
+<p>None</p>
+<pre><code>Returns
+-------
+settings page html
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/settings&#39;)
+def show_settings():
+    &#39;&#39;&#39;
+    Settings page 
+    
+    Parameters 
+    ----------
+    None
+                
+        Returns
+        -------
+        settings page html
+    &#39;&#39;&#39;
+    return render_template(&#39;settings.html&#39;)</code></pre>
+</details>
+</dd>
+<dt id="test_app.show_tutorial"><code class="name flex">
+<span>def <span class="ident">show_tutorial</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Tutorial page </p>
+<h2 id="parameters">Parameters</h2>
+<p>None</p>
+<pre><code>Returns
+-------
+tutorial page html
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/tutorial&#39;)
+def show_tutorial():
+    &#39;&#39;&#39;
+    Tutorial page 
+    
+    Parameters 
+    ----------
+    None
+                
+        Returns
+        -------
+        tutorial page html
+    &#39;&#39;&#39;
+    return render_template(&#39;tutorial.html&#39;)</code></pre>
+</details>
+</dd>
+<dt id="test_app.test_get"><code class="name flex">
+<span>def <span class="ident">test_get</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves new user account data from database</p>
+<h2 id="parameters">Parameters</h2>
+<p>POST/GET methods </p>
+<pre><code>Returns
+-------
+UserData (Username,Password,First_name,Last_name,email)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@app.route(&#39;/test_get&#39;, methods=[&#39;POST&#39;, &#39;GET&#39;])
+def test_get():
+    &#39;&#39;&#39;
+    Retrieves new user account data from database
+    
+    Parameters 
+    ----------
+    POST/GET methods 
+                
+        Returns
+        -------
+        UserData (Username,Password,First_name,Last_name,email)
+    &#39;&#39;&#39;
+    error = None
+    if request.method == &#39;GET&#39;:
+        db = sqlite3.connect(db_path)
+        results = [] 
+        with db:
+             # for user in [{&#39;Username&#39;:&#39;RandyBoBandy-71&#39;},]:
+             #    db.execute(&#34;INSERT INTO User_Account VALUES (:Username, &#39;LarBear25&#39;,&#39;Paul&#39;,&#39;Schneider&#39;,&#39;dogluver@email.com&#39;);&#34;,user)
+                # c.execute(&#34;SELECT name FROM sqlite_master WHERE type=&#39;table&#39;;&#34;)
+                # for result in db.execute(&#34;SELECT * FROM User_Account;&#34;):
+                #     results.append(result) 
+                for result in db.execute(&#39;&#39;&#39;SELECT json_group_array( json_object(
+                                                    &#39;Username&#39;, Username,
+                                                    &#39;Password&#39;, Password,
+                                                    &#39;First_Name&#39;, First_Name,
+                                                    &#39;Last_Name&#39;, Last_Name,
+                                                    &#39;Email&#39;, Email))
+                                          FROM User_Account
+                                          &#39;&#39;&#39;):
+                    results.append(result)
+        db.close()
+
+    return results</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="test_app.Puzzle_Master_Badge" href="#test_app.Puzzle_Master_Badge">Puzzle_Master_Badge</a></code></li>
+<li><code><a title="test_app.create_account" href="#test_app.create_account">create_account</a></code></li>
+<li><code><a title="test_app.game_settings" href="#test_app.game_settings">game_settings</a></code></li>
+<li><code><a title="test_app.game_state" href="#test_app.game_state">game_state</a></code></li>
+<li><code><a title="test_app.home" href="#test_app.home">home</a></code></li>
+<li><code><a title="test_app.login" href="#test_app.login">login</a></code></li>
+<li><code><a title="test_app.login_required" href="#test_app.login_required">login_required</a></code></li>
+<li><code><a title="test_app.logout" href="#test_app.logout">logout</a></code></li>
+<li><code><a title="test_app.main" href="#test_app.main">main</a></code></li>
+<li><code><a title="test_app.post_achievements" href="#test_app.post_achievements">post_achievements</a></code></li>
+<li><code><a title="test_app.prefix_url" href="#test_app.prefix_url">prefix_url</a></code></li>
+<li><code><a title="test_app.receive" href="#test_app.receive">receive</a></code></li>
+<li><code><a title="test_app.record_stats" href="#test_app.record_stats">record_stats</a></code></li>
+<li><code><a title="test_app.show_achievements" href="#test_app.show_achievements">show_achievements</a></code></li>
+<li><code><a title="test_app.show_rules" href="#test_app.show_rules">show_rules</a></code></li>
+<li><code><a title="test_app.show_settings" href="#test_app.show_settings">show_settings</a></code></li>
+<li><code><a title="test_app.show_tutorial" href="#test_app.show_tutorial">show_tutorial</a></code></li>
+<li><code><a title="test_app.test_get" href="#test_app.test_get">test_get</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
