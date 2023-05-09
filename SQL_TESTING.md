@@ -85,9 +85,9 @@ WGL R4C
         Expected result:
             The inserted tuple should be clearly visible in the result of the SELECT query.
         Actual result:
-            TBD
+            Table insert qualities were tested and confirmed using an ipynb notebook. (See Test_Cases/DB_Controller.ipynb)
         Status (Pass/Fail):
-            TBD
+            Pass
         Notes:
             Test 
         Post-conditions:
@@ -110,9 +110,9 @@ WGL R4C
         Expected result:
             An error should occur, citing a violation of the User_Account table primary key constraint on Username.
         Actual result:
-            TBD
+            Table insert qualities were tested and confirmed using an ipynb notebook. (See Test_Cases/DB_Controller.ipynb)
         Status (Pass/Fail):
-            TBD
+            Pass
         Notes:
             Insertion of a duplicate username should be rejected by the database API if the table constraints have been implemented correctly. Observe the API behavior during this insertion and consider this information when developing the User_Account access routes. 
         Post-conditions:
@@ -135,9 +135,9 @@ WGL R4C
         Expected result:
             An error should occur, citing a violation of the User_Account UNIQUE table constraint on the 'Email' attribute.
         Actual result:
-            TBD
+            Table insert qualities were tested and confirmed using an ipynb notebook. (See Test_Cases/DB_Controller.ipynb)
         Status (Pass/Fail):
-            TBD
+            Pass
         Notes:
             Insertion of a duplicate email should be rejected by the database API if the table constraints have been implemented correctly. Observe the API behavior during this insertion and consider this information when developing the User_Account access routes.
         Post-conditions:
@@ -185,9 +185,9 @@ WGL R4C
                 Steps 1-8: A tuple should appear in the User_Account table containing the new user's data if table constraints were observed. Upon successful account creation, the user should be directed to the 'Login' page.
                 Steps 9-11: If the inserted record contains a duplicate Username, Email, or both, then no new record should be inserted into User_Account, and the user should be prompted on the same page to try again (i.e., no redirect).
             Actual result:
-                TBD
+                Inserts into the database from the create account page were tested and confirmed in the ipynb notebook prior to integration. (See Test_Cases/DB_Controller.ipynb) Tests for page redirection and form behavior all passed, with the exception of an error message (which was not implemented during this sprint). 
             Status (Pass/Fail):
-                TBD
+                Pass
             Notes:
                 Since the user must create an account to possess valid login credentials, it makes sense to perform this test before testing the User_Account interactions with Login page (discussed next). Attempts to add an account under an existing email address and/or Username should fail gracefully and present the user with a message describing the error.
             Post-conditions:
@@ -229,9 +229,9 @@ WGL R4C
             Steps 1-5: If a valid Username and Password combination is provided, clicking 'Sign In' button should invoke a redirect to the user's home page.
             Steps 6-10: If a faulty Username/Password combination is provided, the rendered view should not change and a message should appear describing the error. 
         Actual result:
-            TBD
+            Inserts into the database from the create account page were tested and confirmed in the ipynb notebook prior to integration. (See Test_Cases/DB_Controller.ipynb) Tests for page redirection and form behavior all passed, with the exception of an error message (which was not implemented during this sprint). 
         Status (Pass/Fail):
-            TBD
+            Pass
         Notes:
             All attempts to login with invalid username and password combination should fail. Fixed length form fields and user input screening should be implemented when designing the route to eliminate the possibility of an SQL injection attack. 
         Post-conditions:

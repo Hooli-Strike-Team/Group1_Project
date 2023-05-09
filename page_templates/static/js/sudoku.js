@@ -495,20 +495,11 @@ class SudokuDOM {
 window.addEventListener('DOMContentLoaded', (e) => {
     // DOM elements stored as constants
     const sudoku_table = document.getElementById('sudoku-board');
-    // const solve_button = document.getElementById('solve');
     const restart_button = document.getElementById('restart-button');
     const hint_button = document.getElementById('hints-button');
-    // const import_button = document.getElementById('import');
     const new_button = document.getElementById('new-game-button');
-    // const string_box = document.getElementById('string-box');
-    // const puzzle_picker = document.getElementById('puzzle_picker');
-    // const sudoku_wiki_link = document.getElementById('sudoku-wiki-link');
-    // const set_button = document.getElementById('set');
-    // const algorithm = document.getElementById('algorithm');
-    // const validate_button = document.getElementById('validate');
-    // const legal_moves_button = document.getElementById('legal-moves');
     const xbutton = document.querySelector(".x-button");
-    let settings_mistakes = document.getElementById('settings-mistakes');
+    let settings_mistakes = document.getElementById('settings-mistakes'); // Needs to be changed later
     const difficulty_span = document.getElementById('difficulty-span');
     
     // *************************** FIX *************************** 
@@ -790,14 +781,6 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         game1.board_state(sudoku_squares, invalid_tag)
                     }
 
-                    // if ( ! game1.is_legal_move(row, col, input) && e.target.value != "" ) {
-                    //     e.target.value = "";
-                    //     SudokuDOM.highlight_illegal_move(e.target);
-                    //     } 
-                    // else {
-                    //         game1.make_move(row, col, input);
-                    //         console.log(game1.board);
-                    // }
                 })
 
                 sudoku_squares[row][col].addEventListener("mousedown", function (e) {
@@ -848,9 +831,40 @@ window.addEventListener('DOMContentLoaded', (e) => {
                         game1.make_move(row, col, this.getAttribute('data-digit'),timer,difficulty_check);
                         game1.clear_notes(element);
                         
+                        var state = game1.board_state(sudoku_squares, invalid_tag)
+                        var is_mistakes_counter_on = settings_mistakes.checked
+                        
                         // clear all highlighted mistakes 
                         game1.clear_mistakes(sudoku_squares, invalid_tag)
                         console.log(game1.board)
+                        
+                        // Check if Mistakes Toggle is off
+                        if (!is_mistakes_counter_on) {
+
+
+                            // If the mistakes toggle is on, highlight invalid cells 
+                            if (!state.is_legal && mistakes_mode == true)  {
+                                let state = game1.board_state(sudoku_squares, "invalid");
+                                //console.log("Default Mistakes Mode On"); 
+                            }
+                            else if (state.is_legal && mistakes_mode == true) {
+
+                                game1.clear_mistakes(sudoku_squares, "invalid")
+                                //console.log("Clear All mistakes");
+
+                            }
+
+                            // If the mistakes toggle is off, clear all highlights   
+                            if (mistakes_mode == false) {
+                                game1.clear_mistakes(sudoku_squares, "invalid");
+                                //console.log("Default Mistakes Mode Off"); 
+                            }
+                        }
+                        // Mistakes Toggle is On
+                        else {
+                            // Remove Highlight as soon as move is made
+                            game1.clear_mistakes(sudoku_squares, "invalid");
+                        }
                     }
                 }
             })
@@ -1369,112 +1383,7 @@ window.addEventListener('DOMContentLoaded', (e) => {
 
         });
 
-        /* Full functinoality below:
-
-        // Sudoku Cell Listener
-        for ( let row = 0; row <= 8; row++ ) {
-            for ( let col = 0; col <= 8; col++ ) {
-                sudoku_squares[row][col].addEventListener('input', function(e) {
-                   e.target.classList.remove("invalid");
-                   e.target.classList.remove("hint");
-
-                   // Listen for illegal moves; if illegal, delete input and 
-                   // turn square red for 2 seconds
-                   if ( ! game1.is_legal_move(row, col, e.target.value) && e.target.value != "" ) {
-                       e.target.value = "";
-                       SudokuDOM.highlight_illegal_move(e.target);
-                   } else {
-                       game1.make_move(row, col, e.target.value);
-                   }
-
-                   // SudokuDOM.display_string(game1, string_box, sudoku_wiki_link);
-                });
-            }
-        }
-        */
-
-        //     solve_button.addEventListener('click', function(e) {
-        //         const t1 = performance.now();
-        //         game1.solve_puzzle();
-        //         const t2 = performance.now();
-        //         document.querySelector('#algorithm span').innerHTML = (t2 - t1).toFixed(1);
-        //         SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link, false);
-        //         algorithm.style.display = 'block';
-        //     });
-
-        //     /*
-        //     set_button.addEventListener('click', function(e) {
-        //         game1.set_as_start_point();
-        //         puzzle_picker.selectedIndex = CUSTOM_PUZZLE_SELECTEDINDEX;
-        //         SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link, true);
-        //     });
-        //     */
-
-        //     validate_button.addEventListener('click', function(e) {
-        //         const t1 = performance.now();
-        //         const numberOfSolutions = game1.getNumberOfSolutions();
-        //         const t2 = performance.now();
-        //         document.querySelector('#algorithm span').innerHTML = (t2 - t1).toFixed(1);
-        //         algorithm.style.display = 'block';
-        //         if ( numberOfSolutions === 1 ) {
-        //             window.alert('PASS - Puzzle is valid');
-        //         } else {
-        //             window.alert('FAIL - Puzzle is invalid');
-        //         }
-        //     });
-
-        //     legal_moves_button.addEventListener('click', function(e) {
-        //         // TODO
-        //         const t1 = performance.now();
-        //         const numberOfSolutions = game1.getNumberOfSolutions();
-        //         const t2 = performance.now();
-        //         document.querySelector('#algorithm span').innerHTML = (t2 - t1).toFixed(1);
-        //         algorithm.style.display = 'block';
-        //         if ( numberOfSolutions === 1 ) {
-        //             window.alert('PASS - Puzzle is valid');
-        //         } else {
-        //             window.alert('FAIL - Puzzle is invalid');
-        //         }
-        //     });
-
-        //     restart_button.addEventListener('click', function(e) {
-        //         game1.restart_puzzle();
-        //         SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link);
-        //     });
-
-        //     hint_button.addEventListener('click', function(e) {
-        //         const hint = game1.get_hint();
-        //         if ( hint ) {
-        //             const row = hint.getRow();
-        //             const col = hint.getCol();
-        //             SudokuDOM.highlight_hint(sudoku_squares[row][col]);
-        //         }
-        //     });
-
-        //     import_button.addEventListener('click', function(e) {
-        //         const board = window.prompt('Please enter a sequence of 81 numbers, with 0 representing an empty square.');
-        //         const board_changed = game1.set_board(board);
-        //         if ( board_changed ) {
-        //             puzzle_picker.selectedIndex = CUSTOM_PUZZLE_SELECTEDINDEX;
-        //         }
-        //         SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link);
-        //     });
-
-        //     puzzle_picker.addEventListener('change', function(e) {
-        //         if ( puzzle_picker.value == 'import' ) {
-        //             import_button.click();
-        //         } else if ( puzzle_picker.value == 'random' ) {
-        //             new_button.click();
-        //         } else {
-        //             game1.set_board(puzzle_picker.value);
-        //             SudokuDOM.display_board(game1, sudoku_squares, string_box, sudoku_wiki_link);
-        //         }
-        //     });
-
-        //     // Pick the default puzzle. Trigger the <select>.change listener so the puzzle gets loaded.
-        //     // selectedIndex starts from 0
-        //     puzzle_picker.selectedIndex = DEFAULT_PUZZLE_SELECTEDINDEX;
-        //     puzzle_picker.dispatchEvent(new Event('change'));
+        
     })
 });
 
